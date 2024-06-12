@@ -28,6 +28,44 @@ model Error {
   message: string;
 }
 
+//PAGINATION:
+model PaginationLinks {
+  first: string;
+  last: string;
+  prev?: string;
+  next?: string;
+}
+
+model PaginationMeta {
+  current_page: int32;
+  from: int32;
+  last_page: int32;
+  path: string;
+  per_page: int32;
+  to: int32;
+  total: int32;
+}
+
+model PaginatedResponse<T> {
+  data: T[];
+  links: PaginationLinks;
+  meta: PaginationMeta;
+  filters: FilterOption[]; //TODO: check if this is the best way
+}
+
+//FILTERS
+model FilterOption {
+  name: string;
+  type: "checkbox" | "daterange";
+  options?: Array<string>;
+}
+
+model FilterRequest {
+  @query page?: int32;
+  @query per_page?: int32;
+  @query search?: string;
+  @query filters?: []; //TODO: check if this is the best way 
+}
 
 //MODELS:
 model Order {
@@ -88,28 +126,41 @@ model SyncedOrder {
 
 
 //API
+
+// Example API resource:
+// @route("/widgets")
+// @tag("Widgets")
+// interface Widgets {
+//   @get list(): Widget[] | Error;
+//   @get read(@path id: string): Widget | Error;
+//   @post create(...Widget): Widget | Error;
+//   @patch update(...Widget): Widget | Error;
+//   @delete delete(@path id: string): void | Error;
+//   @route("{id}/analyze") @post analyze(@path id: string): string | Error;
+// }
+
 //ORDER MANAGER
 //Model: Orders
 @route("/order-manager/orders")
 @tag("Orders")
 interface Orders {
-  @get list(): Order[] | Error;
+  @get list(@query query: FilterRequest): PaginatedResponse<Order> | Error;
   @get read(@path id: string): Order | Error;
   @patch @route("{id}") update(...Order): Order | Error;
 
   //attachments
-  @route("{id}/attachments") @get getAttachments(@path id:string): OrderAttachment[] | Error;
+  @route("{id}/attachments") @get getAttachments(@path id:string, @query query: FilterRequest): PaginatedResponse<OrderAttachment> | Error;
   @route("{id}/attachments") @post postAttachments(@path id:string): void | Error;
 
   //composition lines
-  @route("{id}/composition-lines") @get getCompositionLines(@path id:string): OrderCompositionLine[] | Error;
+  @route("{id}/composition-lines") @get getCompositionLines(@path id:string, @query query: FilterRequest): PaginatedResponse<OrderCompositionLine> | Error;
 
   //additional purch lines
-  @route("{id}/additional-purchase-lines") @get getAdditionalPurchLines(@path id:string): AdditionalPurchaseLine[] | Error;
+  @route("{id}/additional-purchase-lines") @get getAdditionalPurchLines(@path id:string, @query query: FilterRequest): PaginatedResponse<AdditionalPurchaseLine> | Error;
   @route("{id}/additional-purchase-lines") @post postAdditionalPurchLines(@path id:string): void | Error;
   
   //order materials
-  @route("{id}/order-materials") @get getOrderMaterials(@path id:string): OrderMaterial[] | Error;
+  @route("{id}/order-materials") @get getOrderMaterials(@path id:string, @query query: FilterRequest): PaginatedResponse<OrderMaterial> | Error;
 
   //actions
   @route("import") @post postImport(
@@ -126,7 +177,7 @@ interface Orders {
 @route("/order-manager/importable-orders")
 @tag("Importable Orders")
 interface ImportableOrders {
-  @get list(): SyncedOrder[] | Error;
+  @get list(@query query: FilterRequest): PaginatedResponse<SyncedOrder> | Error;
   //@route("{/") @get analyze(@path id: string): string | Error;
 }
 
@@ -160,16 +211,3 @@ interface OrderMaterialItems {
   @patch @route("{id}") update(...OrderMaterialItem): OrderMaterialItem | Error;
 }
 
-
-
-// Example API resource:
-// @route("/widgets")
-// @tag("Widgets")
-// interface Widgets {
-//   @get list(): Widget[] | Error;
-//   @get read(@path id: string): Widget | Error;
-//   @post create(...Widget): Widget | Error;
-//   @patch update(...Widget): Widget | Error;
-//   @delete delete(@path id: string): void | Error;
-//   @route("{id}/analyze") @post analyze(@path id: string): string | Error;
-// }
