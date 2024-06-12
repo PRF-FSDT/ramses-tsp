@@ -1,0 +1,15 @@
+{
+  "name": "ramses-typespec",
+  "version": "0.1.0",
+  "type": "module",
+  "dependencies": {
+    "@typespec/compiler": "latest",
+    "@typespec/http": "latest",
+    "@typespec/openapi3": "latest",
+    "@typespec/rest": "latest"
+  },
+  "private": true,
+  "peerDependencies": {
+    "@typespec/versioning": "^0.56.0"
+  }
+}
