@@ -93,6 +93,11 @@ model LogoutResponse {
   message: string
 }
 
+model MeResponse {
+  name: string,
+  email: string
+}
+
 //PAGINATION:
 model PaginationLinks {
   first: string;

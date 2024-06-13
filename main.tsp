@@ -36,7 +36,7 @@ namespace RamsesService;
 interface Auth {
   @route("login") @post postLogin(email: string, password: string, device_name: string): LoginResponse | Error;
   @route("logout") @post postLogout(): LogoutResponse | Error;
-  @route("me") @get getMe(): string | Error;
+  @route("me") @get getMe(): MeResponse | Error;
 }
 
 //Model: Orders

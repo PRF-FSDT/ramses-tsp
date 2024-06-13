@@ -78,7 +78,7 @@ paths:
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/MeResponse'
         default:
           description: An unexpected error response.
           content:
@@ -897,6 +897,16 @@ components:
         - message
       properties:
         message:
+          type: string
+    MeResponse:
+      type: object
+      required:
+        - name
+        - email
+      properties:
+        name:
+          type: string
+        email:
           type: string
     Order:
       type: object
