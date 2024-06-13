@@ -59,7 +59,7 @@ paths:
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/LogoutResponse'
         default:
           description: An unexpected error response.
           content:
@@ -890,6 +890,13 @@ components:
         - token
       properties:
         token:
+          type: string
+    LogoutResponse:
+      type: object
+      required:
+        - message
+      properties:
+        message:
           type: string
     Order:
       type: object

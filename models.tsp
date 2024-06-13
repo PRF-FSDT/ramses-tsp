@@ -89,6 +89,10 @@ model LoginResponse {
   token: string
 }
 
+model LogoutResponse {
+  message: string
+}
+
 //PAGINATION:
 model PaginationLinks {
   first: string;
