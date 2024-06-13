@@ -23,7 +23,7 @@ paths:
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/LoginResponse'
         default:
           description: An unexpected error response.
           content:
@@ -884,6 +884,13 @@ components:
             type: string
     FilterRequest:
       type: object
+    LoginResponse:
+      type: object
+      required:
+        - token
+      properties:
+        token:
+          type: string
     Order:
       type: object
       required:

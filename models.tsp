@@ -84,6 +84,11 @@ model Error {
   message: string;
 }
 
+//AUTH
+model LoginResponse {
+  token: string
+}
+
 //PAGINATION:
 model PaginationLinks {
   first: string;
