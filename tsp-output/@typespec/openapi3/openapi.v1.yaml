@@ -3,6 +3,7 @@ info:
   title: RAMSES
   version: v1
 tags:
+  - name: Auth
   - name: Orders
   - name: Importable Orders
   - name: Attachments
@@ -10,6 +11,80 @@ tags:
   - name: Additional Purchase Lines
   - name: Order Material Items
 paths:
+  /login:
+    post:
+      tags:
+        - Auth
+      operationId: Auth_postLogin
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: string
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+                device_name:
+                  type: string
+              required:
+                - email
+                - password
+                - device_name
+  /logout:
+    post:
+      tags:
+        - Auth
+      operationId: Auth_postLogout
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: string
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /me:
+    get:
+      tags:
+        - Auth
+      operationId: Auth_getMe
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: string
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /order-manager/additional-purchase-lines/{id}:
     patch:
       tags:

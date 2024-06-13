@@ -31,6 +31,14 @@ namespace RamsesService;
 // }
 
 //ORDER MANAGER
+
+@tag("Auth")
+interface Auth {
+  @route("login") @post postLogin(email: string, password: string, device_name: string): string | Error;
+  @route("logout") @post postLogout(): string | Error;
+  @route("me") @get getMe(): string | Error;
+}
+
 //Model: Orders
 @route("/order-manager/orders")
 @tag("Orders")
