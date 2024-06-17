@@ -140,7 +140,7 @@ model PaginatedResponse<T> {
   data: T[];
   links: PaginationLinks;
   meta: PaginationMeta;
-  filters: FilterOption[]; //TODO: check if this is the best way
+  //filters: FilterOption[]; //TODO: check if this is the best way
 }
 
 //FILTERS

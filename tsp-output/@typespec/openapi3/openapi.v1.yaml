@@ -250,7 +250,6 @@ paths:
                   - data
                   - links
                   - meta
-                  - filters
                 properties:
                   data:
                     type: array
@@ -260,10 +259,6 @@ paths:
                     $ref: '#/components/schemas/PaginationLinks'
                   meta:
                     $ref: '#/components/schemas/PaginationMeta'
-                  filters:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/FilterOption'
         default:
           description: An unexpected error response.
           content:
@@ -354,7 +349,6 @@ paths:
                   - data
                   - links
                   - meta
-                  - filters
                 properties:
                   data:
                     type: array
@@ -364,10 +358,6 @@ paths:
                     $ref: '#/components/schemas/PaginationLinks'
                   meta:
                     $ref: '#/components/schemas/PaginationMeta'
-                  filters:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/FilterOption'
         default:
           description: An unexpected error response.
           content:
@@ -562,7 +552,6 @@ paths:
                   - data
                   - links
                   - meta
-                  - filters
                 properties:
                   data:
                     type: array
@@ -572,10 +561,6 @@ paths:
                     $ref: '#/components/schemas/PaginationLinks'
                   meta:
                     $ref: '#/components/schemas/PaginationMeta'
-                  filters:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/FilterOption'
         default:
           description: An unexpected error response.
           content:
@@ -651,7 +636,6 @@ paths:
                   - data
                   - links
                   - meta
-                  - filters
                 properties:
                   data:
                     type: array
@@ -661,10 +645,6 @@ paths:
                     $ref: '#/components/schemas/PaginationLinks'
                   meta:
                     $ref: '#/components/schemas/PaginationMeta'
-                  filters:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/FilterOption'
         default:
           description: An unexpected error response.
           content:
@@ -740,7 +720,6 @@ paths:
                   - data
                   - links
                   - meta
-                  - filters
                 properties:
                   data:
                     type: array
@@ -750,10 +729,6 @@ paths:
                     $ref: '#/components/schemas/PaginationLinks'
                   meta:
                     $ref: '#/components/schemas/PaginationMeta'
-                  filters:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/FilterOption'
         default:
           description: An unexpected error response.
           content:
@@ -810,7 +785,6 @@ paths:
                   - data
                   - links
                   - meta
-                  - filters
                 properties:
                   data:
                     type: array
@@ -820,10 +794,6 @@ paths:
                     $ref: '#/components/schemas/PaginationLinks'
                   meta:
                     $ref: '#/components/schemas/PaginationMeta'
-                  filters:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/FilterOption'
         default:
           description: An unexpected error response.
           content:
