@@ -22,7 +22,7 @@ enum Versions {
 
 //MODELS:
 model Order {
-  @key id: string;
+  @key id: int64;
   no: string;
   name: string;
   description: string;
