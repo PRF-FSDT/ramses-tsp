@@ -222,7 +222,7 @@ paths:
           schema:
             type: integer
             format: int32
-        - name: per_page
+        - name: perPage
           in: query
           required: false
           schema:
@@ -326,7 +326,7 @@ paths:
           schema:
             type: integer
             format: int32
-        - name: per_page
+        - name: perPage
           in: query
           required: false
           schema:
@@ -494,7 +494,7 @@ paths:
           schema:
             type: integer
             format: int32
-        - name: per_page
+        - name: perPage
           in: query
           required: false
           schema:
@@ -583,7 +583,7 @@ paths:
           schema:
             type: integer
             format: int32
-        - name: per_page
+        - name: perPage
           in: query
           required: false
           schema:
@@ -672,7 +672,7 @@ paths:
           schema:
             type: integer
             format: int32
-        - name: per_page
+        - name: perPage
           in: query
           required: false
           schema:
@@ -742,7 +742,7 @@ paths:
           schema:
             type: integer
             format: int32
-        - name: per_page
+        - name: perPage
           in: query
           required: false
           schema:
