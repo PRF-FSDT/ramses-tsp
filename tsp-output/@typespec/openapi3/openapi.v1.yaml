@@ -916,9 +916,6 @@ components:
           type: string
         type:
           type: string
-          enum:
-            - checkbox
-            - daterange
         options:
           type: array
           items:

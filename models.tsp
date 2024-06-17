@@ -146,7 +146,7 @@ model PaginatedResponse<T> {
 //FILTERS
 model FilterOption {
   name: string;
-  type: "checkbox" | "daterange";
+  type: string;
   options?: Array<string> | null;
 }
 
