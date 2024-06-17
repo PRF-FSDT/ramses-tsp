@@ -248,17 +248,11 @@ paths:
                 type: object
                 required:
                   - data
-                  - links
-                  - meta
                 properties:
                   data:
                     type: array
                     items:
                       $ref: '#/components/schemas/SyncedOrder'
-                  links:
-                    $ref: '#/components/schemas/PaginationLinks'
-                  meta:
-                    $ref: '#/components/schemas/PaginationMeta'
         default:
           description: An unexpected error response.
           content:
@@ -347,17 +341,11 @@ paths:
                 type: object
                 required:
                   - data
-                  - links
-                  - meta
                 properties:
                   data:
                     type: array
                     items:
                       $ref: '#/components/schemas/Order'
-                  links:
-                    $ref: '#/components/schemas/PaginationLinks'
-                  meta:
-                    $ref: '#/components/schemas/PaginationMeta'
         default:
           description: An unexpected error response.
           content:
@@ -550,17 +538,11 @@ paths:
                 type: object
                 required:
                   - data
-                  - links
-                  - meta
                 properties:
                   data:
                     type: array
                     items:
                       $ref: '#/components/schemas/AdditionalPurchaseLine'
-                  links:
-                    $ref: '#/components/schemas/PaginationLinks'
-                  meta:
-                    $ref: '#/components/schemas/PaginationMeta'
         default:
           description: An unexpected error response.
           content:
@@ -634,17 +616,11 @@ paths:
                 type: object
                 required:
                   - data
-                  - links
-                  - meta
                 properties:
                   data:
                     type: array
                     items:
                       $ref: '#/components/schemas/OrderAttachment'
-                  links:
-                    $ref: '#/components/schemas/PaginationLinks'
-                  meta:
-                    $ref: '#/components/schemas/PaginationMeta'
         default:
           description: An unexpected error response.
           content:
@@ -718,17 +694,11 @@ paths:
                 type: object
                 required:
                   - data
-                  - links
-                  - meta
                 properties:
                   data:
                     type: array
                     items:
                       $ref: '#/components/schemas/OrderCompositionLine'
-                  links:
-                    $ref: '#/components/schemas/PaginationLinks'
-                  meta:
-                    $ref: '#/components/schemas/PaginationMeta'
         default:
           description: An unexpected error response.
           content:
@@ -783,17 +753,11 @@ paths:
                 type: object
                 required:
                   - data
-                  - links
-                  - meta
                 properties:
                   data:
                     type: array
                     items:
                       $ref: '#/components/schemas/OrderMaterial'
-                  links:
-                    $ref: '#/components/schemas/PaginationLinks'
-                  meta:
-                    $ref: '#/components/schemas/PaginationMeta'
         default:
           description: An unexpected error response.
           content:
