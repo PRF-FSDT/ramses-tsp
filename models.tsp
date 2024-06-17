@@ -132,7 +132,7 @@ model FilterOption {
 
 model FilterRequest {
   @query page?: int32;
-  @query per_page?: int32;
+  @query perPage?: int32;
   @query search?: string;
   @query filters?: []; //TODO: check if this is the best way 
 }
