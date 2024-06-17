@@ -120,10 +120,10 @@ model MeResponse {
 
 //PAGINATION:
 model PaginationLinks {
-  first?: string;
-  last?: string;
-  prev?: string;
-  next?: string;
+  first?: string | null;
+  last?: string | null;
+  prev?: string | null;
+  next?: string | null;
 }
 
 model PaginationMeta {
@@ -137,7 +137,7 @@ model PaginationMeta {
 }
 
 model PaginatedResponse<T> {
-  data: T[];
+  data: T[] | [];
   links: PaginationLinks;
   meta: PaginationMeta;
   filters: FilterOption[]; //TODO: check if this is the best way

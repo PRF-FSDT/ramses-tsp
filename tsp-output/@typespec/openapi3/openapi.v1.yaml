@@ -253,9 +253,12 @@ paths:
                   - filters
                 properties:
                   data:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/SyncedOrder'
+                    anyOf:
+                      - type: array
+                        items:
+                          $ref: '#/components/schemas/SyncedOrder'
+                      - type: array
+                        items: {}
                   links:
                     $ref: '#/components/schemas/PaginationLinks'
                   meta:
@@ -357,9 +360,12 @@ paths:
                   - filters
                 properties:
                   data:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Order'
+                    anyOf:
+                      - type: array
+                        items:
+                          $ref: '#/components/schemas/Order'
+                      - type: array
+                        items: {}
                   links:
                     $ref: '#/components/schemas/PaginationLinks'
                   meta:
@@ -565,9 +571,12 @@ paths:
                   - filters
                 properties:
                   data:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/AdditionalPurchaseLine'
+                    anyOf:
+                      - type: array
+                        items:
+                          $ref: '#/components/schemas/AdditionalPurchaseLine'
+                      - type: array
+                        items: {}
                   links:
                     $ref: '#/components/schemas/PaginationLinks'
                   meta:
@@ -654,9 +663,12 @@ paths:
                   - filters
                 properties:
                   data:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/OrderAttachment'
+                    anyOf:
+                      - type: array
+                        items:
+                          $ref: '#/components/schemas/OrderAttachment'
+                      - type: array
+                        items: {}
                   links:
                     $ref: '#/components/schemas/PaginationLinks'
                   meta:
@@ -743,9 +755,12 @@ paths:
                   - filters
                 properties:
                   data:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/OrderCompositionLine'
+                    anyOf:
+                      - type: array
+                        items:
+                          $ref: '#/components/schemas/OrderCompositionLine'
+                      - type: array
+                        items: {}
                   links:
                     $ref: '#/components/schemas/PaginationLinks'
                   meta:
@@ -813,9 +828,12 @@ paths:
                   - filters
                 properties:
                   data:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/OrderMaterial'
+                    anyOf:
+                      - type: array
+                        items:
+                          $ref: '#/components/schemas/OrderMaterial'
+                      - type: array
+                        items: {}
                   links:
                     $ref: '#/components/schemas/PaginationLinks'
                   meta:
@@ -1115,12 +1133,16 @@ components:
       properties:
         first:
           type: string
+          nullable: true
         last:
           type: string
+          nullable: true
         prev:
           type: string
+          nullable: true
         next:
           type: string
+          nullable: true
     PaginationMeta:
       type: object
       required:
