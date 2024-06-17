@@ -23,12 +23,32 @@ enum Versions {
 //MODELS:
 model Order {
   @key id: string;
+  no: string;
   name: string;
+  description: string;
+  notes: string;
+  status: string;
   client_no: string;
   client_name: string;
-  project_manager: string;
-  status: string;
-  @added(Versions.dev) ext_created_at: offsetDateTime;
+  client_address_line1: string;
+  client_street: string;
+  client_street_no: string;
+  client_postal_code: string;
+  client_city: string;
+  client_country_code: string;
+  owner: string;
+  responsible: string;
+  employee: string;
+  drawing_no: string;
+  location: string;
+  prod_duration_days: numeric;
+  prod_start_date: string;
+  transport_date: string;
+  delivery_date: string;
+  creation_date: string;
+  created_at: string;
+  updated_at: string;
+  //@added(Versions.dev) ext_created_at: offsetDateTime;
 }
 
 model OrderAttachment {
@@ -100,19 +120,19 @@ model MeResponse {
 
 //PAGINATION:
 model PaginationLinks {
-  first: string;
-  last: string;
+  first?: string;
+  last?: string;
   prev?: string;
   next?: string;
 }
 
 model PaginationMeta {
   current_page: int32;
-  from: int32;
+  from?: int32;
   last_page: int32;
   path: string;
   per_page: int32;
-  to: int32;
+  to?: int32;
   total: int32;
 }
 
@@ -127,7 +147,7 @@ model PaginatedResponse<T> {
 model FilterOption {
   name: string;
   type: "checkbox" | "daterange";
-  options?: Array<string>;
+  options?: Array<string> | null;
 }
 
 model FilterRequest {
