@@ -168,4 +168,11 @@ model FilterRequest {
   @query filters?: []; //TODO: check if this is the best way 
 }
 
+model OrderCompositionLineRequest {
+  @query page?: int32;
+  @query perPage?: int32;
+  @query search?: string;
+  @query parentId?: int32;
+}
+
   

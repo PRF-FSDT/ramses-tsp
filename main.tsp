@@ -52,7 +52,7 @@ interface Orders {
   @route("{id}/attachments") @post postAttachments(@path id:string): void | Error;
 
   //composition lines
-  @route("{id}/composition-lines") @get getCompositionLines(@path id:string, @query query: FilterRequest): PaginatedResponse<OrderCompositionLine> | Error;
+  @route("{id}/composition-lines") @get getCompositionLines(@path id:string, @query query: OrderCompositionLineRequest): PaginatedResponse<OrderCompositionLine> | Error;
 
   //additional purch lines
   @route("{id}/additional-purchase-lines") @get getAdditionalPurchLines(@path id:string, @query query: FilterRequest): PaginatedResponse<AdditionalPurchaseLine> | Error;

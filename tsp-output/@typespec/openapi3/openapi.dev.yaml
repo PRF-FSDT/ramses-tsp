@@ -742,7 +742,7 @@ paths:
           in: query
           required: true
           schema:
-            $ref: '#/components/schemas/FilterRequest'
+            $ref: '#/components/schemas/OrderCompositionLineRequest'
         - name: page
           in: query
           required: false
@@ -760,12 +760,12 @@ paths:
           required: false
           schema:
             type: string
-        - name: filters
+        - name: parentId
           in: query
           required: false
           schema:
-            type: array
-            items: {}
+            type: integer
+            format: int32
       responses:
         '200':
           description: The request has succeeded.
@@ -1129,6 +1129,8 @@ components:
           format: uint64
         is_outsourced:
           type: boolean
+    OrderCompositionLineRequest:
+      type: object
     OrderMaterial:
       type: object
       required:
