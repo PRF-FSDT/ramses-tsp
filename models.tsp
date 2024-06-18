@@ -61,7 +61,18 @@ model OrderAttachment {
 //TODO: extend
 model OrderCompositionLine {
   @key id: uint64;
+  parent_id: uint64;
+  order_id: uint64;
   order_no: string;
+  no: string;
+  type: string;
+  ref: string;
+  part_no: string;
+  description: string;
+  destination: string;
+  net: string;
+  qty: uint64;
+  is_outsourced: boolean;
 }
 
 //TODO: extend

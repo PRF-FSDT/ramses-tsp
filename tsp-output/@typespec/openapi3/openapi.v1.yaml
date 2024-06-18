@@ -203,8 +203,33 @@ paths:
             schema:
               type: object
               properties:
+                parent_id:
+                  type: integer
+                  format: uint64
+                order_id:
+                  type: integer
+                  format: uint64
                 order_no:
                   type: string
+                no:
+                  type: string
+                type:
+                  type: string
+                ref:
+                  type: string
+                part_no:
+                  type: string
+                description:
+                  type: string
+                destination:
+                  type: string
+                net:
+                  type: string
+                qty:
+                  type: integer
+                  format: uint64
+                is_outsourced:
+                  type: boolean
   /order-manager/importable-orders:
     get:
       tags:
@@ -1068,13 +1093,49 @@ components:
       type: object
       required:
         - id
+        - parent_id
+        - order_id
         - order_no
+        - no
+        - type
+        - ref
+        - part_no
+        - description
+        - destination
+        - net
+        - qty
+        - is_outsourced
       properties:
         id:
           type: integer
           format: uint64
+        parent_id:
+          type: integer
+          format: uint64
+        order_id:
+          type: integer
+          format: uint64
         order_no:
           type: string
+        no:
+          type: string
+        type:
+          type: string
+        ref:
+          type: string
+        part_no:
+          type: string
+        description:
+          type: string
+        destination:
+          type: string
+        net:
+          type: string
+        qty:
+          type: integer
+          format: uint64
+        is_outsourced:
+          type: boolean
     OrderMaterial:
       type: object
       required:
