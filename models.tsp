@@ -148,7 +148,7 @@ model PaginationMeta {
 }
 
 model PaginatedResponse<T> {
-  data: T[];
+  data: T[] | [];
   links: PaginationLinks;
   meta: PaginationMeta;
   filters: FilterOption[]; //TODO: check if this is the best way
