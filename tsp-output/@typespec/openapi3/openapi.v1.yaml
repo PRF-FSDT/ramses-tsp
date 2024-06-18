@@ -1075,17 +1075,10 @@ components:
       type: object
       required:
         - id
-        - parent_id
         - order_id
         - order_no
         - no
         - type
-        - ref
-        - part_no
-        - description
-        - destination
-        - net
-        - qty
         - is_outsourced
       properties:
         id:
