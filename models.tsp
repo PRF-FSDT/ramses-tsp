@@ -79,6 +79,19 @@ model OrderCompositionLine {
 model AdditionalPurchaseLine {
   @key id: uint64;
   order_no: string;
+  material_no: string;
+  erp_no?: string;
+  imos_no?: string;
+  name: string;
+  brand?: string;
+  type?: string;
+  category_no?: string;
+  description?: string;
+  qty: numeric;
+  uom: string;
+  length_mm?: numeric;
+  width_mm?: numeric;
+  height_mm?: numeric;
 }
 
 model OrderMaterial {
