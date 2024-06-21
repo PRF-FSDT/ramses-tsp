@@ -114,6 +114,32 @@ paths:
               properties:
                 order_no:
                   type: string
+                material_no:
+                  type: string
+                erp_no:
+                  type: string
+                imos_no:
+                  type: string
+                name:
+                  type: string
+                brand:
+                  type: string
+                type:
+                  type: string
+                category_no:
+                  type: string
+                description:
+                  type: string
+                qty:
+                  type: number
+                uom:
+                  type: string
+                length_mm:
+                  type: number
+                width_mm:
+                  type: number
+                height_mm:
+                  type: number
     delete:
       tags:
         - Additional Purchase Lines
@@ -932,12 +958,42 @@ components:
       required:
         - id
         - order_no
+        - material_no
+        - name
+        - qty
+        - uom
       properties:
         id:
           type: integer
           format: uint64
         order_no:
           type: string
+        material_no:
+          type: string
+        erp_no:
+          type: string
+        imos_no:
+          type: string
+        name:
+          type: string
+        brand:
+          type: string
+        type:
+          type: string
+        category_no:
+          type: string
+        description:
+          type: string
+        qty:
+          type: number
+        uom:
+          type: string
+        length_mm:
+          type: number
+        width_mm:
+          type: number
+        height_mm:
+          type: number
     Error:
       type: object
       required:
