@@ -75,7 +75,6 @@ model OrderCompositionLine {
   is_outsourced: boolean;
 }
 
-//TODO: extend
 model AdditionalPurchaseLine {
   @key id: uint64;
   order_no: string;
