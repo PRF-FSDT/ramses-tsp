@@ -249,8 +249,14 @@ paths:
                   type: string
                 destination:
                   type: string
-                net:
-                  type: string
+                length_mm:
+                  type: number
+                width_mm:
+                  type: number
+                height_mm:
+                  type: number
+                surf_m2:
+                  type: number
                 qty:
                   type: integer
                   format: uint64
@@ -1178,8 +1184,14 @@ components:
           type: string
         destination:
           type: string
-        net:
-          type: string
+        length_mm:
+          type: number
+        width_mm:
+          type: number
+        height_mm:
+          type: number
+        surf_m2:
+          type: number
         qty:
           type: integer
           format: uint64

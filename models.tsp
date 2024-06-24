@@ -70,7 +70,10 @@ model OrderCompositionLine {
   part_no?: string;
   description?: string;
   destination?: string;
-  net?: string;
+  length_mm?: numeric;
+  width_mm?: numeric;
+  height_mm?: numeric;
+  surf_m2?: numeric;
   qty?: uint64;
   is_outsourced: boolean;
 }
