@@ -101,18 +101,27 @@ model OrderMaterial {
   order_no: string;
   material_no: string;
   material_name: string;
-  brutto_qty_m2: float32;
-  netto_qty_m2: float32;
-  orderMaterialItems: OrderMaterialItem[];
+  net_qty: float32;
+  gross_qty: float32;
+  uom: string;
+  category_no: string;
+  stock_status: string;
+  order_material_items: OrderMaterialItem[];
 }
 
 model OrderMaterialItem {
   @key id: string;
   order_no: string;
   material_no: string;
+  material_name: string;
   item_no: string;
-  qty_calculated: uint16;
-  user_qty: uint16;
+  item_name: string;
+  net_qty: numeric;
+  gross_qty: numeric;
+  qty: numeric;
+  uom: string;
+  category_no: string;
+  stock_status: string;
 }
 
 model SyncedOrder {

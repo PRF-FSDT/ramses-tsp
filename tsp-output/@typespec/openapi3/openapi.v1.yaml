@@ -361,14 +361,24 @@ paths:
                   type: string
                 material_no:
                   type: string
+                material_name:
+                  type: string
                 item_no:
                   type: string
-                qty_calculated:
-                  type: integer
-                  format: uint16
-                user_qty:
-                  type: integer
-                  format: uint16
+                item_name:
+                  type: string
+                net_qty:
+                  type: number
+                gross_qty:
+                  type: number
+                qty:
+                  type: number
+                uom:
+                  type: string
+                category_no:
+                  type: string
+                stock_status:
+                  type: string
   /order-manager/orders:
     get:
       tags:
@@ -1206,9 +1216,12 @@ components:
         - order_no
         - material_no
         - material_name
-        - brutto_qty_m2
-        - netto_qty_m2
-        - orderMaterialItems
+        - net_qty
+        - gross_qty
+        - uom
+        - category_no
+        - stock_status
+        - order_material_items
       properties:
         id:
           type: string
@@ -1218,13 +1231,19 @@ components:
           type: string
         material_name:
           type: string
-        brutto_qty_m2:
+        net_qty:
           type: number
           format: float
-        netto_qty_m2:
+        gross_qty:
           type: number
           format: float
-        orderMaterialItems:
+        uom:
+          type: string
+        category_no:
+          type: string
+        stock_status:
+          type: string
+        order_material_items:
           type: array
           items:
             $ref: '#/components/schemas/OrderMaterialItem'
@@ -1234,9 +1253,15 @@ components:
         - id
         - order_no
         - material_no
+        - material_name
         - item_no
-        - qty_calculated
-        - user_qty
+        - item_name
+        - net_qty
+        - gross_qty
+        - qty
+        - uom
+        - category_no
+        - stock_status
       properties:
         id:
           type: string
@@ -1244,14 +1269,24 @@ components:
           type: string
         material_no:
           type: string
+        material_name:
+          type: string
         item_no:
           type: string
-        qty_calculated:
-          type: integer
-          format: uint16
-        user_qty:
-          type: integer
-          format: uint16
+        item_name:
+          type: string
+        net_qty:
+          type: number
+        gross_qty:
+          type: number
+        qty:
+          type: number
+        uom:
+          type: string
+        category_no:
+          type: string
+        stock_status:
+          type: string
     PaginationLinks:
       type: object
       properties:
