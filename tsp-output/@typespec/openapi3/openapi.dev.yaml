@@ -97,18 +97,14 @@ paths:
           schema:
             type: string
       responses:
-        '200':
-          description: The request has succeeded.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AdditionalPurchaseLine'
         default:
           description: An unexpected error response.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                anyOf:
+                  - $ref: '#/components/schemas/SuccessResponse'
+                  - $ref: '#/components/schemas/Error'
       requestBody:
         required: true
         content:
@@ -212,18 +208,14 @@ paths:
           schema:
             type: string
       responses:
-        '200':
-          description: The request has succeeded.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/OrderCompositionLine'
         default:
           description: An unexpected error response.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                anyOf:
+                  - $ref: '#/components/schemas/SuccessResponse'
+                  - $ref: '#/components/schemas/Error'
       requestBody:
         required: true
         content:
@@ -313,18 +305,14 @@ paths:
           schema:
             type: string
       responses:
-        '200':
-          description: The request has succeeded.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/OrderMaterialItem'
         default:
           description: An unexpected error response.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                anyOf:
+                  - $ref: '#/components/schemas/SuccessResponse'
+                  - $ref: '#/components/schemas/Error'
       requestBody:
         required: true
         content:
@@ -471,18 +459,14 @@ paths:
       parameters:
         - $ref: '#/components/parameters/Order.id'
       responses:
-        '200':
-          description: The request has succeeded.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Order'
         default:
           description: An unexpected error response.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                anyOf:
+                  - $ref: '#/components/schemas/SuccessResponse'
+                  - $ref: '#/components/schemas/Error'
       requestBody:
         required: true
         content:

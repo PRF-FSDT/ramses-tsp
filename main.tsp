@@ -45,7 +45,7 @@ interface Auth {
 interface Orders {
   @get list(@query query: FilterRequest): PaginatedResponse<Order> | Error;
   @get read(@path id: string): Order | Error;
-  @patch @route("{id}") update(...Order): Order | Error;
+  @patch @route("{id}") update(...Order): SuccessResponse | Error;
 
   //attachments
   @route("{id}/attachments") @get getAttachments(@path id:string, @query query: FilterRequest): PaginatedResponse<OrderAttachment> | Error;
@@ -92,14 +92,14 @@ interface OrderAttachments {
 @route("/order-manager/composition-lines")
 @tag("Composition Lines")
 interface OrderCompositionLines {
-  @patch @route("{id}") update(@path id: string, is_outsourced: boolean): OrderCompositionLine | Error;
+  @patch @route("{id}") update(@path id: string, is_outsourced: boolean): SuccessResponse | Error;
 }
 
 //Model: AdditionalPurchaseLine
 @route("/order-manager/additional-purchase-lines")
 @tag("Additional Purchase Lines")
 interface AdditionalPurchaseLines {
-  @patch @route("{id}") update(@path id: string, material_no?: string, name?: string, brand?: string, type?: string, qty?: numeric, uom?: string, length_mm?: integer, width_mm?: integer, height_mm?: integer): AdditionalPurchaseLine | Error;
+  @patch @route("{id}") update(@path id: string, material_no?: string, name?: string, brand?: string, type?: string, qty?: numeric, uom?: string, length_mm?: integer, width_mm?: integer, height_mm?: integer): SuccessResponse | Error;
   @delete delete(@path id: string): void | SuccessResponse | Error;
 }
 
@@ -107,6 +107,6 @@ interface AdditionalPurchaseLines {
 @route("/order-manager/order-material-items")
 @tag("Order Material Items")
 interface OrderMaterialItems {
-  @patch @route("{id}") update(@path id: string, qty: numeric): OrderMaterialItem | Error;
+  @patch @route("{id}") update(@path id: string, qty: numeric): SuccessResponse | Error;
 }
 
