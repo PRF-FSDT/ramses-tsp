@@ -56,7 +56,7 @@ interface Orders {
 
   //additional purch lines
   @route("{id}/additional-purchase-lines") @get getAdditionalPurchLines(@path id:string, @query query: FilterRequest): PaginatedResponse<AdditionalPurchaseLine> | Error;
-  @route("{id}/additional-purchase-lines") @post postAdditionalPurchLines(@path id:string): void | SuccessResponse | Error;
+  @route("{id}/additional-purchase-lines") @post postAdditionalPurchLines(@path id: string, material_no: string, name: string, brand?: string, type?: string, qty: numeric, uom: string, length_mm?: integer, width_mm?: integer, height_mm?: integer): void | SuccessResponse | Error;
   
   //order materials
   @route("{id}/order-materials") @get getOrderMaterials(@path id:string, @query query: FilterRequest): PaginatedResponse<OrderMaterial> | Error;

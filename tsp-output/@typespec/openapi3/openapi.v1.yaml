@@ -634,6 +634,36 @@ paths:
                 anyOf:
                   - $ref: '#/components/schemas/SuccessResponse'
                   - $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                material_no:
+                  type: string
+                name:
+                  type: string
+                brand:
+                  type: string
+                type:
+                  type: string
+                qty:
+                  type: number
+                uom:
+                  type: string
+                length_mm:
+                  type: integer
+                width_mm:
+                  type: integer
+                height_mm:
+                  type: integer
+              required:
+                - material_no
+                - name
+                - qty
+                - uom
   /order-manager/orders/{id}/attachments:
     get:
       tags:
