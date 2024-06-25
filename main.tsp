@@ -107,6 +107,6 @@ interface AdditionalPurchaseLines {
 @route("/order-manager/order-material-items")
 @tag("Order Material Items")
 interface OrderMaterialItems {
-  @patch @route("{id}") update(...OrderMaterialItem): OrderMaterialItem | Error;
+  @patch @route("{id}") update(@path id: string, qty: numeric): OrderMaterialItem | Error;
 }
 
