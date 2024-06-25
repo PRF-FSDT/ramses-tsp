@@ -61,20 +61,20 @@ model OrderAttachment {
 //TODO: extend
 model OrderCompositionLine {
   @key id: uint64;
-  parent_id?: uint64;
+  parent_id?: uint64 | null;
   order_id: uint64;
   order_no: string;
   no: string;
   type: string;
-  ref?: string;
-  part_no?: string;
-  description?: string;
-  destination?: string;
-  length_mm?: numeric;
-  width_mm?: numeric;
-  height_mm?: numeric;
-  surf_m2?: numeric;
-  qty?: uint64;
+  ref?: string | null;
+  part_no?: string | null;
+  description?: string | null;
+  destination?: string | null;
+  length_mm?: numeric | null;
+  width_mm?: numeric | null;
+  height_mm?: numeric | null;
+  surf_m2?: numeric | null;
+  qty?: uint64 | null;
   is_outsourced: boolean;
 }
 
@@ -82,18 +82,18 @@ model AdditionalPurchaseLine {
   @key id: uint64;
   order_no: string;
   material_no: string;
-  erp_no?: string;
-  imos_no?: string;
+  erp_no?: string | null;
+  imos_no?: string | null;
   name: string;
-  brand?: string;
-  type?: string;
-  category_no?: string;
-  description?: string;
+  brand?: string | null;
+  type?: string | null;
+  category_no?: string | null;
+  description?: string | null;
   qty: numeric;
   uom: string;
-  length_mm?: numeric;
-  width_mm?: numeric;
-  height_mm?: numeric;
+  length_mm?: numeric | null;
+  width_mm?: numeric | null;
+  height_mm?: numeric | null;
 }
 
 model OrderMaterial {

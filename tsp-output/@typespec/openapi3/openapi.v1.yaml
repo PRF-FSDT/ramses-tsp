@@ -957,28 +957,37 @@ components:
           type: string
         erp_no:
           type: string
+          nullable: true
         imos_no:
           type: string
+          nullable: true
         name:
           type: string
         brand:
           type: string
+          nullable: true
         type:
           type: string
+          nullable: true
         category_no:
           type: string
+          nullable: true
         description:
           type: string
+          nullable: true
         qty:
           type: number
         uom:
           type: string
         length_mm:
           type: number
+          nullable: true
         width_mm:
           type: number
+          nullable: true
         height_mm:
           type: number
+          nullable: true
     Error:
       type: object
       required:
@@ -1146,6 +1155,7 @@ components:
         parent_id:
           type: integer
           format: uint64
+          nullable: true
         order_id:
           type: integer
           format: uint64
@@ -1157,23 +1167,32 @@ components:
           type: string
         ref:
           type: string
+          nullable: true
         part_no:
           type: string
+          nullable: true
         description:
           type: string
+          nullable: true
         destination:
           type: string
+          nullable: true
         length_mm:
           type: number
+          nullable: true
         width_mm:
           type: number
+          nullable: true
         height_mm:
           type: number
+          nullable: true
         surf_m2:
           type: number
+          nullable: true
         qty:
           type: integer
           format: uint64
+          nullable: true
         is_outsourced:
           type: boolean
     OrderCompositionLineRequest:
