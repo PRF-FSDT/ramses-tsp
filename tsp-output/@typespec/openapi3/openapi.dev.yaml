@@ -91,7 +91,11 @@ paths:
         - Additional Purchase Lines
       operationId: AdditionalPurchaseLines_update
       parameters:
-        - $ref: '#/components/parameters/AdditionalPurchaseLine.id'
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
         '200':
           description: The request has succeeded.
@@ -112,34 +116,22 @@ paths:
             schema:
               type: object
               properties:
-                order_no:
-                  type: string
                 material_no:
-                  type: string
-                erp_no:
-                  type: string
-                imos_no:
-                  type: string
-                name:
                   type: string
                 brand:
                   type: string
                 type:
-                  type: string
-                category_no:
-                  type: string
-                description:
                   type: string
                 qty:
                   type: number
                 uom:
                   type: string
                 length_mm:
-                  type: number
+                  type: integer
                 width_mm:
-                  type: number
+                  type: integer
                 height_mm:
-                  type: number
+                  type: integer
     delete:
       tags:
         - Additional Purchase Lines
@@ -898,13 +890,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   parameters:
-    AdditionalPurchaseLine.id:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: uint64
     Order.id:
       name: id
       in: path
