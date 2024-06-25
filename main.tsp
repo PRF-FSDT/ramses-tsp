@@ -92,7 +92,7 @@ interface OrderAttachments {
 @route("/order-manager/composition-lines")
 @tag("Composition Lines")
 interface OrderCompositionLines {
-  @patch @route("{id}") update(...OrderCompositionLine): OrderCompositionLine | Error;
+  @patch @route("{id}") update(@path id: string, is_outsourced: boolean): OrderCompositionLine | Error;
 }
 
 //Model: AdditionalPurchaseLine

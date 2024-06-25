@@ -208,7 +208,11 @@ paths:
         - Composition Lines
       operationId: OrderCompositionLines_update
       parameters:
-        - $ref: '#/components/parameters/OrderCompositionLine.id'
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
         '200':
           description: The request has succeeded.
@@ -229,37 +233,6 @@ paths:
             schema:
               type: object
               properties:
-                parent_id:
-                  type: integer
-                  format: uint64
-                order_id:
-                  type: integer
-                  format: uint64
-                order_no:
-                  type: string
-                no:
-                  type: string
-                type:
-                  type: string
-                ref:
-                  type: string
-                part_no:
-                  type: string
-                description:
-                  type: string
-                destination:
-                  type: string
-                length_mm:
-                  type: number
-                width_mm:
-                  type: number
-                height_mm:
-                  type: number
-                surf_m2:
-                  type: number
-                qty:
-                  type: integer
-                  format: uint64
                 is_outsourced:
                   type: boolean
   /order-manager/importable-orders:
@@ -939,13 +912,6 @@ components:
       schema:
         type: integer
         format: int64
-    OrderCompositionLine.id:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: uint64
   schemas:
     AdditionalPurchaseLine:
       type: object
