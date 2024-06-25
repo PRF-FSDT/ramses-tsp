@@ -336,7 +336,11 @@ paths:
         - Order Material Items
       operationId: OrderMaterialItems_update
       parameters:
-        - $ref: '#/components/parameters/OrderMaterialItem.id'
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
         '200':
           description: The request has succeeded.
@@ -357,28 +361,8 @@ paths:
             schema:
               type: object
               properties:
-                order_no:
-                  type: string
-                material_no:
-                  type: string
-                material_name:
-                  type: string
-                item_no:
-                  type: string
-                item_name:
-                  type: string
-                net_qty:
-                  type: number
-                gross_qty:
-                  type: number
                 qty:
                   type: number
-                uom:
-                  type: string
-                category_no:
-                  type: string
-                stock_status:
-                  type: string
   /order-manager/orders:
     get:
       tags:
@@ -962,12 +946,6 @@ components:
       schema:
         type: integer
         format: uint64
-    OrderMaterialItem.id:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
   schemas:
     AdditionalPurchaseLine:
       type: object
