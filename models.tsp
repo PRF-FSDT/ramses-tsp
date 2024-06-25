@@ -168,11 +168,11 @@ model PaginationLinks {
 
 model PaginationMeta {
   current_page: int32;
-  from?: int32;
+  from?: int32 | null;
   last_page: int32;
   path: string;
   per_page: int32;
-  to?: int32;
+  to?: int32 | null;
   total: int32;
 }
 

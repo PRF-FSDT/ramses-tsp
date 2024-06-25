@@ -1286,6 +1286,7 @@ components:
         from:
           type: integer
           format: int32
+          nullable: true
         last_page:
           type: integer
           format: int32
@@ -1297,6 +1298,7 @@ components:
         to:
           type: integer
           format: int32
+          nullable: true
         total:
           type: integer
           format: int32
