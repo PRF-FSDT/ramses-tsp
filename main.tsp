@@ -49,14 +49,14 @@ interface Orders {
 
   //attachments
   @route("{id}/attachments") @get getAttachments(@path id:string, @query query: FilterRequest): PaginatedResponse<OrderAttachment> | Error;
-  @route("{id}/attachments") @post postAttachments(@path id:string): void | Error;
+  @route("{id}/attachments") @post postAttachments(@path id:string): void | SuccessResponse | Error;
 
   //composition lines
   @route("{id}/composition-lines") @get getCompositionLines(@path id:string, @query query: OrderCompositionLineRequest): PaginatedResponse<OrderCompositionLine> | Error;
 
   //additional purch lines
   @route("{id}/additional-purchase-lines") @get getAdditionalPurchLines(@path id:string, @query query: FilterRequest): PaginatedResponse<AdditionalPurchaseLine> | Error;
-  @route("{id}/additional-purchase-lines") @post postAdditionalPurchLines(@path id:string): void | Error;
+  @route("{id}/additional-purchase-lines") @post postAdditionalPurchLines(@path id:string): void | SuccessResponse | Error;
   
   //order materials
   @route("{id}/order-materials") @get getOrderMaterials(@path id:string, @query query: FilterRequest): PaginatedResponse<OrderMaterial> | Error;
@@ -85,7 +85,7 @@ interface ImportableOrders {
 @tag("Attachments")
 interface OrderAttachments {
   @get read(@path id: string): OrderAttachment | Error; //TODO: also return file contents
-  @delete delete(@path id: string): void | Error;
+  @delete delete(@path id: string): void | SuccessResponse | Error;
 }
 
 //Model: OrderCompositionLine
@@ -100,7 +100,7 @@ interface OrderCompositionLines {
 @tag("Additional Purchase Lines")
 interface AdditionalPurchaseLines {
   @patch @route("{id}") update(@path id: string, material_no?: string, name?: string, brand?: string, type?: string, qty?: numeric, uom?: string, length_mm?: integer, width_mm?: integer, height_mm?: integer): AdditionalPurchaseLine | Error;
-  @delete delete(@path id: string): void | Error;
+  @delete delete(@path id: string): void | SuccessResponse | Error;
 }
 
 //Model: OrderMaterialItem

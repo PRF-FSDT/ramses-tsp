@@ -152,7 +152,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                anyOf:
+                  - $ref: '#/components/schemas/SuccessResponse'
+                  - $ref: '#/components/schemas/Error'
   /order-manager/attachments/{id}:
     get:
       tags:
@@ -195,7 +197,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                anyOf:
+                  - $ref: '#/components/schemas/SuccessResponse'
+                  - $ref: '#/components/schemas/Error'
   /order-manager/composition-lines/{id}:
     patch:
       tags:
@@ -627,7 +631,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                anyOf:
+                  - $ref: '#/components/schemas/SuccessResponse'
+                  - $ref: '#/components/schemas/Error'
   /order-manager/orders/{id}/attachments:
     get:
       tags:
@@ -719,7 +725,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                anyOf:
+                  - $ref: '#/components/schemas/SuccessResponse'
+                  - $ref: '#/components/schemas/Error'
   /order-manager/orders/{id}/composition-lines:
     get:
       tags:
@@ -1262,6 +1270,13 @@ components:
         total:
           type: integer
           format: int32
+    SuccessResponse:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
     SyncedOrder:
       type: object
       required:
