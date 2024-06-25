@@ -99,7 +99,7 @@ interface OrderCompositionLines {
 @route("/order-manager/additional-purchase-lines")
 @tag("Additional Purchase Lines")
 interface AdditionalPurchaseLines {
-  @patch @route("{id}") update(@path id: string, material_no?: string, brand?: string, type?: string, qty?: numeric, uom?: string, length_mm?: integer, width_mm?: integer, height_mm?: integer): AdditionalPurchaseLine | Error;
+  @patch @route("{id}") update(@path id: string, material_no?: string, name?: string, brand?: string, type?: string, qty?: numeric, uom?: string, length_mm?: integer, width_mm?: integer, height_mm?: integer): AdditionalPurchaseLine | Error;
   @delete delete(@path id: string): void | Error;
 }
 

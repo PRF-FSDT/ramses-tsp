@@ -118,6 +118,8 @@ paths:
               properties:
                 material_no:
                   type: string
+                name:
+                  type: string
                 brand:
                   type: string
                 type:
