@@ -888,6 +888,56 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /order-manager/orders/{id}/order-materials-csv:
+    get:
+      tags:
+        - Orders
+      operationId: Orders_getOrderMaterialsCsv
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/OrderMaterialCsvRequest'
+        - name: excludeRunningMeterParts
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: excludeSheetMaterials
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: excludePurchaseParts
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: excludeFittings
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: excludeEdging
+          in: query
+          required: false
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: The request has succeeded.
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /order-manager/orders/{id}/push-to-erp:
     post:
       tags:
@@ -1219,6 +1269,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/OrderMaterialItem'
+    OrderMaterialCsvRequest:
+      type: object
     OrderMaterialItem:
       type: object
       required:

@@ -138,6 +138,10 @@ model SuccessResponse {
   message: string;
 }
 
+model StreamedCsvResponse {
+  //stream
+}
+
 @error
 model Error {
   code: int32;
@@ -202,6 +206,14 @@ model OrderCompositionLineRequest {
   @query perPage?: int32;
   @query search?: string;
   @query parentId?: int32;
+}
+
+model OrderMaterialCsvRequest {
+  @query excludeRunningMeterParts?: boolean;
+  @query excludeSheetMaterials?: boolean;
+  @query excludePurchaseParts?: boolean;
+  @query excludeFittings?: boolean;
+  @query excludeEdging?: boolean;
 }
 
   

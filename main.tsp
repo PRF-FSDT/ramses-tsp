@@ -60,6 +60,7 @@ interface Orders {
   
   //order materials
   @route("{id}/order-materials") @get getOrderMaterials(@path id:string, @query query: FilterRequest): PaginatedResponse<OrderMaterial> | Error;
+  @route("{id}/order-materials-csv") @get getOrderMaterialsCsv(@path id:string, @query query: OrderMaterialCsvRequest): StreamedCsvResponse | Error;
 
   //actions
   @route("import") @post postImport(
