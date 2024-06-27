@@ -397,18 +397,14 @@ paths:
       operationId: Orders_postImport
       parameters: []
       responses:
-        '200':
-          description: The request has succeeded.
-          content:
-            application/json:
-              schema:
-                type: string
         default:
           description: An unexpected error response.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                anyOf:
+                  - $ref: '#/components/schemas/SuccessResponse'
+                  - $ref: '#/components/schemas/Error'
       requestBody:
         required: true
         content:
@@ -416,18 +412,18 @@ paths:
             schema:
               type: object
               properties:
-                order_id:
+                synced_order_id:
                   type: string
                 delivery_date:
                   type: string
                   format: date-time
-                prod_duration_in_days:
+                prod_duration_days:
                   type: integer
                   format: uint8
                   minimum: 0
                   maximum: 50
               required:
-                - order_id
+                - synced_order_id
   /order-manager/orders/{id}:
     get:
       tags:

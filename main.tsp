@@ -64,10 +64,10 @@ interface Orders {
 
   //actions
   @route("import") @post postImport(
-    order_id: string, 
+    synced_order_id: string, 
     delivery_date?: offsetDateTime, 
-    @minValue(0) @maxValue(50) prod_duration_in_days?: uint8
-  ): string | Error;
+    @minValue(0) @maxValue(50) prod_duration_days?: uint8
+  ): SuccessResponse | Error;
 
   //TODO: define this action
   @route("{id}/push-to-erp") @post postToErp(@path id: string): string | Error;
