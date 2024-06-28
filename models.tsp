@@ -58,7 +58,6 @@ model OrderAttachment {
   path: string;
 }
 
-//TODO: extend
 model OrderCompositionLine {
   @key id: uint64;
   parent_id?: uint64 | null;
@@ -75,7 +74,9 @@ model OrderCompositionLine {
   height_mm?: numeric | null;
   surf_m2?: numeric | null;
   qty?: uint64 | null;
+  material_no: string;
   is_outsourced: boolean;
+  children: OrderCompositionLine[]
 }
 
 model AdditionalPurchaseLine {

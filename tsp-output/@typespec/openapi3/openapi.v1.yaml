@@ -1177,7 +1177,9 @@ components:
         - order_no
         - no
         - type
+        - material_no
         - is_outsourced
+        - children
       properties:
         id:
           type: integer
@@ -1223,8 +1225,14 @@ components:
           type: integer
           format: uint64
           nullable: true
+        material_no:
+          type: string
         is_outsourced:
           type: boolean
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderCompositionLine'
     OrderCompositionLineRequest:
       type: object
     OrderMaterial:
