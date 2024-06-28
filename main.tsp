@@ -43,23 +43,23 @@ interface Auth {
 @route("/order-manager/orders")
 @tag("Orders")
 interface Orders {
-  @get list(@query query: FilterRequest): PaginatedResponse<Order> | Error;
+  @get list(@query query: OrderIndexFilterRequest): PaginatedResponse<Order> | Error;
   @get read(@path id: string): Order | Error;
   @patch @route("{id}") update(...Order): SuccessResponse | Error;
 
   //attachments
-  @route("{id}/attachments") @get getAttachments(@path id:string, @query query: FilterRequest): PaginatedResponse<OrderAttachment> | Error;
+  @route("{id}/attachments") @get getAttachments(@path id:string, @query query: PaginatedRequest): PaginatedResponse<OrderAttachment> | Error;
   @route("{id}/attachments") @post postAttachments(@path id:string): void | SuccessResponse | Error;
 
   //composition lines
   @route("{id}/composition-lines") @get getCompositionLines(@path id:string, @query query: OrderCompositionLineRequest): PaginatedResponse<OrderCompositionLine> | Error;
 
   //additional purch lines
-  @route("{id}/additional-purchase-lines") @get getAdditionalPurchLines(@path id:string, @query query: FilterRequest): PaginatedResponse<AdditionalPurchaseLine> | Error;
+  @route("{id}/additional-purchase-lines") @get getAdditionalPurchLines(@path id:string, @query query: PaginatedSortableRequest): PaginatedResponse<AdditionalPurchaseLine> | Error;
   @route("{id}/additional-purchase-lines") @post postAdditionalPurchLines(@path id: string, material_no: string, name: string, brand?: string, type?: string, qty: numeric, uom: string, length_mm?: integer, width_mm?: integer, height_mm?: integer): void | SuccessResponse | Error;
   
   //order materials
-  @route("{id}/order-materials") @get getOrderMaterials(@path id:string, @query query: FilterRequest): PaginatedResponse<OrderMaterial> | Error;
+  @route("{id}/order-materials") @get getOrderMaterials(@path id:string, @query query: OrderMaterialIndexFilterRequest): PaginatedResponse<OrderMaterial> | Error;
   @route("{id}/order-materials-csv") @get getOrderMaterialsCsv(@path id:string, @query query: OrderMaterialCsvRequest): StreamedCsvResponse | Error;
 
   //actions
@@ -77,7 +77,7 @@ interface Orders {
 @route("/order-manager/importable-orders")
 @tag("Importable Orders")
 interface ImportableOrders {
-  @get list(@query query: FilterRequest): PaginatedResponse<SyncedOrder> | Error;
+  @get list(@query query: PaginatedRequest): PaginatedResponse<SyncedOrder> | Error;
   //@route("{/") @get analyze(@path id: string): string | Error;
 }
 

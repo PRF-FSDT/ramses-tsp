@@ -185,7 +185,7 @@ model PaginatedResponse<T> {
   data: T[] | [];
   links: PaginationLinks;
   meta: PaginationMeta;
-  filters: FilterOption[]; //TODO: check if this is the best way
+  filters?: FilterOption[];
 }
 
 //FILTERS
@@ -195,17 +195,37 @@ model FilterOption {
   options?: Array<string> | null;
 }
 
-model FilterRequest {
+model PaginatedRequest {
   @query page?: int32;
   @query perPage?: int32;
   @query search?: string;
-  @query filters?: []; //TODO: check if this is the best way 
+}
+
+model PaginatedSortableRequest {
+  ...PaginatedRequest,
+  @query sort_dir?: "asc" | "desc";
+  @query sort_by?: string;
+}
+
+model OrderIndexFilterRequest {
+  ...PaginatedSortableRequest,
+  @query status?: string;
+  @query owner?: string;
+  @query client_name?: string;
+  @query delivery_date_from?: string;
+  @query delivery_date_until?: string;
+  @query prod_start_date_from?: string;
+  @query prod_start_date_until?: string;
+}
+
+model OrderMaterialIndexFilterRequest {
+  ...PaginatedSortableRequest,
+  @query category_no?: string;
+  @query stock_status?: string;
 }
 
 model OrderCompositionLineRequest {
-  @query page?: int32;
-  @query perPage?: int32;
-  @query search?: string;
+  ...PaginatedSortableRequest,
   @query parentId?: int32;
 }
 
