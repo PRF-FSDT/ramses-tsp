@@ -950,12 +950,20 @@ paths:
           in: query
           required: true
           schema:
-            $ref: '#/components/schemas/PaginatedSortableRequest'
+            $ref: '#/components/schemas/OrderTaskFilterRequest'
         - $ref: '#/components/parameters/PaginatedRequest.page'
         - $ref: '#/components/parameters/PaginatedRequest.perPage'
         - $ref: '#/components/parameters/PaginatedRequest.search'
         - $ref: '#/components/parameters/PaginatedSortableRequest.sort_dir'
         - $ref: '#/components/parameters/PaginatedSortableRequest.sort_by'
+        - name: type
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - preparation
+              - finalisation
       responses:
         '200':
           description: The request has succeeded.
@@ -1444,6 +1452,8 @@ components:
           items:
             type: number
           nullable: true
+    OrderTaskFilterRequest:
+      type: object
     PaginatedRequest:
       type: object
     PaginatedSortableRequest:

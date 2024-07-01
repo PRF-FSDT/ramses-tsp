@@ -242,6 +242,11 @@ model OrderCompositionLineRequest {
   @query parentId?: int32;
 }
 
+model OrderTaskFilterRequest {
+  ...PaginatedSortableRequest,
+  @query type?: "preparation" | "finalisation";
+}
+
 model OrderMaterialCsvRequest {
   @query excludeRunningMeterParts?: boolean;
   @query excludeSheetMaterials?: boolean;
