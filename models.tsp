@@ -43,8 +43,8 @@ model Order {
   location: string;
   prod_duration_days: numeric;
   prod_start_date: string;
-  transport_date: string;
-  delivery_date: string;
+  prod_end_date: string;
+  finalisation_date: string;
   creation_date: string;
   created_at: string;
   updated_at: string;
@@ -225,10 +225,10 @@ model OrderIndexFilterRequest {
   @query status?: string;
   @query owner?: string;
   @query client_name?: string;
-  @query delivery_date_from?: string;
-  @query delivery_date_until?: string;
   @query prod_start_date_from?: string;
   @query prod_start_date_until?: string;
+  @query prod_end_date_from?: string;
+  @query prod_end_date_until?: string;
 }
 
 model OrderMaterialIndexFilterRequest {

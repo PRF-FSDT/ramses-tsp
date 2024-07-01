@@ -400,22 +400,22 @@ paths:
           required: false
           schema:
             type: string
-        - name: delivery_date_from
-          in: query
-          required: false
-          schema:
-            type: string
-        - name: delivery_date_until
-          in: query
-          required: false
-          schema:
-            type: string
         - name: prod_start_date_from
           in: query
           required: false
           schema:
             type: string
         - name: prod_start_date_until
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: prod_end_date_from
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: prod_end_date_until
           in: query
           required: false
           schema:
@@ -477,7 +477,10 @@ paths:
               properties:
                 synced_order_id:
                   type: string
-                delivery_date:
+                prod_end_date:
+                  type: string
+                  format: date-time
+                finalisation_date:
                   type: string
                   format: date-time
                 prod_duration_days:
@@ -573,9 +576,9 @@ paths:
                   type: number
                 prod_start_date:
                   type: string
-                transport_date:
+                prod_end_date:
                   type: string
-                delivery_date:
+                finalisation_date:
                   type: string
                 creation_date:
                   type: string
@@ -1190,8 +1193,8 @@ components:
         - location
         - prod_duration_days
         - prod_start_date
-        - transport_date
-        - delivery_date
+        - prod_end_date
+        - finalisation_date
         - creation_date
         - created_at
         - updated_at
@@ -1239,9 +1242,9 @@ components:
           type: number
         prod_start_date:
           type: string
-        transport_date:
+        prod_end_date:
           type: string
-        delivery_date:
+        finalisation_date:
           type: string
         creation_date:
           type: string

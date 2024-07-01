@@ -68,7 +68,8 @@ interface Orders {
   //actions
   @route("import") @post postImport(
     synced_order_id: string, 
-    delivery_date?: offsetDateTime, 
+    prod_end_date?: offsetDateTime, 
+    finalisation_date?: offsetDateTime, 
     @minValue(0) @maxValue(50) prod_duration_days?: uint8
   ): SuccessResponse | Error;
 
