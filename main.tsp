@@ -54,6 +54,9 @@ interface Orders {
   //composition lines
   @route("{id}/composition-lines") @get getCompositionLines(@path id:string, @query query: OrderCompositionLineRequest): PaginatedResponse<OrderCompositionLine> | Error;
 
+  //order tasks
+  @route("{id}/order-tasks") @get getOrderTasks(@path id:string, @query query: PaginatedSortableRequest): PaginatedResponse<OrderTask> | Error;
+
   //additional purch lines
   @route("{id}/additional-purchase-lines") @get getAdditionalPurchLines(@path id:string, @query query: PaginatedSortableRequest): PaginatedResponse<AdditionalPurchaseLine> | Error;
   @route("{id}/additional-purchase-lines") @post postAdditionalPurchLines(@path id: string, material_no: string, name: string, brand?: string, type?: string, qty: numeric, uom: string, length_mm?: integer, width_mm?: integer, height_mm?: integer): void | SuccessResponse | Error;
@@ -110,4 +113,13 @@ interface AdditionalPurchaseLines {
 interface OrderMaterialItems {
   @patch @route("{id}") update(@path id: string, qty: numeric): SuccessResponse | Error;
 }
+
+//Model: OrderTask
+@route("/order-manager/order-tasks")
+@tag("Order Tasks")
+interface OrderTasks {
+  @patch @route("{id}") update(@path id: string, type?: "preparation" | "finalisation", title?: string, should_be_planned?: boolean, is_required_for_production?: boolean, is_external?: boolean, is_finished?: boolean, dependant_on?: Array<integer>): SuccessResponse | Error;
+  @delete delete(@path id: string): void | SuccessResponse | Error;
+}
+
 

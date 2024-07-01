@@ -125,6 +125,19 @@ model OrderMaterialItem {
   stock_status: string;
 }
 
+model OrderTask {
+  @key id: uint64;
+  order_no?: string;
+  type: "preparation" | "finalisation";
+  title: string;
+  should_be_planned: boolean;
+  is_required_for_production: boolean;
+  is_external?: boolean;
+  is_finished?: boolean;
+  finished_by?: numeric | null;
+  dependant_on?: Array<numeric> | null;
+}
+
 model SyncedOrder {
   @key id: string;
   name: string;
