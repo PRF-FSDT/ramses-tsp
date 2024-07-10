@@ -119,6 +119,7 @@ interface OrderMaterialItems {
 @route("/order-manager/order-tasks")
 @tag("Order Tasks")
 interface OrderTasks {
+  @post @route("/") post(order_no: string, type: "preparation" | "finalisation", title: string, should_be_planned: boolean, is_required_for_production: boolean, is_external: boolean, is_finished: boolean, dependant_on: Array<integer>): void | SuccessResponse | Error;
   @patch @route("{id}") update(@path id: string, type?: "preparation" | "finalisation", title?: string, should_be_planned?: boolean, is_required_for_production?: boolean, is_external?: boolean, is_finished?: boolean, dependant_on?: Array<integer>): SuccessResponse | Error;
   @delete delete(@path id: string): void | SuccessResponse | Error;
 }

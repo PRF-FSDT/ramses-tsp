@@ -302,6 +302,60 @@ paths:
               properties:
                 qty:
                   type: number
+  /order-manager/order-tasks:
+    post:
+      tags:
+        - Order Tasks
+      operationId: OrderTasks_post
+      parameters: []
+      responses:
+        '204':
+          description: 'There is no content to send for this request, but the headers may be useful. '
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/SuccessResponse'
+                  - $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                order_no:
+                  type: string
+                type:
+                  type: string
+                  enum:
+                    - preparation
+                    - finalisation
+                title:
+                  type: string
+                should_be_planned:
+                  type: boolean
+                is_required_for_production:
+                  type: boolean
+                is_external:
+                  type: boolean
+                is_finished:
+                  type: boolean
+                dependant_on:
+                  type: array
+                  items:
+                    type: integer
+              required:
+                - order_no
+                - type
+                - title
+                - should_be_planned
+                - is_required_for_production
+                - is_external
+                - is_finished
+                - dependant_on
   /order-manager/order-tasks/{id}:
     patch:
       tags:
