@@ -48,6 +48,7 @@ model Order {
   creation_date: string;
   created_at: string;
   updated_at: string;
+  order_tasks?: Array<OrderTask> | [] | null;
   //@added(Versions.dev) ext_created_at: offsetDateTime;
 }
 
@@ -229,6 +230,7 @@ model OrderIndexFilterRequest {
   @query prod_start_date_until?: string;
   @query prod_end_date_from?: string;
   @query prod_end_date_until?: string;
+  @query include?: "tasks";
 }
 
 model OrderMaterialIndexFilterRequest {
