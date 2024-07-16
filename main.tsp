@@ -122,6 +122,8 @@ interface OrderTasks {
   @post @route("/") post(order_no: string, type: "preparation" | "finalisation", title: string, should_be_planned: boolean, is_required_for_production: boolean, is_external: boolean, is_finished: boolean, dependant_on: Array<integer>): void | SuccessResponse | Error;
   @patch @route("{id}") update(@path id: string, type?: "preparation" | "finalisation", title?: string, should_be_planned?: boolean, is_required_for_production?: boolean, is_external?: boolean, is_finished?: boolean, dependant_on?: Array<integer>): SuccessResponse | Error;
   @delete delete(@path id: string): void | SuccessResponse | Error;
+
+  @post @route("{id}/plan") plan(@path id: string, duration_in_min: numeric, planned_resource_id: numeric, planned_start: utcDateTime): SuccessResponse | Error;
 }
 
 

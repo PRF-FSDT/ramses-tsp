@@ -423,6 +423,44 @@ paths:
                 anyOf:
                   - $ref: '#/components/schemas/SuccessResponse'
                   - $ref: '#/components/schemas/Error'
+  /order-manager/order-tasks/{id}/plan:
+    post:
+      tags:
+        - Order Tasks
+      operationId: OrderTasks_plan
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/SuccessResponse'
+                  - $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                duration_in_min:
+                  type: number
+                planned_resource_id:
+                  type: number
+                planned_start:
+                  type: string
+                  format: date-time
+              required:
+                - duration_in_min
+                - planned_resource_id
+                - planned_start
   /order-manager/orders:
     get:
       tags:
@@ -474,6 +512,13 @@ paths:
           required: false
           schema:
             type: string
+        - name: include
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - tasks
       responses:
         '200':
           description: The request has succeeded.
@@ -640,6 +685,14 @@ paths:
                   type: string
                 updated_at:
                   type: string
+                order_tasks:
+                  anyOf:
+                    - type: array
+                      items:
+                        $ref: '#/components/schemas/OrderTask'
+                    - type: array
+                      items: {}
+                  nullable: true
   /order-manager/orders/{id}/additional-purchase-lines:
     get:
       tags:
@@ -1306,6 +1359,14 @@ components:
           type: string
         updated_at:
           type: string
+        order_tasks:
+          anyOf:
+            - type: array
+              items:
+                $ref: '#/components/schemas/OrderTask'
+            - type: array
+              items: {}
+          nullable: true
     OrderAttachment:
       type: object
       required:
@@ -1508,6 +1569,16 @@ components:
           type: array
           items:
             type: number
+          nullable: true
+        duration_in_min:
+          type: number
+          nullable: true
+        planned_resource_id:
+          type: number
+          nullable: true
+        planned_start:
+          type: string
+          format: date-time
           nullable: true
     OrderTaskFilterRequest:
       type: object

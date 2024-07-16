@@ -137,6 +137,9 @@ model OrderTask {
   is_finished?: boolean;
   finished_by?: numeric | null;
   dependant_on?: Array<numeric> | null;
+  duration_in_min?: numeric | null;
+  planned_resource_id?: numeric | null;
+  planned_start?: utcDateTime | null;
 }
 
 model SyncedOrder {
