@@ -127,4 +127,9 @@ interface OrderTasks {
   @post @route("{id}/plan") plan(@path id: string, duration_in_min: numeric, planned_resource_id: numeric, planned_start: utcDateTime): SuccessResponse | Error;
 }
 
-
+//Model: Resource
+@route("/order-manager/resources")
+@tag("Resources")
+interface Resources {
+  @get list(@query query: PaginatedSortableRequest): PaginatedResponse<Resource> | Error;
+}

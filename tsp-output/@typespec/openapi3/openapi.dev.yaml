@@ -11,6 +11,7 @@ tags:
   - name: Additional Purchase Lines
   - name: Order Material Items
   - name: Order Tasks
+  - name: Resources
 paths:
   /login:
     post:
@@ -1181,6 +1182,55 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /order-manager/resources:
+    get:
+      tags:
+        - Resources
+      operationId: Resources_list
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/PaginatedSortableRequest'
+        - $ref: '#/components/parameters/PaginatedRequest.page'
+        - $ref: '#/components/parameters/PaginatedRequest.perPage'
+        - $ref: '#/components/parameters/PaginatedRequest.search'
+        - $ref: '#/components/parameters/PaginatedSortableRequest.sort_dir'
+        - $ref: '#/components/parameters/PaginatedSortableRequest.sort_by'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - links
+                  - meta
+                properties:
+                  data:
+                    anyOf:
+                      - type: array
+                        items:
+                          $ref: '#/components/schemas/Resource'
+                      - type: array
+                        items: {}
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                  filters:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FilterOption'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 components:
   parameters:
     Order.id:
@@ -1682,6 +1732,19 @@ components:
         total:
           type: integer
           format: int32
+    Resource:
+      type: object
+      required:
+        - id
+        - user_id
+        - name
+      properties:
+        id:
+          type: string
+        user_id:
+          type: number
+        name:
+          type: string
     SuccessResponse:
       type: object
       required:

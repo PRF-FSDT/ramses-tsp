@@ -150,6 +150,12 @@ model SyncedOrder {
   project_manager: string;
 }
 
+model Resource {
+  @key id: string;
+  user_id: numeric;
+  name: string;
+}
+
 //RESPONSES:
 @error
 model SuccessResponse {
