@@ -357,12 +357,17 @@ paths:
                 - is_external
                 - is_finished
                 - dependant_on
-  /order-manager/order-tasks/planning-for-week:
+  /order-manager/order-tasks/planning-for-week/{week}:
     get:
       tags:
         - Order Tasks
       operationId: OrderTasks_getPlanningForWeek
-      parameters: []
+      parameters:
+        - name: week
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
         '200':
           description: The request has succeeded.
@@ -396,17 +401,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                week:
-                  type: string
-              required:
-                - week
   /order-manager/order-tasks/{id}:
     patch:
       tags:

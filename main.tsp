@@ -123,7 +123,7 @@ interface OrderTasks {
   @patch @route("{id}") update(@path id: string, type?: "preparation" | "finalisation", title?: string, should_be_planned?: boolean, is_required_for_production?: boolean, is_external?: boolean, is_finished?: boolean, dependant_on?: Array<integer>): SuccessResponse | Error;
   @delete delete(@path id: string): void | SuccessResponse | Error;
 
-  @get @route("/planning-for-week") getPlanningForWeek(week: string): PaginatedResponse<OrderTask> | Error;
+  @get @route("/planning-for-week/{week}") getPlanningForWeek(@path week: string): PaginatedResponse<OrderTask> | Error;
   @post @route("{id}/plan") plan(@path id: string, duration_in_min: numeric, planned_resource_id: numeric, planned_start: utcDateTime): SuccessResponse | Error;
 }
 
