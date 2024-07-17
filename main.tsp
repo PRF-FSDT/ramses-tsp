@@ -71,7 +71,7 @@ interface Orders {
     prod_end_date?: offsetDateTime, 
     finalisation_date?: offsetDateTime, 
     @minValue(0) @maxValue(50) prod_duration_days?: uint8
-  ): SuccessResponse | Error;
+  ): OrderImportResponse | Error;
 
   //TODO: define this action
   @route("{id}/push-to-erp") @post postToErp(@path id: string): string | Error;

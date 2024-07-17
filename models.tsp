@@ -186,6 +186,10 @@ model MeResponse {
   email: string
 }
 
+model OrderImportResponse {
+  ...Order;
+}
+
 //PAGINATION:
 model PaginationLinks {
   first?: string | null;
