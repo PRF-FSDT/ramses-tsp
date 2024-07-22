@@ -5,7 +5,8 @@
   "scripts": {
     "start": "tsp compile . --watch",
     "dev": "npm run dev",
-    "compile": "tsp compile ."
+    "compile": "tsp compile .",
+    "format": "tsp format '**/*.tsp'"
   },
   "dependencies": {
     "@typespec/compiler": "latest",

@@ -12,9 +12,7 @@ using TypeSpec.Rest;
 @service({
   title: "RAMSES",
 })
-
 namespace RamsesService;
-
 
 //API
 
@@ -34,7 +32,11 @@ namespace RamsesService;
 
 @tag("Auth")
 interface Auth {
-  @route("login") @post postLogin(email: string, password: string, device_name: string): LoginResponse | Error;
+  @route("login") @post postLogin(
+    email: string,
+    password: string,
+    device_name: string,
+  ): LoginResponse | Error;
   @route("logout") @post postLogout(): LogoutResponse | Error;
   @route("me") @get getMe(): MeResponse | Error;
 }
@@ -43,34 +45,67 @@ interface Auth {
 @route("/order-manager/orders")
 @tag("Orders")
 interface Orders {
-  @get list(@query query: OrderIndexFilterRequest): PaginatedResponse<Order> | Error;
+  @get list(
+    @query query: OrderIndexFilterRequest,
+  ): PaginatedResponse<Order> | Error;
   @get read(@path id: string): Order | Error;
   @patch @route("{id}") update(...Order): SuccessResponse | Error;
 
   //attachments
-  @route("{id}/attachments") @get getAttachments(@path id:string, @query query: PaginatedRequest): PaginatedResponse<OrderAttachment> | Error;
-  @route("{id}/attachments") @post postAttachments(@path id:string): void | SuccessResponse | Error;
+  @route("{id}/attachments") @get getAttachments(
+    @path id: string,
+    @query query: PaginatedRequest,
+  ): PaginatedResponse<OrderAttachment> | Error;
+  @route("{id}/attachments") @post postAttachments(
+    @path id: string,
+  ): void | SuccessResponse | Error;
 
   //composition lines
-  @route("{id}/composition-lines") @get getCompositionLines(@path id:string, @query query: OrderCompositionLineRequest): PaginatedResponse<OrderCompositionLine> | Error;
+  @route("{id}/composition-lines") @get getCompositionLines(
+    @path id: string,
+    @query query: OrderCompositionLineRequest,
+  ): PaginatedResponse<OrderCompositionLine> | Error;
 
   //order tasks
-  @route("{id}/order-tasks") @get getOrderTasks(@path id:string, @query query: OrderTaskFilterRequest): PaginatedResponse<OrderTask> | Error;
+  @route("{id}/order-tasks") @get getOrderTasks(
+    @path id: string,
+    @query query: OrderTaskFilterRequest,
+  ): PaginatedResponse<OrderTask> | Error;
 
   //additional purch lines
-  @route("{id}/additional-purchase-lines") @get getAdditionalPurchLines(@path id:string, @query query: PaginatedSortableRequest): PaginatedResponse<AdditionalPurchaseLine> | Error;
-  @route("{id}/additional-purchase-lines") @post postAdditionalPurchLines(@path id: string, material_no: string, name: string, brand?: string, type?: string, qty: numeric, uom: string, length_mm?: integer, width_mm?: integer, height_mm?: integer): void | SuccessResponse | Error;
-  
+  @route("{id}/additional-purchase-lines") @get getAdditionalPurchLines(
+    @path id: string,
+    @query query: PaginatedSortableRequest,
+  ): PaginatedResponse<AdditionalPurchaseLine> | Error;
+  @route("{id}/additional-purchase-lines") @post postAdditionalPurchLines(
+    @path id: string,
+    material_no: string,
+    name: string,
+    brand?: string,
+    type?: string,
+    qty: numeric,
+    uom: string,
+    length_mm?: integer,
+    width_mm?: integer,
+    height_mm?: integer,
+  ): void | SuccessResponse | Error;
+
   //order materials
-  @route("{id}/order-materials") @get getOrderMaterials(@path id:string, @query query: OrderMaterialIndexFilterRequest): PaginatedResponse<OrderMaterial> | Error;
-  @route("{id}/order-materials-csv") @get getOrderMaterialsCsv(@path id:string, @query query: OrderMaterialCsvRequest): StreamedCsvResponse | Error;
+  @route("{id}/order-materials") @get getOrderMaterials(
+    @path id: string,
+    @query query: OrderMaterialIndexFilterRequest,
+  ): PaginatedResponse<OrderMaterial> | Error;
+  @route("{id}/order-materials-csv") @get getOrderMaterialsCsv(
+    @path id: string,
+    @query query: OrderMaterialCsvRequest,
+  ): StreamedCsvResponse | Error;
 
   //actions
   @route("import") @post postImport(
-    synced_order_id: string, 
-    prod_end_date?: offsetDateTime, 
-    finalisation_date?: offsetDateTime, 
-    @minValue(0) @maxValue(50) prod_duration_days?: uint8
+    synced_order_id: string,
+    prod_end_date?: offsetDateTime,
+    finalisation_date?: offsetDateTime,
+    @minValue(0) @maxValue(50) prod_duration_days?: uint8,
   ): OrderImportResponse | Error;
 
   //TODO: define this action
@@ -81,7 +116,9 @@ interface Orders {
 @route("/order-manager/importable-orders")
 @tag("Importable Orders")
 interface ImportableOrders {
-  @get list(@query query: PaginatedRequest): PaginatedResponse<SyncedOrder> | Error;
+  @get list(
+    @query query: PaginatedRequest,
+  ): PaginatedResponse<SyncedOrder> | Error;
   //@route("{/") @get analyze(@path id: string): string | Error;
 }
 
@@ -97,14 +134,28 @@ interface OrderAttachments {
 @route("/order-manager/composition-lines")
 @tag("Composition Lines")
 interface OrderCompositionLines {
-  @patch @route("{id}") update(@path id: string, is_outsourced: boolean): SuccessResponse | Error;
+  @patch @route("{id}") update(
+    @path id: string,
+    is_outsourced: boolean,
+  ): SuccessResponse | Error;
 }
 
 //Model: AdditionalPurchaseLine
 @route("/order-manager/additional-purchase-lines")
 @tag("Additional Purchase Lines")
 interface AdditionalPurchaseLines {
-  @patch @route("{id}") update(@path id: string, material_no?: string, name?: string, brand?: string, type?: string, qty?: numeric, uom?: string, length_mm?: integer, width_mm?: integer, height_mm?: integer): SuccessResponse | Error;
+  @patch @route("{id}") update(
+    @path id: string,
+    material_no?: string,
+    name?: string,
+    brand?: string,
+    type?: string,
+    qty?: numeric,
+    uom?: string,
+    length_mm?: integer,
+    width_mm?: integer,
+    height_mm?: integer,
+  ): SuccessResponse | Error;
   @delete delete(@path id: string): void | SuccessResponse | Error;
 }
 
@@ -112,27 +163,64 @@ interface AdditionalPurchaseLines {
 @route("/order-manager/order-material-items")
 @tag("Order Material Items")
 interface OrderMaterialItems {
-  @patch @route("{id}") update(@path id: string, qty: numeric): SuccessResponse | Error;
+  @patch @route("{id}") update(
+    @path id: string,
+    qty: numeric,
+  ): SuccessResponse | Error;
 }
 
 //Model: OrderTask
 @route("/order-manager/order-tasks")
 @tag("Order Tasks")
 interface OrderTasks {
-  @post @route("/") post(order_no: string, type: "preparation" | "finalisation", title: string, should_be_planned: boolean, is_required_for_production: boolean, is_external: boolean, is_finished: boolean, dependant_on: Array<integer>): void | SuccessResponse | Error;
-  @patch @route("{id}") update(@path id: string, type?: "preparation" | "finalisation", title?: string, should_be_planned?: boolean, is_required_for_production?: boolean, is_external?: boolean, is_finished?: boolean, dependant_on?: Array<integer>): SuccessResponse | Error;
+  @post @route("/") post(
+    order_no: string,
+    type: "preparation" | "finalisation",
+    title: string,
+    should_be_planned: boolean,
+    is_required_for_production: boolean,
+    is_external: boolean,
+    is_finished: boolean,
+    dependant_on: Array<integer>,
+  ): void | SuccessResponse | Error;
+  @patch @route("{id}") update(
+    @path id: string,
+    type?: "preparation" | "finalisation",
+    title?: string,
+    should_be_planned?: boolean,
+    is_required_for_production?: boolean,
+    is_external?: boolean,
+    is_finished?: boolean,
+    dependant_on?: Array<integer>,
+  ): SuccessResponse | Error;
   @delete delete(@path id: string): void | SuccessResponse | Error;
 
-  @get @route("/planning-for-week/{week}") getPlanningForWeek(@path week: string): PaginatedResponse<OrderTask> | Error;
-  @post @route("{id}/plan") plan(@path id: string, duration_in_min: numeric, planned_resource_id: numeric, planned_start: utcDateTime): SuccessResponse | Error;
+  @get @route("/planning-for-week/{week}") getPlanningForWeek(
+    @path week: string,
+  ): PaginatedResponse<OrderTask> | Error;
+  @post @route("{id}/plan") plan(
+    @path id: string,
+    duration_in_min: numeric,
+    planned_resource_id: numeric,
+    planned_start: utcDateTime,
+  ): SuccessResponse | Error;
 }
 
 //Model: Resource
 @route("/resources")
 @tag("Resources")
 interface Resources {
-  @get list(@query query: PaginatedSortableRequest): PaginatedResponse<Resource> | Error;
-  @post @route("/") post(user_id: string, name: string): ResourceCreateResponse | Error;
-  @patch @route("{id}") update(@path id: string, user_id: string, name:string): SuccessResponse | Error;
+  @get list(
+    @query query: PaginatedSortableRequest,
+  ): PaginatedResponse<Resource> | Error;
+  @post @route("/") post(
+    user_id: string,
+    name: string,
+  ): ResourceCreateResponse | Error;
+  @patch @route("{id}") update(
+    @path id: string,
+    user_id: string,
+    name: string,
+  ): SuccessResponse | Error;
   @delete delete(@path id: string): void | SuccessResponse | Error;
 }

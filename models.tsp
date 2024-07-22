@@ -7,12 +7,10 @@ using TypeSpec.Versioning;
 using TypeSpec.Http;
 using TypeSpec.Rest;
 
-
 @versioned(Versions)
 @service({
   title: "RAMSES",
 })
-
 namespace RamsesService;
 
 enum Versions {
@@ -77,7 +75,7 @@ model OrderCompositionLine {
   qty?: uint64 | null;
   material_no: string;
   is_outsourced: boolean;
-  children: OrderCompositionLine[]
+  children: OrderCompositionLine[];
 }
 
 model AdditionalPurchaseLine {
@@ -174,23 +172,23 @@ model Error {
 
 //AUTH
 model LoginResponse {
-  token: string
+  token: string;
 }
 
 model LogoutResponse {
-  message: string
+  message: string;
 }
 
 model MeResponse {
-  name: string,
-  email: string
+  name: string;
+  email: string;
 }
 
 model OrderImportResponse {
   ...Order;
 }
 
-model ResourceCreateResponse{
+model ResourceCreateResponse {
   ...Resource;
 }
 
@@ -233,13 +231,13 @@ model PaginatedRequest {
 }
 
 model PaginatedSortableRequest {
-  ...PaginatedRequest,
+  ...PaginatedRequest;
   @query sort_dir?: "asc" | "desc";
   @query sort_by?: string;
 }
 
 model OrderIndexFilterRequest {
-  ...PaginatedSortableRequest,
+  ...PaginatedSortableRequest;
   @query status?: string;
   @query owner?: string;
   @query client_name?: string;
@@ -251,18 +249,18 @@ model OrderIndexFilterRequest {
 }
 
 model OrderMaterialIndexFilterRequest {
-  ...PaginatedSortableRequest,
+  ...PaginatedSortableRequest;
   @query category_no?: string;
   @query stock_status?: string;
 }
 
 model OrderCompositionLineRequest {
-  ...PaginatedSortableRequest,
+  ...PaginatedSortableRequest;
   @query parentId?: int32;
 }
 
 model OrderTaskFilterRequest {
-  ...PaginatedSortableRequest,
+  ...PaginatedSortableRequest;
   @query type?: "preparation" | "finalisation";
 }
 
@@ -273,6 +271,3 @@ model OrderMaterialCsvRequest {
   @query excludeFittings?: boolean;
   @query excludeEdging?: boolean;
 }
-
-
-  
