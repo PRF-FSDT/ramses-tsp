@@ -1,2 +1,5 @@
+linter:
+  extends:
+  - "@typespec/http/all"
 emit:
-  - "@typespec/openapi3"
+- "@typespec/openapi3"

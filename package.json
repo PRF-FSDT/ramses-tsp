@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "start": "tsp compile . --watch",
-    "dev": "npm run dev",
+    "dev": "npm run start",
     "compile": "tsp compile .",
     "format": "tsp format '**/*.tsp'"
   },

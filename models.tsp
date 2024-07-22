@@ -189,6 +189,7 @@ model OrderImportResponse {
 }
 
 model ResourceCreateResponse {
+  @statusCode statusCode: 201;
   ...Resource;
 }
 
