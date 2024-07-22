@@ -32,11 +32,7 @@ namespace RamsesService;
 
 @tag("Auth")
 interface Auth {
-  @route("login") @post postLogin(
-    email: string,
-    password: string,
-    device_name: string,
-  ): LoginResponse | Error;
+  @route("login") @post postLogin(email: string, password: string, device_name: string): LoginResponse | Error;
   @route("logout") @post postLogout(): LogoutResponse | Error;
   @route("me") @get getMe(): MeResponse | Error;
 }
@@ -45,20 +41,13 @@ interface Auth {
 @route("/order-manager/orders")
 @tag("Orders")
 interface Orders {
-  @get list(
-    @query query: OrderIndexFilterRequest,
-  ): PaginatedResponse<Order> | Error;
+  @get list(@query query: OrderIndexFilterRequest): PaginatedResponse<Order> | Error;
   @get read(@path id: string): Order | Error;
   @patch @route("{id}") update(...Order): SuccessResponse | Error;
 
   //attachments
-  @route("{id}/attachments") @get getAttachments(
-    @path id: string,
-    @query query: PaginatedRequest,
-  ): PaginatedResponse<OrderAttachment> | Error;
-  @route("{id}/attachments") @post postAttachments(
-    @path id: string,
-  ): void | SuccessResponse | Error;
+  @route("{id}/attachments") @get getAttachments(@path id: string, @query query: PaginatedRequest): PaginatedResponse<OrderAttachment> | Error;
+  @route("{id}/attachments") @post postAttachments(@path id: string): void | SuccessResponse | Error;
 
   //composition lines
   @route("{id}/composition-lines") @get getCompositionLines(
@@ -67,10 +56,7 @@ interface Orders {
   ): PaginatedResponse<OrderCompositionLine> | Error;
 
   //order tasks
-  @route("{id}/order-tasks") @get getOrderTasks(
-    @path id: string,
-    @query query: OrderTaskFilterRequest,
-  ): PaginatedResponse<OrderTask> | Error;
+  @route("{id}/order-tasks") @get getOrderTasks(@path id: string, @query query: OrderTaskFilterRequest): PaginatedResponse<OrderTask> | Error;
 
   //additional purch lines
   @route("{id}/additional-purchase-lines") @get getAdditionalPurchLines(
@@ -95,10 +81,7 @@ interface Orders {
     @path id: string,
     @query query: OrderMaterialIndexFilterRequest,
   ): PaginatedResponse<OrderMaterial> | Error;
-  @route("{id}/order-materials-csv") @get getOrderMaterialsCsv(
-    @path id: string,
-    @query query: OrderMaterialCsvRequest,
-  ): StreamedCsvResponse | Error;
+  @route("{id}/order-materials-csv") @get getOrderMaterialsCsv(@path id: string, @query query: OrderMaterialCsvRequest): StreamedCsvResponse | Error;
 
   //actions
   @route("import") @post postImport(
@@ -116,9 +99,7 @@ interface Orders {
 @route("/order-manager/importable-orders")
 @tag("Importable Orders")
 interface ImportableOrders {
-  @get list(
-    @query query: PaginatedRequest,
-  ): PaginatedResponse<SyncedOrder> | Error;
+  @get list(@query query: PaginatedRequest): PaginatedResponse<SyncedOrder> | Error;
   //@route("{/") @get analyze(@path id: string): string | Error;
 }
 
@@ -134,10 +115,7 @@ interface OrderAttachments {
 @route("/order-manager/composition-lines")
 @tag("Composition Lines")
 interface OrderCompositionLines {
-  @patch @route("{id}") update(
-    @path id: string,
-    is_outsourced: boolean,
-  ): SuccessResponse | Error;
+  @patch @route("{id}") update(@path id: string, is_outsourced: boolean): SuccessResponse | Error;
 }
 
 //Model: AdditionalPurchaseLine
@@ -163,10 +141,7 @@ interface AdditionalPurchaseLines {
 @route("/order-manager/order-material-items")
 @tag("Order Material Items")
 interface OrderMaterialItems {
-  @patch @route("{id}") update(
-    @path id: string,
-    qty: numeric,
-  ): SuccessResponse | Error;
+  @patch @route("{id}") update(@path id: string, qty: numeric): SuccessResponse | Error;
 }
 
 //Model: OrderTask
@@ -195,33 +170,17 @@ interface OrderTasks {
   ): SuccessResponse | Error;
   @delete delete(@path id: string): void | SuccessResponse | Error;
 
-  @get @route("/planning-for-week/{week}") getPlanningForWeek(
-    @path week: string,
-  ): PaginatedResponse<OrderTask> | Error;
-  @post @route("{id}/plan") plan(
-    @path id: string,
-    duration_in_min: numeric,
-    planned_resource_id: numeric,
-    planned_start: utcDateTime,
-  ): SuccessResponse | Error;
+  @get @route("/planning-for-week/{week}") getPlanningForWeek(@path week: string): PaginatedResponse<OrderTask> | Error;
+  @post @route("{id}/plan") plan(@path id: string, duration_in_min: numeric, planned_resource_id: numeric, planned_start: utcDateTime): SuccessResponse | Error;
 }
 
 //Model: Resource
 @route("/resources")
 @tag("Resources")
 interface Resources {
-  @get list(
-    @query query: PaginatedSortableRequest,
-  ): PaginatedResponse<Resource> | Error;
-  @post @route("/") post(
-    user_id: string,
-    name: string,
-  ): ResourceCreateResponse | Error;
-  @patch @route("{id}") update(
-    @path id: string,
-    user_id: string,
-    name: string,
-  ): SuccessResponse | Error;
+  @get list(@query query: PaginatedSortableRequest): PaginatedResponse<Resource> | Error;
+  @post @route("/") post(user_id: string, name: string): ResourceCreateResponse | Error;
+  @patch @route("{id}") update(@path id: string, user_id: string, name: string): SuccessResponse | Error;
   @delete delete(@path id: string): void | SuccessResponse | Error;
 }
 
@@ -229,16 +188,7 @@ interface Resources {
 @tag("Operating Hours")
 interface OperatingHours {
   @get list(): OperatingHoursResponse | Error;
-  @post @route("/") post(
-    day: string,
-    start: string,
-    end: string,
-  ): SuccessResponse | Error;
-  @patch @route("{id}") update(
-    @path id: string,
-    day: string,
-    start: string,
-    end: string,
-  ): SuccessResponse | Error;
+  @post @route("/") post(day: string, start: string, end: string): SuccessResponse | Error;
+  @patch @route("{id}") update(@path id: string, day: string, start: string, end: string): SuccessResponse | Error;
   @delete delete(@path id: string): void | SuccessResponse | Error;
 }
