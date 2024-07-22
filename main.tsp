@@ -128,8 +128,11 @@ interface OrderTasks {
 }
 
 //Model: Resource
-@route("/order-manager/resources")
+@route("/resources")
 @tag("Resources")
 interface Resources {
   @get list(@query query: PaginatedSortableRequest): PaginatedResponse<Resource> | Error;
+  @post @route("/") post(user_id: string, name: string): ResourceCreateResponse | Error;
+  @patch @route("{id}") update(@path id: string, user_id: string, name:string): SuccessResponse | Error;
+  @delete delete(@path id: string): void | SuccessResponse | Error;
 }

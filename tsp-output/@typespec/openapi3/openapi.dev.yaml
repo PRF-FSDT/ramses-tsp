@@ -1180,7 +1180,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /order-manager/resources:
+  /resources:
     get:
       tags:
         - Resources
@@ -1229,6 +1229,90 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+    post:
+      tags:
+        - Resources
+      operationId: Resources_post
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceCreateResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: string
+                name:
+                  type: string
+              required:
+                - user_id
+                - name
+  /resources/{id}:
+    patch:
+      tags:
+        - Resources
+      operationId: Resources_update
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/SuccessResponse'
+                  - $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: string
+                name:
+                  type: string
+    delete:
+      tags:
+        - Resources
+      operationId: Resources_delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: 'There is no content to send for this request, but the headers may be useful. '
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/SuccessResponse'
+                  - $ref: '#/components/schemas/Error'
 components:
   parameters:
     Order.id:
@@ -1822,6 +1906,19 @@ components:
           type: integer
           format: int32
     Resource:
+      type: object
+      required:
+        - id
+        - user_id
+        - name
+      properties:
+        id:
+          type: string
+        user_id:
+          type: number
+        name:
+          type: string
+    ResourceCreateResponse:
       type: object
       required:
         - id

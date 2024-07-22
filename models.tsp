@@ -190,6 +190,10 @@ model OrderImportResponse {
   ...Order;
 }
 
+model ResourceCreateResponse{
+  ...Resource;
+}
+
 //PAGINATION:
 model PaginationLinks {
   first?: string | null;
@@ -269,5 +273,6 @@ model OrderMaterialCsvRequest {
   @query excludeFittings?: boolean;
   @query excludeEdging?: boolean;
 }
+
 
   
