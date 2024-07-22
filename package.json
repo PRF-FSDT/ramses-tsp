@@ -2,6 +2,11 @@
   "name": "ramses-typespec",
   "version": "0.1.0",
   "type": "module",
+  "scripts": {
+    "start": "tsp compile . --watch",
+    "dev": "npm run dev",
+    "compile": "tsp compile ."
+  },
   "dependencies": {
     "@typespec/compiler": "latest",
     "@typespec/http": "latest",
