@@ -46,7 +46,7 @@ model Order {
   creation_date: string;
   created_at: string;
   updated_at: string;
-  order_tasks?: Array<OrderTask> | [] | null;
+  tasks?: Array<OrderTask> | [] | null;
   //@added(Versions.dev) ext_created_at: offsetDateTime;
 }
 

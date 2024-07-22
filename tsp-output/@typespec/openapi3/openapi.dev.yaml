@@ -839,7 +839,7 @@ paths:
                   type: string
                 updated_at:
                   type: string
-                order_tasks:
+                tasks:
                   anyOf:
                     - type: array
                       items:
@@ -1682,7 +1682,7 @@ components:
           type: string
         updated_at:
           type: string
-        order_tasks:
+        tasks:
           anyOf:
             - type: array
               items:
@@ -1855,7 +1855,7 @@ components:
           type: string
         updated_at:
           type: string
-        order_tasks:
+        tasks:
           anyOf:
             - type: array
               items:
