@@ -224,3 +224,21 @@ interface Resources {
   ): SuccessResponse | Error;
   @delete delete(@path id: string): void | SuccessResponse | Error;
 }
+
+@route("/operating-hours")
+@tag("Operating Hours")
+interface OperatingHours {
+  @get list(): OperatingHoursResponse | Error;
+  @post @route("/") post(
+    day: string,
+    start: string,
+    end: string,
+  ): SuccessResponse | Error;
+  @patch @route("{id}") update(
+    @path id: string,
+    day: string,
+    start: string,
+    end: string,
+  ): SuccessResponse | Error;
+  @delete delete(@path id: string): void | SuccessResponse | Error;
+}

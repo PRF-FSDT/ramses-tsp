@@ -154,6 +154,13 @@ model Resource {
   name: string;
 }
 
+model OperatingHour {
+  @key id: int32;
+  day: string;
+  start: string;
+  end: string;
+}
+
 //RESPONSES:
 @error
 model SuccessResponse {
@@ -162,6 +169,11 @@ model SuccessResponse {
 
 model StreamedCsvResponse {
   //stream
+}
+
+model OperatingHoursResponse {
+  @statusCode statusCode: 200;
+  data: Record<OperatingHour>;
 }
 
 @error
@@ -271,4 +283,15 @@ model OrderMaterialCsvRequest {
   @query excludePurchaseParts?: boolean;
   @query excludeFittings?: boolean;
   @query excludeEdging?: boolean;
+}
+
+// Enums
+enum DayOfWeek {
+  Mon,
+  Tue,
+  Wed,
+  Thu,
+  Fri,
+  Sat,
+  Sun,
 }
