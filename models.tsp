@@ -169,11 +169,6 @@ model OperatingHour {
   created_at: string;
 }
 
-model OperatingHourResponse {
-  @statusCode statusCode: 201;
-  @body body: OperatingHour[];
-}
-
 //RESPONSES:
 @error
 model SuccessResponse {
@@ -182,11 +177,6 @@ model SuccessResponse {
 
 model StreamedCsvResponse {
   //stream
-}
-
-model OperatingHoursResponse {
-  @statusCode statusCode: 200;
-  @body body: Record<OperatingHour>;
 }
 
 @error
@@ -213,6 +203,15 @@ model OrderImportResponse {
   ...Order;
 }
 
+model ListResponse<T> {
+  @statusCode statusCode: 200;
+  @body body: T[];
+}
+
+model RecordResponse<T> {
+  @statusCode statusCode: 200;
+  @body body: Record<T>;
+}
 
 //PAGINATION:
 model PaginationLinks {
@@ -239,7 +238,7 @@ model PaginatedResponse<T> {
   filters?: FilterOption[];
 }
 
-model CreatedResponse<T>{
+model CreatedResponse<T> {
   @statusCode statusCode: 201;
   @body body: T;
 }

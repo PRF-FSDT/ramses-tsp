@@ -1608,15 +1608,6 @@ components:
           type: string
         end:
           type: string
-    OperatingHourResponse:
-      type: object
-      required:
-        - body
-      properties:
-        body:
-          type: array
-          items:
-            $ref: '#/components/schemas/OperatingHour'
     Order:
       type: object
       required:
