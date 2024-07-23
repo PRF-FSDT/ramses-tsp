@@ -179,7 +179,7 @@ interface OrderTasks {
 @tag("Resources")
 interface Resources {
   @get list(@query query: PaginatedSortableRequest): PaginatedResponse<Resource> | Error;
-  @post @route("/") post(user_id: string, name: string): ResourceCreateResponse | Error;
+  @post @route("/") post(user_id: string, name: string): CreatedResponse<Resource> | Error;
   @patch @route("{id}") update(@path id: string, user_id: string, name: string): SuccessResponse | Error;
   @delete delete(@path id: string): void | SuccessResponse | Error;
 }
@@ -188,7 +188,8 @@ interface Resources {
 @tag("Operating Hours")
 interface OperatingHours {
   @get list(): OperatingHoursResponse | Error;
-  @post @route("/") post(day: string, start: string, end: string): SuccessResponse | Error;
+  @post @route("/") post(@body OperatingHour:Array<OperatingHourBody>): CreatedResponse<OperatingHour[]> | Error;
   @patch @route("{id}") update(@path id: string, day: string, start: string, end: string): SuccessResponse | Error;
   @delete delete(@path id: string): void | SuccessResponse | Error;
 }
+ 

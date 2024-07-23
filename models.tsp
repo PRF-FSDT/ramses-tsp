@@ -154,11 +154,24 @@ model Resource {
   name: string;
 }
 
+model OperatingHourBody {
+  day: string;
+  start: string;
+  end: string;
+}
+
 model OperatingHour {
   @key id: int32;
   day: string;
   start: string;
   end: string;
+  updated_at: string;
+  created_at: string;
+}
+
+model OperatingHourResponse {
+  @statusCode statusCode: 201;
+  @body body: OperatingHour[];
 }
 
 //RESPONSES:
@@ -173,7 +186,7 @@ model StreamedCsvResponse {
 
 model OperatingHoursResponse {
   @statusCode statusCode: 200;
-  data: Record<OperatingHour>;
+  @body body: Record<OperatingHour>;
 }
 
 @error
@@ -200,10 +213,6 @@ model OrderImportResponse {
   ...Order;
 }
 
-model ResourceCreateResponse {
-  @statusCode statusCode: 201;
-  ...Resource;
-}
 
 //PAGINATION:
 model PaginationLinks {
@@ -228,6 +237,11 @@ model PaginatedResponse<T> {
   links: PaginationLinks;
   meta: PaginationMeta;
   filters?: FilterOption[];
+}
+
+model CreatedResponse<T>{
+  @statusCode statusCode: 201;
+  @body body: T;
 }
 
 //FILTERS
