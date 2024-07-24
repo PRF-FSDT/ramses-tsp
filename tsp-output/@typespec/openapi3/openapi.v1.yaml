@@ -102,7 +102,9 @@ paths:
               schema:
                 type: object
                 additionalProperties:
-                  $ref: '#/components/schemas/OperatingHour'
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/OperatingHour'
         default:
           description: An unexpected error response.
           content:

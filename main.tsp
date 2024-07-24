@@ -187,7 +187,7 @@ interface Resources {
 @route("/operating-hours")
 @tag("Operating Hours")
 interface OperatingHours {
-  @get list(): RecordResponse<OperatingHour> | Error;
+  @get list(): RecordResponse<OperatingHour[]> | Error;
   @post @route("/") post(@body OperatingHour:Array<OperatingHourBody>): CreatedResponse<OperatingHour[]> | Error;
   @patch @route("{id}") update(@path id: string, day: string, start: string, end: string): SuccessResponse | Error;
   @delete delete(@path id: string): void | SuccessResponse | Error;
