@@ -165,14 +165,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                day:
-                  type: string
-                start:
-                  type: string
-                end:
-                  type: string
+              $ref: '#/components/schemas/OperatingHourBodyUpdate'
     delete:
       tags:
         - Operating Hours
@@ -718,23 +711,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                synced_order_id:
-                  type: string
-                prod_end_date:
-                  type: string
-                  format: date-time
-                finalisation_date:
-                  type: string
-                  format: date-time
-                prod_duration_days:
-                  type: integer
-                  format: uint8
-                  minimum: 0
-                  maximum: 50
-              required:
-                - synced_order_id
+              $ref: '#/components/schemas/OrderImportBody'
   /order-manager/orders/{id}:
     get:
       tags:
@@ -1350,15 +1327,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                user_id:
-                  type: string
-                name:
-                  type: string
-              required:
-                - user_id
-                - name
+              $ref: '#/components/schemas/ResourceBody'
   /resources/{id}:
     patch:
       tags:
@@ -1384,12 +1353,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                user_id:
-                  type: string
-                name:
-                  type: string
+              $ref: '#/components/schemas/ResourceBodyUpdate'
     delete:
       tags:
         - Resources
@@ -1602,6 +1566,15 @@ components:
           type: string
         end:
           type: string
+    OperatingHourBodyUpdate:
+      type: object
+      properties:
+        day:
+          type: string
+        start:
+          type: string
+        end:
+          type: string
     Order:
       type: object
       required:
@@ -1775,6 +1748,24 @@ components:
             $ref: '#/components/schemas/OrderCompositionLine'
     OrderCompositionLineRequest:
       type: object
+    OrderImportBody:
+      type: object
+      required:
+        - synced_order_id
+      properties:
+        synced_order_id:
+          type: string
+        prod_end_date:
+          type: string
+          format: date-time
+        finalisation_date:
+          type: string
+          format: date-time
+        prod_duration_days:
+          type: integer
+          format: uint8
+          minimum: 0
+          maximum: 50
     OrderImportResponse:
       type: object
       required:
@@ -2059,7 +2050,24 @@ components:
         id:
           type: string
         user_id:
-          type: number
+          type: string
+        name:
+          type: string
+    ResourceBody:
+      type: object
+      required:
+        - user_id
+        - name
+      properties:
+        user_id:
+          type: string
+        name:
+          type: string
+    ResourceBodyUpdate:
+      type: object
+      properties:
+        user_id:
+          type: string
         name:
           type: string
     SuccessResponse:

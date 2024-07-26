@@ -84,12 +84,7 @@ interface Orders {
   @route("{id}/order-materials-csv") @get getOrderMaterialsCsv(@path id: string, @query query: OrderMaterialCsvRequest): StreamedCsvResponse | Error;
 
   //actions
-  @route("import") @post postImport(
-    synced_order_id: string,
-    prod_end_date?: offsetDateTime,
-    finalisation_date?: offsetDateTime,
-    @minValue(0) @maxValue(50) prod_duration_days?: uint8,
-  ): OrderImportResponse | Error;
+  @route("import") @post postImport(@body OrderImportBody: OrderImportBody): OrderImportResponse | Error;
 
   //TODO: define this action
   @route("{id}/push-to-erp") @post postToErp(@path id: string): string | Error;
@@ -179,8 +174,8 @@ interface OrderTasks {
 @tag("Resources")
 interface Resources {
   @get list(@query query: PaginatedSortableRequest): PaginatedResponse<Resource> | Error;
-  @post @route("/") post(user_id: string, name: string): CreatedResponse<Resource> | Error;
-  @patch @route("{id}") update(@path id: string, user_id: string, name: string): SuccessResponse | Error;
+  @post @route("/") post(@body ResourceBody: ResourceBody): CreatedResponse<Resource> | Error;
+  @patch @route("{id}") update(@path id: string, @body ResourceBody: ResourceBody): SuccessResponse | Error;
   @delete delete(@path id: string): void | SuccessResponse | Error;
 }
 
@@ -189,6 +184,6 @@ interface Resources {
 interface OperatingHours {
   @get list(): RecordResponse<OperatingHour[]> | Error;
   @post @route("/") post(@body OperatingHour: OperatingHourBody[]): CreatedResponse<OperatingHour[]> | Error;
-  @patch @route("{id}") update(@path id: string, day: string, start: string, end: string): SuccessResponse | Error;
+  @patch @route("{id}") update(@path id: string, @body OperatingHour: OperatingHourBody): SuccessResponse | Error;
   @delete delete(@path id: string): void | SuccessResponse | Error;
 }

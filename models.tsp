@@ -148,10 +148,14 @@ model SyncedOrder {
   project_manager: string;
 }
 
+model ResourceBody{
+  user_id: string;
+  name: string;
+}
+
 model Resource {
   @key id: string;
-  user_id: numeric;
-  name: string;
+  ...ResourceBody;
 }
 
 model OperatingHourBody {
@@ -207,6 +211,12 @@ model MeResponse {
 
 model OrderImportResponse {
   ...Order;
+}
+model OrderImportBody{
+  synced_order_id: string,
+  prod_end_date?: offsetDateTime,
+  finalisation_date?: offsetDateTime,
+  @minValue(0) @maxValue(50) prod_duration_days?: uint8,
 }
 
 model ListResponse<T> {

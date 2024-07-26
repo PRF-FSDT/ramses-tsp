@@ -9,16 +9,16 @@ importers:
   .:
     dependencies:
       '@typespec/compiler':
-        specifier: latest
+        specifier: ^0.58.1
         version: 0.58.1
       '@typespec/http':
-        specifier: latest
+        specifier: ^0.58.0
         version: 0.58.0(@typespec/compiler@0.58.1)
       '@typespec/openapi3':
-        specifier: latest
+        specifier: ^0.58.0
         version: 0.58.0(@typespec/compiler@0.58.1)(@typespec/http@0.58.0(@typespec/compiler@0.58.1))(@typespec/openapi@0.58.0(@typespec/compiler@0.58.1)(@typespec/http@0.58.0(@typespec/compiler@0.58.1)))(@typespec/versioning@0.56.0(@typespec/compiler@0.58.1))(openapi-types@12.1.3)
       '@typespec/rest':
-        specifier: latest
+        specifier: ^0.58.0
         version: 0.58.0(@typespec/compiler@0.58.1)(@typespec/http@0.58.0(@typespec/compiler@0.58.1))
       '@typespec/versioning':
         specifier: ^0.56.0
