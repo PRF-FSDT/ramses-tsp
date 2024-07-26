@@ -4,9 +4,13 @@
   "type": "module",
   "scripts": {
     "start": "tsp compile . --watch",
-    "dev": "npm run start",
+    "dev": "pnpm start",
     "compile": "tsp compile .",
     "format": "tsp format '**/*.tsp'"
+  },
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=9"
   },
   "dependencies": {
     "@typespec/compiler": "latest",
@@ -17,5 +21,8 @@
   "private": true,
   "peerDependencies": {
     "@typespec/versioning": "^0.56.0"
+  },
+  "devDependencies": {
+    "@typespec/prettier-plugin-typespec": "^0.58.0"
   }
 }

@@ -171,7 +171,7 @@ interface OrderTasks {
   @delete delete(@path id: string): void | SuccessResponse | Error;
 
   @get @route("/planning-for-week/{week}") getPlanningForWeek(@path week: string): PaginatedResponse<OrderTask> | Error;
-  @post @route("{id}/plan") plan(@path id: string, duration_in_min: numeric, planned_resource_id: numeric, planned_start: utcDateTime): SuccessResponse | Error;
+  @post @route("{id}/plan") plan(@path id: string, @body ToPlanTasks: ToPlanTaskBody[]): SuccessResponse | Error;
 }
 
 //Model: Resource
@@ -188,8 +188,7 @@ interface Resources {
 @tag("Operating Hours")
 interface OperatingHours {
   @get list(): RecordResponse<OperatingHour[]> | Error;
-  @post @route("/") post(@body OperatingHour:Array<OperatingHourBody>): CreatedResponse<OperatingHour[]> | Error;
+  @post @route("/") post(@body OperatingHour: OperatingHourBody[]): CreatedResponse<OperatingHour[]> | Error;
   @patch @route("{id}") update(@path id: string, day: string, start: string, end: string): SuccessResponse | Error;
   @delete delete(@path id: string): void | SuccessResponse | Error;
 }
- 

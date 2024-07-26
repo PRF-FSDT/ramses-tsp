@@ -160,6 +160,12 @@ model OperatingHourBody {
   end: string;
 }
 
+model ToPlanTaskBody {
+  duration_in_min: numeric;
+  planned_resource_id: numeric;
+  planned_start: utcDateTime;
+}
+
 model OperatingHour {
   @key id: int32;
   day: string;
