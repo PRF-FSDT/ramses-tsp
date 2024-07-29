@@ -568,34 +568,6 @@ paths:
                 anyOf:
                   - $ref: '#/components/schemas/SuccessResponse'
                   - $ref: '#/components/schemas/Error'
-  /order-manager/order-tasks/{id}/plan:
-    post:
-      tags:
-        - Order Tasks
-      operationId: OrderTasks_plan
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        default:
-          description: An unexpected error response.
-          content:
-            application/json:
-              schema:
-                anyOf:
-                  - $ref: '#/components/schemas/SuccessResponse'
-                  - $ref: '#/components/schemas/Error'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/ToPlanTaskBody'
   /order-manager/orders:
     get:
       tags:
@@ -1230,6 +1202,40 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /order-manager/orders/{id}/order-tasks/plan:
+    post:
+      tags:
+        - Orders
+      operationId: Orders_planOrderTasks
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: The request has succeeded and a new resource has been created as a result.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ToPlanTaskBody'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ToPlanTaskBody'
   /order-manager/orders/{id}/push-to-erp:
     post:
       tags:
@@ -2099,10 +2105,14 @@ components:
     ToPlanTaskBody:
       type: object
       required:
+        - id
         - duration_in_min
         - planned_resource_id
         - planned_start
       properties:
+        id:
+          type: integer
+          format: uint64
         duration_in_min:
           type: number
         planned_resource_id:

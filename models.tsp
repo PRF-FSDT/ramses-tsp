@@ -165,6 +165,7 @@ model OperatingHourBody {
 }
 
 model ToPlanTaskBody {
+  @key id: uint64;
   duration_in_min: numeric;
   planned_resource_id: numeric;
   planned_start: utcDateTime;

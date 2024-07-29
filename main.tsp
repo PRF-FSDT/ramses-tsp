@@ -57,7 +57,7 @@ interface Orders {
 
   //order tasks
   @route("{id}/order-tasks") @get getOrderTasks(@path id: string, @query query: OrderTaskFilterRequest): PaginatedResponse<OrderTask> | Error;
-
+  @post @route("{id}/order-tasks/plan") planOrderTasks(@path id: string, @body ToPlanTasks: ToPlanTaskBody[]): CreatedResponse<ToPlanTaskBody[]>| Error;
   //additional purch lines
   @route("{id}/additional-purchase-lines") @get getAdditionalPurchLines(
     @path id: string,
@@ -166,7 +166,7 @@ interface OrderTasks {
   @delete delete(@path id: string): void | SuccessResponse | Error;
 
   @get @route("/planning-for-week/{week}") getPlanningForWeek(@path week: string): PaginatedResponse<OrderTask> | Error;
-  @post @route("{id}/plan") plan(@path id: string, @body ToPlanTasks: ToPlanTaskBody[]): SuccessResponse | Error;
+  // @post @route("{id}/plan") plan(@path id: string, @body ToPlanTasks: ToPlanTaskBody[]): SuccessResponse | Error;
 }
 
 //Model: Resource
