@@ -7,10 +7,7 @@ using TypeSpec.Versioning;
 using TypeSpec.Http;
 using TypeSpec.Rest;
 
-@versioned(Versions)
-@service({
-  title: "RAMSES",
-})
+
 namespace RamsesService;
 
 enum Versions {

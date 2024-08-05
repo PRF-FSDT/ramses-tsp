@@ -2,7 +2,8 @@ import "@typespec/http";
 import "@typespec/rest";
 import "@typespec/openapi3";
 import "@typespec/versioning";
-import "./models.tsp";
+import "./models/models.tsp";
+import "./models/users.tsp";
 
 using TypeSpec.Versioning;
 using TypeSpec.Http;
@@ -187,5 +188,14 @@ interface OperatingHours {
   @get list(): RecordResponse<OperatingHour[]> | Error;
   @post @route("/") post(@body OperatingHour: OperatingHourBody[]): CreatedResponse<OperatingHour[]> | Error;
   @patch @route("{id}") update(@path id: string, @body OperatingHour: OperatingHourBody): SuccessResponse | Error;
+  @delete delete(@path id: string): void | SuccessResponse | Error;
+}
+
+@route("/users")
+@tag("Users")
+interface Users{
+  @get list(@query query: PaginatedRequest): PaginatedResponse<User> | Error;
+  @post @route("/") post(@body UserBody: UserCreateBody): CreatedResponse<User> | Error;
+  @patch @route("{id}") update(@path id: string, @body UserBody: UserUpdateBody): SuccessResponse | Error;
   @delete delete(@path id: string): void | SuccessResponse | Error;
 }

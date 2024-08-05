@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "start": "tsp compile . --watch",
+    "start": "tsp compile ./src/main.tsp --watch",
     "dev": "pnpm start",
-    "compile": "tsp compile .",
+    "compile": "tsp compile ./src/main.tsp",
     "format": "tsp format '**/*.tsp'"
   },
   "engines": {
