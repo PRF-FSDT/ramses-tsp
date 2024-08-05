@@ -88,6 +88,8 @@ interface Orders {
 
   //TODO: define this action
   @route("{id}/push-to-erp") @post postToErp(@path id: string): string | Error;
+
+  @route("/unplanned") @get getUnplanned(@query query: PaginatedRequest): PaginatedResponse<Order> | Error;
 }
 
 //Model: SyncedOrder
@@ -165,7 +167,7 @@ interface OrderTasks {
   ): SuccessResponse | Error;
   @delete delete(@path id: string): void | SuccessResponse | Error;
 
-  @get @route("/planning-for-week/{week}") getPlanningForWeek(@path week: string): PaginatedResponse<OrderTask> | Error;
+  @get @route("/planning-for-week/{week}") getPlanningForWeek(@path week: string): OrderTask | Error;
   // @post @route("{id}/plan") plan(@path id: string, @body ToPlanTasks: ToPlanTaskBody[]): SuccessResponse | Error;
 }
 
