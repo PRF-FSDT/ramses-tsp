@@ -285,10 +285,8 @@ model OrderIndexFilterRequest {
   @query status?: string;
   @query owner?: string;
   @query client_name?: string;
-  @query prod_start_date_from?: string;
-  @query prod_start_date_until?: string;
-  @query prod_end_date_from?: string;
-  @query prod_end_date_until?: string;
+  @query finalisation_date_from?: string;
+  @query finalisation_date_until?: string;
   @query include?: "tasks";
 }
 
