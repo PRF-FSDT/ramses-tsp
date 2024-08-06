@@ -5,9 +5,12 @@ import "@typespec/versioning";
 import "./models/models.tsp";
 import "./models/users.tsp";
 
+import "./services/auth.tsp";
+
 using TypeSpec.Versioning;
 using TypeSpec.Http;
 using TypeSpec.Rest;
+
 
 @versioned(Versions)
 @service({
@@ -31,12 +34,12 @@ namespace RamsesService;
 
 //ORDER MANAGER
 
-@tag("Auth")
-interface Auth {
-  @route("login") @post postLogin(email: string, password: string, device_name: string): LoginResponse | Error;
-  @route("logout") @post postLogout(): LogoutResponse | Error;
-  @route("me") @get getMe(): MeResponse | Error;
-}
+// @tag("Auth")
+// interface Auth {
+//   @route("login") @post postLogin(email: string, password: string, device_name: string): LoginResponse | Error;
+//   @route("logout") @post postLogout(): LogoutResponse | Error;
+//   @route("me") @get getMe(): MeResponse | Error;
+// }
 
 //Model: Orders
 @route("/order-manager/orders")

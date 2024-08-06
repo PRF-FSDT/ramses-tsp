@@ -19,7 +19,7 @@ paths:
     post:
       tags:
         - Auth
-      operationId: Auth_postLogin
+      operationId: AuthService_postLogin
       parameters: []
       responses:
         '200':
@@ -55,7 +55,7 @@ paths:
     post:
       tags:
         - Auth
-      operationId: Auth_postLogout
+      operationId: AuthService_postLogout
       parameters: []
       responses:
         '200':
@@ -74,7 +74,7 @@ paths:
     get:
       tags:
         - Auth
-      operationId: Auth_getMe
+      operationId: AuthService_getMe
       parameters: []
       responses:
         '200':
