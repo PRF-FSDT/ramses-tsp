@@ -768,6 +768,12 @@ paths:
                   type: string
                 status:
                   type: string
+                owner:
+                  type: string
+                responsible:
+                  type: string
+                employee:
+                  type: string
                 client_no:
                   type: string
                 client_name:
@@ -784,37 +790,26 @@ paths:
                   type: string
                 client_country_code:
                   type: string
-                owner:
-                  type: string
-                responsible:
-                  type: string
-                employee:
-                  type: string
                 drawing_no:
                   type: string
                 location:
                   type: string
                 prod_duration_days:
-                  type: number
-                prod_start_date:
-                  type: string
-                prod_end_date:
-                  type: string
+                  type: integer
+                finalisation_duration_days:
+                  type: integer
+                prep_duration_days:
+                  type: integer
                 finalisation_date:
-                  type: string
-                creation_date:
                   type: string
                 created_at:
                   type: string
                 updated_at:
                   type: string
                 tasks:
-                  anyOf:
-                    - type: array
-                      items:
-                        $ref: '#/components/schemas/OrderTask'
-                    - type: array
-                      items: {}
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/OrderTask'
                   nullable: true
   /order-manager/orders/{id}/additional-purchase-lines:
     get:
@@ -1623,6 +1618,34 @@ components:
         height_mm:
           type: number
           nullable: true
+    Client:
+      type: object
+      required:
+        - client_no
+        - client_name
+        - client_address_line1
+        - client_street
+        - client_street_no
+        - client_postal_code
+        - client_city
+        - client_country_code
+      properties:
+        client_no:
+          type: string
+        client_name:
+          type: string
+        client_address_line1:
+          type: string
+        client_street:
+          type: string
+        client_street_no:
+          type: string
+        client_postal_code:
+          type: string
+        client_city:
+          type: string
+        client_country_code:
+          type: string
     DayOfWeek:
       type: string
       enum:
@@ -1737,6 +1760,9 @@ components:
         - description
         - notes
         - status
+        - owner
+        - responsible
+        - employee
         - client_no
         - client_name
         - client_address_line1
@@ -1745,16 +1771,12 @@ components:
         - client_postal_code
         - client_city
         - client_country_code
-        - owner
-        - responsible
-        - employee
         - drawing_no
         - location
         - prod_duration_days
-        - prod_start_date
-        - prod_end_date
+        - finalisation_duration_days
+        - prep_duration_days
         - finalisation_date
-        - creation_date
         - created_at
         - updated_at
       properties:
@@ -1770,6 +1792,12 @@ components:
         notes:
           type: string
         status:
+          type: string
+        owner:
+          type: string
+        responsible:
+          type: string
+        employee:
           type: string
         client_no:
           type: string
@@ -1787,37 +1815,26 @@ components:
           type: string
         client_country_code:
           type: string
-        owner:
-          type: string
-        responsible:
-          type: string
-        employee:
-          type: string
         drawing_no:
           type: string
         location:
           type: string
         prod_duration_days:
-          type: number
-        prod_start_date:
-          type: string
-        prod_end_date:
-          type: string
+          type: integer
+        finalisation_duration_days:
+          type: integer
+        prep_duration_days:
+          type: integer
         finalisation_date:
-          type: string
-        creation_date:
           type: string
         created_at:
           type: string
         updated_at:
           type: string
         tasks:
-          anyOf:
-            - type: array
-              items:
-                $ref: '#/components/schemas/OrderTask'
-            - type: array
-              items: {}
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderTask'
           nullable: true
     OrderAttachment:
       type: object
@@ -1908,17 +1925,15 @@ components:
       properties:
         synced_order_id:
           type: string
-        prod_end_date:
-          type: string
-          format: date-time
         finalisation_date:
           type: string
           format: date-time
+        finalisation_duration_days:
+          type: integer
         prod_duration_days:
           type: integer
-          format: uint8
-          minimum: 0
-          maximum: 50
+        prep_duration_days:
+          type: integer
     OrderImportResponse:
       type: object
       required:
@@ -1928,6 +1943,9 @@ components:
         - description
         - notes
         - status
+        - owner
+        - responsible
+        - employee
         - client_no
         - client_name
         - client_address_line1
@@ -1936,16 +1954,12 @@ components:
         - client_postal_code
         - client_city
         - client_country_code
-        - owner
-        - responsible
-        - employee
         - drawing_no
         - location
         - prod_duration_days
-        - prod_start_date
-        - prod_end_date
+        - finalisation_duration_days
+        - prep_duration_days
         - finalisation_date
-        - creation_date
         - created_at
         - updated_at
       properties:
@@ -1961,6 +1975,12 @@ components:
         notes:
           type: string
         status:
+          type: string
+        owner:
+          type: string
+        responsible:
+          type: string
+        employee:
           type: string
         client_no:
           type: string
@@ -1978,37 +1998,26 @@ components:
           type: string
         client_country_code:
           type: string
-        owner:
-          type: string
-        responsible:
-          type: string
-        employee:
-          type: string
         drawing_no:
           type: string
         location:
           type: string
         prod_duration_days:
-          type: number
-        prod_start_date:
-          type: string
-        prod_end_date:
-          type: string
+          type: integer
+        finalisation_duration_days:
+          type: integer
+        prep_duration_days:
+          type: integer
         finalisation_date:
-          type: string
-        creation_date:
           type: string
         created_at:
           type: string
         updated_at:
           type: string
         tasks:
-          anyOf:
-            - type: array
-              items:
-                $ref: '#/components/schemas/OrderTask'
-            - type: array
-              items: {}
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderTask'
           nullable: true
     OrderIndexFilterRequest:
       type: object

@@ -16,13 +16,7 @@ enum Versions {
 }
 
 //MODELS:
-model Order {
-  @key id: int64;
-  no: string;
-  name: string;
-  description: string;
-  notes: string;
-  status: string;
+model Client {
   client_no: string;
   client_name: string;
   client_address_line1: string;
@@ -31,19 +25,28 @@ model Order {
   client_postal_code: string;
   client_city: string;
   client_country_code: string;
+}
+
+model Order {
+  @key id: int64;
+  no: string;
+  name: string;
+  description: string;
+  notes: string;
+  status: string;
   owner: string;
   responsible: string;
   employee: string;
+  ...Client;
   drawing_no: string;
   location: string;
-  prod_duration_days: numeric;
-  prod_start_date: string;
-  prod_end_date: string;
+  prod_duration_days: integer;
+  finalisation_duration_days: integer;
+  prep_duration_days: integer;
   finalisation_date: string;
-  creation_date: string;
   created_at: string;
   updated_at: string;
-  tasks?: Array<OrderTask> | [] | null;
+  tasks?: Array<OrderTask> | null;
   //@added(Versions.dev) ext_created_at: offsetDateTime;
 }
 
@@ -212,9 +215,10 @@ model OrderImportResponse {
 }
 model OrderImportBody{
   synced_order_id: string,
-  prod_end_date?: offsetDateTime,
   finalisation_date?: offsetDateTime,
-  @minValue(0) @maxValue(50) prod_duration_days?: uint8,
+  finalisation_duration_days?: integer;
+  prod_duration_days?: integer;
+  prep_duration_days?: integer;
 }
 
 model ListResponse<T> {
