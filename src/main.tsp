@@ -168,7 +168,7 @@ interface OrderTasks {
   ): SuccessResponse | Error;
   @delete delete(@path id: string): void | SuccessResponse | Error;
 
-  @get @route("/planning-for-week/{week}") getPlanningForWeek(@path week: string): OrderTask | Error;
+  @get @route("/planning-for-week/{week}") getPlanningForWeek(@path week: string): PaginatedResponse<OrderTask> | Error;
   // @post @route("{id}/plan") plan(@path id: string, @body ToPlanTasks: ToPlanTaskBody[]): SuccessResponse | Error;
 }
 
