@@ -1921,13 +1921,14 @@ components:
     OrderImportBody:
       type: object
       required:
-        - synced_order_id
+        - name
       properties:
         synced_order_id:
           type: string
+        name:
+          type: string
         finalisation_date:
           type: string
-          format: date-time
         finalisation_duration_days:
           type: integer
         prod_duration_days:

@@ -214,8 +214,9 @@ model OrderImportResponse {
   ...Order;
 }
 model OrderImportBody{
-  synced_order_id: string,
-  finalisation_date?: offsetDateTime,
+  synced_order_id?: string,
+  name: string;
+  finalisation_date?: string;
   finalisation_duration_days?: integer;
   prod_duration_days?: integer;
   prep_duration_days?: integer;
