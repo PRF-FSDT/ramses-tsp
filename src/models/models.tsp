@@ -219,7 +219,7 @@ model OrderImportResponse {
 model OrderImportBody{
   synced_order_id?: string,
   name: string;
-  finalisation_date?: DateString;
+  finalisation_date: DateString;
   finalisation_duration_days?: integer;
   prod_duration_days?: integer;
   prep_duration_days?: integer;
