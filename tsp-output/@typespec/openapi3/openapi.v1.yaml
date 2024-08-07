@@ -475,7 +475,27 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OrderTask'
+                type: object
+                required:
+                  - data
+                  - links
+                  - meta
+                properties:
+                  data:
+                    anyOf:
+                      - type: array
+                        items:
+                          $ref: '#/components/schemas/OrderTask'
+                      - type: array
+                        items: {}
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                  filters:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FilterOption'
         default:
           description: An unexpected error response.
           content:
@@ -1915,6 +1935,7 @@ components:
       type: object
       required:
         - name
+        - finalisation_date
       properties:
         synced_order_id:
           type: string
