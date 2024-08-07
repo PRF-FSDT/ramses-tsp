@@ -14,6 +14,9 @@ enum Versions {
   v1,
   dev,
 }
+// Scalars: 
+@pattern("\\d{4}-\\d{2}-\\d{2}")
+scalar DateString extends string;
 
 //MODELS:
 model Client {
@@ -43,7 +46,7 @@ model Order {
   prod_duration_days: integer;
   finalisation_duration_days: integer;
   prep_duration_days: integer;
-  finalisation_date: string;
+  finalisation_date: DateString;
   created_at: string;
   updated_at: string;
   tasks?: Array<OrderTask> | null;
@@ -137,7 +140,7 @@ model OrderTask {
   dependant_on?: Array<numeric> | null;
   duration_in_min?: numeric | null;
   planned_resource_id?: numeric | null;
-  planned_start?: utcDateTime | null;
+  planned_start?: DateString | null;
 }
 
 model SyncedOrder {
@@ -168,7 +171,7 @@ model ToPlanTaskBody {
   @key id: uint64;
   duration_in_min: numeric;
   planned_resource_id: numeric;
-  planned_start: utcDateTime;
+  planned_start: DateString;
 }
 
 model OperatingHour {
@@ -216,7 +219,7 @@ model OrderImportResponse {
 model OrderImportBody{
   synced_order_id?: string,
   name: string;
-  finalisation_date?: string;
+  finalisation_date?: DateString;
   finalisation_duration_days?: integer;
   prod_duration_days?: integer;
   prep_duration_days?: integer;

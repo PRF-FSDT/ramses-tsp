@@ -580,22 +580,12 @@ paths:
           required: false
           schema:
             type: string
-        - name: prod_start_date_from
+        - name: finalisation_date_from
           in: query
           required: false
           schema:
             type: string
-        - name: prod_start_date_until
-          in: query
-          required: false
-          schema:
-            type: string
-        - name: prod_end_date_from
-          in: query
-          required: false
-          schema:
-            type: string
-        - name: prod_end_date_until
+        - name: finalisation_date_until
           in: query
           required: false
           schema:
@@ -801,7 +791,7 @@ paths:
                 prep_duration_days:
                   type: integer
                 finalisation_date:
-                  type: string
+                  $ref: '#/components/schemas/DateString'
                 created_at:
                   type: string
                 updated_at:
@@ -1646,6 +1636,9 @@ components:
           type: string
         client_country_code:
           type: string
+    DateString:
+      type: string
+      pattern: \d{4}-\d{2}-\d{2}
     DayOfWeek:
       type: string
       enum:
@@ -1826,7 +1819,7 @@ components:
         prep_duration_days:
           type: integer
         finalisation_date:
-          type: string
+          $ref: '#/components/schemas/DateString'
         created_at:
           type: string
         updated_at:
@@ -1928,7 +1921,7 @@ components:
         name:
           type: string
         finalisation_date:
-          type: string
+          $ref: '#/components/schemas/DateString'
         finalisation_duration_days:
           type: integer
         prod_duration_days:
@@ -2010,7 +2003,7 @@ components:
         prep_duration_days:
           type: integer
         finalisation_date:
-          type: string
+          $ref: '#/components/schemas/DateString'
         created_at:
           type: string
         updated_at:
@@ -2148,8 +2141,8 @@ components:
           type: number
           nullable: true
         planned_start:
-          type: string
-          format: date-time
+          oneOf:
+            - $ref: '#/components/schemas/DateString'
           nullable: true
     OrderTaskFilterRequest:
       type: object
@@ -2275,8 +2268,7 @@ components:
         planned_resource_id:
           type: number
         planned_start:
-          type: string
-          format: date-time
+          $ref: '#/components/schemas/DateString'
     User:
       type: object
       required:
