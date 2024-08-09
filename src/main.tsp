@@ -182,11 +182,11 @@ interface Users{
   @delete delete(@path id: string): void | SuccessResponse | Error;
 }
 
-@route("/machines")
-@tag("Machines")
-interface Machines{
-  @get list(@query query: PaginatedRequest): PaginatedResponse<Machine> | Error;
-  @post @route("/") post(@body MachineBody: MachineBody): CreatedResponse<Machine> | Error;
-  @patch @route("{id}") update(@path id: string, @body MachineBody: MachineBody): SuccessResponse | Error;
-  @delete delete(@path id: string): void | SuccessResponse | Error;
-}
+// @route("/machines")
+// @tag("Machines")
+// interface Machines{
+//   @get list(@query query: PaginatedRequest): PaginatedResponse<Machine> | Error;
+//   @post @route("/") post(@body MachineBody: MachineBody): CreatedResponse<Machine> | Error;
+//   @patch @route("{id}") update(@path id: string, @body MachineBody: MachineBody): SuccessResponse | Error;
+//   @delete delete(@path id: string): void | SuccessResponse | Error;
+// }
