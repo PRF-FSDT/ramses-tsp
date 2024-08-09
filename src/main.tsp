@@ -4,6 +4,7 @@ import "@typespec/openapi3";
 import "@typespec/versioning";
 import "./models/models.tsp";
 import "./models/users.tsp";
+import "./models/machine.tsp";
 
 using TypeSpec.Versioning;
 using TypeSpec.Http;
@@ -146,28 +147,9 @@ interface OrderMaterialItems {
 @route("/order-manager/order-tasks")
 @tag("Order Tasks")
 interface OrderTasks {
-  @post @route("/") post(
-    order_no: string,
-    type: "preparation" | "finalisation",
-    title: string,
-    should_be_planned: boolean,
-    is_required_for_production: boolean,
-    is_external: boolean,
-    is_finished: boolean,
-    dependant_on: Array<integer>,
-  ): void | SuccessResponse | Error;
-  @patch @route("{id}") update(
-    @path id: string,
-    type?: "preparation" | "finalisation",
-    title?: string,
-    should_be_planned?: boolean,
-    is_required_for_production?: boolean,
-    is_external?: boolean,
-    is_finished?: boolean,
-    dependant_on?: Array<integer>,
-  ): SuccessResponse | Error;
+  @post @route("/") post(@body OrderTaskBody: OrderTaskBody): CreatedResponse<OrderTask> | Error;
+  @patch @route("{id}") update(@path id: string, @body OrderTaskUpdateBody: OrderTaskUpdateBody): UpdatedResponse<OrderTask> | Error;
   @delete delete(@path id: string): void | SuccessResponse | Error;
-
   @get @route("/planning-for-week/{week}") getPlanningForWeek(@path week: string): PaginatedResponse<OrderTask> | Error;
   // @post @route("{id}/plan") plan(@path id: string, @body ToPlanTasks: ToPlanTaskBody[]): SuccessResponse | Error;
 }
@@ -197,5 +179,14 @@ interface Users{
   @get list(@query query: PaginatedRequest): PaginatedResponse<User> | Error;
   @post @route("/") post(@body UserBody: UserCreateBody): CreatedResponse<User> | Error;
   @patch @route("{id}") update(@path id: string, @body UserBody: UserUpdateBody): SuccessResponse | Error;
+  @delete delete(@path id: string): void | SuccessResponse | Error;
+}
+
+@route("/machines")
+@tag("Machines")
+interface Machines{
+  @get list(@query query: PaginatedRequest): PaginatedResponse<Machine> | Error;
+  @post @route("/") post(@body MachineBody: MachineBody): CreatedResponse<Machine> | Error;
+  @patch @route("{id}") update(@path id: string, @body MachineBody: MachineBody): SuccessResponse | Error;
   @delete delete(@path id: string): void | SuccessResponse | Error;
 }

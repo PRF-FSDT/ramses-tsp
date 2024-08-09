@@ -14,9 +14,24 @@ enum Versions {
   v1,
   dev,
 }
+enum DayOfWeek {
+  Mon,
+  Tue,
+  Wed,
+  Thu,
+  Fri,
+  Sat,
+  Sun,
+}
+
+
 // Scalars: 
 @pattern("\\d{4}-\\d{2}-\\d{2}")
 scalar DateString extends string;
+
+// Aliases:
+alias OrderTaskType = "preparation" | "finalisation";
+
 
 //MODELS:
 model Client {
@@ -127,10 +142,34 @@ model OrderMaterialItem {
   stock_status: string;
 }
 
+model OrderTaskBody{
+  order_no: string;
+  type: OrderTaskType;
+  title: string;
+  should_be_planned: boolean;
+  is_required_for_production: boolean;
+  is_external: boolean;
+  is_finished: boolean;
+  dependant_on: Array<integer>;
+}
+
+model OrderTaskUpdateBody{
+  type?: OrderTaskType;
+  title?: string;
+  should_be_planned?: boolean;
+  is_required_for_production?: boolean;
+  is_external?: boolean;
+  is_finished?: boolean;
+  dependant_on?: Array<integer>;
+  duration_in_min?: numeric | null;
+  planned_resource_id?: numeric | null;
+  planned_start?: DateString | null;
+}
+
 model OrderTask {
   @key id: uint64;
   order_no?: string;
-  type: "preparation" | "finalisation";
+  type: OrderTaskType;
   title: string;
   should_be_planned: boolean;
   is_required_for_production: boolean;
@@ -183,6 +222,7 @@ model OperatingHour {
   created_at: string;
 }
 
+
 //RESPONSES:
 @error
 model SuccessResponse {
@@ -225,6 +265,7 @@ model OrderImportBody{
   prep_duration_days?: integer;
 }
 
+
 model ListResponse<T> {
   @statusCode statusCode: 200;
   @body body: T[];
@@ -263,6 +304,15 @@ model PaginatedResponse<T> {
 model CreatedResponse<T> {
   @statusCode statusCode: 201;
   @body body: T;
+}
+
+model UpdatedResponse<T>{
+  @statusCode statusCode: 200;
+  @body body: T; 
+}
+
+model DeletedResponse{
+  @statusCode statusCode: 204;
 }
 
 //FILTERS
@@ -307,7 +357,7 @@ model OrderCompositionLineRequest {
 
 model OrderTaskFilterRequest {
   ...PaginatedSortableRequest;
-  @query type?: "preparation" | "finalisation";
+  @query type?: OrderTaskType;
 }
 
 model OrderMaterialCsvRequest {
@@ -318,13 +368,3 @@ model OrderMaterialCsvRequest {
   @query excludeEdging?: boolean;
 }
 
-// Enums
-enum DayOfWeek {
-  Mon,
-  Tue,
-  Wed,
-  Thu,
-  Fri,
-  Sat,
-  Sun,
-}

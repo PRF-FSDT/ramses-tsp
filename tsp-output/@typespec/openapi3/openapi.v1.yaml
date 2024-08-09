@@ -14,6 +14,7 @@ tags:
   - name: Resources
   - name: Operating Hours
   - name: Users
+  - name: Machines
 paths:
   /login:
     post:
@@ -70,6 +71,125 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /machines:
+    get:
+      tags:
+        - Machines
+      operationId: Machines_list
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/PaginatedRequest'
+        - $ref: '#/components/parameters/PaginatedRequest.page'
+        - $ref: '#/components/parameters/PaginatedRequest.perPage'
+        - $ref: '#/components/parameters/PaginatedRequest.search'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - links
+                  - meta
+                properties:
+                  data:
+                    anyOf:
+                      - type: array
+                        items:
+                          $ref: '#/components/schemas/Machine'
+                      - type: array
+                        items: {}
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                  filters:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FilterOption'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /machines/:
+    post:
+      tags:
+        - Machines
+      operationId: Machines_post
+      parameters: []
+      responses:
+        '201':
+          description: The request has succeeded and a new resource has been created as a result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Machine'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MachineBody'
+  /machines/{id}:
+    patch:
+      tags:
+        - Machines
+      operationId: Machines_update
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/SuccessResponse'
+                  - $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MachineBodyUpdate'
+    delete:
+      tags:
+        - Machines
+      operationId: Machines_delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: 'There is no content to send for this request, but the headers may be useful. '
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/SuccessResponse'
+                  - $ref: '#/components/schemas/Error'
   /me:
     get:
       tags:
@@ -411,53 +531,24 @@ paths:
       operationId: OrderTasks_post
       parameters: []
       responses:
-        '204':
-          description: 'There is no content to send for this request, but the headers may be useful. '
+        '201':
+          description: The request has succeeded and a new resource has been created as a result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderTask'
         default:
           description: An unexpected error response.
           content:
             application/json:
               schema:
-                anyOf:
-                  - $ref: '#/components/schemas/SuccessResponse'
-                  - $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/Error'
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                order_no:
-                  type: string
-                type:
-                  type: string
-                  enum:
-                    - preparation
-                    - finalisation
-                title:
-                  type: string
-                should_be_planned:
-                  type: boolean
-                is_required_for_production:
-                  type: boolean
-                is_external:
-                  type: boolean
-                is_finished:
-                  type: boolean
-                dependant_on:
-                  type: array
-                  items:
-                    type: integer
-              required:
-                - order_no
-                - type
-                - title
-                - should_be_planned
-                - is_required_for_production
-                - is_external
-                - is_finished
-                - dependant_on
+              $ref: '#/components/schemas/OrderTaskBody'
   /order-manager/order-tasks/planning-for-week/{week}:
     get:
       tags:
@@ -514,40 +605,24 @@ paths:
           schema:
             type: string
       responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderTask'
         default:
           description: An unexpected error response.
           content:
             application/json:
               schema:
-                anyOf:
-                  - $ref: '#/components/schemas/SuccessResponse'
-                  - $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/Error'
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                type:
-                  type: string
-                  enum:
-                    - preparation
-                    - finalisation
-                title:
-                  type: string
-                should_be_planned:
-                  type: boolean
-                is_required_for_production:
-                  type: boolean
-                is_external:
-                  type: boolean
-                is_finished:
-                  type: boolean
-                dependant_on:
-                  type: array
-                  items:
-                    type: integer
+              $ref: '#/components/schemas/OrderTaskUpdateBody'
     delete:
       tags:
         - Order Tasks
@@ -1669,6 +1744,8 @@ components:
         - Fri
         - Sat
         - Sun
+    DeletedResponse:
+      type: object
     Error:
       type: object
       required:
@@ -1709,6 +1786,73 @@ components:
       properties:
         message:
           type: string
+    Machine:
+      type: object
+      required:
+        - id
+        - name
+        - machine_tasks
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        machine_tasks:
+          type: array
+          items:
+            $ref: '#/components/schemas/MachineTask'
+    MachineBody:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        machine_tasks:
+          type: array
+          items:
+            type: integer
+    MachineBodyUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        machine_tasks:
+          type: array
+          items:
+            type: integer
+    MachineTask:
+      type: object
+      required:
+        - id
+        - name
+        - machine_id
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        machine_id:
+          type: integer
+          format: int64
+        machine:
+          type: object
+          allOf:
+            - $ref: '#/components/schemas/Machine'
+          nullable: true
+    MachineTaskBody:
+      type: object
+      required:
+        - name
+        - machine_id
+      properties:
+        name:
+          type: string
+        machine_id:
+          type: integer
+          format: int64
     MeResponse:
       type: object
       required:
@@ -2165,8 +2309,73 @@ components:
           oneOf:
             - $ref: '#/components/schemas/DateString'
           nullable: true
+    OrderTaskBody:
+      type: object
+      required:
+        - order_no
+        - type
+        - title
+        - should_be_planned
+        - is_required_for_production
+        - is_external
+        - is_finished
+        - dependant_on
+      properties:
+        order_no:
+          type: string
+        type:
+          type: string
+          enum:
+            - preparation
+            - finalisation
+        title:
+          type: string
+        should_be_planned:
+          type: boolean
+        is_required_for_production:
+          type: boolean
+        is_external:
+          type: boolean
+        is_finished:
+          type: boolean
+        dependant_on:
+          type: array
+          items:
+            type: integer
     OrderTaskFilterRequest:
       type: object
+    OrderTaskUpdateBody:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - preparation
+            - finalisation
+        title:
+          type: string
+        should_be_planned:
+          type: boolean
+        is_required_for_production:
+          type: boolean
+        is_external:
+          type: boolean
+        is_finished:
+          type: boolean
+        dependant_on:
+          type: array
+          items:
+            type: integer
+        duration_in_min:
+          type: number
+          nullable: true
+        planned_resource_id:
+          type: number
+          nullable: true
+        planned_start:
+          oneOf:
+            - $ref: '#/components/schemas/DateString'
+          nullable: true
     PaginatedRequest:
       type: object
     PaginatedSortableRequest:
