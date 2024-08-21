@@ -11,15 +11,16 @@ namespace RamsesService;
 
 model MachineCenter{
   @key id: int64;
-  no: string;
-  name: string;
-  scan_code: string;
-  machine_type_code: string;
+  @example("CNC_1") no: string;
+  @example("CNC Homag 1") name: string;
+  @example("CNC_1") scan_code: string;
+  @example("CNC") machine_type_code: string;
 }
 
 model MachineCenterBody{
-  name: string;
-  scan_code: string;
-  machine_type_code: string;
+  no: MachineCenter.no;
+  name: MachineCenter.name;
+  scan_code: MachineCenter.scan_code;
+  machine_type_code: MachineCenter.machine_type_code;
 }
 

@@ -2040,34 +2040,51 @@ components:
           format: int64
         no:
           type: string
+          example: CNC_1
         name:
           type: string
+          example: CNC Homag 1
         scan_code:
           type: string
+          example: CNC_1
         machine_type_code:
           type: string
+          example: CNC
     MachineCenterBody:
       type: object
       required:
+        - no
         - name
         - scan_code
         - machine_type_code
       properties:
+        no:
+          type: string
+          example: CNC_1
         name:
           type: string
+          example: CNC Homag 1
         scan_code:
           type: string
+          example: CNC_1
         machine_type_code:
           type: string
+          example: CNC
     MachineCenterBodyUpdate:
       type: object
       properties:
+        no:
+          type: string
+          example: CNC_1
         name:
           type: string
+          example: CNC Homag 1
         scan_code:
           type: string
+          example: CNC_1
         machine_type_code:
           type: string
+          example: CNC
     MachineType:
       type: object
       required:
@@ -2080,8 +2097,10 @@ components:
           format: int64
         code:
           type: string
+          example: CNC
         name:
           type: string
+          example: CNC
     MachineTypeBody:
       type: object
       required:
@@ -2090,15 +2109,19 @@ components:
       properties:
         code:
           type: string
+          example: CNC
         name:
           type: string
+          example: CNC
     MachineTypeBodyUpdate:
       type: object
       properties:
         code:
           type: string
+          example: CNC
         name:
           type: string
+          example: CNC
     MeResponse:
       type: object
       required:
@@ -2716,14 +2739,18 @@ components:
           format: int64
         code:
           type: string
+          example: DRILL_V
         name:
           type: string
+          example: drill vertically
         icon:
           type: string
           nullable: true
+          example: /icons/drill-vert.png
         machine_type_code:
           type: string
           nullable: true
+          example: CNC
     RoutingCodeBody:
       type: object
       required:
@@ -2734,27 +2761,35 @@ components:
       properties:
         code:
           type: string
+          example: DRILL_V
         name:
           type: string
+          example: drill vertically
         icon:
           type: string
           nullable: true
+          example: /icons/drill-vert.png
         machine_type_code:
           type: string
           nullable: true
+          example: CNC
     RoutingCodeBodyUpdate:
       type: object
       properties:
         code:
           type: string
+          example: DRILL_V
         name:
           type: string
+          example: drill vertically
         icon:
           type: string
           nullable: true
+          example: /icons/drill-vert.png
         machine_type_code:
           type: string
           nullable: true
+          example: CNC
     SuccessResponse:
       type: object
       required:

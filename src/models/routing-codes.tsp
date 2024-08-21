@@ -11,16 +11,15 @@ namespace RamsesService;
 
 model RoutingCode{
   @key id: int64;
-  code: string;
-  name: string;
-  icon: string | null;
-  machine_type_code: string | null;
+  @example("DRILL_V") code: string;
+  @example("drill vertically") name: string;
+  @example("/icons/drill-vert.png") icon: string | null;
+  @example("CNC") machine_type_code: string | null;
 }
 
 model RoutingCodeBody{
-  code: string;
-  name: string;
-  icon: string | null;
-  machine_type_code: string | null;
+  code: RoutingCode.code;
+  name: RoutingCode.name;
+  icon: RoutingCode.icon;
+  machine_type_code: RoutingCode.machine_type_code;
 }
-

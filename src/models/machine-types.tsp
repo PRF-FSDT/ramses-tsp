@@ -11,12 +11,12 @@ namespace RamsesService;
 
 model MachineType{
   @key id: int64;
-  code: string;
-  name: string;
+  @example("CNC") code: string;
+  @example("CNC") name: string;
 }
 
 model MachineTypeBody{
-  code: string;
-  name: string;
+  code: MachineType.code;
+  name: MachineType.name;
 }
 
