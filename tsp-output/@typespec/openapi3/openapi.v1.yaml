@@ -14,6 +14,9 @@ tags:
   - name: Resources
   - name: Operating Hours
   - name: Users
+  - name: Machine Centers
+  - name: Machine Types
+  - name: Routing Codes
 paths:
   /login:
     post:
@@ -70,6 +73,244 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /machine-centers:
+    get:
+      tags:
+        - Machine Centers
+      operationId: MachineCenters_list
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/PaginatedRequest'
+        - $ref: '#/components/parameters/PaginatedRequest.page'
+        - $ref: '#/components/parameters/PaginatedRequest.perPage'
+        - $ref: '#/components/parameters/PaginatedRequest.search'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - links
+                  - meta
+                properties:
+                  data:
+                    anyOf:
+                      - type: array
+                        items:
+                          $ref: '#/components/schemas/MachineCenter'
+                      - type: array
+                        items: {}
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                  filters:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FilterOption'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /machine-centers/:
+    post:
+      tags:
+        - Machine Centers
+      operationId: MachineCenters_post
+      parameters: []
+      responses:
+        '201':
+          description: The request has succeeded and a new resource has been created as a result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MachineCenter'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MachineCenterBody'
+  /machine-centers/{id}:
+    patch:
+      tags:
+        - Machine Centers
+      operationId: MachineCenters_update
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/SuccessResponse'
+                  - $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MachineCenterBodyUpdate'
+    delete:
+      tags:
+        - Machine Centers
+      operationId: MachineCenters_delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: 'There is no content to send for this request, but the headers may be useful. '
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/SuccessResponse'
+                  - $ref: '#/components/schemas/Error'
+  /machine-types:
+    get:
+      tags:
+        - Machine Types
+      operationId: MachineTypes_list
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/PaginatedRequest'
+        - $ref: '#/components/parameters/PaginatedRequest.page'
+        - $ref: '#/components/parameters/PaginatedRequest.perPage'
+        - $ref: '#/components/parameters/PaginatedRequest.search'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - links
+                  - meta
+                properties:
+                  data:
+                    anyOf:
+                      - type: array
+                        items:
+                          $ref: '#/components/schemas/MachineType'
+                      - type: array
+                        items: {}
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                  filters:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FilterOption'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /machine-types/:
+    post:
+      tags:
+        - Machine Types
+      operationId: MachineTypes_post
+      parameters: []
+      responses:
+        '201':
+          description: The request has succeeded and a new resource has been created as a result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MachineType'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MachineTypeBody'
+  /machine-types/{id}:
+    patch:
+      tags:
+        - Machine Types
+      operationId: MachineTypes_update
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/SuccessResponse'
+                  - $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MachineTypeBodyUpdate'
+    delete:
+      tags:
+        - Machine Types
+      operationId: MachineTypes_delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: 'There is no content to send for this request, but the headers may be useful. '
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/SuccessResponse'
+                  - $ref: '#/components/schemas/Error'
   /me:
     get:
       tags:
@@ -1369,6 +1610,125 @@ paths:
                 anyOf:
                   - $ref: '#/components/schemas/SuccessResponse'
                   - $ref: '#/components/schemas/Error'
+  /routing-codes:
+    get:
+      tags:
+        - Routing Codes
+      operationId: RoutingCodes_list
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/PaginatedRequest'
+        - $ref: '#/components/parameters/PaginatedRequest.page'
+        - $ref: '#/components/parameters/PaginatedRequest.perPage'
+        - $ref: '#/components/parameters/PaginatedRequest.search'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - links
+                  - meta
+                properties:
+                  data:
+                    anyOf:
+                      - type: array
+                        items:
+                          $ref: '#/components/schemas/RoutingCode'
+                      - type: array
+                        items: {}
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                  filters:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FilterOption'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /routing-codes/:
+    post:
+      tags:
+        - Routing Codes
+      operationId: RoutingCodes_post
+      parameters: []
+      responses:
+        '201':
+          description: The request has succeeded and a new resource has been created as a result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoutingCode'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoutingCodeBody'
+  /routing-codes/{id}:
+    patch:
+      tags:
+        - Routing Codes
+      operationId: RoutingCodes_update
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/SuccessResponse'
+                  - $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoutingCodeBodyUpdate'
+    delete:
+      tags:
+        - Routing Codes
+      operationId: RoutingCodes_delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: 'There is no content to send for this request, but the headers may be useful. '
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/SuccessResponse'
+                  - $ref: '#/components/schemas/Error'
   /users:
     get:
       tags:
@@ -1666,15 +2026,77 @@ components:
       properties:
         message:
           type: string
-    Machine:
+    MachineCenter:
       type: object
       required:
         - id
+        - no
+        - name
+        - scan_code
+        - machine_type_code
+      properties:
+        id:
+          type: integer
+          format: int64
+        no:
+          type: string
+        name:
+          type: string
+        scan_code:
+          type: string
+        machine_type_code:
+          type: string
+    MachineCenterBody:
+      type: object
+      required:
+        - name
+        - scan_code
+        - machine_type_code
+      properties:
+        name:
+          type: string
+        scan_code:
+          type: string
+        machine_type_code:
+          type: string
+    MachineCenterBodyUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        scan_code:
+          type: string
+        machine_type_code:
+          type: string
+    MachineType:
+      type: object
+      required:
+        - id
+        - code
         - name
       properties:
         id:
           type: integer
           format: int64
+        code:
+          type: string
+        name:
+          type: string
+    MachineTypeBody:
+      type: object
+      required:
+        - code
+        - name
+      properties:
+        code:
+          type: string
+        name:
+          type: string
+    MachineTypeBodyUpdate:
+      type: object
+      properties:
+        code:
+          type: string
         name:
           type: string
     MeResponse:
@@ -2280,6 +2702,59 @@ components:
           type: string
         name:
           type: string
+    RoutingCode:
+      type: object
+      required:
+        - id
+        - code
+        - name
+        - icon
+        - machine_type_code
+      properties:
+        id:
+          type: integer
+          format: int64
+        code:
+          type: string
+        name:
+          type: string
+        icon:
+          type: string
+          nullable: true
+        machine_type_code:
+          type: string
+          nullable: true
+    RoutingCodeBody:
+      type: object
+      required:
+        - code
+        - name
+        - icon
+        - machine_type_code
+      properties:
+        code:
+          type: string
+        name:
+          type: string
+        icon:
+          type: string
+          nullable: true
+        machine_type_code:
+          type: string
+          nullable: true
+    RoutingCodeBodyUpdate:
+      type: object
+      properties:
+        code:
+          type: string
+        name:
+          type: string
+        icon:
+          type: string
+          nullable: true
+        machine_type_code:
+          type: string
+          nullable: true
     SuccessResponse:
       type: object
       required:

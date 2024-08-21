@@ -4,7 +4,9 @@ import "@typespec/openapi3";
 import "@typespec/versioning";
 import "./models/models.tsp";
 import "./models/users.tsp";
-import "./models/machine.tsp";
+import "./models/machine-centers.tsp";
+import "./models/machine-types.tsp";
+import "./models/routing-codes.tsp";
 
 using TypeSpec.Versioning;
 using TypeSpec.Http;
@@ -182,11 +184,30 @@ interface Users{
   @delete delete(@path id: string): void | SuccessResponse | Error;
 }
 
-// @route("/machines")
-// @tag("Machines")
-// interface Machines{
-//   @get list(@query query: PaginatedRequest): PaginatedResponse<Machine> | Error;
-//   @post @route("/") post(@body MachineBody: MachineBody): CreatedResponse<Machine> | Error;
-//   @patch @route("{id}") update(@path id: string, @body MachineBody: MachineBody): SuccessResponse | Error;
-//   @delete delete(@path id: string): void | SuccessResponse | Error;
-// }
+@route("/machine-centers")
+@tag("Machine Centers")
+interface MachineCenters{
+  @get list(@query query: PaginatedRequest): PaginatedResponse<MachineCenter> | Error;
+  @post @route("/") post(@body MachineBody: MachineCenterBody): CreatedResponse<MachineCenter> | Error;
+  @patch @route("{id}") update(@path id: string, @body MachineBody: MachineCenterBody): SuccessResponse | Error;
+  @delete delete(@path id: string): void | SuccessResponse | Error;
+}
+
+@route("/machine-types")
+@tag("Machine Types")
+interface MachineTypes{
+  @get list(@query query: PaginatedRequest): PaginatedResponse<MachineType> | Error;
+  @post @route("/") post(@body MachineBody: MachineTypeBody): CreatedResponse<MachineType> | Error;
+  @patch @route("{id}") update(@path id: string, @body MachineBody: MachineTypeBody): SuccessResponse | Error;
+  @delete delete(@path id: string): void | SuccessResponse | Error;
+}
+
+
+@route("/routing-codes")
+@tag("Routing Codes")
+interface RoutingCodes{
+  @get list(@query query: PaginatedRequest): PaginatedResponse<RoutingCode> | Error;
+  @post @route("/") post(@body MachineBody: RoutingCodeBody): CreatedResponse<RoutingCode> | Error;
+  @patch @route("{id}") update(@path id: string, @body MachineBody: RoutingCodeBody): SuccessResponse | Error;
+  @delete delete(@path id: string): void | SuccessResponse | Error;
+}

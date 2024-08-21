@@ -9,8 +9,17 @@ using TypeSpec.Rest;
 
 namespace RamsesService;
 
-model Machine{
+model MachineCenter{
   @key id: int64;
+  no: string;
   name: string;
+  scan_code: string;
+  machine_type_code: string;
+}
+
+model MachineCenterBody{
+  name: string;
+  scan_code: string;
+  machine_type_code: string;
 }
 
