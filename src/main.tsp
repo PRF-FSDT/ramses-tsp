@@ -184,7 +184,7 @@ interface Users{
   @delete delete(@path id: string): void | SuccessResponse | Error;
 }
 
-@route("/machine-centers")
+@route("/mes/machine-centers")
 @tag("Machine Centers")
 interface MachineCenters{
   @get list(@query query: PaginatedRequest): PaginatedResponse<MachineCenter> | Error;
@@ -193,7 +193,7 @@ interface MachineCenters{
   @delete delete(@path id: string): void | SuccessResponse | Error;
 }
 
-@route("/machine-types")
+@route("/mes/machine-types")
 @tag("Machine Types")
 interface MachineTypes{
   @get list(@query query: PaginatedRequest): PaginatedResponse<MachineType> | Error;
@@ -203,7 +203,7 @@ interface MachineTypes{
 }
 
 
-@route("/routing-codes")
+@route("/mes/routing-codes")
 @tag("Routing Codes")
 interface RoutingCodes{
   @get list(@query query: PaginatedRequest): PaginatedResponse<RoutingCode> | Error;
