@@ -73,7 +73,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /machine-centers:
+  /me:
+    get:
+      tags:
+        - Auth
+      operationId: Auth_getMe
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /mes/machine-centers:
     get:
       tags:
         - Machine Centers
@@ -120,7 +139,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /machine-centers/:
+  /mes/machine-centers/:
     post:
       tags:
         - Machine Centers
@@ -145,7 +164,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MachineCenterBody'
-  /machine-centers/{id}:
+  /mes/machine-centers/{id}:
     patch:
       tags:
         - Machine Centers
@@ -192,7 +211,7 @@ paths:
                 anyOf:
                   - $ref: '#/components/schemas/SuccessResponse'
                   - $ref: '#/components/schemas/Error'
-  /machine-types:
+  /mes/machine-types:
     get:
       tags:
         - Machine Types
@@ -239,7 +258,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /machine-types/:
+  /mes/machine-types/:
     post:
       tags:
         - Machine Types
@@ -264,7 +283,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MachineTypeBody'
-  /machine-types/{id}:
+  /mes/machine-types/{id}:
     patch:
       tags:
         - Machine Types
@@ -311,25 +330,125 @@ paths:
                 anyOf:
                   - $ref: '#/components/schemas/SuccessResponse'
                   - $ref: '#/components/schemas/Error'
-  /me:
+  /mes/routing-codes:
     get:
       tags:
-        - Auth
-      operationId: Auth_getMe
-      parameters: []
+        - Routing Codes
+      operationId: RoutingCodes_list
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/PaginatedRequest'
+        - $ref: '#/components/parameters/PaginatedRequest.page'
+        - $ref: '#/components/parameters/PaginatedRequest.perPage'
+        - $ref: '#/components/parameters/PaginatedRequest.search'
       responses:
         '200':
           description: The request has succeeded.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MeResponse'
+                type: object
+                required:
+                  - data
+                  - links
+                  - meta
+                properties:
+                  data:
+                    anyOf:
+                      - type: array
+                        items:
+                          $ref: '#/components/schemas/RoutingCode'
+                      - type: array
+                        items: {}
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                  filters:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FilterOption'
         default:
           description: An unexpected error response.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /mes/routing-codes/:
+    post:
+      tags:
+        - Routing Codes
+      operationId: RoutingCodes_post
+      parameters: []
+      responses:
+        '201':
+          description: The request has succeeded and a new resource has been created as a result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoutingCode'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoutingCodeBody'
+  /mes/routing-codes/{id}:
+    patch:
+      tags:
+        - Routing Codes
+      operationId: RoutingCodes_update
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/SuccessResponse'
+                  - $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoutingCodeBodyUpdate'
+    delete:
+      tags:
+        - Routing Codes
+      operationId: RoutingCodes_delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: 'There is no content to send for this request, but the headers may be useful. '
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/SuccessResponse'
+                  - $ref: '#/components/schemas/Error'
   /operating-hours:
     get:
       tags:
@@ -1593,125 +1712,6 @@ paths:
       tags:
         - Resources
       operationId: Resources_delete
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '204':
-          description: 'There is no content to send for this request, but the headers may be useful. '
-        default:
-          description: An unexpected error response.
-          content:
-            application/json:
-              schema:
-                anyOf:
-                  - $ref: '#/components/schemas/SuccessResponse'
-                  - $ref: '#/components/schemas/Error'
-  /routing-codes:
-    get:
-      tags:
-        - Routing Codes
-      operationId: RoutingCodes_list
-      parameters:
-        - name: query
-          in: query
-          required: true
-          schema:
-            $ref: '#/components/schemas/PaginatedRequest'
-        - $ref: '#/components/parameters/PaginatedRequest.page'
-        - $ref: '#/components/parameters/PaginatedRequest.perPage'
-        - $ref: '#/components/parameters/PaginatedRequest.search'
-      responses:
-        '200':
-          description: The request has succeeded.
-          content:
-            application/json:
-              schema:
-                type: object
-                required:
-                  - data
-                  - links
-                  - meta
-                properties:
-                  data:
-                    anyOf:
-                      - type: array
-                        items:
-                          $ref: '#/components/schemas/RoutingCode'
-                      - type: array
-                        items: {}
-                  links:
-                    $ref: '#/components/schemas/PaginationLinks'
-                  meta:
-                    $ref: '#/components/schemas/PaginationMeta'
-                  filters:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/FilterOption'
-        default:
-          description: An unexpected error response.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-  /routing-codes/:
-    post:
-      tags:
-        - Routing Codes
-      operationId: RoutingCodes_post
-      parameters: []
-      responses:
-        '201':
-          description: The request has succeeded and a new resource has been created as a result.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/RoutingCode'
-        default:
-          description: An unexpected error response.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/RoutingCodeBody'
-  /routing-codes/{id}:
-    patch:
-      tags:
-        - Routing Codes
-      operationId: RoutingCodes_update
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        default:
-          description: An unexpected error response.
-          content:
-            application/json:
-              schema:
-                anyOf:
-                  - $ref: '#/components/schemas/SuccessResponse'
-                  - $ref: '#/components/schemas/Error'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/RoutingCodeBodyUpdate'
-    delete:
-      tags:
-        - Routing Codes
-      operationId: RoutingCodes_delete
       parameters:
         - name: id
           in: path
