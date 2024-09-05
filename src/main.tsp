@@ -185,6 +185,12 @@ interface Users{
   @delete delete(@path id: string): void | SuccessResponse | Error;
 }
 
+@route("/production-planning/orders")
+@tag("Production Planning Orders")
+interface ProductionPlanningOrders{
+  @get @route("{id}/workflow") workflow(@path id: string): Array<OrderWorkflowLine> | Error;
+}
+
 @route("/mes/machine-centers")
 @tag("Machine Centers")
 interface MachineCenters{

@@ -290,6 +290,13 @@ model OrderCreateBody{
   prep_duration_days?: integer;
 }
 
+model OrderWorkflowLine {
+  routing_code: string;
+  qty: integer;
+  runTime: float;
+  setupTime: float;
+  machine_center_no: string;
+}
 
 model ListResponse<T> {
   @statusCode statusCode: 200;

@@ -14,6 +14,7 @@ tags:
   - name: Resources
   - name: Operating Hours
   - name: Users
+  - name: Production Planning Orders
   - name: Machine Centers
   - name: Machine Types
   - name: Routing Codes
@@ -1583,6 +1584,32 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /production-planning/orders/{id}/workflow:
+    get:
+      tags:
+        - Production Planning Orders
+      operationId: ProductionPlanningOrders_workflow
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrderWorkflowLine'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /resources:
     get:
       tags:
@@ -2149,7 +2176,6 @@ components:
       type: object
       required:
         - id
-        - no
         - name
         - description
         - notes
@@ -2179,6 +2205,7 @@ components:
           format: int64
         no:
           type: string
+          nullable: true
         name:
           type: string
         description:
@@ -2318,8 +2345,9 @@ components:
         - name
         - finalisation_date
       properties:
-        synced_order_id:
+        synced_order_no:
           type: string
+          nullable: true
         name:
           type: string
         finalisation_date:
@@ -2334,7 +2362,6 @@ components:
       type: object
       required:
         - id
-        - no
         - name
         - description
         - notes
@@ -2364,6 +2391,7 @@ components:
           format: int64
         no:
           type: string
+          nullable: true
         name:
           type: string
         description:
@@ -2613,6 +2641,25 @@ components:
           oneOf:
             - $ref: '#/components/schemas/DateString'
           nullable: true
+    OrderWorkflowLine:
+      type: object
+      required:
+        - routing_code
+        - qty
+        - runTime
+        - setupTime
+        - machine_center_no
+      properties:
+        routing_code:
+          type: string
+        qty:
+          type: integer
+        runTime:
+          type: number
+        setupTime:
+          type: number
+        machine_center_no:
+          type: string
     PaginatedRequest:
       type: object
     PaginatedSortableRequest:
@@ -2806,6 +2853,9 @@ components:
       properties:
         name:
           type: string
+        no:
+          type: string
+          nullable: true
         description:
           type: string
         notes:
