@@ -293,8 +293,8 @@ model OrderCreateBody{
 model OrderWorkflowLine {
   routing_code: string;
   qty: integer;
-  runTime: float;
-  setupTime: float;
+  run_time: float;
+  setup_time: float;
   machine_center_no: string;
 }
 

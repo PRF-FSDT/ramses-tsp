@@ -2646,17 +2646,17 @@ components:
       required:
         - routing_code
         - qty
-        - runTime
-        - setupTime
+        - run_time
+        - setup_time
         - machine_center_no
       properties:
         routing_code:
           type: string
         qty:
           type: integer
-        runTime:
+        run_time:
           type: number
-        setupTime:
+        setup_time:
           type: number
         machine_center_no:
           type: string
