@@ -1584,6 +1584,32 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /production-planning/orders/{id}/plan:
+    post:
+      tags:
+        - Production Planning Orders
+      operationId: ProductionPlanningOrders_plan
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/SuccessResponse'
+                  - $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderPlanBody'
   /production-planning/orders/{id}/workflow:
     get:
       tags:
@@ -2527,6 +2553,29 @@ components:
           type: string
         stock_status:
           type: string
+    OrderPlanBody:
+      type: object
+      required:
+        - planned_start
+        - routing
+      properties:
+        planned_start:
+          $ref: '#/components/schemas/DateString'
+        routing:
+          type: array
+          items:
+            type: object
+            properties:
+              routing_code:
+                type: string
+              run_time:
+                type: number
+              machine_center_no:
+                type: string
+            required:
+              - routing_code
+              - run_time
+              - machine_center_no
     OrderTask:
       type: object
       required:

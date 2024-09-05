@@ -298,6 +298,15 @@ model OrderWorkflowLine {
   machine_center_no: string;
 }
 
+model OrderPlanBody{
+  planned_start: DateString;
+  routing: { 
+    routing_code: string, 
+    run_time: float,
+    machine_center_no: string 
+  }[];
+}
+
 model ListResponse<T> {
   @statusCode statusCode: 200;
   @body body: T[];
