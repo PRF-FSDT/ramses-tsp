@@ -9,7 +9,7 @@ using TypeSpec.Rest;
 
 namespace RamsesService;
 
-model MachineCenter{
+model MachineCenter {
   @key id: int64;
   @example("CNC_1") no: string;
   @example("CNC Homag 1") name: string;
@@ -17,10 +17,9 @@ model MachineCenter{
   @example("CNC") machine_type_code: string;
 }
 
-model MachineCenterBody{
+model MachineCenterBody {
   no: MachineCenter.no;
   name: MachineCenter.name;
   scan_code: MachineCenter.scan_code;
   machine_type_code: MachineCenter.machine_type_code;
 }
-

@@ -21,7 +21,6 @@ model PaginationMeta {
   total: int32;
 }
 
-
 model FilterOption {
   name: string;
   type: string;
@@ -33,10 +32,9 @@ model PaginatedReturn<T> {
   links: PaginationLinks;
   meta: PaginationMeta;
   filters?: FilterOption[];
-} 
+}
 
-
-model ActionReturn{
+model ActionReturn {
   @statusCode statusCode: 200;
 }
 
@@ -45,21 +43,19 @@ model RecordReturn<T> {
   @body body: Record<T>;
 }
 
-
 model CreatedReturn<T> {
   @statusCode statusCode: 201;
   @body body: T;
 }
 
-model UpdatedReturn<T>{
+model UpdatedReturn<T> {
   @statusCode statusCode: 200;
-  @body body: T; 
+  @body body: T;
 }
 
-model DeletedReturn{
+model DeletedReturn {
   @statusCode statusCode: 204;
 }
-
 
 alias PaginatedResponse<T> = PaginatedReturn<T> | NotFoundError;
 alias CreatedResponse<T> = CreatedReturn<T> | ValidationError;

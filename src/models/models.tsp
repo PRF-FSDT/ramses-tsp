@@ -7,7 +7,6 @@ using TypeSpec.Versioning;
 using TypeSpec.Http;
 using TypeSpec.Rest;
 
-
 namespace RamsesService;
 
 enum Versions {
@@ -24,14 +23,12 @@ enum DayOfWeek {
   Sun,
 }
 
-
-// Scalars: 
+// Scalars:
 @pattern("\\d{4}-\\d{2}-\\d{2}")
 scalar DateString extends string;
 
 // Aliases:
 alias OrderTaskType = "preparation" | "finalisation";
-
 
 //MODELS:
 model Client {
@@ -68,7 +65,7 @@ model Order {
   //@added(Versions.dev) ext_created_at: offsetDateTime;
 }
 
-model UpdateOrderBody{
+model UpdateOrderBody {
   name?: string;
   no?: string | null;
   description?: string;
@@ -167,7 +164,7 @@ model OrderMaterialItem {
   stock_status: string;
 }
 
-model OrderTaskBody{
+model OrderTaskBody {
   order_no: string;
   type: OrderTaskType;
   title: string;
@@ -178,7 +175,7 @@ model OrderTaskBody{
   dependant_on: Array<integer>;
 }
 
-model OrderTaskUpdateBody{
+model OrderTaskUpdateBody {
   type?: OrderTaskType;
   title?: string;
   should_be_planned?: boolean;
@@ -215,7 +212,7 @@ model SyncedOrder {
   project_manager: string;
 }
 
-model ResourceBody{
+model ResourceBody {
   user_id: string;
   name: string;
 }
@@ -247,7 +244,6 @@ model OperatingHour {
   created_at: string;
 }
 
-
 model StreamedCsvResponse {
   //stream
 }
@@ -275,8 +271,8 @@ model MeResponse {
 model OrderImportResponse {
   ...Order;
 }
-model OrderCreateBody{
-  synced_order_no?: string | null,
+model OrderCreateBody {
+  synced_order_no?: string | null;
   name: string;
   finalisation_date: DateString;
   finalisation_duration_days?: integer;
@@ -329,4 +325,3 @@ model OrderMaterialCsvRequest {
   @query excludeFittings?: boolean;
   @query excludeEdging?: boolean;
 }
-

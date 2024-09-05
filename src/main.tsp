@@ -71,13 +71,8 @@ interface Orders {
   ): CreatedResponse<AdditionalPurchaseLine>;
 
   //order materials
-  @route("{id}/order-materials") @get getOrderMaterials(
-    @path id: string,
-    @query query: OrderMaterialIndexFilterRequest,
-  ): PaginatedResponse<OrderMaterial>;
+  @route("{id}/order-materials") @get getOrderMaterials(@path id: string, @query query: OrderMaterialIndexFilterRequest): PaginatedResponse<OrderMaterial>;
   @route("{id}/order-materials-csv") @get getOrderMaterialsCsv(@path id: string, @query query: OrderMaterialCsvRequest): StreamedCsvResponse | Error;
-
-
 
   //TODO: define this action
   @route("{id}/push-to-erp") @post postToErp(@path id: string): string | Error;
@@ -161,12 +156,12 @@ interface OperatingHours {
   @get list(): RecordResponse<OperatingHour[]>;
   @post @route("/") post(@body OperatingHour: OperatingHourBody[]): CreatedResponse<OperatingHour[]>;
   @patch @route("{id}") update(@path id: string, @body OperatingHour: OperatingHourBody): UpdatedResponse<OperatingHour>;
-  @delete delete(@path id: string):DeletedResponse;
+  @delete delete(@path id: string): DeletedResponse;
 }
 
 @route("/users")
 @tag("Users")
-interface Users{
+interface Users {
   @get list(@query query: PaginatedRequest): PaginatedResponse<User>;
   @post @route("/") post(@body UserBody: UserCreateBody): CreatedResponse<User>;
   @patch @route("{id}") update(@path id: string, @body UserBody: UserUpdateBody): UpdatedResponse<User>;
@@ -175,7 +170,7 @@ interface Users{
 
 @route("/mes/machine-centers")
 @tag("Machine Centers")
-interface MachineCenters{
+interface MachineCenters {
   @get list(@query query: PaginatedRequest): PaginatedResponse<MachineCenter>;
   @post @route("/") post(@body MachineBody: MachineCenterBody): CreatedResponse<MachineCenter>;
   @patch @route("{id}") update(@path id: string, @body MachineBody: MachineCenterBody): UpdatedResponse<MachineCenter>;
@@ -184,17 +179,16 @@ interface MachineCenters{
 
 @route("/mes/machine-types")
 @tag("Machine Types")
-interface MachineTypes{
+interface MachineTypes {
   @get list(@query query: PaginatedRequest): PaginatedResponse<MachineType>;
   @post @route("/") post(@body MachineBody: MachineTypeBody): CreatedResponse<MachineType>;
   @patch @route("{id}") update(@path id: string, @body MachineBody: MachineTypeBody): UpdatedResponse<MachineType>;
   @delete delete(@path id: string): DeletedResponse;
 }
 
-
 @route("/mes/routing-codes")
 @tag("Routing Codes")
-interface RoutingCodes{
+interface RoutingCodes {
   @get list(@query query: PaginatedRequest): PaginatedResponse<RoutingCode>;
   @post @route("/") post(@body MachineBody: RoutingCodeBody): CreatedResponse<RoutingCode>;
   @patch @route("{id}") update(@path id: string, @body MachineBody: RoutingCodeBody): UpdatedResponse<RoutingCode>;

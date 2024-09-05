@@ -12,8 +12,7 @@ model NotFoundError {
 model ValidationError {
   @statusCode statusCode: 422;
   message: string;
-  errors: Record<string[]>
-   
+  errors: Record<string[]>;
 }
 
 @error

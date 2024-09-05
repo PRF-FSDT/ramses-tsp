@@ -9,21 +9,19 @@ using TypeSpec.Rest;
 
 namespace RamsesService;
 
-
-
-model User{
+model User {
   @key id: int64;
   name: string;
   email: string;
 }
 
-model UserCreateBody{
+model UserCreateBody {
   name: string;
   email: string;
   password: string;
 }
 
-model UserUpdateBody{
+model UserUpdateBody {
   name: string;
   email: string;
 }
