@@ -46,8 +46,10 @@ interface Auth {
 @tag("Orders")
 interface Orders {
   @get list(@query query: OrderIndexFilterRequest): PaginatedResponse<Order> | Error;
-  @get read(@path id: string): Order | Error;
-  @patch @route("{id}") update(...Order): SuccessResponse | Error;
+  @get @route("{id}") read(@path id: string): Order | Error;
+  @patch @route("{id}") update(@path id: string, ...UpdateOrderBody): UpdatedResponse<Order> | Error;
+  @post @route("/") post(@body OrderCreateBody: OrderCreateBody): CreatedResponse<Order> | Error;
+  @delete delete(@path id: string): void | SuccessResponse | Error;
 
   //attachments
   @route("{id}/attachments") @get getAttachments(@path id: string, @query query: PaginatedRequest): PaginatedResponse<OrderAttachment> | Error;
@@ -87,8 +89,7 @@ interface Orders {
   ): PaginatedResponse<OrderMaterial> | Error;
   @route("{id}/order-materials-csv") @get getOrderMaterialsCsv(@path id: string, @query query: OrderMaterialCsvRequest): StreamedCsvResponse | Error;
 
-  //actions
-  @route("import") @post postImport(@body OrderImportBody: OrderImportBody): OrderImportResponse | Error;
+
 
   //TODO: define this action
   @route("{id}/push-to-erp") @post postToErp(@path id: string): string | Error;

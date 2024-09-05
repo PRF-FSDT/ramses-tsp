@@ -47,7 +47,7 @@ model Client {
 
 model Order {
   @key id: int64;
-  no: string;
+  no?: string | null;
   name: string;
   description: string;
   notes: string;
@@ -66,6 +66,31 @@ model Order {
   updated_at: string;
   tasks?: Array<OrderTask> | null;
   //@added(Versions.dev) ext_created_at: offsetDateTime;
+}
+
+model UpdateOrderBody{
+  name?: string;
+  no?: string | null;
+  description?: string;
+  notes?: string;
+  status?: string;
+  owner?: string;
+  responsible?: string;
+  employee?: string;
+  client_no?: string;
+  client_name?: string;
+  client_address_line1?: string;
+  client_street?: string;
+  client_street_no?: string;
+  client_postal_code?: string;
+  client_city?: string;
+  client_country_code?: string;
+  drawing_no?: string;
+  location?: string;
+  prod_duration_days?: integer;
+  finalisation_duration_days?: integer;
+  prep_duration_days?: integer;
+  finalisation_date?: DateString;
 }
 
 model OrderAttachment {
@@ -256,8 +281,8 @@ model MeResponse {
 model OrderImportResponse {
   ...Order;
 }
-model OrderImportBody{
-  synced_order_id?: string,
+model OrderCreateBody{
+  synced_order_no?: string | null,
   name: string;
   finalisation_date: DateString;
   finalisation_duration_days?: integer;

@@ -965,19 +965,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /order-manager/orders/import:
+  /order-manager/orders/:
     post:
       tags:
         - Orders
-      operationId: Orders_postImport
+      operationId: Orders_post
       parameters: []
       responses:
-        '200':
-          description: The request has succeeded.
+        '201':
+          description: The request has succeeded and a new resource has been created as a result.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OrderImportResponse'
+                $ref: '#/components/schemas/Order'
         default:
           description: An unexpected error response.
           content:
@@ -989,7 +989,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/OrderImportBody'
+              $ref: '#/components/schemas/OrderCreateBody'
   /order-manager/orders/unplanned:
     get:
       tags:
@@ -1066,8 +1066,43 @@ paths:
         - Orders
       operationId: Orders_update
       parameters:
-        - $ref: '#/components/parameters/Order.id'
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateOrderBody'
+    delete:
+      tags:
+        - Orders
+      operationId: Orders_delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: 'There is no content to send for this request, but the headers may be useful. '
         default:
           description: An unexpected error response.
           content:
@@ -1076,66 +1111,6 @@ paths:
                 anyOf:
                   - $ref: '#/components/schemas/SuccessResponse'
                   - $ref: '#/components/schemas/Error'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                no:
-                  type: string
-                name:
-                  type: string
-                description:
-                  type: string
-                notes:
-                  type: string
-                status:
-                  type: string
-                owner:
-                  type: string
-                responsible:
-                  type: string
-                employee:
-                  type: string
-                client_no:
-                  type: string
-                client_name:
-                  type: string
-                client_address_line1:
-                  type: string
-                client_street:
-                  type: string
-                client_street_no:
-                  type: string
-                client_postal_code:
-                  type: string
-                client_city:
-                  type: string
-                client_country_code:
-                  type: string
-                drawing_no:
-                  type: string
-                location:
-                  type: string
-                prod_duration_days:
-                  type: integer
-                finalisation_duration_days:
-                  type: integer
-                prep_duration_days:
-                  type: integer
-                finalisation_date:
-                  $ref: '#/components/schemas/DateString'
-                created_at:
-                  type: string
-                updated_at:
-                  type: string
-                tasks:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/OrderTask'
-                  nullable: true
   /order-manager/orders/{id}/additional-purchase-lines:
     get:
       tags:
@@ -1850,13 +1825,6 @@ paths:
                   - $ref: '#/components/schemas/Error'
 components:
   parameters:
-    Order.id:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
     PaginatedRequest.page:
       name: page
       in: query
@@ -2344,7 +2312,7 @@ components:
             $ref: '#/components/schemas/OrderCompositionLine'
     OrderCompositionLineRequest:
       type: object
-    OrderImportBody:
+    OrderCreateBody:
       type: object
       required:
         - name
@@ -2832,6 +2800,51 @@ components:
         planned_resource_id:
           type: number
         planned_start:
+          $ref: '#/components/schemas/DateString'
+    UpdateOrderBody:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        notes:
+          type: string
+        status:
+          type: string
+        owner:
+          type: string
+        responsible:
+          type: string
+        employee:
+          type: string
+        client_no:
+          type: string
+        client_name:
+          type: string
+        client_address_line1:
+          type: string
+        client_street:
+          type: string
+        client_street_no:
+          type: string
+        client_postal_code:
+          type: string
+        client_city:
+          type: string
+        client_country_code:
+          type: string
+        drawing_no:
+          type: string
+        location:
+          type: string
+        prod_duration_days:
+          type: integer
+        finalisation_duration_days:
+          type: integer
+        prep_duration_days:
+          type: integer
+        finalisation_date:
           $ref: '#/components/schemas/DateString'
     User:
       type: object
