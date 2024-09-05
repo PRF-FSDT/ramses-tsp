@@ -248,12 +248,6 @@ model OperatingHour {
 }
 
 
-//RESPONSES:
-@error
-model SuccessResponse {
-  message: string;
-}
-
 model StreamedCsvResponse {
   //stream
 }
@@ -288,63 +282,6 @@ model OrderCreateBody{
   finalisation_duration_days?: integer;
   prod_duration_days?: integer;
   prep_duration_days?: integer;
-}
-
-
-model ListResponse<T> {
-  @statusCode statusCode: 200;
-  @body body: T[];
-}
-
-model RecordResponse<T> {
-  @statusCode statusCode: 200;
-  @body body: Record<T>;
-}
-
-//PAGINATION:
-model PaginationLinks {
-  first?: string | null;
-  last?: string | null;
-  prev?: string | null;
-  next?: string | null;
-}
-
-model PaginationMeta {
-  current_page: int32;
-  from?: int32 | null;
-  last_page: int32;
-  path: string;
-  per_page: int32;
-  to?: int32 | null;
-  total: int32;
-}
-
-model PaginatedResponse<T> {
-  data: T[] | [];
-  links: PaginationLinks;
-  meta: PaginationMeta;
-  filters?: FilterOption[];
-}
-
-model CreatedResponse<T> {
-  @statusCode statusCode: 201;
-  @body body: T;
-}
-
-model UpdatedResponse<T>{
-  @statusCode statusCode: 200;
-  @body body: T; 
-}
-
-model DeletedResponse{
-  @statusCode statusCode: 204;
-}
-
-//FILTERS
-model FilterOption {
-  name: string;
-  type: string;
-  options?: Array<string> | null;
 }
 
 model PaginatedRequest {

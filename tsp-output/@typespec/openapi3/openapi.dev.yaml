@@ -31,12 +31,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LoginResponse'
-        default:
-          description: An unexpected error response.
+        '422':
+          description: Client error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ValidationError'
       requestBody:
         required: true
         content:
@@ -67,12 +67,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LogoutResponse'
-        default:
-          description: An unexpected error response.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
   /me:
     get:
       tags:
@@ -86,12 +80,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MeResponse'
-        default:
-          description: An unexpected error response.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
   /mes/machine-centers:
     get:
       tags:
@@ -119,12 +107,9 @@ paths:
                   - meta
                 properties:
                   data:
-                    anyOf:
-                      - type: array
-                        items:
-                          $ref: '#/components/schemas/MachineCenter'
-                      - type: array
-                        items: {}
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/MachineCenter'
                   links:
                     $ref: '#/components/schemas/PaginationLinks'
                   meta:
@@ -133,12 +118,12 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/FilterOption'
-        default:
-          description: An unexpected error response.
+        '404':
+          description: The server cannot find the requested resource.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/NotFoundError'
   /mes/machine-centers/:
     post:
       tags:
@@ -152,12 +137,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MachineCenter'
-        default:
-          description: An unexpected error response.
+        '422':
+          description: Client error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ValidationError'
       requestBody:
         required: true
         content:
@@ -176,14 +161,18 @@ paths:
           schema:
             type: string
       responses:
-        default:
-          description: An unexpected error response.
+        '200':
+          description: The request has succeeded.
           content:
             application/json:
               schema:
-                anyOf:
-                  - $ref: '#/components/schemas/SuccessResponse'
-                  - $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/MachineCenter'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
       requestBody:
         required: true
         content:
@@ -203,14 +192,6 @@ paths:
       responses:
         '204':
           description: 'There is no content to send for this request, but the headers may be useful. '
-        default:
-          description: An unexpected error response.
-          content:
-            application/json:
-              schema:
-                anyOf:
-                  - $ref: '#/components/schemas/SuccessResponse'
-                  - $ref: '#/components/schemas/Error'
   /mes/machine-types:
     get:
       tags:
@@ -238,12 +219,9 @@ paths:
                   - meta
                 properties:
                   data:
-                    anyOf:
-                      - type: array
-                        items:
-                          $ref: '#/components/schemas/MachineType'
-                      - type: array
-                        items: {}
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/MachineType'
                   links:
                     $ref: '#/components/schemas/PaginationLinks'
                   meta:
@@ -252,12 +230,12 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/FilterOption'
-        default:
-          description: An unexpected error response.
+        '404':
+          description: The server cannot find the requested resource.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/NotFoundError'
   /mes/machine-types/:
     post:
       tags:
@@ -271,12 +249,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MachineType'
-        default:
-          description: An unexpected error response.
+        '422':
+          description: Client error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ValidationError'
       requestBody:
         required: true
         content:
@@ -295,14 +273,18 @@ paths:
           schema:
             type: string
       responses:
-        default:
-          description: An unexpected error response.
+        '200':
+          description: The request has succeeded.
           content:
             application/json:
               schema:
-                anyOf:
-                  - $ref: '#/components/schemas/SuccessResponse'
-                  - $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/MachineType'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
       requestBody:
         required: true
         content:
@@ -322,14 +304,6 @@ paths:
       responses:
         '204':
           description: 'There is no content to send for this request, but the headers may be useful. '
-        default:
-          description: An unexpected error response.
-          content:
-            application/json:
-              schema:
-                anyOf:
-                  - $ref: '#/components/schemas/SuccessResponse'
-                  - $ref: '#/components/schemas/Error'
   /mes/routing-codes:
     get:
       tags:
@@ -357,12 +331,9 @@ paths:
                   - meta
                 properties:
                   data:
-                    anyOf:
-                      - type: array
-                        items:
-                          $ref: '#/components/schemas/RoutingCode'
-                      - type: array
-                        items: {}
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/RoutingCode'
                   links:
                     $ref: '#/components/schemas/PaginationLinks'
                   meta:
@@ -371,12 +342,12 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/FilterOption'
-        default:
-          description: An unexpected error response.
+        '404':
+          description: The server cannot find the requested resource.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/NotFoundError'
   /mes/routing-codes/:
     post:
       tags:
@@ -390,12 +361,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RoutingCode'
-        default:
-          description: An unexpected error response.
+        '422':
+          description: Client error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ValidationError'
       requestBody:
         required: true
         content:
@@ -414,14 +385,18 @@ paths:
           schema:
             type: string
       responses:
-        default:
-          description: An unexpected error response.
+        '200':
+          description: The request has succeeded.
           content:
             application/json:
               schema:
-                anyOf:
-                  - $ref: '#/components/schemas/SuccessResponse'
-                  - $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/RoutingCode'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
       requestBody:
         required: true
         content:
@@ -441,14 +416,6 @@ paths:
       responses:
         '204':
           description: 'There is no content to send for this request, but the headers may be useful. '
-        default:
-          description: An unexpected error response.
-          content:
-            application/json:
-              schema:
-                anyOf:
-                  - $ref: '#/components/schemas/SuccessResponse'
-                  - $ref: '#/components/schemas/Error'
   /operating-hours:
     get:
       tags:
@@ -466,12 +433,12 @@ paths:
                   type: array
                   items:
                     $ref: '#/components/schemas/OperatingHour'
-        default:
-          description: An unexpected error response.
+        '404':
+          description: The server cannot find the requested resource.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/NotFoundError'
   /operating-hours/:
     post:
       tags:
@@ -487,12 +454,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/OperatingHour'
-        default:
-          description: An unexpected error response.
+        '422':
+          description: Client error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ValidationError'
       requestBody:
         required: true
         content:
@@ -513,14 +480,18 @@ paths:
           schema:
             type: string
       responses:
-        default:
-          description: An unexpected error response.
+        '200':
+          description: The request has succeeded.
           content:
             application/json:
               schema:
-                anyOf:
-                  - $ref: '#/components/schemas/SuccessResponse'
-                  - $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/OperatingHour'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
       requestBody:
         required: true
         content:
@@ -540,14 +511,6 @@ paths:
       responses:
         '204':
           description: 'There is no content to send for this request, but the headers may be useful. '
-        default:
-          description: An unexpected error response.
-          content:
-            application/json:
-              schema:
-                anyOf:
-                  - $ref: '#/components/schemas/SuccessResponse'
-                  - $ref: '#/components/schemas/Error'
   /order-manager/additional-purchase-lines/{id}:
     patch:
       tags:
@@ -560,14 +523,18 @@ paths:
           schema:
             type: string
       responses:
-        default:
-          description: An unexpected error response.
+        '200':
+          description: The request has succeeded.
           content:
             application/json:
               schema:
-                anyOf:
-                  - $ref: '#/components/schemas/SuccessResponse'
-                  - $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/AdditionalPurchaseLine'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
       requestBody:
         required: true
         content:
@@ -606,14 +573,6 @@ paths:
       responses:
         '204':
           description: 'There is no content to send for this request, but the headers may be useful. '
-        default:
-          description: An unexpected error response.
-          content:
-            application/json:
-              schema:
-                anyOf:
-                  - $ref: '#/components/schemas/SuccessResponse'
-                  - $ref: '#/components/schemas/Error'
   /order-manager/attachments/{id}:
     get:
       tags:
@@ -651,14 +610,6 @@ paths:
       responses:
         '204':
           description: 'There is no content to send for this request, but the headers may be useful. '
-        default:
-          description: An unexpected error response.
-          content:
-            application/json:
-              schema:
-                anyOf:
-                  - $ref: '#/components/schemas/SuccessResponse'
-                  - $ref: '#/components/schemas/Error'
   /order-manager/composition-lines/{id}:
     patch:
       tags:
@@ -671,14 +622,18 @@ paths:
           schema:
             type: string
       responses:
-        default:
-          description: An unexpected error response.
+        '200':
+          description: The request has succeeded.
           content:
             application/json:
               schema:
-                anyOf:
-                  - $ref: '#/components/schemas/SuccessResponse'
-                  - $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/OrderCompositionLine'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
       requestBody:
         required: true
         content:
@@ -715,12 +670,9 @@ paths:
                   - meta
                 properties:
                   data:
-                    anyOf:
-                      - type: array
-                        items:
-                          $ref: '#/components/schemas/SyncedOrder'
-                      - type: array
-                        items: {}
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SyncedOrder'
                   links:
                     $ref: '#/components/schemas/PaginationLinks'
                   meta:
@@ -729,12 +681,12 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/FilterOption'
-        default:
-          description: An unexpected error response.
+        '404':
+          description: The server cannot find the requested resource.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/NotFoundError'
   /order-manager/order-material-items/{id}:
     patch:
       tags:
@@ -747,14 +699,18 @@ paths:
           schema:
             type: string
       responses:
-        default:
-          description: An unexpected error response.
+        '200':
+          description: The request has succeeded.
           content:
             application/json:
               schema:
-                anyOf:
-                  - $ref: '#/components/schemas/SuccessResponse'
-                  - $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/OrderMaterialItem'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
       requestBody:
         required: true
         content:
@@ -777,12 +733,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderTask'
-        default:
-          description: An unexpected error response.
+        '422':
+          description: Client error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ValidationError'
       requestBody:
         required: true
         content:
@@ -813,12 +769,9 @@ paths:
                   - meta
                 properties:
                   data:
-                    anyOf:
-                      - type: array
-                        items:
-                          $ref: '#/components/schemas/OrderTask'
-                      - type: array
-                        items: {}
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/OrderTask'
                   links:
                     $ref: '#/components/schemas/PaginationLinks'
                   meta:
@@ -827,12 +780,12 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/FilterOption'
-        default:
-          description: An unexpected error response.
+        '404':
+          description: The server cannot find the requested resource.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/NotFoundError'
   /order-manager/order-tasks/{id}:
     patch:
       tags:
@@ -851,12 +804,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderTask'
-        default:
-          description: An unexpected error response.
+        '422':
+          description: Client error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ValidationError'
       requestBody:
         required: true
         content:
@@ -876,14 +829,6 @@ paths:
       responses:
         '204':
           description: 'There is no content to send for this request, but the headers may be useful. '
-        default:
-          description: An unexpected error response.
-          content:
-            application/json:
-              schema:
-                anyOf:
-                  - $ref: '#/components/schemas/SuccessResponse'
-                  - $ref: '#/components/schemas/Error'
   /order-manager/orders:
     get:
       tags:
@@ -945,12 +890,9 @@ paths:
                   - meta
                 properties:
                   data:
-                    anyOf:
-                      - type: array
-                        items:
-                          $ref: '#/components/schemas/Order'
-                      - type: array
-                        items: {}
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Order'
                   links:
                     $ref: '#/components/schemas/PaginationLinks'
                   meta:
@@ -959,12 +901,12 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/FilterOption'
-        default:
-          description: An unexpected error response.
+        '404':
+          description: The server cannot find the requested resource.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/NotFoundError'
   /order-manager/orders/:
     post:
       tags:
@@ -978,12 +920,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Order'
-        default:
-          description: An unexpected error response.
+        '422':
+          description: Client error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ValidationError'
       requestBody:
         required: true
         content:
@@ -1017,12 +959,9 @@ paths:
                   - meta
                 properties:
                   data:
-                    anyOf:
-                      - type: array
-                        items:
-                          $ref: '#/components/schemas/Order'
-                      - type: array
-                        items: {}
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Order'
                   links:
                     $ref: '#/components/schemas/PaginationLinks'
                   meta:
@@ -1031,12 +970,12 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/FilterOption'
-        default:
-          description: An unexpected error response.
+        '404':
+          description: The server cannot find the requested resource.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/NotFoundError'
   /order-manager/orders/{id}:
     get:
       tags:
@@ -1055,12 +994,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Order'
-        default:
-          description: An unexpected error response.
+        '404':
+          description: The server cannot find the requested resource.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/NotFoundError'
     patch:
       tags:
         - Orders
@@ -1078,12 +1017,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Order'
-        default:
-          description: An unexpected error response.
+        '422':
+          description: Client error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ValidationError'
       requestBody:
         required: true
         content:
@@ -1103,14 +1042,6 @@ paths:
       responses:
         '204':
           description: 'There is no content to send for this request, but the headers may be useful. '
-        default:
-          description: An unexpected error response.
-          content:
-            application/json:
-              schema:
-                anyOf:
-                  - $ref: '#/components/schemas/SuccessResponse'
-                  - $ref: '#/components/schemas/Error'
   /order-manager/orders/{id}/additional-purchase-lines:
     get:
       tags:
@@ -1145,12 +1076,9 @@ paths:
                   - meta
                 properties:
                   data:
-                    anyOf:
-                      - type: array
-                        items:
-                          $ref: '#/components/schemas/AdditionalPurchaseLine'
-                      - type: array
-                        items: {}
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AdditionalPurchaseLine'
                   links:
                     $ref: '#/components/schemas/PaginationLinks'
                   meta:
@@ -1159,12 +1087,12 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/FilterOption'
-        default:
-          description: An unexpected error response.
+        '404':
+          description: The server cannot find the requested resource.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/NotFoundError'
     post:
       tags:
         - Orders
@@ -1176,16 +1104,18 @@ paths:
           schema:
             type: string
       responses:
-        '204':
-          description: 'There is no content to send for this request, but the headers may be useful. '
-        default:
-          description: An unexpected error response.
+        '201':
+          description: The request has succeeded and a new resource has been created as a result.
           content:
             application/json:
               schema:
-                anyOf:
-                  - $ref: '#/components/schemas/SuccessResponse'
-                  - $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/AdditionalPurchaseLine'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
       requestBody:
         required: true
         content:
@@ -1248,12 +1178,9 @@ paths:
                   - meta
                 properties:
                   data:
-                    anyOf:
-                      - type: array
-                        items:
-                          $ref: '#/components/schemas/OrderAttachment'
-                      - type: array
-                        items: {}
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/OrderAttachment'
                   links:
                     $ref: '#/components/schemas/PaginationLinks'
                   meta:
@@ -1262,12 +1189,12 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/FilterOption'
-        default:
-          description: An unexpected error response.
+        '404':
+          description: The server cannot find the requested resource.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/NotFoundError'
     post:
       tags:
         - Orders
@@ -1279,16 +1206,14 @@ paths:
           schema:
             type: string
       responses:
-        '204':
-          description: 'There is no content to send for this request, but the headers may be useful. '
-        default:
-          description: An unexpected error response.
+        '200':
+          description: The request has succeeded.
+        '404':
+          description: The server cannot find the requested resource.
           content:
             application/json:
               schema:
-                anyOf:
-                  - $ref: '#/components/schemas/SuccessResponse'
-                  - $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/NotFoundError'
   /order-manager/orders/{id}/composition-lines:
     get:
       tags:
@@ -1329,12 +1254,9 @@ paths:
                   - meta
                 properties:
                   data:
-                    anyOf:
-                      - type: array
-                        items:
-                          $ref: '#/components/schemas/OrderCompositionLine'
-                      - type: array
-                        items: {}
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/OrderCompositionLine'
                   links:
                     $ref: '#/components/schemas/PaginationLinks'
                   meta:
@@ -1343,12 +1265,12 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/FilterOption'
-        default:
-          description: An unexpected error response.
+        '404':
+          description: The server cannot find the requested resource.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/NotFoundError'
   /order-manager/orders/{id}/order-materials:
     get:
       tags:
@@ -1393,12 +1315,9 @@ paths:
                   - meta
                 properties:
                   data:
-                    anyOf:
-                      - type: array
-                        items:
-                          $ref: '#/components/schemas/OrderMaterial'
-                      - type: array
-                        items: {}
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/OrderMaterial'
                   links:
                     $ref: '#/components/schemas/PaginationLinks'
                   meta:
@@ -1407,12 +1326,12 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/FilterOption'
-        default:
-          description: An unexpected error response.
+        '404':
+          description: The server cannot find the requested resource.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/NotFoundError'
   /order-manager/orders/{id}/order-materials-csv:
     get:
       tags:
@@ -1505,12 +1424,9 @@ paths:
                   - meta
                 properties:
                   data:
-                    anyOf:
-                      - type: array
-                        items:
-                          $ref: '#/components/schemas/OrderTask'
-                      - type: array
-                        items: {}
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/OrderTask'
                   links:
                     $ref: '#/components/schemas/PaginationLinks'
                   meta:
@@ -1519,12 +1435,12 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/FilterOption'
-        default:
-          description: An unexpected error response.
+        '404':
+          description: The server cannot find the requested resource.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/NotFoundError'
   /order-manager/orders/{id}/order-tasks/plan:
     post:
       tags:
@@ -1545,12 +1461,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ToPlanTaskBody'
-        default:
-          description: An unexpected error response.
+        '422':
+          description: Client error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ValidationError'
       requestBody:
         required: true
         content:
@@ -1612,12 +1528,9 @@ paths:
                   - meta
                 properties:
                   data:
-                    anyOf:
-                      - type: array
-                        items:
-                          $ref: '#/components/schemas/Resource'
-                      - type: array
-                        items: {}
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Resource'
                   links:
                     $ref: '#/components/schemas/PaginationLinks'
                   meta:
@@ -1626,12 +1539,12 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/FilterOption'
-        default:
-          description: An unexpected error response.
+        '404':
+          description: The server cannot find the requested resource.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/NotFoundError'
   /resources/:
     post:
       tags:
@@ -1645,12 +1558,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Resource'
-        default:
-          description: An unexpected error response.
+        '422':
+          description: Client error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ValidationError'
       requestBody:
         required: true
         content:
@@ -1669,14 +1582,18 @@ paths:
           schema:
             type: string
       responses:
-        default:
-          description: An unexpected error response.
+        '200':
+          description: The request has succeeded.
           content:
             application/json:
               schema:
-                anyOf:
-                  - $ref: '#/components/schemas/SuccessResponse'
-                  - $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/Resource'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
       requestBody:
         required: true
         content:
@@ -1696,14 +1613,6 @@ paths:
       responses:
         '204':
           description: 'There is no content to send for this request, but the headers may be useful. '
-        default:
-          description: An unexpected error response.
-          content:
-            application/json:
-              schema:
-                anyOf:
-                  - $ref: '#/components/schemas/SuccessResponse'
-                  - $ref: '#/components/schemas/Error'
   /users:
     get:
       tags:
@@ -1731,12 +1640,9 @@ paths:
                   - meta
                 properties:
                   data:
-                    anyOf:
-                      - type: array
-                        items:
-                          $ref: '#/components/schemas/User'
-                      - type: array
-                        items: {}
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
                   links:
                     $ref: '#/components/schemas/PaginationLinks'
                   meta:
@@ -1745,12 +1651,12 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/FilterOption'
-        default:
-          description: An unexpected error response.
+        '404':
+          description: The server cannot find the requested resource.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/NotFoundError'
   /users/:
     post:
       tags:
@@ -1764,12 +1670,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
-        default:
-          description: An unexpected error response.
+        '422':
+          description: Client error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ValidationError'
       requestBody:
         required: true
         content:
@@ -1788,14 +1694,18 @@ paths:
           schema:
             type: string
       responses:
-        default:
-          description: An unexpected error response.
+        '200':
+          description: The request has succeeded.
           content:
             application/json:
               schema:
-                anyOf:
-                  - $ref: '#/components/schemas/SuccessResponse'
-                  - $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/User'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
       requestBody:
         required: true
         content:
@@ -1815,14 +1725,6 @@ paths:
       responses:
         '204':
           description: 'There is no content to send for this request, but the headers may be useful. '
-        default:
-          description: An unexpected error response.
-          content:
-            application/json:
-              schema:
-                anyOf:
-                  - $ref: '#/components/schemas/SuccessResponse'
-                  - $ref: '#/components/schemas/Error'
 components:
   parameters:
     PaginatedRequest.page:
@@ -1952,8 +1854,6 @@ components:
         - Fri
         - Sat
         - Sun
-    DeletedResponse:
-      type: object
     Error:
       type: object
       required:
@@ -1980,6 +1880,13 @@ components:
           items:
             type: string
           nullable: true
+    InternalServerError:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
     LoginResponse:
       type: object
       required:
@@ -2100,6 +2007,13 @@ components:
           type: string
         email:
           type: string
+    NotFoundError:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
     OperatingHour:
       type: object
       required:
@@ -2149,7 +2063,6 @@ components:
       type: object
       required:
         - id
-        - no
         - name
         - description
         - notes
@@ -2179,6 +2092,7 @@ components:
           format: int64
         no:
           type: string
+          nullable: true
         name:
           type: string
         description:
@@ -2318,8 +2232,9 @@ components:
         - name
         - finalisation_date
       properties:
-        synced_order_id:
+        synced_order_no:
           type: string
+          nullable: true
         name:
           type: string
         finalisation_date:
@@ -2334,7 +2249,6 @@ components:
       type: object
       required:
         - id
-        - no
         - name
         - description
         - notes
@@ -2364,6 +2278,7 @@ components:
           format: int64
         no:
           type: string
+          nullable: true
         name:
           type: string
         description:
@@ -2636,9 +2551,11 @@ components:
       type: object
       required:
         - current_page
+        - from
         - last_page
         - path
         - per_page
+        - to
         - total
       properties:
         current_page:
@@ -2758,13 +2675,6 @@ components:
           type: string
           nullable: true
           example: CNC
-    SuccessResponse:
-      type: object
-      required:
-        - message
-      properties:
-        message:
-          type: string
     SyncedOrder:
       type: object
       required:
@@ -2806,6 +2716,9 @@ components:
       properties:
         name:
           type: string
+        no:
+          type: string
+          nullable: true
         description:
           type: string
         notes:
@@ -2880,6 +2793,20 @@ components:
           type: string
         email:
           type: string
+    ValidationError:
+      type: object
+      required:
+        - message
+        - errors
+      properties:
+        message:
+          type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
     Versions:
       type: string
       enum:

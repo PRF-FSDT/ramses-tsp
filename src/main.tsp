@@ -8,6 +8,8 @@ import "./models/machine-centers.tsp";
 import "./models/machine-types.tsp";
 import "./models/routing-codes.tsp";
 
+import "./responses/responses.tsp";
+
 using TypeSpec.Versioning;
 using TypeSpec.Http;
 using TypeSpec.Rest;
@@ -18,57 +20,43 @@ using TypeSpec.Rest;
 })
 namespace RamsesService;
 
-//API
-
-// Example API resource:
-// @route("/widgets")
-// @tag("Widgets")
-// interface Widgets {
-//   @get list(): Widget[] | Error;
-//   @get read(@path id: string): Widget | Error;
-//   @post create(...Widget): Widget | Error;
-//   @patch update(...Widget): Widget | Error;
-//   @delete delete(@path id: string): void | Error;
-//   @route("{id}/analyze") @post analyze(@path id: string): string | Error;
-// }
-
 //ORDER MANAGER
 
 @tag("Auth")
 interface Auth {
-  @route("login") @post postLogin(email: string, password: string, device_name: string): LoginResponse | Error;
-  @route("logout") @post postLogout(): LogoutResponse | Error;
-  @route("me") @get getMe(): MeResponse | Error;
+  @route("login") @post postLogin(email: string, password: string, device_name: string): LoginResponse | ValidationError;
+  @route("logout") @post postLogout(): LogoutResponse;
+  @route("me") @get getMe(): MeResponse;
 }
 
 //Model: Orders
 @route("/order-manager/orders")
 @tag("Orders")
 interface Orders {
-  @get list(@query query: OrderIndexFilterRequest): PaginatedResponse<Order> | Error;
-  @get @route("{id}") read(@path id: string): Order | Error;
-  @patch @route("{id}") update(@path id: string, ...UpdateOrderBody): UpdatedResponse<Order> | Error;
-  @post @route("/") post(@body OrderCreateBody: OrderCreateBody): CreatedResponse<Order> | Error;
-  @delete delete(@path id: string): void | SuccessResponse | Error;
+  @get list(@query query: OrderIndexFilterRequest): PaginatedResponse<Order>;
+  @get @route("{id}") read(@path id: string): ReadResponse<Order>;
+  @patch @route("{id}") update(@path id: string, ...UpdateOrderBody): UpdatedResponse<Order>;
+  @post @route("/") post(@body OrderCreateBody: OrderCreateBody): CreatedResponse<Order>;
+  @delete delete(@path id: string): DeletedResponse;
 
   //attachments
-  @route("{id}/attachments") @get getAttachments(@path id: string, @query query: PaginatedRequest): PaginatedResponse<OrderAttachment> | Error;
-  @route("{id}/attachments") @post postAttachments(@path id: string): void | SuccessResponse | Error;
+  @route("{id}/attachments") @get getAttachments(@path id: string, @query query: PaginatedRequest): PaginatedResponse<OrderAttachment>;
+  @route("{id}/attachments") @post postAttachments(@path id: string): ActionResponse;
 
   //composition lines
   @route("{id}/composition-lines") @get getCompositionLines(
     @path id: string,
     @query query: OrderCompositionLineRequest,
-  ): PaginatedResponse<OrderCompositionLine> | Error;
+  ): PaginatedResponse<OrderCompositionLine>;
 
   //order tasks
-  @route("{id}/order-tasks") @get getOrderTasks(@path id: string, @query query: OrderTaskFilterRequest): PaginatedResponse<OrderTask> | Error;
-  @post @route("{id}/order-tasks/plan") planOrderTasks(@path id: string, @body ToPlanTasks: ToPlanTaskBody[]): CreatedResponse<ToPlanTaskBody[]>| Error;
+  @route("{id}/order-tasks") @get getOrderTasks(@path id: string, @query query: OrderTaskFilterRequest): PaginatedResponse<OrderTask>;
+  @post @route("{id}/order-tasks/plan") planOrderTasks(@path id: string, @body ToPlanTasks: ToPlanTaskBody[]): CreatedResponse<ToPlanTaskBody[]>;
   //additional purch lines
   @route("{id}/additional-purchase-lines") @get getAdditionalPurchLines(
     @path id: string,
     @query query: PaginatedSortableRequest,
-  ): PaginatedResponse<AdditionalPurchaseLine> | Error;
+  ): PaginatedResponse<AdditionalPurchaseLine>;
   @route("{id}/additional-purchase-lines") @post postAdditionalPurchLines(
     @path id: string,
     material_no: string,
@@ -80,13 +68,13 @@ interface Orders {
     length_mm?: integer,
     width_mm?: integer,
     height_mm?: integer,
-  ): void | SuccessResponse | Error;
+  ): CreatedResponse<AdditionalPurchaseLine>;
 
   //order materials
   @route("{id}/order-materials") @get getOrderMaterials(
     @path id: string,
     @query query: OrderMaterialIndexFilterRequest,
-  ): PaginatedResponse<OrderMaterial> | Error;
+  ): PaginatedResponse<OrderMaterial>;
   @route("{id}/order-materials-csv") @get getOrderMaterialsCsv(@path id: string, @query query: OrderMaterialCsvRequest): StreamedCsvResponse | Error;
 
 
@@ -94,14 +82,14 @@ interface Orders {
   //TODO: define this action
   @route("{id}/push-to-erp") @post postToErp(@path id: string): string | Error;
 
-  @route("/unplanned") @get getUnplanned(@query query: PaginatedRequest): PaginatedResponse<Order> | Error;
+  @route("/unplanned") @get getUnplanned(@query query: PaginatedRequest): PaginatedResponse<Order>;
 }
 
 //Model: SyncedOrder
 @route("/order-manager/importable-orders")
 @tag("Importable Orders")
 interface ImportableOrders {
-  @get list(@query query: PaginatedRequest): PaginatedResponse<SyncedOrder> | Error;
+  @get list(@query query: PaginatedRequest): PaginatedResponse<SyncedOrder>;
   //@route("{/") @get analyze(@path id: string): string | Error;
 }
 
@@ -110,14 +98,14 @@ interface ImportableOrders {
 @tag("Attachments")
 interface OrderAttachments {
   @get read(@path id: string): OrderAttachment | Error; //TODO: also return file contents
-  @delete delete(@path id: string): void | SuccessResponse | Error;
+  @delete delete(@path id: string): DeletedResponse;
 }
 
 //Model: OrderCompositionLine
 @route("/order-manager/composition-lines")
 @tag("Composition Lines")
 interface OrderCompositionLines {
-  @patch @route("{id}") update(@path id: string, is_outsourced: boolean): SuccessResponse | Error;
+  @patch @route("{id}") update(@path id: string, is_outsourced: boolean): UpdatedResponse<OrderCompositionLine>;
 }
 
 //Model: AdditionalPurchaseLine
@@ -135,25 +123,25 @@ interface AdditionalPurchaseLines {
     length_mm?: integer,
     width_mm?: integer,
     height_mm?: integer,
-  ): SuccessResponse | Error;
-  @delete delete(@path id: string): void | SuccessResponse | Error;
+  ): UpdatedResponse<AdditionalPurchaseLine>;
+  @delete delete(@path id: string): DeletedResponse;
 }
 
 //Model: OrderMaterialItem
 @route("/order-manager/order-material-items")
 @tag("Order Material Items")
 interface OrderMaterialItems {
-  @patch @route("{id}") update(@path id: string, qty: numeric): SuccessResponse | Error;
+  @patch @route("{id}") update(@path id: string, qty: numeric): UpdatedResponse<OrderMaterialItem>;
 }
 
 //Model: OrderTask
 @route("/order-manager/order-tasks")
 @tag("Order Tasks")
 interface OrderTasks {
-  @post @route("/") post(@body OrderTaskBody: OrderTaskBody): CreatedResponse<OrderTask> | Error;
-  @patch @route("{id}") update(@path id: string, @body OrderTaskUpdateBody: OrderTaskUpdateBody): UpdatedResponse<OrderTask> | Error;
-  @delete delete(@path id: string): void | SuccessResponse | Error;
-  @get @route("/planning-for-week/{week}") getPlanningForWeek(@path week: string): PaginatedResponse<OrderTask> | Error;
+  @post @route("/") post(@body OrderTaskBody: OrderTaskBody): CreatedResponse<OrderTask>;
+  @patch @route("{id}") update(@path id: string, @body OrderTaskUpdateBody: OrderTaskUpdateBody): UpdatedResponse<OrderTask>;
+  @delete delete(@path id: string): DeletedResponse;
+  @get @route("/planning-for-week/{week}") getPlanningForWeek(@path week: string): PaginatedResponse<OrderTask>;
   // @post @route("{id}/plan") plan(@path id: string, @body ToPlanTasks: ToPlanTaskBody[]): SuccessResponse | Error;
 }
 
@@ -161,54 +149,54 @@ interface OrderTasks {
 @route("/resources")
 @tag("Resources")
 interface Resources {
-  @get list(@query query: PaginatedSortableRequest): PaginatedResponse<Resource> | Error;
-  @post @route("/") post(@body ResourceBody: ResourceBody): CreatedResponse<Resource> | Error;
-  @patch @route("{id}") update(@path id: string, @body ResourceBody: ResourceBody): SuccessResponse | Error;
-  @delete delete(@path id: string): void | SuccessResponse | Error;
+  @get list(@query query: PaginatedSortableRequest): PaginatedResponse<Resource>;
+  @post @route("/") post(@body ResourceBody: ResourceBody): CreatedResponse<Resource>;
+  @patch @route("{id}") update(@path id: string, @body ResourceBody: ResourceBody): UpdatedResponse<Resource>;
+  @delete delete(@path id: string): DeletedResponse;
 }
 
 @route("/operating-hours")
 @tag("Operating Hours")
 interface OperatingHours {
-  @get list(): RecordResponse<OperatingHour[]> | Error;
-  @post @route("/") post(@body OperatingHour: OperatingHourBody[]): CreatedResponse<OperatingHour[]> | Error;
-  @patch @route("{id}") update(@path id: string, @body OperatingHour: OperatingHourBody): SuccessResponse | Error;
-  @delete delete(@path id: string): void | SuccessResponse | Error;
+  @get list(): RecordResponse<OperatingHour[]>;
+  @post @route("/") post(@body OperatingHour: OperatingHourBody[]): CreatedResponse<OperatingHour[]>;
+  @patch @route("{id}") update(@path id: string, @body OperatingHour: OperatingHourBody): UpdatedResponse<OperatingHour>;
+  @delete delete(@path id: string):DeletedResponse;
 }
 
 @route("/users")
 @tag("Users")
 interface Users{
-  @get list(@query query: PaginatedRequest): PaginatedResponse<User> | Error;
-  @post @route("/") post(@body UserBody: UserCreateBody): CreatedResponse<User> | Error;
-  @patch @route("{id}") update(@path id: string, @body UserBody: UserUpdateBody): SuccessResponse | Error;
-  @delete delete(@path id: string): void | SuccessResponse | Error;
+  @get list(@query query: PaginatedRequest): PaginatedResponse<User>;
+  @post @route("/") post(@body UserBody: UserCreateBody): CreatedResponse<User>;
+  @patch @route("{id}") update(@path id: string, @body UserBody: UserUpdateBody): UpdatedResponse<User>;
+  @delete delete(@path id: string): DeletedResponse;
 }
 
 @route("/mes/machine-centers")
 @tag("Machine Centers")
 interface MachineCenters{
-  @get list(@query query: PaginatedRequest): PaginatedResponse<MachineCenter> | Error;
-  @post @route("/") post(@body MachineBody: MachineCenterBody): CreatedResponse<MachineCenter> | Error;
-  @patch @route("{id}") update(@path id: string, @body MachineBody: MachineCenterBody): SuccessResponse | Error;
-  @delete delete(@path id: string): void | SuccessResponse | Error;
+  @get list(@query query: PaginatedRequest): PaginatedResponse<MachineCenter>;
+  @post @route("/") post(@body MachineBody: MachineCenterBody): CreatedResponse<MachineCenter>;
+  @patch @route("{id}") update(@path id: string, @body MachineBody: MachineCenterBody): UpdatedResponse<MachineCenter>;
+  @delete delete(@path id: string): DeletedResponse;
 }
 
 @route("/mes/machine-types")
 @tag("Machine Types")
 interface MachineTypes{
-  @get list(@query query: PaginatedRequest): PaginatedResponse<MachineType> | Error;
-  @post @route("/") post(@body MachineBody: MachineTypeBody): CreatedResponse<MachineType> | Error;
-  @patch @route("{id}") update(@path id: string, @body MachineBody: MachineTypeBody): SuccessResponse | Error;
-  @delete delete(@path id: string): void | SuccessResponse | Error;
+  @get list(@query query: PaginatedRequest): PaginatedResponse<MachineType>;
+  @post @route("/") post(@body MachineBody: MachineTypeBody): CreatedResponse<MachineType>;
+  @patch @route("{id}") update(@path id: string, @body MachineBody: MachineTypeBody): UpdatedResponse<MachineType>;
+  @delete delete(@path id: string): DeletedResponse;
 }
 
 
 @route("/mes/routing-codes")
 @tag("Routing Codes")
 interface RoutingCodes{
-  @get list(@query query: PaginatedRequest): PaginatedResponse<RoutingCode> | Error;
-  @post @route("/") post(@body MachineBody: RoutingCodeBody): CreatedResponse<RoutingCode> | Error;
-  @patch @route("{id}") update(@path id: string, @body MachineBody: RoutingCodeBody): SuccessResponse | Error;
-  @delete delete(@path id: string): void | SuccessResponse | Error;
+  @get list(@query query: PaginatedRequest): PaginatedResponse<RoutingCode>;
+  @post @route("/") post(@body MachineBody: RoutingCodeBody): CreatedResponse<RoutingCode>;
+  @patch @route("{id}") update(@path id: string, @body MachineBody: RoutingCodeBody): UpdatedResponse<RoutingCode>;
+  @delete delete(@path id: string): DeletedResponse;
 }
