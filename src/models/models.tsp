@@ -7,7 +7,6 @@ using TypeSpec.Versioning;
 using TypeSpec.Http;
 using TypeSpec.Rest;
 
-
 namespace RamsesService;
 
 enum Versions {
@@ -24,14 +23,8 @@ enum DayOfWeek {
   Sun,
 }
 
-
-// Scalars: 
-@pattern("\\d{4}-\\d{2}-\\d{2}")
-scalar DateString extends string;
-
 // Aliases:
 alias OrderTaskType = "preparation" | "finalisation";
-
 
 //MODELS:
 model Client {
@@ -61,14 +54,17 @@ model Order {
   prod_duration_days: integer;
   finalisation_duration_days: integer;
   prep_duration_days: integer;
-  finalisation_date: DateString;
+
+  @encode(DateTimeKnownEncoding.rfc7231)
+  finalisation_date: utcDateTime;
+
   created_at: string;
   updated_at: string;
   tasks?: Array<OrderTask> | null;
   //@added(Versions.dev) ext_created_at: offsetDateTime;
 }
 
-model UpdateOrderBody{
+model UpdateOrderBody {
   name?: string;
   no?: string | null;
   description?: string;
@@ -90,7 +86,9 @@ model UpdateOrderBody{
   prod_duration_days?: integer;
   finalisation_duration_days?: integer;
   prep_duration_days?: integer;
-  finalisation_date?: DateString;
+
+  @encode(DateTimeKnownEncoding.rfc7231)
+  finalisation_date?: utcDateTime;
 }
 
 model OrderAttachment {
@@ -167,7 +165,7 @@ model OrderMaterialItem {
   stock_status: string;
 }
 
-model OrderTaskBody{
+model OrderTaskBody {
   order_no: string;
   type: OrderTaskType;
   title: string;
@@ -178,7 +176,7 @@ model OrderTaskBody{
   dependant_on: Array<integer>;
 }
 
-model OrderTaskUpdateBody{
+model OrderTaskUpdateBody {
   type?: OrderTaskType;
   title?: string;
   should_be_planned?: boolean;
@@ -188,7 +186,9 @@ model OrderTaskUpdateBody{
   dependant_on?: Array<integer>;
   duration_in_min?: numeric | null;
   planned_resource_id?: numeric | null;
-  planned_start?: DateString | null;
+
+  @encode(DateTimeKnownEncoding.rfc7231)
+  planned_start?: utcDateTime | null;
 }
 
 model OrderTask {
@@ -204,7 +204,9 @@ model OrderTask {
   dependant_on?: Array<numeric> | null;
   duration_in_min?: numeric | null;
   planned_resource_id?: numeric | null;
-  planned_start?: DateString | null;
+
+  @encode(DateTimeKnownEncoding.rfc7231)
+  planned_start?: utcDateTime | null;
 }
 
 model SyncedOrder {
@@ -215,7 +217,7 @@ model SyncedOrder {
   project_manager: string;
 }
 
-model ResourceBody{
+model ResourceBody {
   user_id: string;
   name: string;
 }
@@ -235,7 +237,9 @@ model ToPlanTaskBody {
   @key id: uint64;
   duration_in_min: numeric;
   planned_resource_id: numeric;
-  planned_start: DateString;
+
+  @encode(DateTimeKnownEncoding.rfc7231)
+  planned_start: utcDateTime;
 }
 
 model OperatingHour {
@@ -245,13 +249,6 @@ model OperatingHour {
   end: string;
   updated_at: string;
   created_at: string;
-}
-
-
-//RESPONSES:
-@error
-model SuccessResponse {
-  message: string;
 }
 
 model StreamedCsvResponse {
@@ -281,10 +278,13 @@ model MeResponse {
 model OrderImportResponse {
   ...Order;
 }
-model OrderCreateBody{
-  synced_order_no?: string | null,
+model OrderCreateBody {
+  synced_order_no?: string | null;
   name: string;
-  finalisation_date: DateString;
+
+  @encode(DateTimeKnownEncoding.rfc7231)
+  finalisation_date: utcDateTime;
+
   finalisation_duration_days?: integer;
   prod_duration_days?: integer;
   prep_duration_days?: integer;
@@ -298,69 +298,15 @@ model OrderWorkflowLine {
   machine_center_no: string;
 }
 
-model OrderPlanBody{
-  planned_start: DateString;
-  routing: { 
-    routing_code: string, 
-    run_time: float,
-    machine_center_no: string 
+model OrderPlanBody {
+  @encode(DateTimeKnownEncoding.rfc7231)
+  planned_start: utcDateTime;
+
+  routing: {
+    routing_code: string;
+    run_time: float;
+    machine_center_no: string;
   }[];
-}
-
-model ListResponse<T> {
-  @statusCode statusCode: 200;
-  @body body: T[];
-}
-
-model RecordResponse<T> {
-  @statusCode statusCode: 200;
-  @body body: Record<T>;
-}
-
-//PAGINATION:
-model PaginationLinks {
-  first?: string | null;
-  last?: string | null;
-  prev?: string | null;
-  next?: string | null;
-}
-
-model PaginationMeta {
-  current_page: int32;
-  from?: int32 | null;
-  last_page: int32;
-  path: string;
-  per_page: int32;
-  to?: int32 | null;
-  total: int32;
-}
-
-model PaginatedResponse<T> {
-  data: T[] | [];
-  links: PaginationLinks;
-  meta: PaginationMeta;
-  filters?: FilterOption[];
-}
-
-model CreatedResponse<T> {
-  @statusCode statusCode: 201;
-  @body body: T;
-}
-
-model UpdatedResponse<T>{
-  @statusCode statusCode: 200;
-  @body body: T; 
-}
-
-model DeletedResponse{
-  @statusCode statusCode: 204;
-}
-
-//FILTERS
-model FilterOption {
-  name: string;
-  type: string;
-  options?: Array<string> | null;
 }
 
 model PaginatedRequest {
@@ -408,4 +354,3 @@ model OrderMaterialCsvRequest {
   @query excludeFittings?: boolean;
   @query excludeEdging?: boolean;
 }
-

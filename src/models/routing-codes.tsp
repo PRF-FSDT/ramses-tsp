@@ -9,7 +9,7 @@ using TypeSpec.Rest;
 
 namespace RamsesService;
 
-model RoutingCode{
+model RoutingCode {
   @key id: int64;
   @example("DRILL_V") code: string;
   @example("drill vertically") name: string;
@@ -17,7 +17,7 @@ model RoutingCode{
   @example("CNC") machine_type_code: string | null;
 }
 
-model RoutingCodeBody{
+model RoutingCodeBody {
   code: RoutingCode.code;
   name: RoutingCode.name;
   icon: RoutingCode.icon;

@@ -9,14 +9,13 @@ using TypeSpec.Rest;
 
 namespace RamsesService;
 
-model MachineType{
+model MachineType {
   @key id: int64;
   @example("CNC") code: string;
   @example("CNC") name: string;
 }
 
-model MachineTypeBody{
+model MachineTypeBody {
   code: MachineType.code;
   name: MachineType.name;
 }
-
