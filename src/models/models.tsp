@@ -166,7 +166,7 @@ model OrderMaterialItem {
 }
 
 model OrderTaskBody {
-  order_no: string;
+  order_id: uint64;
   type: OrderTaskType;
   title: string;
   should_be_planned: boolean;
@@ -193,7 +193,7 @@ model OrderTaskUpdateBody {
 
 model OrderTask {
   @key id: uint64;
-  order_no?: string;
+  order_id: string;
   type: OrderTaskType;
   title: string;
   should_be_planned: boolean;
