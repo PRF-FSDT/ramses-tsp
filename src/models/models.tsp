@@ -280,6 +280,23 @@ model OrderCreateBody {
   prep_duration_days?: integer;
 }
 
+model OrderWorkflowLine {
+  routing_code: string;
+  qty: integer;
+  run_time: float;
+  setup_time: float;
+  machine_center_no: string;
+}
+
+model OrderPlanBody {
+  planned_start: DateString;
+  routing: {
+    routing_code: string;
+    run_time: float;
+    machine_center_no: string;
+  }[];
+}
+
 model PaginatedRequest {
   @query page?: int32;
   @query perPage?: int32;
