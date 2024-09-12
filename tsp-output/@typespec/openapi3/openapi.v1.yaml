@@ -2493,6 +2493,7 @@ components:
       type: object
       required:
         - id
+        - order_id
         - type
         - title
         - should_be_planned
@@ -2501,7 +2502,7 @@ components:
         id:
           type: integer
           format: uint64
-        order_no:
+        order_id:
           type: string
         type:
           type: string
@@ -2539,7 +2540,7 @@ components:
     OrderTaskBody:
       type: object
       required:
-        - order_no
+        - order_id
         - type
         - title
         - should_be_planned
@@ -2548,8 +2549,9 @@ components:
         - is_finished
         - dependant_on
       properties:
-        order_no:
-          type: string
+        order_id:
+          type: integer
+          format: uint64
         type:
           type: string
           enum:
