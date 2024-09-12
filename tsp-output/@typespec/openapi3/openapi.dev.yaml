@@ -87,11 +87,6 @@ paths:
         - Machine Centers
       operationId: MachineCenters_list
       parameters:
-        - name: query
-          in: query
-          required: true
-          schema:
-            $ref: '#/components/schemas/PaginatedRequest'
         - $ref: '#/components/parameters/PaginatedRequest.page'
         - $ref: '#/components/parameters/PaginatedRequest.perPage'
         - $ref: '#/components/parameters/PaginatedRequest.search'
@@ -199,11 +194,6 @@ paths:
         - Machine Types
       operationId: MachineTypes_list
       parameters:
-        - name: query
-          in: query
-          required: true
-          schema:
-            $ref: '#/components/schemas/PaginatedRequest'
         - $ref: '#/components/parameters/PaginatedRequest.page'
         - $ref: '#/components/parameters/PaginatedRequest.perPage'
         - $ref: '#/components/parameters/PaginatedRequest.search'
@@ -311,11 +301,6 @@ paths:
         - Routing Codes
       operationId: RoutingCodes_list
       parameters:
-        - name: query
-          in: query
-          required: true
-          schema:
-            $ref: '#/components/schemas/PaginatedRequest'
         - $ref: '#/components/parameters/PaginatedRequest.page'
         - $ref: '#/components/parameters/PaginatedRequest.perPage'
         - $ref: '#/components/parameters/PaginatedRequest.search'
@@ -650,11 +635,6 @@ paths:
         - Importable Orders
       operationId: ImportableOrders_list
       parameters:
-        - name: query
-          in: query
-          required: true
-          schema:
-            $ref: '#/components/schemas/PaginatedRequest'
         - $ref: '#/components/parameters/PaginatedRequest.page'
         - $ref: '#/components/parameters/PaginatedRequest.perPage'
         - $ref: '#/components/parameters/PaginatedRequest.search'
@@ -836,48 +816,17 @@ paths:
         - Orders
       operationId: Orders_list
       parameters:
-        - name: query
-          in: query
-          required: true
-          schema:
-            $ref: '#/components/schemas/OrderIndexFilterRequest'
         - $ref: '#/components/parameters/PaginatedRequest.page'
         - $ref: '#/components/parameters/PaginatedRequest.perPage'
         - $ref: '#/components/parameters/PaginatedRequest.search'
         - $ref: '#/components/parameters/PaginatedSortableRequest.sort_dir'
         - $ref: '#/components/parameters/PaginatedSortableRequest.sort_by'
-        - name: status
-          in: query
-          required: false
-          schema:
-            type: string
-        - name: owner
-          in: query
-          required: false
-          schema:
-            type: string
-        - name: client_name
-          in: query
-          required: false
-          schema:
-            type: string
-        - name: finalisation_date_from
-          in: query
-          required: false
-          schema:
-            type: string
-        - name: finalisation_date_until
-          in: query
-          required: false
-          schema:
-            type: string
-        - name: include
-          in: query
-          required: false
-          schema:
-            type: string
-            enum:
-              - tasks
+        - $ref: '#/components/parameters/OrderIndexFilterRequest.status'
+        - $ref: '#/components/parameters/OrderIndexFilterRequest.owner'
+        - $ref: '#/components/parameters/OrderIndexFilterRequest.client_name'
+        - $ref: '#/components/parameters/OrderIndexFilterRequest.finalisation_date_from'
+        - $ref: '#/components/parameters/OrderIndexFilterRequest.finalisation_date_until'
+        - $ref: '#/components/parameters/OrderIndexFilterRequest.include'
       responses:
         '200':
           description: The request has succeeded.
@@ -939,11 +888,6 @@ paths:
         - Orders
       operationId: Orders_getUnplanned
       parameters:
-        - name: query
-          in: query
-          required: true
-          schema:
-            $ref: '#/components/schemas/PaginatedRequest'
         - $ref: '#/components/parameters/PaginatedRequest.page'
         - $ref: '#/components/parameters/PaginatedRequest.perPage'
         - $ref: '#/components/parameters/PaginatedRequest.search'
@@ -1054,11 +998,6 @@ paths:
           required: true
           schema:
             type: string
-        - name: query
-          in: query
-          required: true
-          schema:
-            $ref: '#/components/schemas/PaginatedSortableRequest'
         - $ref: '#/components/parameters/PaginatedRequest.page'
         - $ref: '#/components/parameters/PaginatedRequest.perPage'
         - $ref: '#/components/parameters/PaginatedRequest.search'
@@ -1158,11 +1097,6 @@ paths:
           required: true
           schema:
             type: string
-        - name: query
-          in: query
-          required: true
-          schema:
-            $ref: '#/components/schemas/PaginatedRequest'
         - $ref: '#/components/parameters/PaginatedRequest.page'
         - $ref: '#/components/parameters/PaginatedRequest.perPage'
         - $ref: '#/components/parameters/PaginatedRequest.search'
@@ -1226,22 +1160,12 @@ paths:
           required: true
           schema:
             type: string
-        - name: query
-          in: query
-          required: true
-          schema:
-            $ref: '#/components/schemas/OrderCompositionLineRequest'
         - $ref: '#/components/parameters/PaginatedRequest.page'
         - $ref: '#/components/parameters/PaginatedRequest.perPage'
         - $ref: '#/components/parameters/PaginatedRequest.search'
         - $ref: '#/components/parameters/PaginatedSortableRequest.sort_dir'
         - $ref: '#/components/parameters/PaginatedSortableRequest.sort_by'
-        - name: parentId
-          in: query
-          required: false
-          schema:
-            type: integer
-            format: int32
+        - $ref: '#/components/parameters/OrderCompositionLineRequest.parentId'
       responses:
         '200':
           description: The request has succeeded.
@@ -1283,26 +1207,13 @@ paths:
           required: true
           schema:
             type: string
-        - name: query
-          in: query
-          required: true
-          schema:
-            $ref: '#/components/schemas/OrderMaterialIndexFilterRequest'
         - $ref: '#/components/parameters/PaginatedRequest.page'
         - $ref: '#/components/parameters/PaginatedRequest.perPage'
         - $ref: '#/components/parameters/PaginatedRequest.search'
         - $ref: '#/components/parameters/PaginatedSortableRequest.sort_dir'
         - $ref: '#/components/parameters/PaginatedSortableRequest.sort_by'
-        - name: category_no
-          in: query
-          required: false
-          schema:
-            type: string
-        - name: stock_status
-          in: query
-          required: false
-          schema:
-            type: string
+        - $ref: '#/components/parameters/OrderMaterialIndexFilterRequest.category_no'
+        - $ref: '#/components/parameters/OrderMaterialIndexFilterRequest.stock_status'
       responses:
         '200':
           description: The request has succeeded.
@@ -1344,36 +1255,11 @@ paths:
           required: true
           schema:
             type: string
-        - name: query
-          in: query
-          required: true
-          schema:
-            $ref: '#/components/schemas/OrderMaterialCsvRequest'
-        - name: excludeRunningMeterParts
-          in: query
-          required: false
-          schema:
-            type: boolean
-        - name: excludeSheetMaterials
-          in: query
-          required: false
-          schema:
-            type: boolean
-        - name: excludePurchaseParts
-          in: query
-          required: false
-          schema:
-            type: boolean
-        - name: excludeFittings
-          in: query
-          required: false
-          schema:
-            type: boolean
-        - name: excludeEdging
-          in: query
-          required: false
-          schema:
-            type: boolean
+        - $ref: '#/components/parameters/OrderMaterialCsvRequest.excludeRunningMeterParts'
+        - $ref: '#/components/parameters/OrderMaterialCsvRequest.excludeSheetMaterials'
+        - $ref: '#/components/parameters/OrderMaterialCsvRequest.excludePurchaseParts'
+        - $ref: '#/components/parameters/OrderMaterialCsvRequest.excludeFittings'
+        - $ref: '#/components/parameters/OrderMaterialCsvRequest.excludeEdging'
       responses:
         '200':
           description: The request has succeeded.
@@ -1394,24 +1280,12 @@ paths:
           required: true
           schema:
             type: string
-        - name: query
-          in: query
-          required: true
-          schema:
-            $ref: '#/components/schemas/OrderTaskFilterRequest'
         - $ref: '#/components/parameters/PaginatedRequest.page'
         - $ref: '#/components/parameters/PaginatedRequest.perPage'
         - $ref: '#/components/parameters/PaginatedRequest.search'
         - $ref: '#/components/parameters/PaginatedSortableRequest.sort_dir'
         - $ref: '#/components/parameters/PaginatedSortableRequest.sort_by'
-        - name: type
-          in: query
-          required: false
-          schema:
-            type: string
-            enum:
-              - preparation
-              - finalisation
+        - $ref: '#/components/parameters/OrderTaskFilterRequest.type'
       responses:
         '200':
           description: The request has succeeded.
@@ -1556,11 +1430,6 @@ paths:
         - Resources
       operationId: Resources_list
       parameters:
-        - name: query
-          in: query
-          required: true
-          schema:
-            $ref: '#/components/schemas/PaginatedSortableRequest'
         - $ref: '#/components/parameters/PaginatedRequest.page'
         - $ref: '#/components/parameters/PaginatedRequest.perPage'
         - $ref: '#/components/parameters/PaginatedRequest.search'
@@ -1670,11 +1539,6 @@ paths:
         - Users
       operationId: Users_list
       parameters:
-        - name: query
-          in: query
-          required: true
-          schema:
-            $ref: '#/components/schemas/PaginatedRequest'
         - $ref: '#/components/parameters/PaginatedRequest.page'
         - $ref: '#/components/parameters/PaginatedRequest.perPage'
         - $ref: '#/components/parameters/PaginatedRequest.search'
@@ -1778,6 +1642,102 @@ paths:
           description: 'There is no content to send for this request, but the headers may be useful. '
 components:
   parameters:
+    OrderCompositionLineRequest.parentId:
+      name: parentId
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int32
+    OrderIndexFilterRequest.client_name:
+      name: client_name
+      in: query
+      required: false
+      schema:
+        type: string
+    OrderIndexFilterRequest.finalisation_date_from:
+      name: finalisation_date_from
+      in: query
+      required: false
+      schema:
+        type: string
+    OrderIndexFilterRequest.finalisation_date_until:
+      name: finalisation_date_until
+      in: query
+      required: false
+      schema:
+        type: string
+    OrderIndexFilterRequest.include:
+      name: include
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+          - tasks
+    OrderIndexFilterRequest.owner:
+      name: owner
+      in: query
+      required: false
+      schema:
+        type: string
+    OrderIndexFilterRequest.status:
+      name: status
+      in: query
+      required: false
+      schema:
+        type: string
+    OrderMaterialCsvRequest.excludeEdging:
+      name: excludeEdging
+      in: query
+      required: false
+      schema:
+        type: boolean
+    OrderMaterialCsvRequest.excludeFittings:
+      name: excludeFittings
+      in: query
+      required: false
+      schema:
+        type: boolean
+    OrderMaterialCsvRequest.excludePurchaseParts:
+      name: excludePurchaseParts
+      in: query
+      required: false
+      schema:
+        type: boolean
+    OrderMaterialCsvRequest.excludeRunningMeterParts:
+      name: excludeRunningMeterParts
+      in: query
+      required: false
+      schema:
+        type: boolean
+    OrderMaterialCsvRequest.excludeSheetMaterials:
+      name: excludeSheetMaterials
+      in: query
+      required: false
+      schema:
+        type: boolean
+    OrderMaterialIndexFilterRequest.category_no:
+      name: category_no
+      in: query
+      required: false
+      schema:
+        type: string
+    OrderMaterialIndexFilterRequest.stock_status:
+      name: stock_status
+      in: query
+      required: false
+      schema:
+        type: string
+    OrderTaskFilterRequest.type:
+      name: type
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+          - preparation
+          - finalisation
     PaginatedRequest.page:
       name: page
       in: query
@@ -2273,8 +2233,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/OrderCompositionLine'
-    OrderCompositionLineRequest:
-      type: object
     OrderCreateBody:
       type: object
       required:
@@ -2381,8 +2339,6 @@ components:
           items:
             $ref: '#/components/schemas/OrderTask'
           nullable: true
-    OrderIndexFilterRequest:
-      type: object
     OrderMaterial:
       type: object
       required:
@@ -2421,10 +2377,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/OrderMaterialItem'
-    OrderMaterialCsvRequest:
-      type: object
-    OrderMaterialIndexFilterRequest:
-      type: object
     OrderMaterialItem:
       type: object
       required:
@@ -2571,8 +2523,6 @@ components:
           type: array
           items:
             type: integer
-    OrderTaskFilterRequest:
-      type: object
     OrderTaskUpdateBody:
       type: object
       properties:
@@ -2624,10 +2574,6 @@ components:
           type: number
         machine_center_no:
           type: string
-    PaginatedRequest:
-      type: object
-    PaginatedSortableRequest:
-      type: object
     PaginationLinks:
       type: object
       properties:

@@ -33,29 +33,26 @@ interface Auth {
 @route("/order-manager/orders")
 @tag("Orders")
 interface Orders {
-  @get list(@query query: OrderIndexFilterRequest): PaginatedResponse<Order>;
+  @get list(...OrderIndexFilterRequest): PaginatedResponse<Order>;
   @get @route("{id}") read(@path id: string): ReadResponse<Order>;
   @patch @route("{id}") update(@path id: string, ...UpdateOrderBody): UpdatedResponse<Order>;
   @post @route("/") post(@body OrderCreateBody: OrderCreateBody): CreatedResponse<Order>;
   @delete delete(@path id: string): DeletedResponse;
 
   //attachments
-  @route("{id}/attachments") @get getAttachments(@path id: string, @query query: PaginatedRequest): PaginatedResponse<OrderAttachment>;
+  @route("{id}/attachments") @get getAttachments(@path id: string, ...PaginatedRequest): PaginatedResponse<OrderAttachment>;
   @route("{id}/attachments") @post postAttachments(@path id: string): ActionResponse;
 
   //composition lines
-  @route("{id}/composition-lines") @get getCompositionLines(
-    @path id: string,
-    @query query: OrderCompositionLineRequest,
-  ): PaginatedResponse<OrderCompositionLine>;
+  @route("{id}/composition-lines") @get getCompositionLines(@path id: string, ...OrderCompositionLineRequest): PaginatedResponse<OrderCompositionLine>;
 
   //order tasks
-  @route("{id}/order-tasks") @get getOrderTasks(@path id: string, @query query: OrderTaskFilterRequest): PaginatedResponse<OrderTask>;
+  @route("{id}/order-tasks") @get getOrderTasks(@path id: string, ...OrderTaskFilterRequest): PaginatedResponse<OrderTask>;
   @post @route("{id}/order-tasks/plan") planOrderTasks(@path id: string, @body ToPlanTasks: ToPlanTaskBody[]): CreatedResponse<ToPlanTaskBody[]>;
   //additional purch lines
   @route("{id}/additional-purchase-lines") @get getAdditionalPurchLines(
     @path id: string,
-    @query query: PaginatedSortableRequest,
+    ...PaginatedSortableRequest,
   ): PaginatedResponse<AdditionalPurchaseLine>;
   @route("{id}/additional-purchase-lines") @post postAdditionalPurchLines(
     @path id: string,
@@ -71,20 +68,20 @@ interface Orders {
   ): CreatedResponse<AdditionalPurchaseLine>;
 
   //order materials
-  @route("{id}/order-materials") @get getOrderMaterials(@path id: string, @query query: OrderMaterialIndexFilterRequest): PaginatedResponse<OrderMaterial>;
-  @route("{id}/order-materials-csv") @get getOrderMaterialsCsv(@path id: string, @query query: OrderMaterialCsvRequest): StreamedCsvResponse | Error;
+  @route("{id}/order-materials") @get getOrderMaterials(@path id: string, ...OrderMaterialIndexFilterRequest): PaginatedResponse<OrderMaterial>;
+  @route("{id}/order-materials-csv") @get getOrderMaterialsCsv(@path id: string, ...OrderMaterialCsvRequest): StreamedCsvResponse | Error;
 
   //TODO: define this action
   @route("{id}/push-to-erp") @post postToErp(@path id: string): string | Error;
 
-  @route("/unplanned") @get getUnplanned(@query query: PaginatedRequest): PaginatedResponse<Order>;
+  @route("/unplanned") @get getUnplanned(...PaginatedRequest): PaginatedResponse<Order>;
 }
 
 //Model: SyncedOrder
 @route("/order-manager/importable-orders")
 @tag("Importable Orders")
 interface ImportableOrders {
-  @get list(@query query: PaginatedRequest): PaginatedResponse<SyncedOrder>;
+  @get list(...PaginatedRequest): PaginatedResponse<SyncedOrder>;
   //@route("{/") @get analyze(@path id: string): string | Error;
 }
 
@@ -144,7 +141,7 @@ interface OrderTasks {
 @route("/resources")
 @tag("Resources")
 interface Resources {
-  @get list(@query query: PaginatedSortableRequest): PaginatedResponse<Resource>;
+  @get list(...PaginatedSortableRequest): PaginatedResponse<Resource>;
   @post @route("/") post(@body ResourceBody: ResourceBody): CreatedResponse<Resource>;
   @patch @route("{id}") update(@path id: string, @body ResourceBody: ResourceBody): UpdatedResponse<Resource>;
   @delete delete(@path id: string): DeletedResponse;
@@ -162,7 +159,7 @@ interface OperatingHours {
 @route("/users")
 @tag("Users")
 interface Users {
-  @get list(@query query: PaginatedRequest): PaginatedResponse<User>;
+  @get list(...PaginatedRequest): PaginatedResponse<User>;
   @post @route("/") post(@body UserBody: UserCreateBody): CreatedResponse<User>;
   @patch @route("{id}") update(@path id: string, @body UserBody: UserUpdateBody): UpdatedResponse<User>;
   @delete delete(@path id: string): DeletedResponse;
@@ -178,7 +175,7 @@ interface ProductionPlanningOrders {
 @route("/mes/machine-centers")
 @tag("Machine Centers")
 interface MachineCenters {
-  @get list(@query query: PaginatedRequest): PaginatedResponse<MachineCenter>;
+  @get list(...PaginatedRequest): PaginatedResponse<MachineCenter>;
   @post @route("/") post(@body MachineBody: MachineCenterBody): CreatedResponse<MachineCenter>;
   @patch @route("{id}") update(@path id: string, @body MachineBody: MachineCenterBody): UpdatedResponse<MachineCenter>;
   @delete delete(@path id: string): DeletedResponse;
@@ -187,7 +184,7 @@ interface MachineCenters {
 @route("/mes/machine-types")
 @tag("Machine Types")
 interface MachineTypes {
-  @get list(@query query: PaginatedRequest): PaginatedResponse<MachineType>;
+  @get list(...PaginatedRequest): PaginatedResponse<MachineType>;
   @post @route("/") post(@body MachineBody: MachineTypeBody): CreatedResponse<MachineType>;
   @patch @route("{id}") update(@path id: string, @body MachineBody: MachineTypeBody): UpdatedResponse<MachineType>;
   @delete delete(@path id: string): DeletedResponse;
@@ -196,7 +193,7 @@ interface MachineTypes {
 @route("/mes/routing-codes")
 @tag("Routing Codes")
 interface RoutingCodes {
-  @get list(@query query: PaginatedRequest): PaginatedResponse<RoutingCode>;
+  @get list(...PaginatedRequest): PaginatedResponse<RoutingCode>;
   @post @route("/") post(@body MachineBody: RoutingCodeBody): CreatedResponse<RoutingCode>;
   @patch @route("{id}") update(@path id: string, @body MachineBody: RoutingCodeBody): UpdatedResponse<RoutingCode>;
   @delete delete(@path id: string): DeletedResponse;
