@@ -1512,14 +1512,18 @@ paths:
           schema:
             type: string
       responses:
-        default:
-          description: An unexpected error response.
+        '201':
+          description: The request has succeeded and a new resource has been created as a result.
           content:
             application/json:
               schema:
-                anyOf:
-                  - $ref: '#/components/schemas/SuccessResponse'
-                  - $ref: '#/components/schemas/Error'
+                nullable: true
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
       requestBody:
         required: true
         content:
@@ -1546,12 +1550,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/OrderWorkflowLine'
-        default:
-          description: An unexpected error response.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
   /resources:
     get:
       tags:
@@ -1894,9 +1892,6 @@ components:
           type: string
         client_country_code:
           type: string
-    DateString:
-      type: string
-      pattern: \d{4}-\d{2}-\d{2}
     DayOfWeek:
       type: string
       enum:
@@ -2187,7 +2182,8 @@ components:
         prep_duration_days:
           type: integer
         finalisation_date:
-          $ref: '#/components/schemas/DateString'
+          type: string
+          format: http-date
         created_at:
           type: string
         updated_at:
@@ -2291,7 +2287,8 @@ components:
         name:
           type: string
         finalisation_date:
-          $ref: '#/components/schemas/DateString'
+          type: string
+          format: http-date
         finalisation_duration_days:
           type: integer
         prod_duration_days:
@@ -2373,7 +2370,8 @@ components:
         prep_duration_days:
           type: integer
         finalisation_date:
-          $ref: '#/components/schemas/DateString'
+          type: string
+          format: http-date
         created_at:
           type: string
         updated_at:
@@ -2474,7 +2472,8 @@ components:
         - routing
       properties:
         planned_start:
-          $ref: '#/components/schemas/DateString'
+          type: string
+          format: http-date
         routing:
           type: array
           items:
@@ -2534,8 +2533,8 @@ components:
           type: number
           nullable: true
         planned_start:
-          oneOf:
-            - $ref: '#/components/schemas/DateString'
+          type: string
+          format: http-date
           nullable: true
     OrderTaskBody:
       type: object
@@ -2601,8 +2600,8 @@ components:
           type: number
           nullable: true
         planned_start:
-          oneOf:
-            - $ref: '#/components/schemas/DateString'
+          type: string
+          format: http-date
           nullable: true
     OrderWorkflowLine:
       type: object
@@ -2805,7 +2804,8 @@ components:
         planned_resource_id:
           type: number
         planned_start:
-          $ref: '#/components/schemas/DateString'
+          type: string
+          format: http-date
     UpdateOrderBody:
       type: object
       properties:
@@ -2853,7 +2853,8 @@ components:
         prep_duration_days:
           type: integer
         finalisation_date:
-          $ref: '#/components/schemas/DateString'
+          type: string
+          format: http-date
     User:
       type: object
       required:

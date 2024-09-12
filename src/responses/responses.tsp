@@ -57,6 +57,7 @@ model DeletedReturn {
   @statusCode statusCode: 204;
 }
 
+alias ListResponse<T> = Array<T>;
 alias PaginatedResponse<T> = PaginatedReturn<T> | NotFoundError;
 alias CreatedResponse<T> = CreatedReturn<T> | ValidationError;
 alias UpdatedResponse<T> = UpdatedReturn<T> | ValidationError;

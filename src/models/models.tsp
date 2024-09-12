@@ -23,10 +23,6 @@ enum DayOfWeek {
   Sun,
 }
 
-// Scalars:
-@pattern("\\d{4}-\\d{2}-\\d{2}")
-scalar DateString extends string;
-
 // Aliases:
 alias OrderTaskType = "preparation" | "finalisation";
 
@@ -58,7 +54,10 @@ model Order {
   prod_duration_days: integer;
   finalisation_duration_days: integer;
   prep_duration_days: integer;
-  finalisation_date: DateString;
+
+  @encode(DateTimeKnownEncoding.rfc7231)
+  finalisation_date: utcDateTime;
+
   created_at: string;
   updated_at: string;
   tasks?: Array<OrderTask> | null;
@@ -87,7 +86,9 @@ model UpdateOrderBody {
   prod_duration_days?: integer;
   finalisation_duration_days?: integer;
   prep_duration_days?: integer;
-  finalisation_date?: DateString;
+
+  @encode(DateTimeKnownEncoding.rfc7231)
+  finalisation_date?: utcDateTime;
 }
 
 model OrderAttachment {
@@ -185,7 +186,9 @@ model OrderTaskUpdateBody {
   dependant_on?: Array<integer>;
   duration_in_min?: numeric | null;
   planned_resource_id?: numeric | null;
-  planned_start?: DateString | null;
+
+  @encode(DateTimeKnownEncoding.rfc7231)
+  planned_start?: utcDateTime | null;
 }
 
 model OrderTask {
@@ -201,7 +204,9 @@ model OrderTask {
   dependant_on?: Array<numeric> | null;
   duration_in_min?: numeric | null;
   planned_resource_id?: numeric | null;
-  planned_start?: DateString | null;
+
+  @encode(DateTimeKnownEncoding.rfc7231)
+  planned_start?: utcDateTime | null;
 }
 
 model SyncedOrder {
@@ -232,7 +237,9 @@ model ToPlanTaskBody {
   @key id: uint64;
   duration_in_min: numeric;
   planned_resource_id: numeric;
-  planned_start: DateString;
+
+  @encode(DateTimeKnownEncoding.rfc7231)
+  planned_start: utcDateTime;
 }
 
 model OperatingHour {
@@ -274,7 +281,10 @@ model OrderImportResponse {
 model OrderCreateBody {
   synced_order_no?: string | null;
   name: string;
-  finalisation_date: DateString;
+
+  @encode(DateTimeKnownEncoding.rfc7231)
+  finalisation_date: utcDateTime;
+
   finalisation_duration_days?: integer;
   prod_duration_days?: integer;
   prep_duration_days?: integer;
@@ -289,7 +299,9 @@ model OrderWorkflowLine {
 }
 
 model OrderPlanBody {
-  planned_start: DateString;
+  @encode(DateTimeKnownEncoding.rfc7231)
+  planned_start: utcDateTime;
+
   routing: {
     routing_code: string;
     run_time: float;

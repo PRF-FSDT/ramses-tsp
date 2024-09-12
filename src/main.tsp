@@ -170,9 +170,9 @@ interface Users {
 
 @route("/production-planning/orders")
 @tag("Production Planning Orders")
-interface ProductionPlanningOrders{
-  @get @route("{id}/workflow") workflow(@path id: string): Array<OrderWorkflowLine> | Error;
-  @post @route("{id}/plan") plan(@path id: string, @body orderPlanBody: OrderPlanBody): SuccessResponse | Error;
+interface ProductionPlanningOrders {
+  @get @route("{id}/workflow") workflow(@path id: string): ListResponse<OrderWorkflowLine>;
+  @post @route("{id}/plan") plan(@path id: string, @body orderPlanBody: OrderPlanBody): CreatedResponse<null>;
 }
 
 @route("/mes/machine-centers")
