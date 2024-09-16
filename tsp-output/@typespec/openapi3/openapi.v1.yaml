@@ -2176,7 +2176,6 @@ components:
         - order_id
         - order_no
         - no
-        - type
         - material_no
         - is_outsourced
         - children
@@ -2196,7 +2195,13 @@ components:
         no:
           type: string
         type:
-          type: string
+          type: integer
+          format: uint16
+          nullable: true
+        part_type:
+          type: integer
+          format: uint16
+          nullable: true
         ref:
           type: string
           nullable: true
@@ -2227,6 +2232,9 @@ components:
           nullable: true
         material_no:
           type: string
+        barcode:
+          type: string
+          nullable: true
         is_outsourced:
           type: boolean
         children:
@@ -2394,7 +2402,8 @@ components:
         - stock_status
       properties:
         id:
-          type: string
+          type: integer
+          format: uint64
         order_no:
           type: string
         material_no:
@@ -2630,7 +2639,8 @@ components:
         - name
       properties:
         id:
-          type: string
+          type: integer
+          format: uint64
         user_id:
           type: string
         name:
@@ -2727,7 +2737,8 @@ components:
         - project_manager
       properties:
         id:
-          type: string
+          type: integer
+          format: uint64
         name:
           type: string
         client_no:
