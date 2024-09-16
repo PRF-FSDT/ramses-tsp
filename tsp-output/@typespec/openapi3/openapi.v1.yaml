@@ -90,6 +90,8 @@ paths:
         - $ref: '#/components/parameters/PaginatedRequest.page'
         - $ref: '#/components/parameters/PaginatedRequest.perPage'
         - $ref: '#/components/parameters/PaginatedRequest.search'
+        - $ref: '#/components/parameters/PaginatedSortableRequest.sort_dir'
+        - $ref: '#/components/parameters/PaginatedSortableRequest.sort_by'
       responses:
         '200':
           description: The request has succeeded.

@@ -178,7 +178,7 @@ interface ProductionPlanningOrders {
 @route("/mes/machine-centers")
 @tag("Machine Centers")
 interface MachineCenters {
-  @get list(...PaginatedRequest): PaginatedResponse<MachineCenter>;
+  @get list(...PaginatedSortableRequest): PaginatedResponse<MachineCenter>;
   @post @route("/") post(@body MachineBody: MachineCenterBody): CreatedResponse<MachineCenter>;
   @patch @route("{id}") update(@path id: string, @body MachineBody: MachineCenterBody): UpdatedResponse<MachineCenter>;
   @delete delete(@path id: string): DeletedResponse;
