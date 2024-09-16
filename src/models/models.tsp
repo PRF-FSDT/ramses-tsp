@@ -104,7 +104,8 @@ model OrderCompositionLine {
   order_id: uint64;
   order_no: string;
   no: string;
-  type: string;
+  type?: uint16 | null;
+  part_type?: uint16 | null;
   ref?: string | null;
   part_no?: string | null;
   description?: string | null;
@@ -115,6 +116,7 @@ model OrderCompositionLine {
   surf_m2?: numeric | null;
   qty?: uint64 | null;
   material_no: string;
+  barcode?: string | null;
   is_outsourced: boolean;
   children: OrderCompositionLine[];
 }
@@ -151,7 +153,7 @@ model OrderMaterial {
 }
 
 model OrderMaterialItem {
-  @key id: string;
+  @key id: uint64;
   order_no: string;
   material_no: string;
   material_name: string;
@@ -210,7 +212,7 @@ model OrderTask {
 }
 
 model SyncedOrder {
-  @key id: string;
+  @key id: uint64;
   name: string;
   client_no: string;
   client_name: string;
@@ -223,7 +225,7 @@ model ResourceBody {
 }
 
 model Resource {
-  @key id: string;
+  @key id: uint64;
   ...ResourceBody;
 }
 
