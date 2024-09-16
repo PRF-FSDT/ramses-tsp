@@ -14,7 +14,7 @@ tags:
   - name: Resources
   - name: Operating Hours
   - name: Users
-  - name: Production Planning Orders
+  - name: Production Planning
   - name: Machine Centers
   - name: Machine Types
   - name: Routing Codes
@@ -1377,7 +1377,7 @@ paths:
   /production-planning/orders/{id}/plan:
     post:
       tags:
-        - Production Planning Orders
+        - Production Planning
       operationId: ProductionPlanningOrders_plan
       parameters:
         - name: id
@@ -1407,7 +1407,7 @@ paths:
   /production-planning/orders/{id}/workflow:
     get:
       tags:
-        - Production Planning Orders
+        - Production Planning
       operationId: ProductionPlanningOrders_workflow
       parameters:
         - name: id
@@ -1424,6 +1424,78 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/OrderWorkflowLine'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+  /production-planning/planned-order-line/{id}:
+    patch:
+      tags:
+        - Production Planning
+      operationId: ProductionPlanningOrders_updatePlannedOrderLine
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlannedOrderLine'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                planned_mc_no:
+                  type: string
+                planned_start:
+                  type: string
+                  format: http-date
+                planned_duration_in_min:
+                  type: integer
+                  format: int64
+              description: The template for adding updateable properties.
+  /production-planning/planned-orders-for-week/{week}:
+    get:
+      tags:
+        - Production Planning
+      operationId: ProductionPlanningOrders_plannedOrderLines
+      parameters:
+        - name: week
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PlannedOrderLine'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
   /resources:
     get:
       tags:
@@ -2144,6 +2216,14 @@ components:
         finalisation_date:
           type: string
           format: http-date
+        part_count:
+          type: integer
+          format: int64
+          readOnly: true
+        article_count:
+          type: integer
+          format: int64
+          readOnly: true
         created_at:
           type: string
         updated_at:
@@ -2338,6 +2418,14 @@ components:
         finalisation_date:
           type: string
           format: http-date
+        part_count:
+          type: integer
+          format: int64
+          readOnly: true
+        article_count:
+          type: integer
+          format: int64
+          readOnly: true
         created_at:
           type: string
         updated_at:
@@ -2631,6 +2719,72 @@ components:
         total:
           type: integer
           format: int32
+    PlannedOrderLine:
+      type: object
+      required:
+        - id
+        - order_no
+        - routing_code
+        - description
+        - client_no
+        - client_name
+        - parts_count
+        - finished_parts_count
+        - finished_at
+        - created_at
+        - updated_at
+        - planned_mc_no
+        - planned_start
+        - planned_duration_in_min
+      properties:
+        id:
+          type: integer
+          format: int64
+          readOnly: true
+        order_no:
+          type: string
+          readOnly: true
+        routing_code:
+          type: string
+          readOnly: true
+        description:
+          type: string
+          readOnly: true
+        client_no:
+          type: string
+          readOnly: true
+        client_name:
+          type: string
+          readOnly: true
+        parts_count:
+          type: integer
+          format: int64
+          readOnly: true
+        finished_parts_count:
+          type: integer
+          format: int64
+          readOnly: true
+        finished_at:
+          type: string
+          format: http-date
+          nullable: true
+          readOnly: true
+        created_at:
+          type: string
+          format: http-date
+          readOnly: true
+        updated_at:
+          type: string
+          format: http-date
+          readOnly: true
+        planned_mc_no:
+          type: string
+        planned_start:
+          type: string
+          format: http-date
+        planned_duration_in_min:
+          type: integer
+          format: int64
     Resource:
       type: object
       required:

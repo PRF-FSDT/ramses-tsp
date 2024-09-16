@@ -7,6 +7,7 @@ import "./models/users.tsp";
 import "./models/machine-centers.tsp";
 import "./models/machine-types.tsp";
 import "./models/routing-codes.tsp";
+import "./models/order-lines.tsp";
 
 import "./responses/responses.tsp";
 
@@ -165,11 +166,13 @@ interface Users {
   @delete delete(@path id: string): DeletedResponse;
 }
 
-@route("/production-planning/orders")
-@tag("Production Planning Orders")
+@route("/production-planning")
+@tag("Production Planning")
 interface ProductionPlanningOrders {
-  @get @route("{id}/workflow") workflow(@path id: string): ListResponse<OrderWorkflowLine>;
-  @post @route("{id}/plan") plan(@path id: string, @body orderPlanBody: OrderPlanBody): CreatedResponse<null>;
+  @get @route("/orders/{id}/workflow") workflow(@path id: string): ListResponse<OrderWorkflowLine>;
+  @post @route("/orders/{id}/plan") plan(@path id: string, @body orderPlanBody: OrderPlanBody): CreatedResponse<null>;
+  @get @route("/planned-orders-for-week/{week}") plannedOrderLines(@path week: string): ListResponse<PlannedOrderLine>;
+  @patch @route("/planned-order-line/{id}") updatePlannedOrderLine(@path id: string, @body body: PlannedOrderLineBody): UpdatedResponse<PlannedOrderLine>;
 }
 
 @route("/mes/machine-centers")

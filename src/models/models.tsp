@@ -58,6 +58,12 @@ model Order {
   @encode(DateTimeKnownEncoding.rfc7231)
   finalisation_date: utcDateTime;
 
+  @visibility("read")
+  part_count?: int64;
+
+  @visibility("read")
+  article_count?: int64;
+
   created_at: string;
   updated_at: string;
   tasks?: Array<OrderTask> | null;
