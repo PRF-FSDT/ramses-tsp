@@ -1467,7 +1467,7 @@ paths:
                   type: string
                 planned_start:
                   type: string
-                  format: http-date
+                  format: date-time
                 planned_duration_in_min:
                   type: integer
                   format: int64
@@ -2217,7 +2217,7 @@ components:
           type: integer
         finalisation_date:
           type: string
-          format: http-date
+          format: date-time
         part_count:
           type: integer
           format: int64
@@ -2336,7 +2336,7 @@ components:
           type: string
         finalisation_date:
           type: string
-          format: http-date
+          format: date-time
         finalisation_duration_days:
           type: integer
         prod_duration_days:
@@ -2419,7 +2419,7 @@ components:
           type: integer
         finalisation_date:
           type: string
-          format: http-date
+          format: date-time
         part_count:
           type: integer
           format: int64
@@ -2524,7 +2524,7 @@ components:
       properties:
         planned_start:
           type: string
-          format: http-date
+          format: date-time
         routing:
           type: array
           items:
@@ -2586,7 +2586,7 @@ components:
           nullable: true
         planned_start:
           type: string
-          format: http-date
+          format: date-time
           nullable: true
     OrderTaskBody:
       type: object
@@ -2652,7 +2652,7 @@ components:
           nullable: true
         planned_start:
           type: string
-          format: http-date
+          format: date-time
           nullable: true
     OrderWorkflowLine:
       type: object
@@ -2768,22 +2768,22 @@ components:
           readOnly: true
         finished_at:
           type: string
-          format: http-date
+          format: date-time
           nullable: true
           readOnly: true
         created_at:
           type: string
-          format: http-date
+          format: date-time
           readOnly: true
         updated_at:
           type: string
-          format: http-date
+          format: date-time
           readOnly: true
         planned_mc_no:
           type: string
         planned_start:
           type: string
-          format: http-date
+          format: date-time
         planned_duration_in_min:
           type: integer
           format: int64
@@ -2920,7 +2920,7 @@ components:
           type: number
         planned_start:
           type: string
-          format: http-date
+          format: date-time
     UpdateOrderBody:
       type: object
       properties:
@@ -2969,7 +2969,7 @@ components:
           type: integer
         finalisation_date:
           type: string
-          format: http-date
+          format: date-time
     User:
       type: object
       required:

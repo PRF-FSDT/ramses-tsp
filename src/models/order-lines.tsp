@@ -8,21 +8,21 @@ model PlannedOrderLine {
   @visibility("read") parts_count: int64;
   @visibility("read") finished_parts_count: int64;
 
-  @encode(DateTimeKnownEncoding.rfc7231)
+  @encode(DateTimeKnownEncoding.rfc3339)
   @visibility("read")
   finished_at: utcDateTime | null;
 
-  @encode(DateTimeKnownEncoding.rfc7231)
+  @encode(DateTimeKnownEncoding.rfc3339)
   @visibility("read")
   created_at: utcDateTime;
 
-  @encode(DateTimeKnownEncoding.rfc7231)
+  @encode(DateTimeKnownEncoding.rfc3339)
   @visibility("read")
   updated_at: utcDateTime;
 
   planned_mc_no: string;
 
-  @encode(DateTimeKnownEncoding.rfc7231)
+  @encode(DateTimeKnownEncoding.rfc3339)
   planned_start: utcDateTime;
 
   planned_duration_in_min: int64;

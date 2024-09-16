@@ -55,7 +55,7 @@ model Order {
   finalisation_duration_days: integer;
   prep_duration_days: integer;
 
-  @encode(DateTimeKnownEncoding.rfc7231)
+  @encode(DateTimeKnownEncoding.rfc3339)
   finalisation_date: utcDateTime;
 
   @visibility("read")
@@ -93,7 +93,7 @@ model UpdateOrderBody {
   finalisation_duration_days?: integer;
   prep_duration_days?: integer;
 
-  @encode(DateTimeKnownEncoding.rfc7231)
+  @encode(DateTimeKnownEncoding.rfc3339)
   finalisation_date?: utcDateTime;
 }
 
@@ -195,7 +195,7 @@ model OrderTaskUpdateBody {
   duration_in_min?: numeric | null;
   planned_resource_id?: numeric | null;
 
-  @encode(DateTimeKnownEncoding.rfc7231)
+  @encode(DateTimeKnownEncoding.rfc3339)
   planned_start?: utcDateTime | null;
 }
 
@@ -213,7 +213,7 @@ model OrderTask {
   duration_in_min?: numeric | null;
   planned_resource_id?: numeric | null;
 
-  @encode(DateTimeKnownEncoding.rfc7231)
+  @encode(DateTimeKnownEncoding.rfc3339)
   planned_start?: utcDateTime | null;
 }
 
@@ -246,7 +246,7 @@ model ToPlanTaskBody {
   duration_in_min: numeric;
   planned_resource_id: numeric;
 
-  @encode(DateTimeKnownEncoding.rfc7231)
+  @encode(DateTimeKnownEncoding.rfc3339)
   planned_start: utcDateTime;
 }
 
@@ -290,7 +290,7 @@ model OrderCreateBody {
   synced_order_no?: string | null;
   name: string;
 
-  @encode(DateTimeKnownEncoding.rfc7231)
+  @encode(DateTimeKnownEncoding.rfc3339)
   finalisation_date: utcDateTime;
 
   finalisation_duration_days?: integer;
@@ -307,7 +307,7 @@ model OrderWorkflowLine {
 }
 
 model OrderPlanBody {
-  @encode(DateTimeKnownEncoding.rfc7231)
+  @encode(DateTimeKnownEncoding.rfc3339)
   planned_start: utcDateTime;
 
   routing: {
