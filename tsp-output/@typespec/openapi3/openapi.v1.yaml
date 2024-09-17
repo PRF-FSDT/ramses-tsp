@@ -2812,7 +2812,7 @@ components:
           type: integer
           format: uint64
         user_id:
-          type: string
+          type: integer
         name:
           type: string
     ResourceBody:
@@ -2822,14 +2822,14 @@ components:
         - name
       properties:
         user_id:
-          type: string
+          type: integer
         name:
           type: string
     ResourceBodyUpdate:
       type: object
       properties:
         user_id:
-          type: string
+          type: integer
         name:
           type: string
     RoutingCode:

@@ -227,7 +227,7 @@ model SyncedOrder {
 }
 
 model ResourceBody {
-  user_id: string;
+  user_id: integer;
   name: string;
 }
 
