@@ -107,7 +107,7 @@ model OrderAttachment {
 
 model OrderCompositionLine {
   @key id: uint64;
-  parent_id?: uint64 | null;
+  parent_id?: string | null;
   order_id: uint64;
   order_no: string;
   no: string;

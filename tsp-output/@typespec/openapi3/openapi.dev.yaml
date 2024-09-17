@@ -2276,8 +2276,7 @@ components:
           type: integer
           format: uint64
         parent_id:
-          type: integer
-          format: uint64
+          type: string
           nullable: true
         order_id:
           type: integer
