@@ -57,6 +57,13 @@ model DeletedReturn {
   @statusCode statusCode: 204;
 }
 
+model SuccessReturn {
+  @statusCode statusCode: 200;
+  @body body: {
+    message: string;
+  };
+}
+
 alias ListResponse<T> = Array<T> | ValidationError;
 alias PaginatedResponse<T> = PaginatedReturn<T> | NotFoundError;
 alias CreatedResponse<T> = CreatedReturn<T> | ValidationError;
@@ -65,3 +72,4 @@ alias DeletedResponse = DeletedReturn;
 alias RecordResponse<T> = RecordReturn<T> | NotFoundError;
 alias ReadResponse<T> = T | NotFoundError;
 alias ActionResponse = ActionReturn | NotFoundError;
+alias SuccessResponse = SuccessReturn | ValidationError;

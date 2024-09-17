@@ -170,7 +170,7 @@ interface Users {
 @tag("Production Planning")
 interface ProductionPlanningOrders {
   @get @route("/orders/{id}/workflow") workflow(@path id: string): ListResponse<OrderWorkflowLine>;
-  @post @route("/orders/{id}/plan") plan(@path id: string, @body orderPlanBody: OrderPlanBody): CreatedResponse<null>;
+  @post @route("/orders/{id}/plan") plan(@path id: string, @body orderPlanBody: OrderPlanBody): SuccessResponse;
   @get @route("/planned-orders-for-week/{week}") plannedOrderLines(@path week: string): ListResponse<PlannedOrderLine>;
   @patch @route("/planned-order-line/{id}") updatePlannedOrderLine(@path id: string, @body body: PlannedOrderLineBody): UpdatedResponse<PlannedOrderLine>;
 }
