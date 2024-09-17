@@ -55,8 +55,7 @@ model Order {
   finalisation_duration_days: integer;
   prep_duration_days: integer;
 
-  @encode(DateTimeKnownEncoding.rfc3339)
-  finalisation_date: utcDateTime;
+  finalisation_date: plainDate;
 
   @visibility("read")
   part_count?: int64;
