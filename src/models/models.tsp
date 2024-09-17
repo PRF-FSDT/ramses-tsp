@@ -67,6 +67,7 @@ model Order {
   created_at: string;
   updated_at: string;
   tasks?: Array<OrderTask> | null;
+  plannedOrderLines: PlannedOrderLine[];
   //@added(Versions.dev) ext_created_at: offsetDateTime;
 }
 
@@ -201,7 +202,7 @@ model OrderTaskUpdateBody {
 
 model OrderTask {
   @key id: uint64;
-  order_id: string;
+  order_id: integer;
   type: OrderTaskType;
   title: string;
   should_be_planned: boolean;
