@@ -64,8 +64,12 @@ model Order {
   @visibility("read")
   article_count?: int64;
 
-  created_at: string;
-  updated_at: string;
+  @encode(DateTimeKnownEncoding.rfc3339)
+  created_at: utcDateTime;
+
+  @encode(DateTimeKnownEncoding.rfc3339)
+  updated_at: utcDateTime;
+
   tasks?: Array<OrderTask> | null;
   plannedOrderLines: PlannedOrderLine[];
   //@added(Versions.dev) ext_created_at: offsetDateTime;
