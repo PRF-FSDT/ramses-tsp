@@ -54,7 +54,6 @@ model Order {
   prod_duration_days: integer;
   finalisation_duration_days: integer;
   prep_duration_days: integer;
-
   finalisation_date: plainDate;
 
   @visibility("read")
@@ -219,9 +218,26 @@ model OrderTask {
 
 model SyncedOrder {
   @key id: uint64;
+  no: string;
   name: string;
-  client_no: string;
-  client_name: string;
+  description?: string;
+  notes?: string;
+  status?: string;
+  client_no?: string;
+  client_name?: string;
+  client_address_line1?: string | null;
+  client_street?: string | null;
+  client_street_no?: string | null;
+  client_postal_code?: string | null;
+  client_city?: string | null;
+  owner?: string | null;
+  responsible?: string | null;
+  employee?: string | null;
+  drawing_no?: string | null;
+  location?: string | null;
+  prod_duration_days?: integer | null;
+  finalisation_duration_days?: integer | null;
+  prep_duration_days?: integer | null;
   project_manager: string;
 }
 
