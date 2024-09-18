@@ -2891,20 +2891,66 @@ components:
       type: object
       required:
         - id
+        - no
         - name
-        - client_no
-        - client_name
         - project_manager
       properties:
         id:
           type: integer
           format: uint64
+        no:
+          type: string
         name:
+          type: string
+        description:
+          type: string
+        notes:
+          type: string
+        status:
           type: string
         client_no:
           type: string
         client_name:
           type: string
+        client_address_line1:
+          type: string
+          nullable: true
+        client_street:
+          type: string
+          nullable: true
+        client_street_no:
+          type: string
+          nullable: true
+        client_postal_code:
+          type: string
+          nullable: true
+        client_city:
+          type: string
+          nullable: true
+        owner:
+          type: string
+          nullable: true
+        responsible:
+          type: string
+          nullable: true
+        employee:
+          type: string
+          nullable: true
+        drawing_no:
+          type: string
+          nullable: true
+        location:
+          type: string
+          nullable: true
+        prod_duration_days:
+          type: integer
+          nullable: true
+        finalisation_duration_days:
+          type: integer
+          nullable: true
+        prep_duration_days:
+          type: integer
+          nullable: true
         project_manager:
           type: string
     ToPlanTaskBody:
