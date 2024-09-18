@@ -2903,7 +2903,6 @@ components:
         - id
         - no
         - name
-        - project_manager
       properties:
         id:
           type: integer
@@ -2961,8 +2960,6 @@ components:
         prep_duration_days:
           type: integer
           nullable: true
-        project_manager:
-          type: string
     ToPlanTaskBody:
       type: object
       required:

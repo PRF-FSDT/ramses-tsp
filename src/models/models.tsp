@@ -238,7 +238,6 @@ model SyncedOrder {
   prod_duration_days?: integer | null;
   finalisation_duration_days?: integer | null;
   prep_duration_days?: integer | null;
-  project_manager: string;
 }
 
 model ResourceBody {
