@@ -2173,6 +2173,7 @@ components:
         - finalisation_date
         - created_at
         - updated_at
+        - plannedOrderLines
       properties:
         id:
           type: integer
@@ -2240,6 +2241,10 @@ components:
           items:
             $ref: '#/components/schemas/OrderTask'
           nullable: true
+        plannedOrderLines:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlannedOrderLine'
     OrderAttachment:
       type: object
       required:
@@ -2374,6 +2379,7 @@ components:
         - finalisation_date
         - created_at
         - updated_at
+        - plannedOrderLines
       properties:
         id:
           type: integer
@@ -2441,6 +2447,10 @@ components:
           items:
             $ref: '#/components/schemas/OrderTask'
           nullable: true
+        plannedOrderLines:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlannedOrderLine'
     OrderMaterial:
       type: object
       required:
