@@ -65,7 +65,7 @@ model Order {
   created_at: string;
   updated_at: string;
   tasks?: Array<OrderTask> | null;
-  plannedOrderLines: PlannedOrderLine[];
+  plannedOrderLines?: Array<PlannedOrderLine> | null;
   //@added(Versions.dev) ext_created_at: offsetDateTime;
 }
 
@@ -240,6 +240,35 @@ model SyncedOrder {
   prep_duration_days?: integer | null;
 }
 
+model PlannedOrderLine {
+  @key id: int64;
+  order_no: string | null;
+  order_name: string | null;
+  order_descr: string | null;
+  routing_code: string;
+  status: string;
+  client_no: string;
+  client_name: string;
+  planned_mc_no: string;
+  planned_start: string;
+  planned_duration_in_min: numeric;
+  parts_count: numeric;
+  finished_parts_count: numeric;
+  finished_at: string | null;
+}
+
+model PlannedComponentRoutingLine {
+  @key id: int64;
+  order_no: string;
+  no: string;
+  part_no: string;
+  description: string;
+  qty: numeric;
+  routing_no: string;
+  status: string;
+  finished_at: string | null;
+}
+
 model ResourceBody {
   user_id: integer;
   name: string;
@@ -376,4 +405,20 @@ model OrderMaterialCsvRequest {
   @query excludePurchaseParts?: boolean;
   @query excludeFittings?: boolean;
   @query excludeEdging?: boolean;
+}
+
+model McPlannedOrdersRequest {
+  ...PaginatedRequest;
+  @query machine_center_no: string;
+}
+
+model McOrderComponentsRequest {
+  ...PaginatedRequest;
+  @query machine_center_no: string;
+  @query order_no: string;
+}
+
+model McRegisterOutputRequest {
+  @query part_code: string;
+  @query machine_center_no: string;
 }

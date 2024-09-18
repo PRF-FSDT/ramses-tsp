@@ -18,6 +18,8 @@ tags:
   - name: Machine Centers
   - name: Machine Types
   - name: Routing Codes
+  - name: Prod Overview
+  - name: Machine Center
 paths:
   /login:
     post:
@@ -81,6 +83,113 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MeResponse'
+  /mes/machine-center/order-components:
+    get:
+      tags:
+        - Machine Center
+      operationId: MesMachineCenter_getOrderComponents
+      parameters:
+        - $ref: '#/components/parameters/PaginatedRequest.page'
+        - $ref: '#/components/parameters/PaginatedRequest.perPage'
+        - $ref: '#/components/parameters/PaginatedRequest.search'
+        - $ref: '#/components/parameters/McOrderComponentsRequest.machine_center_no'
+        - $ref: '#/components/parameters/McOrderComponentsRequest.order_no'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - links
+                  - meta
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PlannedComponentRoutingLine'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                  filters:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FilterOption'
+        '404':
+          description: The server cannot find the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+  /mes/machine-center/orders:
+    get:
+      tags:
+        - Machine Center
+      operationId: MesMachineCenter_getOrders
+      parameters:
+        - $ref: '#/components/parameters/PaginatedRequest.page'
+        - $ref: '#/components/parameters/PaginatedRequest.perPage'
+        - $ref: '#/components/parameters/PaginatedRequest.search'
+        - $ref: '#/components/parameters/McPlannedOrdersRequest.machine_center_no'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - links
+                  - meta
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PlannedOrderLine'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                  filters:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FilterOption'
+        '404':
+          description: The server cannot find the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+  /mes/machine-center/register-output:
+    post:
+      tags:
+        - Machine Center
+      operationId: MesMachineCenter_list
+      parameters:
+        - $ref: '#/components/parameters/McRegisterOutputRequest.part_code'
+        - $ref: '#/components/parameters/McRegisterOutputRequest.machine_center_no'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
   /mes/machine-centers:
     get:
       tags:
@@ -297,6 +406,53 @@ paths:
       responses:
         '204':
           description: 'There is no content to send for this request, but the headers may be useful. '
+  /mes/prod-overview:
+    get:
+      tags:
+        - Prod Overview
+      operationId: MesProdOverview_list
+      parameters:
+        - $ref: '#/components/parameters/PaginatedRequest.page'
+        - $ref: '#/components/parameters/PaginatedRequest.perPage'
+        - $ref: '#/components/parameters/PaginatedRequest.search'
+        - $ref: '#/components/parameters/PaginatedSortableRequest.sort_dir'
+        - $ref: '#/components/parameters/PaginatedSortableRequest.sort_by'
+        - $ref: '#/components/parameters/OrderIndexFilterRequest.status'
+        - $ref: '#/components/parameters/OrderIndexFilterRequest.owner'
+        - $ref: '#/components/parameters/OrderIndexFilterRequest.client_name'
+        - $ref: '#/components/parameters/OrderIndexFilterRequest.finalisation_date_from'
+        - $ref: '#/components/parameters/OrderIndexFilterRequest.finalisation_date_until'
+        - $ref: '#/components/parameters/OrderIndexFilterRequest.include'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - links
+                  - meta
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Order'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                  filters:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FilterOption'
+        '404':
+          description: The server cannot find the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
   /mes/routing-codes:
     get:
       tags:
@@ -1721,6 +1877,36 @@ paths:
           description: 'There is no content to send for this request, but the headers may be useful. '
 components:
   parameters:
+    McOrderComponentsRequest.machine_center_no:
+      name: machine_center_no
+      in: query
+      required: true
+      schema:
+        type: string
+    McOrderComponentsRequest.order_no:
+      name: order_no
+      in: query
+      required: true
+      schema:
+        type: string
+    McPlannedOrdersRequest.machine_center_no:
+      name: machine_center_no
+      in: query
+      required: true
+      schema:
+        type: string
+    McRegisterOutputRequest.machine_center_no:
+      name: machine_center_no
+      in: query
+      required: true
+      schema:
+        type: string
+    McRegisterOutputRequest.part_code:
+      name: part_code
+      in: query
+      required: true
+      schema:
+        type: string
     OrderCompositionLineRequest.parentId:
       name: parentId
       in: query
@@ -2173,7 +2359,6 @@ components:
         - finalisation_date
         - created_at
         - updated_at
-        - plannedOrderLines
       properties:
         id:
           type: integer
@@ -2245,6 +2430,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PlannedOrderLine'
+          nullable: true
     OrderAttachment:
       type: object
       required:
@@ -2379,7 +2565,6 @@ components:
         - finalisation_date
         - created_at
         - updated_at
-        - plannedOrderLines
       properties:
         id:
           type: integer
@@ -2451,6 +2636,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PlannedOrderLine'
+          nullable: true
     OrderMaterial:
       type: object
       required:
@@ -2735,72 +2921,90 @@ components:
         total:
           type: integer
           format: int32
+    PlannedComponentRoutingLine:
+      type: object
+      required:
+        - id
+        - order_no
+        - no
+        - part_no
+        - description
+        - qty
+        - routing_no
+        - status
+        - finished_at
+      properties:
+        id:
+          type: integer
+          format: int64
+        order_no:
+          type: string
+        no:
+          type: string
+        part_no:
+          type: string
+        description:
+          type: string
+        qty:
+          type: number
+        routing_no:
+          type: string
+        status:
+          type: string
+        finished_at:
+          type: string
+          nullable: true
     PlannedOrderLine:
       type: object
       required:
         - id
         - order_no
+        - order_name
+        - order_descr
         - routing_code
-        - description
+        - status
         - client_no
         - client_name
-        - parts_count
-        - finished_parts_count
-        - finished_at
-        - created_at
-        - updated_at
         - planned_mc_no
         - planned_start
         - planned_duration_in_min
+        - parts_count
+        - finished_parts_count
+        - finished_at
       properties:
         id:
           type: integer
           format: int64
-          readOnly: true
         order_no:
           type: string
-          readOnly: true
+          nullable: true
+        order_name:
+          type: string
+          nullable: true
+        order_descr:
+          type: string
+          nullable: true
         routing_code:
           type: string
-          readOnly: true
-        description:
+        status:
           type: string
-          readOnly: true
         client_no:
           type: string
-          readOnly: true
         client_name:
           type: string
-          readOnly: true
-        parts_count:
-          type: integer
-          format: int64
-          readOnly: true
-        finished_parts_count:
-          type: integer
-          format: int64
-          readOnly: true
-        finished_at:
-          type: string
-          format: date-time
-          nullable: true
-          readOnly: true
-        created_at:
-          type: string
-          format: date-time
-          readOnly: true
-        updated_at:
-          type: string
-          format: date-time
-          readOnly: true
         planned_mc_no:
           type: string
         planned_start:
           type: string
-          format: date-time
         planned_duration_in_min:
-          type: integer
-          format: int64
+          type: number
+        parts_count:
+          type: number
+        finished_parts_count:
+          type: number
+        finished_at:
+          type: string
+          nullable: true
     Resource:
       type: object
       required:

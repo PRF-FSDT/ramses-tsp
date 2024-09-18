@@ -201,3 +201,17 @@ interface RoutingCodes {
   @patch @route("{id}") update(@path id: string, @body MachineBody: RoutingCodeBody): UpdatedResponse<RoutingCode>;
   @delete delete(@path id: string): DeletedResponse;
 }
+
+@route("/mes/prod-overview")
+@tag("Prod Overview")
+interface MesProdOverview {
+  @get list(...OrderIndexFilterRequest): PaginatedResponse<Order>;
+}
+
+@route("/mes/machine-center")
+@tag("Machine Center")
+interface MesMachineCenter {
+  @get @route("/orders") getOrders(...McPlannedOrdersRequest): PaginatedResponse<PlannedOrderLine>;
+  @get @route("/order-components") getOrderComponents(...McOrderComponentsRequest): PaginatedResponse<PlannedComponentRoutingLine>;
+  @post @route("/register-output") list(...McRegisterOutputRequest): SuccessResponse;
+}
