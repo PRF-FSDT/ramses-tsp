@@ -65,7 +65,7 @@ model Order {
   created_at: string;
   updated_at: string;
   tasks?: Array<OrderTask> | null;
-  plannedOrderLines?: Array<PlannedOrderLine> | null;
+  plannedOrderLines?: Array<PlannedOrderLineWithOrderInfo> | null;
   //@added(Versions.dev) ext_created_at: offsetDateTime;
 }
 
@@ -240,7 +240,7 @@ model SyncedOrder {
   prep_duration_days?: integer | null;
 }
 
-model PlannedOrderLine {
+model PlannedOrderLineWithOrderInfo {
   @key id: int64;
   order_no: string | null;
   order_name: string | null;

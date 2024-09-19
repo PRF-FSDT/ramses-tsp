@@ -2429,7 +2429,7 @@ components:
         plannedOrderLines:
           type: array
           items:
-            $ref: '#/components/schemas/PlannedOrderLine'
+            $ref: '#/components/schemas/PlannedOrderLineWithOrderInfo'
           nullable: true
     OrderAttachment:
       type: object
@@ -2635,7 +2635,7 @@ components:
         plannedOrderLines:
           type: array
           items:
-            $ref: '#/components/schemas/PlannedOrderLine'
+            $ref: '#/components/schemas/PlannedOrderLineWithOrderInfo'
           nullable: true
     OrderMaterial:
       type: object
@@ -2955,6 +2955,72 @@ components:
           type: string
           nullable: true
     PlannedOrderLine:
+      type: object
+      required:
+        - id
+        - order_no
+        - routing_code
+        - description
+        - client_no
+        - client_name
+        - parts_count
+        - finished_parts_count
+        - finished_at
+        - created_at
+        - updated_at
+        - planned_mc_no
+        - planned_start
+        - planned_duration_in_min
+      properties:
+        id:
+          type: integer
+          format: int64
+          readOnly: true
+        order_no:
+          type: string
+          readOnly: true
+        routing_code:
+          type: string
+          readOnly: true
+        description:
+          type: string
+          readOnly: true
+        client_no:
+          type: string
+          readOnly: true
+        client_name:
+          type: string
+          readOnly: true
+        parts_count:
+          type: integer
+          format: int64
+          readOnly: true
+        finished_parts_count:
+          type: integer
+          format: int64
+          readOnly: true
+        finished_at:
+          type: string
+          format: date-time
+          nullable: true
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        planned_mc_no:
+          type: string
+        planned_start:
+          type: string
+          format: date-time
+        planned_duration_in_min:
+          type: integer
+          format: int64
+    PlannedOrderLineWithOrderInfo:
       type: object
       required:
         - id
