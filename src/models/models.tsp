@@ -65,7 +65,7 @@ model Order {
   created_at: string;
   updated_at: string;
   tasks?: Array<OrderTask> | null;
-  plannedOrderLines?: Array<PlannedOrderLineWithOrderInfo> | null;
+  planned_order_lines?: Array<PlannedOrderLineWithOrderInfo> | null;
   //@added(Versions.dev) ext_created_at: offsetDateTime;
 }
 

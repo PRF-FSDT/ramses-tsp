@@ -12,14 +12,6 @@ model PlannedOrderLine {
   @visibility("read")
   finished_at: utcDateTime | null;
 
-  @encode(DateTimeKnownEncoding.rfc3339)
-  @visibility("read")
-  created_at: utcDateTime;
-
-  @encode(DateTimeKnownEncoding.rfc3339)
-  @visibility("read")
-  updated_at: utcDateTime;
-
   planned_mc_no: string;
 
   @encode(DateTimeKnownEncoding.rfc3339)

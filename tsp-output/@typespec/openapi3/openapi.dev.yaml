@@ -2426,7 +2426,7 @@ components:
           items:
             $ref: '#/components/schemas/OrderTask'
           nullable: true
-        plannedOrderLines:
+        planned_order_lines:
           type: array
           items:
             $ref: '#/components/schemas/PlannedOrderLineWithOrderInfo'
@@ -2632,7 +2632,7 @@ components:
           items:
             $ref: '#/components/schemas/OrderTask'
           nullable: true
-        plannedOrderLines:
+        planned_order_lines:
           type: array
           items:
             $ref: '#/components/schemas/PlannedOrderLineWithOrderInfo'
@@ -2966,8 +2966,6 @@ components:
         - parts_count
         - finished_parts_count
         - finished_at
-        - created_at
-        - updated_at
         - planned_mc_no
         - planned_start
         - planned_duration_in_min
@@ -3003,14 +3001,6 @@ components:
           type: string
           format: date-time
           nullable: true
-          readOnly: true
-        created_at:
-          type: string
-          format: date-time
-          readOnly: true
-        updated_at:
-          type: string
-          format: date-time
           readOnly: true
         planned_mc_no:
           type: string
