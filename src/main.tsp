@@ -21,14 +21,21 @@ using TypeSpec.Rest;
 })
 namespace RamsesService;
 
-//ORDER MANAGER
-
+//AUTH
 @tag("Auth")
 interface Auth {
   @route("login") @post postLogin(email: string, password: string, device_name: string): LoginResponse | ValidationError;
   @route("logout") @post postLogout(): LogoutResponse;
   @route("me") @get getMe(): MeResponse;
 }
+
+//DEMO
+@tag("Demo")
+interface Demo {
+  @route("/reset-demo") @post resetDemo(): SuccessResponse;
+}
+
+//ORDER MANAGER
 
 //Model: Orders
 @route("/order-manager/orders")

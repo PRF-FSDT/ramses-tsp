@@ -4,6 +4,7 @@ info:
   version: v1
 tags:
   - name: Auth
+  - name: Demo
   - name: Orders
   - name: Importable Orders
   - name: Attachments
@@ -1653,6 +1654,30 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/PlannedOrderLine'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+  /reset-demo:
+    post:
+      tags:
+        - Demo
+      operationId: Demo_resetDemo
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
         '422':
           description: Client error
           content:
