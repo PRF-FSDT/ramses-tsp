@@ -220,5 +220,5 @@ interface MesProdOverview {
 interface MesMachineCenter {
   @get @route("/orders") getOrders(...McPlannedOrdersRequest): PaginatedResponse<PlannedOrderLine>;
   @get @route("/order-components") getOrderComponents(...McOrderComponentsRequest): PaginatedResponse<PlannedComponentRoutingLine>;
-  @post @route("/register-output") list(...McRegisterOutputRequest): SuccessResponse;
+  @post @route("/register-output") registerOutput(...McRegisterOutputRequest): SuccessResponse;
 }

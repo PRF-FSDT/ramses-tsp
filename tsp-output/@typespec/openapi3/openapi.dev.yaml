@@ -169,7 +169,7 @@ paths:
     post:
       tags:
         - Machine Center
-      operationId: MesMachineCenter_list
+      operationId: MesMachineCenter_registerOutput
       parameters:
         - $ref: '#/components/parameters/McRegisterOutputRequest.part_code'
         - $ref: '#/components/parameters/McRegisterOutputRequest.machine_center_no'
