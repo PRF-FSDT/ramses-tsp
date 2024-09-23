@@ -191,6 +191,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ValidationError'
+  /mes/machine-center/scan-info:
+    get:
+      tags:
+        - Machine Center
+      operationId: MesMachineCenter_getScanInfo
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScanInfoResponse'
+        '404':
+          description: The server cannot find the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScanInfoRequest'
   /mes/machine-centers:
     get:
       tags:
@@ -3182,6 +3207,37 @@ components:
           type: string
           nullable: true
           example: CNC
+    ScanInfoRequest:
+      type: object
+      required:
+        - scancode
+      properties:
+        scancode:
+          type: string
+    ScanInfoResponse:
+      type: object
+      required:
+        - part_no
+        - nc_no
+        - sorting_status
+        - sorting_center_no
+        - error_message
+      properties:
+        part_no:
+          type: string
+          nullable: true
+        nc_no:
+          type: string
+          nullable: true
+        sorting_status:
+          type: string
+          nullable: true
+        sorting_center_no:
+          type: string
+          nullable: true
+        error_message:
+          type: string
+          nullable: true
     SyncedOrder:
       type: object
       required:

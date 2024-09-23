@@ -361,6 +361,18 @@ model OrderPlanBody {
   }[];
 }
 
+model ScanInfoRequest {
+  scancode: string;
+}
+
+model ScanInfoResponse {
+  part_no: string | null;
+  nc_no: string | null;
+  sorting_status: string | null;
+  sorting_center_no: string | null;
+  error_message: string | null;
+}
+
 model PaginatedRequest {
   @query page?: int32;
   @query perPage?: int32;
