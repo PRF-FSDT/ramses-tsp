@@ -3,6 +3,8 @@ import "@typespec/rest";
 import "@typespec/openapi3";
 import "@typespec/versioning";
 
+import "./scanners.tsp";
+
 using TypeSpec.Versioning;
 using TypeSpec.Http;
 using TypeSpec.Rest;
@@ -15,6 +17,11 @@ model MachineCenter {
   @example("CNC Homag 1") name: string;
   @example("CNC_1") scan_code: string;
   @example("CNC") machine_type_code: string;
+}
+
+model MachineCenterWithScanners {
+  ...MachineCenter;
+  scanners: Scanner[];
 }
 
 model MachineCenterBody {

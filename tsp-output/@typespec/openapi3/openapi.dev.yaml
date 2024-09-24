@@ -242,7 +242,7 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: '#/components/schemas/MachineCenter'
+                      $ref: '#/components/schemas/MachineCenterWithScanners'
                   links:
                     $ref: '#/components/schemas/PaginationLinks'
                   meta:
@@ -2283,6 +2283,35 @@ components:
         machine_type_code:
           type: string
           example: CNC
+    MachineCenterWithScanners:
+      type: object
+      required:
+        - id
+        - no
+        - name
+        - scan_code
+        - machine_type_code
+        - scanners
+      properties:
+        id:
+          type: integer
+          format: int64
+        no:
+          type: string
+          example: CNC_1
+        name:
+          type: string
+          example: CNC Homag 1
+        scan_code:
+          type: string
+          example: CNC_1
+        machine_type_code:
+          type: string
+          example: CNC
+        scanners:
+          type: array
+          items:
+            $ref: '#/components/schemas/Scanner'
     MachineType:
       type: object
       required:
@@ -3238,6 +3267,19 @@ components:
         error_message:
           type: string
           nullable: true
+    Scanner:
+      type: object
+      required:
+        - device_no
+        - device_name
+        - linked_mc
+      properties:
+        device_no:
+          type: string
+        device_name:
+          type: string
+        linked_mc:
+          type: string
     SyncedOrder:
       type: object
       required:
