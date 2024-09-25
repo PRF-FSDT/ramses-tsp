@@ -3248,8 +3248,12 @@ components:
       required:
         - part_no
         - nc_no
-        - sorting_status
-        - sorting_center_no
+        - last_scanned_position_type
+        - last_scanned_position_no
+        - move_to_position_type
+        - move_to_position_no
+        - requires_sorting
+        - take_from_position_no
         - error_message
       properties:
         part_no:
@@ -3258,10 +3262,27 @@ components:
         nc_no:
           type: string
           nullable: true
-        sorting_status:
+        last_scanned_position_type:
+          type: string
+          enum:
+            - machine-center
+            - storage-location
+          nullable: true
+        last_scanned_position_no:
           type: string
           nullable: true
-        sorting_center_no:
+        move_to_position_type:
+          type: string
+          enum:
+            - machine-center
+            - storage-location
+          nullable: true
+        move_to_position_no:
+          type: string
+          nullable: true
+        requires_sorting:
+          type: boolean
+        take_from_position_no:
           type: string
           nullable: true
         error_message:

@@ -365,11 +365,17 @@ model ScanInfoRequest {
   scancode: string;
 }
 
+alias PositionType = "machine-center" | "storage-location" | null;
+
 model ScanInfoResponse {
   part_no: string | null;
   nc_no: string | null;
-  sorting_status: string | null;
-  sorting_center_no: string | null;
+  last_scanned_position_type: PositionType;
+  last_scanned_position_no: string | null;
+  move_to_position_type: PositionType;
+  move_to_position_no: string | null;
+  requires_sorting: boolean;
+  take_from_position_no: string | null;
   error_message: string | null;
 }
 
