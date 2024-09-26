@@ -362,7 +362,7 @@ model OrderPlanBody {
 }
 
 model ScanInfoRequest {
-  scancode: string;
+  @query scancode: string;
 }
 
 alias PositionType = "machine-center" | "storage-location" | null;

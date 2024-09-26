@@ -196,7 +196,8 @@ paths:
       tags:
         - Machine Center
       operationId: MesMachineCenter_getScanInfo
-      parameters: []
+      parameters:
+        - $ref: '#/components/parameters/ScanInfoRequest'
       responses:
         '200':
           description: The request has succeeded.
@@ -210,12 +211,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ScanInfoRequest'
   /mes/machine-centers:
     get:
       tags:
@@ -2088,6 +2083,12 @@ components:
         enum:
           - asc
           - desc
+    ScanInfoRequest:
+      name: scancode
+      in: query
+      required: true
+      schema:
+        type: string
   schemas:
     AdditionalPurchaseLine:
       type: object
@@ -3236,13 +3237,6 @@ components:
           type: string
           nullable: true
           example: CNC
-    ScanInfoRequest:
-      type: object
-      required:
-        - scancode
-      properties:
-        scancode:
-          type: string
     ScanInfoResponse:
       type: object
       required:
