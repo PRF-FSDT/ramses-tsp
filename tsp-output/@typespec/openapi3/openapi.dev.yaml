@@ -3012,6 +3012,7 @@ components:
         - qty
         - routing_no
         - status
+        - take_from_position_no
         - finished_at
       properties:
         id:
@@ -3031,6 +3032,9 @@ components:
           type: string
         status:
           type: string
+        take_from_position_no:
+          type: string
+          nullable: true
         finished_at:
           type: string
           nullable: true
