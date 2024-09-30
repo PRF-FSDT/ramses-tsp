@@ -187,7 +187,7 @@ interface ProductionPlanningOrders {
 interface MachineCenters {
   @get list(...PaginatedSortableRequest): PaginatedResponse<MachineCenterWithScanners>;
   @post @route("/") post(@body MachineBody: MachineCenterBody): CreatedResponse<MachineCenter>;
-  @patch @route("{id}") update(@path id: string, @body MachineBody: MachineCenterBody): UpdatedResponse<MachineCenter>;
+  @patch @route("{id}") update(@path id: string, @body MachineBody: MachineCenterPatchBody): UpdatedResponse<MachineCenter>;
   @delete delete(@path id: string): DeletedResponse;
 }
 

@@ -17,6 +17,7 @@ model MachineCenter {
   @example("CNC Homag 1") name: string;
   @example("CNC_1") scan_code: string;
   @example("CNC") machine_type_code: string;
+  @example(1) active_broken_part_reason_id: int64 | null;
 }
 
 model MachineCenterWithScanners {
@@ -29,4 +30,12 @@ model MachineCenterBody {
   name: MachineCenter.name;
   scan_code: MachineCenter.scan_code;
   machine_type_code: MachineCenter.machine_type_code;
+}
+
+model MachineCenterPatchBody {
+  no?: MachineCenter.no;
+  name?: MachineCenter.name;
+  scan_code?: MachineCenter.scan_code;
+  machine_type_code?: MachineCenter.machine_type_code;
+  active_broken_part_reason_id?: MachineCenter.active_broken_part_reason_id;
 }

@@ -390,7 +390,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MachineCenterBodyUpdate'
+              $ref: '#/components/schemas/MachineCenterPatchBody'
     delete:
       tags:
         - Machine Centers
@@ -2360,6 +2360,7 @@ components:
         - name
         - scan_code
         - machine_type_code
+        - active_broken_part_reason_id
       properties:
         id:
           type: integer
@@ -2376,6 +2377,11 @@ components:
         machine_type_code:
           type: string
           example: CNC
+        active_broken_part_reason_id:
+          type: integer
+          format: int64
+          nullable: true
+          example: 1
     MachineCenterBody:
       type: object
       required:
@@ -2396,7 +2402,7 @@ components:
         machine_type_code:
           type: string
           example: CNC
-    MachineCenterBodyUpdate:
+    MachineCenterPatchBody:
       type: object
       properties:
         no:
@@ -2411,6 +2417,11 @@ components:
         machine_type_code:
           type: string
           example: CNC
+        active_broken_part_reason_id:
+          type: integer
+          format: int64
+          nullable: true
+          example: 1
     MachineCenterWithScanners:
       type: object
       required:
@@ -2419,6 +2430,7 @@ components:
         - name
         - scan_code
         - machine_type_code
+        - active_broken_part_reason_id
         - scanners
       properties:
         id:
@@ -2436,6 +2448,11 @@ components:
         machine_type_code:
           type: string
           example: CNC
+        active_broken_part_reason_id:
+          type: integer
+          format: int64
+          nullable: true
+          example: 1
         scanners:
           type: array
           items:
