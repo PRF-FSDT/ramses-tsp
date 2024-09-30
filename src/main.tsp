@@ -223,3 +223,15 @@ interface MesMachineCenter {
   @get @route("/scan-info") getScanInfo(...ScanInfoRequest): ScanInfoResponse | NotFoundError;
   @post @route("/register-output") registerOutput(...McRegisterOutputRequest): SuccessResponse;
 }
+
+@route("/mes/broken-part-reasons")
+@tag("Broken Part Reasons")
+interface BrokenPartReasons {
+  @get list(...PaginatedSortableRequest): PaginatedResponse<BrokenPartReason>;
+}
+
+@route("/mes/broken-parts")
+@tag("Broken Parts")
+interface BrokenParts {
+  @get list(...PaginatedSortableRequest): PaginatedResponse<PlannedComponent>;
+}
