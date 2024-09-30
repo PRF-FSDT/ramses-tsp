@@ -233,5 +233,5 @@ interface BrokenPartReasons {
 @route("/mes/broken-parts")
 @tag("Broken Parts")
 interface BrokenParts {
-  @get list(...PaginatedSortableRequest): PaginatedResponse<PlannedComponent>;
+  @get list(...PaginatedSortableRequest): PaginatedResponse<BrokenPlannedComponent>;
 }

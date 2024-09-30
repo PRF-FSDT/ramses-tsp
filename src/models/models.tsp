@@ -257,13 +257,13 @@ model PlannedOrderLineWithOrderInfo {
   finished_at: string | null;
 }
 
-model PlannedComponent {
+model BrokenPlannedComponent {
   @key id: int64;
   order_no: string;
   part_no: string;
   ncno: string;
-  item_no: string;
-  plan_pos: string;
+  item_no: string | null;
+  plan_pos: string | null;
   broken_part_reason_id: numeric;
 }
 
