@@ -263,7 +263,7 @@ model BrokenPlannedComponent {
   part_no: string;
   ncno: string;
   item_no: string | null;
-  plan_pos: string | null;
+  plan_pos: string | "" | null;
   broken_part_reason_id: numeric;
 }
 

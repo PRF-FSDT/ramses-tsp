@@ -2259,7 +2259,11 @@ components:
           type: string
           nullable: true
         plan_pos:
-          type: string
+          anyOf:
+            - type: string
+            - type: string
+              enum:
+                - ''
           nullable: true
         broken_part_reason_id:
           type: number
