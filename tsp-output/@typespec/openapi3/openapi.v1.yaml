@@ -2577,6 +2577,7 @@ components:
         - client_country_code
         - drawing_no
         - location
+        - is_production_planned
         - prod_duration_days
         - finalisation_duration_days
         - prep_duration_days
@@ -2624,6 +2625,9 @@ components:
           type: string
         location:
           type: string
+        is_production_planned:
+          type: boolean
+          readOnly: true
         prod_duration_days:
           type: integer
         finalisation_duration_days:
@@ -2783,6 +2787,7 @@ components:
         - client_country_code
         - drawing_no
         - location
+        - is_production_planned
         - prod_duration_days
         - finalisation_duration_days
         - prep_duration_days
@@ -2830,6 +2835,9 @@ components:
           type: string
         location:
           type: string
+        is_production_planned:
+          type: boolean
+          readOnly: true
         prod_duration_days:
           type: integer
         finalisation_duration_days:

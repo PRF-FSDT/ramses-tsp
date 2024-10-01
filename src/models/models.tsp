@@ -51,6 +51,10 @@ model Order {
   ...Client;
   drawing_no: string;
   location: string;
+
+  @visibility("read")  
+  is_production_planned: boolean;
+
   prod_duration_days: integer;
   finalisation_duration_days: integer;
   prep_duration_days: integer;
