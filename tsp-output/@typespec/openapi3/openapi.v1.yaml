@@ -127,6 +127,74 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
+  /mes/broken-part-reasons/:
+    post:
+      tags:
+        - Broken Part Reasons
+      operationId: BrokenPartReasons_post
+      parameters: []
+      responses:
+        '201':
+          description: The request has succeeded and a new resource has been created as a result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BrokenPartReason'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BrokenPartReasonBody'
+  /mes/broken-part-reasons/{id}:
+    patch:
+      tags:
+        - Broken Part Reasons
+      operationId: BrokenPartReasons_update
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BrokenPartReason'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BrokenPartReasonBodyUpdate'
+    delete:
+      tags:
+        - Broken Part Reasons
+      operationId: BrokenPartReasons_delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: 'There is no content to send for this request, but the headers may be useful. '
   /mes/broken-parts:
     get:
       tags:
@@ -2235,6 +2303,19 @@ components:
           format: int32
         title:
           type: string
+      description: BrokenPartReason *
+    BrokenPartReasonBody:
+      type: object
+      required:
+        - title
+      properties:
+        title:
+          type: string
+    BrokenPartReasonBodyUpdate:
+      type: object
+      properties:
+        title:
+          type: string
     BrokenPlannedComponent:
       type: object
       required:
@@ -2267,6 +2348,7 @@ components:
           nullable: true
         broken_part_reason_id:
           type: number
+      description: (Broken) Planned Component *
     Client:
       type: object
       required:

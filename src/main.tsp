@@ -8,6 +8,7 @@ import "./models/machine-centers.tsp";
 import "./models/machine-types.tsp";
 import "./models/routing-codes.tsp";
 import "./models/order-lines.tsp";
+import "./models/broken-parts.tsp";
 
 import "./responses/responses.tsp";
 
@@ -228,6 +229,9 @@ interface MesMachineCenter {
 @tag("Broken Part Reasons")
 interface BrokenPartReasons {
   @get list(...PaginatedSortableRequest): PaginatedResponse<BrokenPartReason>;
+  @post @route("/") post(@body BrokenPartReasonBody: BrokenPartReasonBody): CreatedResponse<BrokenPartReason>;
+  @patch @route("{id}") update(@path id: string, @body BrokenPartReasonBody: BrokenPartReasonBody): UpdatedResponse<BrokenPartReason>;
+  @delete delete(@path id: string): DeletedResponse;
 }
 
 @route("/mes/broken-parts")
