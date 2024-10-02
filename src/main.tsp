@@ -238,4 +238,5 @@ interface BrokenPartReasons {
 @tag("Broken Parts")
 interface BrokenParts {
   @get list(...PaginatedSortableRequest): PaginatedResponse<BrokenPlannedComponent>;
+  @post @route("{id}/repair") repair(@path id: string): SuccessResponse | NotFoundError;
 }
