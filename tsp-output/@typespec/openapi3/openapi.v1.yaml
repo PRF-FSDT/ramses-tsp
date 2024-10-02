@@ -3519,6 +3519,7 @@ components:
         - last_scanned_position_no
         - move_to_position_type
         - move_to_position_no
+        - is_waiting_for_sorting_location
         - requires_sorting
         - take_from_position_no
         - error_message
@@ -3547,6 +3548,8 @@ components:
         move_to_position_no:
           type: string
           nullable: true
+        is_waiting_for_sorting_location:
+          type: boolean
         requires_sorting:
           type: boolean
         take_from_position_no:

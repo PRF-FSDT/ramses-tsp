@@ -379,6 +379,7 @@ model ScanInfoResponse {
   last_scanned_position_no: string | null;
   move_to_position_type: PositionType;
   move_to_position_no: string | null;
+  is_waiting_for_sorting_location: boolean;
   requires_sorting: boolean;
   take_from_position_no: string | null;
   error_message: string | null;
