@@ -271,6 +271,47 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ValidationError'
+  /mes/machine-center/grouped-order-components:
+    get:
+      tags:
+        - Machine Center
+      operationId: MesMachineCenter_getGroupedOrderComponents
+      parameters:
+        - $ref: '#/components/parameters/PaginatedRequest.page'
+        - $ref: '#/components/parameters/PaginatedRequest.perPage'
+        - $ref: '#/components/parameters/PaginatedRequest.search'
+        - $ref: '#/components/parameters/McOrderComponentsRequest.machine_center_no'
+        - $ref: '#/components/parameters/McOrderComponentsRequest.order_no'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - links
+                  - meta
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/GroupedPlannedComponentRoutingLine'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                  filters:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FilterOption'
+        '404':
+          description: The server cannot find the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
   /mes/machine-center/order-components:
     get:
       tags:
@@ -2448,6 +2489,18 @@ components:
           items:
             type: string
           nullable: true
+    GroupedPlannedComponentRoutingLine:
+      type: object
+      required:
+        - plan_pos
+        - component_lines
+      properties:
+        plan_pos:
+          type: string
+        component_lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlannedComponentRoutingLine'
     InternalServerError:
       type: object
       required:

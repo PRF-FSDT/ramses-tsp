@@ -274,6 +274,11 @@ model PlannedComponentRoutingLine {
   finished_at: string | null;
 }
 
+model GroupedPlannedComponentRoutingLine {
+  plan_pos: string;
+  component_lines: PlannedComponentRoutingLine[];
+}
+
 model ResourceBody {
   user_id: integer;
   name: string;

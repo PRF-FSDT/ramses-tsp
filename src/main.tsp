@@ -221,6 +221,7 @@ interface MesProdOverview {
 interface MesMachineCenter {
   @get @route("/orders") getOrders(...McPlannedOrdersRequest): PaginatedResponse<PlannedOrderLine>;
   @get @route("/order-components") getOrderComponents(...McOrderComponentsRequest): PaginatedResponse<PlannedComponentRoutingLine>;
+  @get @route("/grouped-order-components") getGroupedOrderComponents(...McOrderComponentsRequest): PaginatedResponse<GroupedPlannedComponentRoutingLine>;
   @get @route("/scan-info") getScanInfo(...ScanInfoRequest): ScanInfoResponse | NotFoundError;
   @post @route("/register-output") registerOutput(...McRegisterOutputRequest): SuccessResponse;
 }
