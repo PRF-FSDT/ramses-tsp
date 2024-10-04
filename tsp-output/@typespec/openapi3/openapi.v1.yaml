@@ -3040,7 +3040,7 @@ components:
         children:
           type: array
           items:
-            $ref: '#/components/schemas/OrderCompositionLine'
+            $ref: '#/components/schemas/OrderCompositionLineOld'
     OrderCreateBody:
       type: object
       required:

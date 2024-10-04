@@ -127,7 +127,7 @@ model OrderCompositionLineOld {
   material_no: string;
   barcode?: string | null;
   is_outsourced: boolean;
-  children: OrderCompositionLine[];
+  children: OrderCompositionLineOld[];
 }
 
 model OrderCompositionLine {
