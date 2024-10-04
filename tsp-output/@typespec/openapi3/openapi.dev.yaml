@@ -2895,10 +2895,10 @@ components:
     OrderComposition:
       type: object
       required:
-        - part_no
+        - plan_pos
         - children
       properties:
-        part_no:
+        plan_pos:
           type: string
         children:
           type: array

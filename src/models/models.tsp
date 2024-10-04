@@ -153,7 +153,7 @@ model OrderCompositionLine {
 }
 
 model OrderComposition {
-  part_no: string;
+  plan_pos: string;
   children: OrderCompositionLine[];
 }
 
