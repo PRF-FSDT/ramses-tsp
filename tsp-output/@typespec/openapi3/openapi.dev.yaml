@@ -1020,7 +1020,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OrderCompositionLine'
+                $ref: '#/components/schemas/OrderCompositionLineOld'
         '422':
           description: Client error
           content:
@@ -1556,7 +1556,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
-  /order-manager/orders/{id}/composition-lines:
+  /order-manager/orders/{id}/composition:
     get:
       tags:
         - Orders
@@ -1588,7 +1588,54 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: '#/components/schemas/OrderCompositionLine'
+                      $ref: '#/components/schemas/OrderComposition'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                  filters:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FilterOption'
+        '404':
+          description: The server cannot find the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+  /order-manager/orders/{id}/composition-lines:
+    get:
+      tags:
+        - Orders
+      operationId: Orders_getCompositionLinesDeprecated
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/PaginatedRequest.page'
+        - $ref: '#/components/parameters/PaginatedRequest.perPage'
+        - $ref: '#/components/parameters/PaginatedRequest.search'
+        - $ref: '#/components/parameters/PaginatedSortableRequest.sort_dir'
+        - $ref: '#/components/parameters/PaginatedSortableRequest.sort_by'
+        - $ref: '#/components/parameters/OrderCompositionLineRequest.parentId'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - links
+                  - meta
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/OrderCompositionLineOld'
                   links:
                     $ref: '#/components/schemas/PaginationLinks'
                   meta:
@@ -2845,7 +2892,85 @@ components:
           type: string
         path:
           type: string
+    OrderComposition:
+      type: object
+      required:
+        - part_no
+        - children
+      properties:
+        part_no:
+          type: string
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderCompositionLine'
     OrderCompositionLine:
+      type: object
+      required:
+        - id
+        - order_id
+        - order_no
+        - no
+        - material_no
+        - is_outsourced
+      properties:
+        id:
+          type: integer
+          format: uint64
+        parent_id:
+          type: string
+          nullable: true
+        order_id:
+          type: integer
+          format: uint64
+        order_no:
+          type: string
+        no:
+          type: string
+        type:
+          type: integer
+          format: uint16
+          nullable: true
+        part_type:
+          type: integer
+          format: uint16
+          nullable: true
+        ref:
+          type: string
+          nullable: true
+        part_no:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        destination:
+          type: string
+          nullable: true
+        length_mm:
+          type: number
+          nullable: true
+        width_mm:
+          type: number
+          nullable: true
+        height_mm:
+          type: number
+          nullable: true
+        surf_m2:
+          type: number
+          nullable: true
+        qty:
+          type: integer
+          format: uint64
+          nullable: true
+        material_no:
+          type: string
+        barcode:
+          type: string
+          nullable: true
+        is_outsourced:
+          type: boolean
+    OrderCompositionLineOld:
       type: object
       required:
         - id

@@ -52,8 +52,10 @@ interface Orders {
   @route("{id}/attachments") @get getAttachments(@path id: string, ...PaginatedRequest): PaginatedResponse<OrderAttachment>;
   @route("{id}/attachments") @post postAttachments(@path id: string): ActionResponse;
 
-  //composition lines
-  @route("{id}/composition-lines") @get getCompositionLines(@path id: string, ...OrderCompositionLineRequest): PaginatedResponse<OrderCompositionLine>;
+  //composition lines (deprecated)
+  @route("{id}/composition-lines") @get getCompositionLinesDeprecated(@path id: string, ...OrderCompositionLineRequest): PaginatedResponse<OrderCompositionLineOld>;
+  //composition lines (new)
+  @route("{id}/composition") @get getCompositionLines(@path id: string, ...OrderCompositionLineRequest): PaginatedResponse<OrderComposition>;
 
   //order tasks
   @route("{id}/order-tasks") @get getOrderTasks(@path id: string, ...OrderTaskFilterRequest): PaginatedResponse<OrderTask>;
@@ -106,7 +108,7 @@ interface OrderAttachments {
 @route("/order-manager/composition-lines")
 @tag("Composition Lines")
 interface OrderCompositionLines {
-  @patch @route("{id}") update(@path id: string, is_outsourced: boolean): UpdatedResponse<OrderCompositionLine>;
+  @patch @route("{id}") update(@path id: string, is_outsourced: boolean): UpdatedResponse<OrderCompositionLineOld>;
 }
 
 //Model: AdditionalPurchaseLine
