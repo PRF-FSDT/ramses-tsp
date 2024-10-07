@@ -3489,6 +3489,7 @@ components:
       type: object
       required:
         - id
+        - order_id
         - order_no
         - routing_code
         - description
@@ -3502,6 +3503,10 @@ components:
         - planned_duration_in_min
       properties:
         id:
+          type: integer
+          format: int64
+          readOnly: true
+        order_id:
           type: integer
           format: int64
           readOnly: true
