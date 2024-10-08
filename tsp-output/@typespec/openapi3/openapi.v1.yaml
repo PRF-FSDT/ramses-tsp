@@ -749,6 +749,29 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
+  /mes/orders/{id}/plan-positions/{planPosId}:
+    get:
+      tags:
+        - Prod Orders
+      operationId: MesOrders_getOrderPlanPosDetail
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: planPosId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlannedOrderPosition'
   /mes/prod-overview:
     get:
       tags:

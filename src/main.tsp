@@ -225,7 +225,7 @@ interface MesOrders {
   @get list(...OrderIndexFilterRequest): PaginatedResponse<Order>;
   //@get @route("/{id}") detail(@path id: string, ...OrderIndexFilterRequest): PaginatedResponse<Order>;
   @get @route("/{id}/plan-positions") getOrderPlanPositions(@path id: string, ...PaginatedSortableRequest): PaginatedResponse<PlannedOrderPosition>;
-  //@get @route("/{id}/plan-positions/{no}") getOrderPlanPosDetail(...OrderIndexFilterRequest): PaginatedResponse<Order>;
+  @get @route("/{id}/plan-positions/{planPosId}") getOrderPlanPosDetail(@path id: string, @path planPosId: string): PlannedOrderPosition;
   //@get @route("/{id}/articles/{no}") getOrderArticleDetail(...OrderIndexFilterRequest): PaginatedResponse<Order>;
   //@get @route("/{id}/articles/{no}/routing") getOrderArticleRouting(...OrderIndexFilterRequest): PaginatedResponse<Order>;
 }
