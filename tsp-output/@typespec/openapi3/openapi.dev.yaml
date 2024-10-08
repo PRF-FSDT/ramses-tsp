@@ -3926,6 +3926,7 @@ components:
         - name
         - icon
         - machine_type_code
+        - display_position
       properties:
         id:
           type: integer
@@ -3944,6 +3945,10 @@ components:
           type: string
           nullable: true
           example: CNC
+        display_position:
+          type: integer
+          format: int32
+          nullable: true
     RoutingCodeBody:
       type: object
       required:
@@ -3951,6 +3956,7 @@ components:
         - name
         - icon
         - machine_type_code
+        - display_position
       properties:
         code:
           type: string
@@ -3966,6 +3972,10 @@ components:
           type: string
           nullable: true
           example: CNC
+        display_position:
+          type: integer
+          format: int32
+          nullable: true
     RoutingCodeBodyUpdate:
       type: object
       properties:
@@ -3983,6 +3993,10 @@ components:
           type: string
           nullable: true
           example: CNC
+        display_position:
+          type: integer
+          format: int32
+          nullable: true
     ScanInfoResponse:
       type: object
       required:
