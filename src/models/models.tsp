@@ -307,7 +307,7 @@ model GroupedPlannedComponentRoutingLine {
 }
 
 model PlannedComponent {
-  id: string;
+  @key id: int32;
   order_no: string;
   part_no: string;
   ncno: string;
@@ -325,16 +325,16 @@ model PlannedComponent {
 }
 
 model PlannedOrderPosition {
-  id: string;
-  order_id: string;
+  @key id: int32;
+  order_id: int32;
   order_no: string;
   no: string;
   name: string;
-  item_no: numeric;
+  item_no: string;
   destination: string;
   length_mm: numeric;
   width_mm: numeric;
-  height_mm: string | null;
+  height_mm: numeric;
   image: string | null;
   planned_components: PlannedComponent[];
 }

@@ -3562,7 +3562,8 @@ components:
         - finished_at
       properties:
         id:
-          type: string
+          type: integer
+          format: int32
         order_no:
           type: string
         part_no:
@@ -3766,9 +3767,11 @@ components:
         - planned_components
       properties:
         id:
-          type: string
+          type: integer
+          format: int32
         order_id:
-          type: string
+          type: integer
+          format: int32
         order_no:
           type: string
         no:
@@ -3776,7 +3779,7 @@ components:
         name:
           type: string
         item_no:
-          type: number
+          type: string
         destination:
           type: string
         length_mm:
@@ -3784,8 +3787,7 @@ components:
         width_mm:
           type: number
         height_mm:
-          type: string
-          nullable: true
+          type: number
         image:
           type: string
           nullable: true
