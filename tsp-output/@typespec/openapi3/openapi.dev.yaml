@@ -725,30 +725,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                required:
-                  - data
-                  - links
-                  - meta
-                properties:
-                  data:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/PlannedComponent'
-                  links:
-                    $ref: '#/components/schemas/PaginationLinks'
-                  meta:
-                    $ref: '#/components/schemas/PaginationMeta'
-                  filters:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/FilterOption'
-        '404':
-          description: The server cannot find the requested resource.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotFoundError'
+                $ref: '#/components/schemas/PlannedComponent'
   /mes/orders/{id}/plan-positions:
     get:
       tags:
