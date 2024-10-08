@@ -215,7 +215,19 @@ interface RoutingCodes {
 @route("/mes/prod-overview")
 @tag("Prod Overview")
 interface MesProdOverview {
+  //DEPRECATED -> moved to PROD ORDERS
   @get list(...OrderIndexFilterRequest): PaginatedResponse<Order>;
+}
+
+@route("/mes/orders")
+@tag("Prod Orders")
+interface MesOrders {
+  @get list(...OrderIndexFilterRequest): PaginatedResponse<Order>;
+  //@get @route("/{id}") detail(@path id: string, ...OrderIndexFilterRequest): PaginatedResponse<Order>;
+  @get @route("/{id}/plan-positions") getOrderPlanPositions(@path id: string, ...PaginatedSortableRequest): PaginatedResponse<PlannedOrderPosition>;
+  //@get @route("/{id}/plan-positions/{no}") getOrderPlanPosDetail(...OrderIndexFilterRequest): PaginatedResponse<Order>;
+  //@get @route("/{id}/articles/{no}") getOrderArticleDetail(...OrderIndexFilterRequest): PaginatedResponse<Order>;
+  //@get @route("/{id}/articles/{no}/routing") getOrderArticleRouting(...OrderIndexFilterRequest): PaginatedResponse<Order>;
 }
 
 @route("/mes/machine-center")

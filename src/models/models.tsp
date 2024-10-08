@@ -306,6 +306,39 @@ model GroupedPlannedComponentRoutingLine {
   component_lines: PlannedComponentRoutingLine[];
 }
 
+model PlannedComponent {
+  id: string;
+  order_no: string;
+  part_no: string;
+  ncno: string;
+  item_no: string | null;
+  plan_pos: string | null;
+  scan_code: string | null;
+  last_scanned_position_type: string | null;
+  last_scanned_position_no: string | null;
+  move_to_position_type: string | null;
+  move_to_position_no: string | null;
+  is_waiting_for_sorting_location: boolean;
+  is_broken_part: boolean;
+  broken_part_reason_id: numeric | null;
+  finished_at: string | null;
+}
+
+model PlannedOrderPosition {
+  id: string;
+  order_id: string;
+  order_no: string;
+  no: string;
+  name: string;
+  item_no: numeric;
+  destination: string;
+  length_mm: numeric;
+  width_mm: numeric;
+  height_mm: string | null;
+  image: string | null;
+  planned_components: PlannedComponent[];
+}
+
 model ResourceBody {
   user_id: integer;
   name: string;

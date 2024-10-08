@@ -20,6 +20,7 @@ tags:
   - name: Machine Types
   - name: Routing Codes
   - name: Prod Overview
+  - name: Prod Orders
   - name: Machine Center
   - name: Broken Part Reasons
   - name: Broken Parts
@@ -655,6 +656,99 @@ paths:
       responses:
         '204':
           description: 'There is no content to send for this request, but the headers may be useful. '
+  /mes/orders:
+    get:
+      tags:
+        - Prod Orders
+      operationId: MesOrders_list
+      parameters:
+        - $ref: '#/components/parameters/PaginatedRequest.page'
+        - $ref: '#/components/parameters/PaginatedRequest.perPage'
+        - $ref: '#/components/parameters/PaginatedRequest.search'
+        - $ref: '#/components/parameters/PaginatedSortableRequest.sort_dir'
+        - $ref: '#/components/parameters/PaginatedSortableRequest.sort_by'
+        - $ref: '#/components/parameters/OrderIndexFilterRequest.status'
+        - $ref: '#/components/parameters/OrderIndexFilterRequest.owner'
+        - $ref: '#/components/parameters/OrderIndexFilterRequest.client_name'
+        - $ref: '#/components/parameters/OrderIndexFilterRequest.finalisation_date_from'
+        - $ref: '#/components/parameters/OrderIndexFilterRequest.finalisation_date_until'
+        - $ref: '#/components/parameters/OrderIndexFilterRequest.include'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - links
+                  - meta
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Order'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                  filters:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FilterOption'
+        '404':
+          description: The server cannot find the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+  /mes/orders/{id}/plan-positions:
+    get:
+      tags:
+        - Prod Orders
+      operationId: MesOrders_getOrderPlanPositions
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/PaginatedRequest.page'
+        - $ref: '#/components/parameters/PaginatedRequest.perPage'
+        - $ref: '#/components/parameters/PaginatedRequest.search'
+        - $ref: '#/components/parameters/PaginatedSortableRequest.sort_dir'
+        - $ref: '#/components/parameters/PaginatedSortableRequest.sort_by'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - links
+                  - meta
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PlannedOrderPosition'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                  filters:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FilterOption'
+        '404':
+          description: The server cannot find the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
   /mes/prod-overview:
     get:
       tags:
@@ -3448,6 +3542,64 @@ components:
         total:
           type: integer
           format: int32
+    PlannedComponent:
+      type: object
+      required:
+        - id
+        - order_no
+        - part_no
+        - ncno
+        - item_no
+        - plan_pos
+        - scan_code
+        - last_scanned_position_type
+        - last_scanned_position_no
+        - move_to_position_type
+        - move_to_position_no
+        - is_waiting_for_sorting_location
+        - is_broken_part
+        - broken_part_reason_id
+        - finished_at
+      properties:
+        id:
+          type: string
+        order_no:
+          type: string
+        part_no:
+          type: string
+        ncno:
+          type: string
+        item_no:
+          type: string
+          nullable: true
+        plan_pos:
+          type: string
+          nullable: true
+        scan_code:
+          type: string
+          nullable: true
+        last_scanned_position_type:
+          type: string
+          nullable: true
+        last_scanned_position_no:
+          type: string
+          nullable: true
+        move_to_position_type:
+          type: string
+          nullable: true
+        move_to_position_no:
+          type: string
+          nullable: true
+        is_waiting_for_sorting_location:
+          type: boolean
+        is_broken_part:
+          type: boolean
+        broken_part_reason_id:
+          type: number
+          nullable: true
+        finished_at:
+          type: string
+          nullable: true
     PlannedComponentRoutingLine:
       type: object
       required:
@@ -3597,6 +3749,50 @@ components:
         finished_at:
           type: string
           nullable: true
+    PlannedOrderPosition:
+      type: object
+      required:
+        - id
+        - order_id
+        - order_no
+        - no
+        - name
+        - item_no
+        - destination
+        - length_mm
+        - width_mm
+        - height_mm
+        - image
+        - planned_components
+      properties:
+        id:
+          type: string
+        order_id:
+          type: string
+        order_no:
+          type: string
+        no:
+          type: string
+        name:
+          type: string
+        item_no:
+          type: number
+        destination:
+          type: string
+        length_mm:
+          type: number
+        width_mm:
+          type: number
+        height_mm:
+          type: string
+          nullable: true
+        image:
+          type: string
+          nullable: true
+        planned_components:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlannedComponent'
     Resource:
       type: object
       required:
