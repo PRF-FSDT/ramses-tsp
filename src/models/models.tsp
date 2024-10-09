@@ -195,8 +195,8 @@ model OrderMaterialItem {
   material_name: string;
   item_no: string;
   item_name: string;
-  net_qty: numeric;
-  gross_qty: numeric;
+  unit_qty: numeric;
+  total_qty: numeric;
   qty: numeric;
   uom: string;
   category_no: string;

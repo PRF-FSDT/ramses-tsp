@@ -3397,8 +3397,8 @@ components:
         - material_name
         - item_no
         - item_name
-        - net_qty
-        - gross_qty
+        - unit_qty
+        - total_qty
         - qty
         - uom
         - category_no
@@ -3417,9 +3417,9 @@ components:
           type: string
         item_name:
           type: string
-        net_qty:
+        unit_qty:
           type: number
-        gross_qty:
+        total_qty:
           type: number
         qty:
           type: number
