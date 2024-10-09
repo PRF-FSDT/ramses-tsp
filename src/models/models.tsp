@@ -330,6 +330,8 @@ model PlannedComponentDetail {
   length_mm: int16 | null,
   width_mm: int16 | null,
   height_mm: int16 | null,
+  cut_length_mm: int16 | null,
+  cut_width_mm: int16 | null,
   material_no: string | null,
   grain_orientation: "unknown" | "longitudinal" | "transversal",
   edge_banding_front: string | null,

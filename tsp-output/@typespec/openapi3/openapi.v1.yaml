@@ -3715,6 +3715,8 @@ components:
         - length_mm
         - width_mm
         - height_mm
+        - cut_length_mm
+        - cut_width_mm
         - material_no
         - grain_orientation
         - edge_banding_front
@@ -3781,6 +3783,14 @@ components:
           format: int16
           nullable: true
         height_mm:
+          type: integer
+          format: int16
+          nullable: true
+        cut_length_mm:
+          type: integer
+          format: int16
+          nullable: true
+        cut_width_mm:
           type: integer
           format: int16
           nullable: true
