@@ -346,6 +346,8 @@ model PlannedComponentDetail {
   edge_banding_top_trans: string | null,
   edge_banding_bottom: string | null,
   edge_banding_bottom_trans: string | null,
+  prod_planned_start: string | null,
+  prod_status: "planned" | "finished" | "in_production",
 }
 
 model PlannedOrderPosition {

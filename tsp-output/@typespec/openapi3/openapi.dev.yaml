@@ -3731,6 +3731,8 @@ components:
         - edge_banding_top_trans
         - edge_banding_bottom
         - edge_banding_bottom_trans
+        - prod_planned_start
+        - prod_status
       properties:
         id:
           type: integer
@@ -3839,6 +3841,15 @@ components:
         edge_banding_bottom_trans:
           type: string
           nullable: true
+        prod_planned_start:
+          type: string
+          nullable: true
+        prod_status:
+          type: string
+          enum:
+            - planned
+            - finished
+            - in_production
     PlannedComponentRoutingLine:
       type: object
       required:
