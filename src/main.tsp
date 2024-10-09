@@ -226,7 +226,7 @@ interface MesOrders {
   //@get @route("/{id}") detail(@path id: string, ...OrderIndexFilterRequest): PaginatedResponse<Order>;
   @get @route("/{id}/plan-positions") getOrderPlanPositions(@path id: string, ...PaginatedSortableRequest): PaginatedResponse<PlannedOrderPosition>;
   @get @route("/{id}/plan-positions/{planPosId}") getOrderPlanPosDetail(@path id: string, @path planPosId: string): PlannedOrderPosition;
-  @get @route("/{id}/articles/{artId}") getOrderArticleDetail(@path id: string, @path artId: string): PlannedComponent;
+  @get @route("/{id}/articles/{artId}") getOrderArticleDetail(@path id: string, @path artId: string): PlannedComponentDetail;
   @get @route("/{id}/articles/{artId}/routing") getOrderArticleRouting(@path id: string, @path artId: string): PaginatedResponse<PlannedComponentRoutingLine>;
 }
 
