@@ -841,6 +841,52 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PlannedOrderPosition'
+  /mes/orders/{id}/planned-order-lines:
+    get:
+      tags:
+        - Prod Orders
+      operationId: MesOrders_getOrderPlannedOrderLines
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/PaginatedRequest.page'
+        - $ref: '#/components/parameters/PaginatedRequest.perPage'
+        - $ref: '#/components/parameters/PaginatedRequest.search'
+        - $ref: '#/components/parameters/PaginatedSortableRequest.sort_dir'
+        - $ref: '#/components/parameters/PaginatedSortableRequest.sort_by'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - links
+                  - meta
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PlannedOrderLine'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                  filters:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FilterOption'
+        '404':
+          description: The server cannot find the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
   /mes/prod-overview:
     get:
       tags:
