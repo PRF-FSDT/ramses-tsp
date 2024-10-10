@@ -54,7 +54,10 @@ interface Orders {
   @route("{id}/attachments") @post postAttachments(@path id: string): ActionResponse;
 
   //composition lines (deprecated)
-  @route("{id}/composition-lines") @get getCompositionLinesDeprecated(@path id: string, ...OrderCompositionLineRequest): PaginatedResponse<OrderCompositionLineOld>;
+  @route("{id}/composition-lines") @get getCompositionLinesDeprecated(
+    @path id: string,
+    ...OrderCompositionLineRequest,
+  ): PaginatedResponse<OrderCompositionLineOld>;
   //composition lines (new)
   @route("{id}/composition") @get getCompositionLines(@path id: string, ...OrderCompositionLineRequest): PaginatedResponse<OrderComposition>;
 
@@ -235,7 +238,11 @@ interface MesOrders {
   @get @route("/{id}/plan-positions") getOrderPlanPositions(@path id: string, ...PaginatedSortableRequest): PaginatedResponse<PlannedOrderPosition>;
   @get @route("/{id}/plan-positions/{planPosId}") getOrderPlanPosDetail(@path id: string, @path planPosId: string): PlannedOrderPosition;
   @get @route("/{id}/articles/{artId}") getOrderArticleDetail(@path id: string, @path artId: string): PlannedComponentDetail;
-  @get @route("/{id}/articles/{artId}/routing") getOrderArticleRouting(@path id: string, @path artId: string): PaginatedResponse<PlannedComponentRoutingLine>;
+  @get @route("/{id}/articles/{artId}/routing") getOrderArticleRouting(
+    @path id: string,
+    @path artId: string,
+    ...PaginatedSortableRequest,
+  ): PaginatedResponse<PlannedComponentRoutingLine>;
 }
 
 @route("/mes/machine-center")
