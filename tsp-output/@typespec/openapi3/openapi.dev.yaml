@@ -16,6 +16,7 @@ tags:
   - name: Operating Hours
   - name: Users
   - name: Production Planning
+  - name: Storage Locations
   - name: Machine Centers
   - name: Machine Types
   - name: Routing Codes
@@ -1041,6 +1042,56 @@ paths:
       responses:
         '204':
           description: 'There is no content to send for this request, but the headers may be useful. '
+  /mes/storage-locations:
+    get:
+      tags:
+        - Storage Locations
+      operationId: StorageLocations_list
+      parameters:
+        - $ref: '#/components/parameters/PaginatedRequest.page'
+        - $ref: '#/components/parameters/PaginatedRequest.perPage'
+        - $ref: '#/components/parameters/PaginatedRequest.search'
+        - $ref: '#/components/parameters/PaginatedSortableRequest.sort_dir'
+        - $ref: '#/components/parameters/PaginatedSortableRequest.sort_by'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - links
+                  - meta
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/StorageLocation'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                  filters:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FilterOption'
+        '404':
+          description: The server cannot find the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mc:
+                  type: string
   /operating-hours:
     get:
       tags:
@@ -4261,6 +4312,38 @@ components:
           type: string
         linked_mc:
           type: string
+    StorageLocation:
+      type: object
+      required:
+        - id
+        - no
+        - reserved_for
+        - status
+        - scan_code
+        - last_supplied_by
+        - qty_required
+        - qty_received
+      properties:
+        id:
+          type: integer
+          format: int64
+        no:
+          type: string
+        reserved_for:
+          type: string
+          nullable: true
+        status:
+          type: string
+        scan_code:
+          type: string
+          nullable: true
+        last_supplied_by:
+          type: string
+          nullable: true
+        qty_required:
+          type: number
+        qty_received:
+          type: number
     SyncedOrder:
       type: object
       required:

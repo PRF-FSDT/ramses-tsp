@@ -9,6 +9,7 @@ import "./models/machine-types.tsp";
 import "./models/routing-codes.tsp";
 import "./models/order-lines.tsp";
 import "./models/broken-parts.tsp";
+import "./models/storage-locations.tsp";
 
 import "./responses/responses.tsp";
 
@@ -183,6 +184,12 @@ interface ProductionPlanningOrders {
   @post @route("/orders/{id}/plan") plan(@path id: string, @body orderPlanBody: OrderPlanBody): SuccessResponse;
   @get @route("/planned-orders-for-week/{week}") plannedOrderLines(@path week: string): ListResponse<PlannedOrderLine>;
   @patch @route("/planned-order-line/{id}") updatePlannedOrderLine(@path id: string, @body body: PlannedOrderLineBody): UpdatedResponse<PlannedOrderLine>;
+}
+
+@route("/mes/storage-locations")
+@tag("Storage Locations")
+interface StorageLocations {
+  @get list(mc?: string, ...PaginatedSortableRequest): PaginatedResponse<StorageLocation>;
 }
 
 @route("/mes/machine-centers")
