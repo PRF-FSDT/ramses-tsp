@@ -3739,6 +3739,7 @@ components:
         - part_no
         - ncno
         - item_no
+        - name
         - plan_pos
         - scan_code
         - last_scanned_position_type
@@ -3762,6 +3763,8 @@ components:
         item_no:
           type: string
           nullable: true
+        name:
+          type: string
         plan_pos:
           type: string
           nullable: true
@@ -3798,6 +3801,7 @@ components:
         - part_no
         - ncno
         - item_no
+        - name
         - plan_pos
         - scan_code
         - last_scanned_position_type
@@ -3808,7 +3812,6 @@ components:
         - is_broken_part
         - broken_part_reason_id
         - finished_at
-        - name
         - length_mm
         - width_mm
         - height_mm
@@ -3843,6 +3846,8 @@ components:
         item_no:
           type: string
           nullable: true
+        name:
+          type: string
         plan_pos:
           type: string
           nullable: true
@@ -3871,8 +3876,6 @@ components:
         finished_at:
           type: string
           nullable: true
-        name:
-          type: string
         length_mm:
           type: integer
           format: int16

@@ -312,6 +312,7 @@ model PlannedComponent {
   part_no: string;
   ncno: string;
   item_no: string | null;
+  name: string;
   plan_pos: string | null;
   scan_code: string | null;
   last_scanned_position_type: string | null;
@@ -326,7 +327,6 @@ model PlannedComponent {
 
 model PlannedComponentDetail {
   ...PlannedComponent;
-  name: string,
   length_mm: int16 | null,
   width_mm: int16 | null,
   height_mm: int16 | null,
