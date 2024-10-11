@@ -327,7 +327,7 @@ model PlannedComponent {
 
 model PlannedComponentDetail {
   ...PlannedComponent;
-  plan_pos_id: string | null;
+  plan_pos_id: int16 | null;
   length_mm: int16 | null;
   width_mm: int16 | null;
   height_mm: int16 | null;
