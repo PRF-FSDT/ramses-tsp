@@ -52,7 +52,7 @@ model Order {
   drawing_no: string;
   location: string;
 
-  @visibility("read")  
+  @visibility("read")
   is_production_planned: boolean;
 
   prod_duration_days: integer;
@@ -327,27 +327,28 @@ model PlannedComponent {
 
 model PlannedComponentDetail {
   ...PlannedComponent;
-  length_mm: int16 | null,
-  width_mm: int16 | null,
-  height_mm: int16 | null,
-  cut_length_mm: int16 | null,
-  cut_width_mm: int16 | null,
-  material_no: string | null,
-  grain_orientation: "unknown" | "longitudinal" | "transversal",
-  edge_banding_front: string | null,
-  edge_banding_front_trans: string | null,
-  edge_banding_back: string | null,
-  edge_banding_back_trans: string | null,
-  edge_banding_left: string | null,
-  edge_banding_left_trans: string | null,
-  edge_banding_right: string | null,
-  edge_banding_right_trans: string | null,
-  edge_banding_top: string | null,
-  edge_banding_top_trans: string | null,
-  edge_banding_bottom: string | null,
-  edge_banding_bottom_trans: string | null,
-  prod_planned_start: string | null,
-  prod_status: "planned" | "finished" | "in_production",
+  plan_pos_id: string | null;
+  length_mm: int16 | null;
+  width_mm: int16 | null;
+  height_mm: int16 | null;
+  cut_length_mm: int16 | null;
+  cut_width_mm: int16 | null;
+  material_no: string | null;
+  grain_orientation: "unknown" | "longitudinal" | "transversal";
+  edge_banding_front: string | null;
+  edge_banding_front_trans: string | null;
+  edge_banding_back: string | null;
+  edge_banding_back_trans: string | null;
+  edge_banding_left: string | null;
+  edge_banding_left_trans: string | null;
+  edge_banding_right: string | null;
+  edge_banding_right_trans: string | null;
+  edge_banding_top: string | null;
+  edge_banding_top_trans: string | null;
+  edge_banding_bottom: string | null;
+  edge_banding_bottom_trans: string | null;
+  prod_planned_start: string | null;
+  prod_status: "planned" | "finished" | "in_production";
 }
 
 model PlannedOrderPosition {
