@@ -25,6 +25,7 @@ tags:
   - name: Machine Center
   - name: Broken Part Reasons
   - name: Broken Parts
+  - name: Scan
 paths:
   /login:
     post:
@@ -1047,6 +1048,31 @@ paths:
       responses:
         '204':
           description: 'There is no content to send for this request, but the headers may be useful. '
+  /mes/scan:
+    post:
+      tags:
+        - Scan
+      operationId: ScanEndpoint_scan
+      parameters: []
+      responses:
+        '201':
+          description: The request has succeeded and a new resource has been created as a result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Scan'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScanBody'
   /mes/storage-locations:
     get:
       tags:
@@ -4264,6 +4290,47 @@ components:
           type: integer
           format: int32
           nullable: true
+    Scan:
+      type: object
+      required:
+        - id
+        - event_id
+        - value
+        - device_no
+        - linked_mc
+        - is_processed
+        - error_message
+        - scanned_at
+      properties:
+        id:
+          type: number
+        event_id:
+          type: string
+        value:
+          type: string
+        device_no:
+          type: string
+        linked_mc:
+          type: string
+        is_processed:
+          type: boolean
+        error_message:
+          type: string
+        scanned_at:
+          type: string
+    ScanBody:
+      type: object
+      required:
+        - timestamp
+        - scancode
+        - mc
+      properties:
+        timestamp:
+          type: string
+        scancode:
+          type: string
+        mc:
+          type: string
     ScanInfoResponse:
       type: object
       required:

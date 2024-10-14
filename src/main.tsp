@@ -10,6 +10,7 @@ import "./models/routing-codes.tsp";
 import "./models/order-lines.tsp";
 import "./models/broken-parts.tsp";
 import "./models/storage-locations.tsp";
+import "./models/scan.tsp";
 
 import "./responses/responses.tsp";
 
@@ -269,4 +270,10 @@ interface BrokenPartReasons {
 interface BrokenParts {
   @get list(...PaginatedSortableRequest): PaginatedResponse<BrokenPlannedComponent>;
   @post @route("{id}/repair") repair(@path id: string): SuccessResponse | NotFoundError;
+}
+
+@route("/mes/scan")
+@tag("Scan")
+interface ScanEndpoint {
+  @post scan(@body ScanBody: ScanBody): CreatedResponse<Scan>;
 }
