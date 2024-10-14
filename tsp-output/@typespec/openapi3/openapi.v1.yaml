@@ -1079,6 +1079,11 @@ paths:
         - Storage Locations
       operationId: StorageLocations_list
       parameters:
+        - name: mc
+          in: query
+          required: false
+          schema:
+            type: string
         - $ref: '#/components/parameters/PaginatedRequest.page'
         - $ref: '#/components/parameters/PaginatedRequest.perPage'
         - $ref: '#/components/parameters/PaginatedRequest.search'
@@ -1114,15 +1119,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                mc:
-                  type: string
   /operating-hours:
     get:
       tags:

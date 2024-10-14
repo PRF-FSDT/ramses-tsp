@@ -193,7 +193,7 @@ interface ProductionPlanningOrders {
 @route("/mes/storage-locations")
 @tag("Storage Locations")
 interface StorageLocations {
-  @get list(mc?: string, ...PaginatedSortableRequest): PaginatedResponse<StorageLocation>;
+  @get list(@query mc?: string, ...PaginatedSortableRequest): PaginatedResponse<StorageLocation>;
 }
 
 @route("/mes/machine-centers")
