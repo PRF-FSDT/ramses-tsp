@@ -3483,6 +3483,7 @@ components:
         - material_name
         - net_qty
         - gross_qty
+        - cut_loss
         - uom
         - category_no
         - stock_status
@@ -3500,6 +3501,9 @@ components:
           type: number
           format: float
         gross_qty:
+          type: number
+          format: float
+        cut_loss:
           type: number
           format: float
         uom:

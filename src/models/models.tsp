@@ -182,6 +182,7 @@ model OrderMaterial {
   material_name: string;
   net_qty: float32;
   gross_qty: float32;
+  cut_loss: float32;
   uom: string;
   category_no: string;
   stock_status: string;
