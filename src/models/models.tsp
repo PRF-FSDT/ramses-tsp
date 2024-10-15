@@ -294,6 +294,7 @@ model PlannedComponentRoutingLine {
   no: string;
   part_no: string;
   description: string;
+  description_2: string;
   qty: numeric;
   routing_no: string;
   status: string;

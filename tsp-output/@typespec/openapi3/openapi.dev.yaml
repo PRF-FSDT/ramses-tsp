@@ -3990,6 +3990,7 @@ components:
         - no
         - part_no
         - description
+        - description_2
         - qty
         - routing_no
         - status
@@ -4006,6 +4007,8 @@ components:
         part_no:
           type: string
         description:
+          type: string
+        description_2:
           type: string
         qty:
           type: number
