@@ -254,6 +254,8 @@ interface MesMachineCenter {
   @get @route("/grouped-order-components") getGroupedOrderComponents(...McOrderComponentsRequest): PaginatedResponse<GroupedPlannedComponentRoutingLine>;
   @get @route("/scan-info") getScanInfo(...ScanInfoRequest): ScanInfoResponse | NotFoundError;
   @post @route("/register-output") registerOutput(...McRegisterOutputRequest): SuccessResponse;
+
+  @get @route("/saw-material-info") getSawMaterialInfo(@query order_no: string, ...PaginatedSortableRequest): PaginatedResponse<OrderMaterialItem>;
 }
 
 @route("/mes/broken-part-reasons")
