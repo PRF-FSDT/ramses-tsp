@@ -101,7 +101,7 @@ model UpdateOrderBody {
 }
 
 model OrderAttachment {
-  @key id: string;
+  @key id: uint64;
   order_no: string;
   type: string;
   path: string;
@@ -176,7 +176,7 @@ model AdditionalPurchaseLine {
 }
 
 model OrderMaterial {
-  @key id: string;
+  @key id: uint64;
   order_no: string;
   material_no: string;
   material_name: string;
@@ -189,7 +189,7 @@ model OrderMaterial {
 }
 
 model OrderMaterialWithItems {
-  @key id: string;
+  @key id: uint64;
   order_no: string;
   material_no: string;
   material_name: string;
