@@ -3601,8 +3601,10 @@ components:
           type: string
         category_no:
           type: string
+          nullable: true
         stock_status:
           type: string
+          nullable: true
     OrderPlanBody:
       type: object
       required:

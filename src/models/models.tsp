@@ -200,7 +200,7 @@ model OrderMaterialItem {
   total_qty: numeric;
   qty: numeric;
   uom: string;
-  category_no: string;
+  category_no: string | null;
   stock_status: string | null;
 }
 
