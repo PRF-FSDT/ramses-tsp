@@ -201,7 +201,7 @@ model OrderMaterialItem {
   qty: numeric;
   uom: string;
   category_no: string;
-  stock_status: string;
+  stock_status: string | null;
 }
 
 model OrderTaskBody {
