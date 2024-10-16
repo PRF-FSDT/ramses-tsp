@@ -245,6 +245,7 @@ interface MesOrders {
     ...PaginatedSortableRequest,
   ): PaginatedResponse<PlannedComponentRoutingLine>;
   @get @route("/{id}/saw-materials") getOrderSawMaterials(@path id: string, ...PaginatedSortableRequest): PaginatedResponse<OrderMaterialItem>;
+  @get @route("/{id}/edge-banding") getOrderEdgeBanding(@path id: string, ...PaginatedSortableRequest): PaginatedResponse<OrderMaterial>;
 }
 
 @route("/mes/machine-center")
