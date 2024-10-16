@@ -422,52 +422,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ValidationError'
-  /mes/machine-center/saw-material-info:
-    get:
-      tags:
-        - Machine Center
-      operationId: MesMachineCenter_getSawMaterialInfo
-      parameters:
-        - name: order_no
-          in: query
-          required: true
-          schema:
-            type: string
-        - $ref: '#/components/parameters/PaginatedRequest.page'
-        - $ref: '#/components/parameters/PaginatedRequest.perPage'
-        - $ref: '#/components/parameters/PaginatedRequest.search'
-        - $ref: '#/components/parameters/PaginatedSortableRequest.sort_dir'
-        - $ref: '#/components/parameters/PaginatedSortableRequest.sort_by'
-      responses:
-        '200':
-          description: The request has succeeded.
-          content:
-            application/json:
-              schema:
-                type: object
-                required:
-                  - data
-                  - links
-                  - meta
-                properties:
-                  data:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/OrderMaterialItem'
-                  links:
-                    $ref: '#/components/schemas/PaginationLinks'
-                  meta:
-                    $ref: '#/components/schemas/PaginationMeta'
-                  filters:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/FilterOption'
-        '404':
-          description: The server cannot find the requested resource.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotFoundError'
   /mes/machine-center/scan-info:
     get:
       tags:
@@ -926,6 +880,52 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/PlannedOrderLine'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                  filters:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FilterOption'
+        '404':
+          description: The server cannot find the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+  /mes/orders/{id}/saw-materials:
+    get:
+      tags:
+        - Prod Orders
+      operationId: MesOrders_getOrderSawMaterials
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/PaginatedRequest.page'
+        - $ref: '#/components/parameters/PaginatedRequest.perPage'
+        - $ref: '#/components/parameters/PaginatedRequest.search'
+        - $ref: '#/components/parameters/PaginatedSortableRequest.sort_dir'
+        - $ref: '#/components/parameters/PaginatedSortableRequest.sort_by'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - links
+                  - meta
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/OrderMaterialItem'
                   links:
                     $ref: '#/components/schemas/PaginationLinks'
                   meta:
