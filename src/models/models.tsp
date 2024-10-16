@@ -334,6 +334,7 @@ model PlannedComponent {
   is_waiting_for_sorting_location: boolean;
   is_broken_part: boolean;
   broken_part_reason_id: numeric | null;
+  production_started_at: string | null;
   finished_at: string | null;
 }
 
@@ -354,7 +355,7 @@ model PlannedComponentDetail {
   edge_banding_bottom: string | null;
   edge_banding_bottom_trans: string | null;
   prod_planned_start: string | null;
-  prod_status: "planned" | "finished" | "in_production";
+  prod_status: "planned" | "in_production" | "finished";
 }
 
 model PlannedOrderPosition {
@@ -369,6 +370,7 @@ model PlannedOrderPosition {
   width_mm: numeric;
   height_mm: numeric;
   image: string | null;
+  status: "planned" | "in_production" | "finished";
   planned_components: PlannedComponent[];
 }
 

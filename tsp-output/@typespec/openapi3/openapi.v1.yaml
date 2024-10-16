@@ -3924,6 +3924,7 @@ components:
         - is_waiting_for_sorting_location
         - is_broken_part
         - broken_part_reason_id
+        - production_started_at
         - finished_at
       properties:
         id:
@@ -3988,6 +3989,9 @@ components:
         broken_part_reason_id:
           type: number
           nullable: true
+        production_started_at:
+          type: string
+          nullable: true
         finished_at:
           type: string
           nullable: true
@@ -4015,6 +4019,7 @@ components:
         - is_waiting_for_sorting_location
         - is_broken_part
         - broken_part_reason_id
+        - production_started_at
         - finished_at
         - plan_pos_id
         - grain_orientation
@@ -4095,6 +4100,9 @@ components:
         broken_part_reason_id:
           type: number
           nullable: true
+        production_started_at:
+          type: string
+          nullable: true
         finished_at:
           type: string
           nullable: true
@@ -4151,8 +4159,8 @@ components:
           type: string
           enum:
             - planned
-            - finished
             - in_production
+            - finished
     PlannedComponentRoutingLine:
       type: object
       required:
@@ -4319,6 +4327,7 @@ components:
         - width_mm
         - height_mm
         - image
+        - status
         - planned_components
       properties:
         id:
@@ -4346,6 +4355,12 @@ components:
         image:
           type: string
           nullable: true
+        status:
+          type: string
+          enum:
+            - planned
+            - in_production
+            - finished
         planned_components:
           type: array
           items:
