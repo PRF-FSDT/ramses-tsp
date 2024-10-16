@@ -3772,6 +3772,12 @@ components:
         - item_no
         - name
         - plan_pos
+        - length_mm
+        - width_mm
+        - height_mm
+        - cut_length_mm
+        - cut_width_mm
+        - material_no
         - scan_code
         - last_scanned_position_type
         - last_scanned_position_no
@@ -3797,6 +3803,29 @@ components:
         name:
           type: string
         plan_pos:
+          type: string
+          nullable: true
+        length_mm:
+          type: integer
+          format: int32
+          nullable: true
+        width_mm:
+          type: integer
+          format: int32
+          nullable: true
+        height_mm:
+          type: integer
+          format: int32
+          nullable: true
+        cut_length_mm:
+          type: integer
+          format: int32
+          nullable: true
+        cut_width_mm:
+          type: integer
+          format: int32
+          nullable: true
+        material_no:
           type: string
           nullable: true
         scan_code:
@@ -3834,6 +3863,12 @@ components:
         - item_no
         - name
         - plan_pos
+        - length_mm
+        - width_mm
+        - height_mm
+        - cut_length_mm
+        - cut_width_mm
+        - material_no
         - scan_code
         - last_scanned_position_type
         - last_scanned_position_no
@@ -3844,12 +3879,6 @@ components:
         - broken_part_reason_id
         - finished_at
         - plan_pos_id
-        - length_mm
-        - width_mm
-        - height_mm
-        - cut_length_mm
-        - cut_width_mm
-        - material_no
         - grain_orientation
         - edge_banding_front
         - edge_banding_front_trans
@@ -3883,6 +3912,29 @@ components:
         plan_pos:
           type: string
           nullable: true
+        length_mm:
+          type: integer
+          format: int32
+          nullable: true
+        width_mm:
+          type: integer
+          format: int32
+          nullable: true
+        height_mm:
+          type: integer
+          format: int32
+          nullable: true
+        cut_length_mm:
+          type: integer
+          format: int32
+          nullable: true
+        cut_width_mm:
+          type: integer
+          format: int32
+          nullable: true
+        material_no:
+          type: string
+          nullable: true
         scan_code:
           type: string
           nullable: true
@@ -3911,29 +3963,6 @@ components:
         plan_pos_id:
           type: integer
           format: int16
-          nullable: true
-        length_mm:
-          type: integer
-          format: int16
-          nullable: true
-        width_mm:
-          type: integer
-          format: int16
-          nullable: true
-        height_mm:
-          type: integer
-          format: int16
-          nullable: true
-        cut_length_mm:
-          type: integer
-          format: int16
-          nullable: true
-        cut_width_mm:
-          type: integer
-          format: int16
-          nullable: true
-        material_no:
-          type: string
           nullable: true
         grain_orientation:
           type: string

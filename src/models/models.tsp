@@ -316,6 +316,12 @@ model PlannedComponent {
   item_no: string | null;
   name: string;
   plan_pos: string | null;
+  length_mm: int32 | null;
+  width_mm: int32 | null;
+  height_mm: int32 | null;
+  cut_length_mm: int32 | null;
+  cut_width_mm: int32 | null;
+  material_no: string | null;
   scan_code: string | null;
   last_scanned_position_type: string | null;
   last_scanned_position_no: string | null;
@@ -330,12 +336,6 @@ model PlannedComponent {
 model PlannedComponentDetail {
   ...PlannedComponent;
   plan_pos_id: int16 | null;
-  length_mm: int16 | null;
-  width_mm: int16 | null;
-  height_mm: int16 | null;
-  cut_length_mm: int16 | null;
-  cut_width_mm: int16 | null;
-  material_no: string | null;
   grain_orientation: "unknown" | "longitudinal" | "transversal";
   edge_banding_front: string | null;
   edge_banding_front_trans: string | null;
