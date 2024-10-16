@@ -84,7 +84,7 @@ interface Orders {
   ): CreatedResponse<AdditionalPurchaseLine>;
 
   //order materials
-  @route("{id}/order-materials") @get getOrderMaterials(@path id: string, ...OrderMaterialIndexFilterRequest): PaginatedResponse<OrderMaterial>;
+  @route("{id}/order-materials") @get getOrderMaterials(@path id: string, ...OrderMaterialIndexFilterRequest): PaginatedResponse<OrderMaterialWithItems>;
   @route("{id}/order-materials-csv") @get getOrderMaterialsCsv(@path id: string, ...OrderMaterialCsvRequest): StreamedCsvResponse | Error;
 
   //TODO: define this action

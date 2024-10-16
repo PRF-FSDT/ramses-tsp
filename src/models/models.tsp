@@ -186,6 +186,19 @@ model OrderMaterial {
   uom: string;
   category_no: string;
   stock_status: string;
+}
+
+model OrderMaterialWithItems {
+  @key id: string;
+  order_no: string;
+  material_no: string;
+  material_name: string;
+  net_qty: float32;
+  gross_qty: float32;
+  cut_loss: float32;
+  uom: string;
+  category_no: string;
+  stock_status: string;
   order_material_items: OrderMaterialItem[];
 }
 

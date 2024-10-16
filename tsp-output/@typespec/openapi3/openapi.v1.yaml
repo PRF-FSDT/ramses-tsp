@@ -2085,7 +2085,7 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: '#/components/schemas/OrderMaterial'
+                      $ref: '#/components/schemas/OrderMaterialWithItems'
                   links:
                     $ref: '#/components/schemas/PaginationLinks'
                   meta:
@@ -3579,7 +3579,6 @@ components:
         - uom
         - category_no
         - stock_status
-        - order_material_items
       properties:
         id:
           type: string
@@ -3604,10 +3603,6 @@ components:
           type: string
         stock_status:
           type: string
-        order_material_items:
-          type: array
-          items:
-            $ref: '#/components/schemas/OrderMaterialItem'
     OrderMaterialItem:
       type: object
       required:
@@ -3651,6 +3646,48 @@ components:
         stock_status:
           type: string
           nullable: true
+    OrderMaterialWithItems:
+      type: object
+      required:
+        - id
+        - order_no
+        - material_no
+        - material_name
+        - net_qty
+        - gross_qty
+        - cut_loss
+        - uom
+        - category_no
+        - stock_status
+        - order_material_items
+      properties:
+        id:
+          type: string
+        order_no:
+          type: string
+        material_no:
+          type: string
+        material_name:
+          type: string
+        net_qty:
+          type: number
+          format: float
+        gross_qty:
+          type: number
+          format: float
+        cut_loss:
+          type: number
+          format: float
+        uom:
+          type: string
+        category_no:
+          type: string
+        stock_status:
+          type: string
+        order_material_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderMaterialItem'
     OrderPlanBody:
       type: object
       required:
