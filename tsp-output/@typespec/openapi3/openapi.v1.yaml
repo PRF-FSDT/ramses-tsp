@@ -3287,7 +3287,8 @@ components:
         - path
       properties:
         id:
-          type: string
+          type: integer
+          format: uint64
         order_no:
           type: string
         type:
@@ -3581,7 +3582,8 @@ components:
         - stock_status
       properties:
         id:
-          type: string
+          type: integer
+          format: uint64
         order_no:
           type: string
         material_no:
@@ -3662,7 +3664,8 @@ components:
         - order_material_items
       properties:
         id:
-          type: string
+          type: integer
+          format: uint64
         order_no:
           type: string
         material_no:
