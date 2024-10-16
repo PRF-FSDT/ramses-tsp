@@ -10,7 +10,7 @@ model Scan {
 }
 
 model ScanBody {
-  timestamp: string;
+  timestamp: uint16;
   scancode: string;
   mc: string;
 }

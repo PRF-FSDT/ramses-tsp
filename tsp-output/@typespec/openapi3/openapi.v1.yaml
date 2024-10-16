@@ -4489,7 +4489,8 @@ components:
         - mc
       properties:
         timestamp:
-          type: string
+          type: integer
+          format: uint16
         scancode:
           type: string
         mc:
