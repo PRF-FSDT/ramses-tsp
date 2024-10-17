@@ -1422,7 +1422,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OrderCompositionLineOld'
+                $ref: '#/components/schemas/OrderCompositionLine'
         '422':
           description: Client error
           content:
