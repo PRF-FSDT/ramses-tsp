@@ -54,17 +54,12 @@ interface Orders {
   @route("{id}/attachments") @get getAttachments(@path id: string, ...PaginatedRequest): PaginatedResponse<OrderAttachment>;
   @route("{id}/attachments") @post postAttachments(@path id: string): ActionResponse;
 
-  //composition lines (deprecated)
-  @route("{id}/composition-lines") @get getCompositionLinesDeprecated(
-    @path id: string,
-    ...OrderCompositionLineRequest,
-  ): PaginatedResponse<OrderCompositionLineOld>;
-  //composition lines (new)
+  //composition lines
   @route("{id}/composition") @get getCompositionLines(@path id: string, ...OrderCompositionLineRequest): PaginatedResponse<OrderComposition>;
 
   //order tasks
   @route("{id}/order-tasks") @get getOrderTasks(@path id: string, ...OrderTaskFilterRequest): PaginatedResponse<OrderTask>;
-  @post @route("{id}/order-tasks/plan") planOrderTasks(@path id: string, @body ToPlanTasks: ToPlanTaskBody[]): CreatedResponse<ToPlanTaskBody[]>;
+
   //additional purch lines
   @route("{id}/additional-purchase-lines") @get getAdditionalPurchLines(
     @path id: string,
@@ -89,8 +84,6 @@ interface Orders {
 
   //TODO: define this action
   @route("{id}/push-to-erp") @post postToErp(@path id: string): string | Error;
-
-  @route("/unplanned") @get getUnplanned(...PaginatedRequest): PaginatedResponse<Order>;
 }
 
 //Model: SyncedOrder
@@ -184,8 +177,10 @@ interface Users {
 @route("/production-planning")
 @tag("Production Planning")
 interface ProductionPlanningOrders {
+  @get @route("/orders/unplanned") getUnplanned(...PaginatedRequest): PaginatedResponse<Order>;
   @get @route("/orders/{id}/workflow") workflow(@path id: string): ListResponse<OrderWorkflowLine>;
   @post @route("/orders/{id}/plan") plan(@path id: string, @body orderPlanBody: OrderPlanBody): SuccessResponse;
+  @post @route("/orders/{id}/order-tasks/plan") planOrderTasks(@path id: string, @body ToPlanTasks: ToPlanTaskBody[]): CreatedResponse<ToPlanTaskBody[]>;
   @get @route("/planned-orders-for-week/{week}") plannedOrderLines(@path week: string): ListResponse<PlannedOrderLine>;
   @patch @route("/planned-order-line/{id}") updatePlannedOrderLine(@path id: string, @body body: PlannedOrderLineBody): UpdatedResponse<PlannedOrderLine>;
 }
