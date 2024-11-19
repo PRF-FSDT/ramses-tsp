@@ -107,29 +107,6 @@ model OrderAttachment {
   path: string;
 }
 
-model OrderCompositionLineOld {
-  @key id: uint64;
-  parent_id?: string | null;
-  order_id: uint64;
-  order_no: string;
-  no: string;
-  type?: uint16 | null;
-  part_type?: uint16 | null;
-  ref?: string | null;
-  part_no?: string | null;
-  description?: string | null;
-  destination?: string | null;
-  length_mm?: numeric | null;
-  width_mm?: numeric | null;
-  height_mm?: numeric | null;
-  surf_m2?: numeric | null;
-  qty?: uint64 | null;
-  material_no: string;
-  barcode?: string | null;
-  is_outsourced: boolean;
-  children: OrderCompositionLineOld[];
-}
-
 model OrderCompositionLine {
   @key id: uint64;
   parent_id?: string | null;

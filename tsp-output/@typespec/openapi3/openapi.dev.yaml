@@ -1691,45 +1691,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/OrderCreateBody'
-  /order-manager/orders/unplanned:
-    get:
-      tags:
-        - Orders
-      operationId: Orders_getUnplanned
-      parameters:
-        - $ref: '#/components/parameters/PaginatedRequest.page'
-        - $ref: '#/components/parameters/PaginatedRequest.perPage'
-        - $ref: '#/components/parameters/PaginatedRequest.search'
-      responses:
-        '200':
-          description: The request has succeeded.
-          content:
-            application/json:
-              schema:
-                type: object
-                required:
-                  - data
-                  - links
-                  - meta
-                properties:
-                  data:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Order'
-                  links:
-                    $ref: '#/components/schemas/PaginationLinks'
-                  meta:
-                    $ref: '#/components/schemas/PaginationMeta'
-                  filters:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/FilterOption'
-        '404':
-          description: The server cannot find the requested resource.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotFoundError'
   /order-manager/orders/{id}:
     get:
       tags:
@@ -2005,53 +1966,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
-  /order-manager/orders/{id}/composition-lines:
-    get:
-      tags:
-        - Orders
-      operationId: Orders_getCompositionLinesDeprecated
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-        - $ref: '#/components/parameters/PaginatedRequest.page'
-        - $ref: '#/components/parameters/PaginatedRequest.perPage'
-        - $ref: '#/components/parameters/PaginatedRequest.search'
-        - $ref: '#/components/parameters/PaginatedSortableRequest.sort_dir'
-        - $ref: '#/components/parameters/PaginatedSortableRequest.sort_by'
-        - $ref: '#/components/parameters/OrderCompositionLineRequest.parentId'
-      responses:
-        '200':
-          description: The request has succeeded.
-          content:
-            application/json:
-              schema:
-                type: object
-                required:
-                  - data
-                  - links
-                  - meta
-                properties:
-                  data:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/OrderCompositionLineOld'
-                  links:
-                    $ref: '#/components/schemas/PaginationLinks'
-                  meta:
-                    $ref: '#/components/schemas/PaginationMeta'
-                  filters:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/FilterOption'
-        '404':
-          description: The server cannot find the requested resource.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotFoundError'
   /order-manager/orders/{id}/order-materials:
     get:
       tags:
@@ -2172,11 +2086,74 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
-  /order-manager/orders/{id}/order-tasks/plan:
+  /order-manager/orders/{id}/push-to-erp:
     post:
       tags:
         - Orders
-      operationId: Orders_planOrderTasks
+      operationId: Orders_postToErp
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: string
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /production-planning/orders/unplanned:
+    get:
+      tags:
+        - Production Planning
+      operationId: ProductionPlanningOrders_getUnplanned
+      parameters:
+        - $ref: '#/components/parameters/PaginatedRequest.page'
+        - $ref: '#/components/parameters/PaginatedRequest.perPage'
+        - $ref: '#/components/parameters/PaginatedRequest.search'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - links
+                  - meta
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Order'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                  filters:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FilterOption'
+        '404':
+          description: The server cannot find the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+  /production-planning/orders/{id}/order-tasks/plan:
+    post:
+      tags:
+        - Production Planning
+      operationId: ProductionPlanningOrders_planOrderTasks
       parameters:
         - name: id
           in: path
@@ -2206,30 +2183,6 @@ paths:
               type: array
               items:
                 $ref: '#/components/schemas/ToPlanTaskBody'
-  /order-manager/orders/{id}/push-to-erp:
-    post:
-      tags:
-        - Orders
-      operationId: Orders_postToErp
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: The request has succeeded.
-          content:
-            application/json:
-              schema:
-                type: string
-        default:
-          description: An unexpected error response.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
   /production-planning/orders/{id}/plan:
     post:
       tags:
@@ -3373,77 +3326,6 @@ components:
           nullable: true
         is_outsourced:
           type: boolean
-    OrderCompositionLineOld:
-      type: object
-      required:
-        - id
-        - order_id
-        - order_no
-        - no
-        - material_no
-        - is_outsourced
-        - children
-      properties:
-        id:
-          type: integer
-          format: uint64
-        parent_id:
-          type: string
-          nullable: true
-        order_id:
-          type: integer
-          format: uint64
-        order_no:
-          type: string
-        no:
-          type: string
-        type:
-          type: integer
-          format: uint16
-          nullable: true
-        part_type:
-          type: integer
-          format: uint16
-          nullable: true
-        ref:
-          type: string
-          nullable: true
-        part_no:
-          type: string
-          nullable: true
-        description:
-          type: string
-          nullable: true
-        destination:
-          type: string
-          nullable: true
-        length_mm:
-          type: number
-          nullable: true
-        width_mm:
-          type: number
-          nullable: true
-        height_mm:
-          type: number
-          nullable: true
-        surf_m2:
-          type: number
-          nullable: true
-        qty:
-          type: integer
-          format: uint64
-          nullable: true
-        material_no:
-          type: string
-        barcode:
-          type: string
-          nullable: true
-        is_outsourced:
-          type: boolean
-        children:
-          type: array
-          items:
-            $ref: '#/components/schemas/OrderCompositionLineOld'
     OrderCreateBody:
       type: object
       required:
