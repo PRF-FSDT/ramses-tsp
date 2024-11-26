@@ -109,6 +109,34 @@ model OrderAttachment {
 
 model OrderCompositionLine {
   @key id: uint64;
+  order_id: uint64;
+  order_no: string;
+  order_name: string;
+  group_name: string | null;
+  ext_id: string | null;
+  type_no: string | null;
+  type_name: string | null;
+  part_type_no: string | null;
+  part_type_name: string | null;
+  plan_pos: string | null;
+  ncno: string;
+  name: string;
+  description?: string | null;
+  article_name: string | null;
+  subassembly_name: string | null;
+  part_name: string | null;
+  destination?: string | null;
+  length_mm?: numeric | null;
+  width_mm?: numeric | null;
+  height_mm?: numeric | null;
+  cut_length_mm?: numeric | null;
+  cut_width_mm?: numeric | null;
+  scan_code: string | null;
+  is_outsourced: boolean;
+}
+
+model SyncedOrderCompositionLine {
+  @key id: uint64;
   parent_id?: string | null;
   order_id: uint64;
   order_no: string;
@@ -490,10 +518,10 @@ model OrderMaterialIndexFilterRequest {
   @query stock_status?: string;
 }
 
-model OrderCompositionLineRequest {
+/*model OrderCompositionLineRequest {
   ...PaginatedSortableRequest;
   @query parentId?: int32;
-}
+}*/
 
 model OrderTaskFilterRequest {
   ...PaginatedSortableRequest;

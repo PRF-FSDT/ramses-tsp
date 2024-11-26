@@ -55,7 +55,7 @@ interface Orders {
   @route("{id}/attachments") @post postAttachments(@path id: string): ActionResponse;
 
   //composition lines
-  @route("{id}/composition") @get getCompositionLines(@path id: string, ...OrderCompositionLineRequest): PaginatedResponse<OrderComposition>;
+  @route("{id}/composition") @get getCompositionLines(@path id: string, ...PaginatedSortableRequest): PaginatedResponse<OrderComposition>;
 
   //order tasks
   @route("{id}/order-tasks") @get getOrderTasks(@path id: string, ...OrderTaskFilterRequest): PaginatedResponse<OrderTask>;

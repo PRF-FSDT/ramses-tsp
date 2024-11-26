@@ -1935,7 +1935,6 @@ paths:
         - $ref: '#/components/parameters/PaginatedRequest.search'
         - $ref: '#/components/parameters/PaginatedSortableRequest.sort_dir'
         - $ref: '#/components/parameters/PaginatedSortableRequest.sort_by'
-        - $ref: '#/components/parameters/OrderCompositionLineRequest.parentId'
       responses:
         '200':
           description: The request has succeeded.
@@ -2582,13 +2581,6 @@ components:
       required: true
       schema:
         type: string
-    OrderCompositionLineRequest.parentId:
-      name: parentId
-      in: query
-      required: false
-      schema:
-        type: integer
-        format: int32
     OrderIndexFilterRequest.client_name:
       name: client_name
       in: query
@@ -3266,38 +3258,67 @@ components:
         - id
         - order_id
         - order_no
-        - no
-        - material_no
+        - order_name
+        - group_name
+        - ext_id
+        - type_no
+        - type_name
+        - part_type_no
+        - part_type_name
+        - plan_pos
+        - ncno
+        - name
+        - article_name
+        - subassembly_name
+        - part_name
+        - scan_code
         - is_outsourced
       properties:
         id:
           type: integer
           format: uint64
-        parent_id:
-          type: string
-          nullable: true
         order_id:
           type: integer
           format: uint64
         order_no:
           type: string
-        no:
+        order_name:
           type: string
-        type:
-          type: integer
-          format: uint16
-          nullable: true
-        part_type:
-          type: integer
-          format: uint16
-          nullable: true
-        ref:
+        group_name:
           type: string
           nullable: true
-        part_no:
+        ext_id:
           type: string
           nullable: true
+        type_no:
+          type: string
+          nullable: true
+        type_name:
+          type: string
+          nullable: true
+        part_type_no:
+          type: string
+          nullable: true
+        part_type_name:
+          type: string
+          nullable: true
+        plan_pos:
+          type: string
+          nullable: true
+        ncno:
+          type: string
+        name:
+          type: string
         description:
+          type: string
+          nullable: true
+        article_name:
+          type: string
+          nullable: true
+        subassembly_name:
+          type: string
+          nullable: true
+        part_name:
           type: string
           nullable: true
         destination:
@@ -3312,16 +3333,13 @@ components:
         height_mm:
           type: number
           nullable: true
-        surf_m2:
+        cut_length_mm:
           type: number
           nullable: true
-        qty:
-          type: integer
-          format: uint64
+        cut_width_mm:
+          type: number
           nullable: true
-        material_no:
-          type: string
-        barcode:
+        scan_code:
           type: string
           nullable: true
         is_outsourced:
@@ -4555,6 +4573,72 @@ components:
         prep_duration_days:
           type: integer
           nullable: true
+    SyncedOrderCompositionLine:
+      type: object
+      required:
+        - id
+        - order_id
+        - order_no
+        - no
+        - material_no
+        - is_outsourced
+      properties:
+        id:
+          type: integer
+          format: uint64
+        parent_id:
+          type: string
+          nullable: true
+        order_id:
+          type: integer
+          format: uint64
+        order_no:
+          type: string
+        no:
+          type: string
+        type:
+          type: integer
+          format: uint16
+          nullable: true
+        part_type:
+          type: integer
+          format: uint16
+          nullable: true
+        ref:
+          type: string
+          nullable: true
+        part_no:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        destination:
+          type: string
+          nullable: true
+        length_mm:
+          type: number
+          nullable: true
+        width_mm:
+          type: number
+          nullable: true
+        height_mm:
+          type: number
+          nullable: true
+        surf_m2:
+          type: number
+          nullable: true
+        qty:
+          type: integer
+          format: uint64
+          nullable: true
+        material_no:
+          type: string
+        barcode:
+          type: string
+          nullable: true
+        is_outsourced:
+          type: boolean
     ToPlanTaskBody:
       type: object
       required:
