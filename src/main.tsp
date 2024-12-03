@@ -82,7 +82,7 @@ interface Orders {
   @route("{id}/order-materials") @get getOrderMaterials(@path id: string, ...OrderMaterialIndexFilterRequest): PaginatedResponse<OrderMaterialWithItems>;
   @route("{id}/order-materials-csv") @get getOrderMaterialsCsv(@path id: string, ...OrderMaterialCsvRequest): StreamedCsvResponse | Error;
 
-  //TODO: define this action
+  //actions
   @route("{id}/push-to-erp") @post postToErp(@path id: string): string | Error;
 }
 
@@ -144,6 +144,12 @@ interface OrderTasks {
   @delete delete(@path id: string): DeletedResponse;
   @get @route("/planning-for-week/{week}") getPlanningForWeek(@path week: string): PaginatedResponse<OrderTask>;
   // @post @route("{id}/plan") plan(@path id: string, @body ToPlanTasks: ToPlanTaskBody[]): SuccessResponse | Error;
+}
+
+@route("/order-manager")
+@tag("Order Manager")
+interface OrderManager {
+  @route("/sync-erp-data") @post syncErpData(@path id: string): SuccessResponse | Error;
 }
 
 //Model: Resource
