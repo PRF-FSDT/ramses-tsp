@@ -2110,17 +2110,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /order-manager/sync-erp-data/{id}:
+  /order-manager/sync-erp-data:
     post:
       tags:
         - Order Manager
       operationId: OrderManager_syncErpData
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
+      parameters: []
       responses:
         '200':
           description: The request has succeeded.

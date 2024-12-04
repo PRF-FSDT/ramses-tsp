@@ -149,7 +149,7 @@ interface OrderTasks {
 @route("/order-manager")
 @tag("Order Manager")
 interface OrderManager {
-  @route("/sync-erp-data") @post syncErpData(@path id: string): SuccessResponse | Error;
+  @route("/sync-erp-data") @post syncErpData(): SuccessResponse | Error;
 }
 
 //Model: Resource
