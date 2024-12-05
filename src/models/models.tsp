@@ -41,6 +41,7 @@ model Client {
 model Order {
   @key id: int64;
   no?: string | null;
+  erp_order_no?: string | null;
   name: string;
   description: string;
   notes: string;

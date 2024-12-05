@@ -3186,6 +3186,9 @@ components:
         no:
           type: string
           nullable: true
+        erp_order_no:
+          type: string
+          nullable: true
         name:
           type: string
         description:
@@ -3428,6 +3431,9 @@ components:
           type: integer
           format: int64
         no:
+          type: string
+          nullable: true
+        erp_order_no:
           type: string
           nullable: true
         name:
