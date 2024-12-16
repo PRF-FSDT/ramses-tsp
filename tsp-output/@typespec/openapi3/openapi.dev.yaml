@@ -1874,6 +1874,8 @@ paths:
             schema:
               type: object
               properties:
+                erp_no:
+                  type: string
                 material_no:
                   type: string
                 name:
@@ -1892,11 +1894,6 @@ paths:
                   type: integer
                 height_mm:
                   type: integer
-              required:
-                - material_no
-                - name
-                - qty
-                - uom
   /order-manager/orders/{id}/attachments:
     get:
       tags:

@@ -74,13 +74,13 @@ interface Orders {
   ): PaginatedResponse<AdditionalPurchaseLine>;
   @route("{id}/additional-purchase-lines") @post postAdditionalPurchLines(
     @path id: string,
-    //erp_no?: string,
-    material_no: string,
-    name: string,
+    erp_no?: string,
+    material_no?: string,
+    name?: string,
     brand?: string,
     type?: string,
-    qty: numeric,
-    uom: string,
+    qty?: numeric,
+    uom?: string,
     length_mm?: integer,
     width_mm?: integer,
     height_mm?: integer,
