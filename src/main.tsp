@@ -9,6 +9,7 @@ import "./models/machine-types.tsp";
 import "./models/routing-codes.tsp";
 import "./models/order-lines.tsp";
 import "./models/broken-parts.tsp";
+import "./models/additional-purchase-parts.tsp";
 import "./models/storage-locations.tsp";
 import "./models/scan.tsp";
 
@@ -39,6 +40,12 @@ interface Demo {
 }
 
 //ORDER MANAGER
+//Model: Additional Purchase Parts
+@route("/order-manager/additional-purchase-parts")
+@tag("Additional Purchase Parts")
+interface AdditionalPurchaseParts {
+  @get list(...PaginatedRequest): PaginatedResponse<AdditionalPurchasePart>;
+}
 
 //Model: Orders
 @route("/order-manager/orders")
@@ -67,6 +74,7 @@ interface Orders {
   ): PaginatedResponse<AdditionalPurchaseLine>;
   @route("{id}/additional-purchase-lines") @post postAdditionalPurchLines(
     @path id: string,
+    //erp_no?: string,
     material_no: string,
     name: string,
     brand?: string,
