@@ -9,6 +9,12 @@ model NotFoundError {
 }
 
 @error
+model BadRequestError {
+  @statusCode statusCode: 400;
+  message: string;
+}
+
+@error
 model ValidationError {
   @statusCode statusCode: 422;
   message: string;

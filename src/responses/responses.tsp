@@ -72,4 +72,4 @@ alias DeletedResponse = DeletedReturn;
 alias RecordResponse<T> = RecordReturn<T> | NotFoundError;
 alias ReadResponse<T> = T | NotFoundError;
 alias ActionResponse = ActionReturn | NotFoundError;
-alias SuccessResponse = SuccessReturn | ValidationError;
+alias SuccessResponse = SuccessReturn | ValidationError | BadRequestError;

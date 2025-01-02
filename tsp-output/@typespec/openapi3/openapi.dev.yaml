@@ -264,6 +264,12 @@ paths:
                     type: string
                 required:
                   - message
+        '400':
+          description: The server could not understand the request due to invalid syntax.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
         '404':
           description: The server cannot find the requested resource.
           content:
@@ -418,6 +424,12 @@ paths:
                     type: string
                 required:
                   - message
+        '400':
+          description: The server could not understand the request due to invalid syntax.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
         '422':
           description: Client error
           content:
@@ -2165,6 +2177,12 @@ paths:
                     type: string
                 required:
                   - message
+        '400':
+          description: The server could not understand the request due to invalid syntax.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
         '422':
           description: Client error
           content:
@@ -2273,6 +2291,12 @@ paths:
                     type: string
                 required:
                   - message
+        '400':
+          description: The server could not understand the request due to invalid syntax.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
         '422':
           description: Client error
           content:
@@ -2285,6 +2309,41 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/OrderPlanBody'
+  /production-planning/orders/{id}/unplan:
+    post:
+      tags:
+        - Production Planning
+      operationId: ProductionPlanningOrders_unplan
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        '400':
+          description: The server could not understand the request due to invalid syntax.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
   /production-planning/orders/{id}/workflow:
     get:
       tags:
@@ -2395,6 +2454,12 @@ paths:
                     type: string
                 required:
                   - message
+        '400':
+          description: The server could not understand the request due to invalid syntax.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
         '422':
           description: Client error
           content:
@@ -2858,6 +2923,13 @@ components:
         inventory:
           type: integer
           format: int32
+    BadRequestError:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
     BrokenPartReason:
       type: object
       required:
