@@ -552,3 +552,9 @@ model McRegisterOutputRequest {
   @query part_code: string;
   @query machine_center_no: string;
 }
+
+model FinishAllBody {
+  timestamp: uint16;
+  mc: string;
+  planned_order_line_id: numeric;
+}

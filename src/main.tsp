@@ -266,7 +266,9 @@ interface MesMachineCenter {
   @get @route("/order-components") getOrderComponents(...McOrderComponentsRequest): PaginatedResponse<PlannedComponentRoutingLine>;
   @get @route("/grouped-order-components") getGroupedOrderComponents(...McOrderComponentsRequest): PaginatedResponse<GroupedPlannedComponentRoutingLine>;
   @get @route("/scan-info") getScanInfo(...ScanInfoRequest): ScanInfoResponse | NotFoundError;
+
   @post @route("/register-output") registerOutput(...McRegisterOutputRequest): SuccessResponse;
+  @post @route("/finish-all") finishAll(@body finishAllBody: FinishAllBody): SuccessResponse | NotFoundError;
 }
 
 @route("/mes/broken-part-reasons")
