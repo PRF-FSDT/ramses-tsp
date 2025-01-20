@@ -2177,11 +2177,35 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
-  /order-manager/orders/{id}/push-to-erp:
+  /order-manager/orders/{id}/push-materials-to-erp:
     post:
       tags:
         - Orders
-      operationId: Orders_postToErp
+      operationId: Orders_postMaterialsToErp
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: string
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /order-manager/orders/{id}/push-order-to-erp:
+    post:
+      tags:
+        - Orders
+      operationId: Orders_postOrderToErp
       parameters:
         - name: id
           in: path
@@ -3322,11 +3346,19 @@ components:
       required:
         - name
         - email
+        - role
       properties:
         name:
           type: string
         email:
           type: string
+        role:
+          type: string
+          enum:
+            - user
+            - planner
+            - admin
+            - superadmin
     NotFoundError:
       type: object
       required:
@@ -3787,6 +3819,10 @@ components:
         - uom
         - category_no
         - stock_status
+        - whse_location_code
+        - provision_date
+        - erp_posted_prov_qty
+        - erp_posted_prov_date
       properties:
         id:
           type: integer
@@ -3813,6 +3849,17 @@ components:
           type: string
           nullable: true
         stock_status:
+          type: string
+          nullable: true
+        whse_location_code:
+          type: string
+          nullable: true
+        provision_date:
+          type: string
+          nullable: true
+        erp_posted_prov_qty:
+          type: number
+        erp_posted_prov_date:
           type: string
           nullable: true
     OrderMaterialWithItems:
@@ -4977,6 +5024,7 @@ components:
         - id
         - name
         - email
+        - role
       properties:
         id:
           type: integer
@@ -4985,6 +5033,13 @@ components:
           type: string
         email:
           type: string
+        role:
+          type: string
+          enum:
+            - user
+            - planner
+            - admin
+            - superadmin
     UserCreateBody:
       type: object
       required:
@@ -4998,6 +5053,13 @@ components:
           type: string
         password:
           type: string
+        role:
+          type: string
+          enum:
+            - user
+            - planner
+            - admin
+            - superadmin
     UserUpdateBody:
       type: object
       properties:
@@ -5005,6 +5067,13 @@ components:
           type: string
         email:
           type: string
+        role:
+          type: string
+          enum:
+            - user
+            - planner
+            - admin
+            - superadmin
     ValidationError:
       type: object
       required:

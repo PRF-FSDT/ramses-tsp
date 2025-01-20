@@ -91,7 +91,8 @@ interface Orders {
   @route("{id}/order-materials-csv") @get getOrderMaterialsCsv(@path id: string, ...OrderMaterialCsvRequest): StreamedCsvResponse | Error;
 
   //actions
-  @route("{id}/push-to-erp") @post postToErp(@path id: string): string | Error;
+  @route("{id}/push-order-to-erp") @post postOrderToErp(@path id: string): string | Error;
+  @route("{id}/push-materials-to-erp") @post postMaterialsToErp(@path id: string): string | Error;
 }
 
 //Model: SyncedOrder

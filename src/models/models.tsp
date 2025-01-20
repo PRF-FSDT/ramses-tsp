@@ -212,6 +212,10 @@ model OrderMaterialItem {
   uom: string;
   category_no: string | null;
   stock_status: string | null;
+  whse_location_code: string | null;
+  provision_date: string | null;
+  erp_posted_prov_qty : numeric;
+  erp_posted_prov_date : string | null;
 }
 
 model OrderTaskBody {
@@ -436,6 +440,7 @@ model LogoutResponse {
 model MeResponse {
   name: string;
   email: string;
+  role: "user" | "planner" | "admin" | "superadmin";
 }
 
 model OrderImportResponse {

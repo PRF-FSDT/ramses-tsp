@@ -13,15 +13,18 @@ model User {
   @key id: int64;
   name: string;
   email: string;
+  role: "user" | "planner" | "admin" | "superadmin";
 }
 
 model UserCreateBody {
   name: string;
   email: string;
   password: string;
+  role?: "user" | "planner" | "admin" | "superadmin";
 }
 
 model UserUpdateBody {
   name: string;
   email: string;
+  role?: "user" | "planner" | "admin" | "superadmin";
 }
