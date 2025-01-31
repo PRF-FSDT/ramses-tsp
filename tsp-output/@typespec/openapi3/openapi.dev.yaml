@@ -4049,12 +4049,15 @@ components:
       type: object
       required:
         - routing_code
+        - machine_type_code
         - qty
         - run_time
         - setup_time
         - machine_center_no
       properties:
         routing_code:
+          type: string
+        machine_type_code:
           type: string
         qty:
           type: integer
