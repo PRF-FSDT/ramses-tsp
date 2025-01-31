@@ -64,7 +64,7 @@ model SuccessReturn {
   };
 }
 
-alias ListResponse<T> = Array<T> | ValidationError;
+alias ListResponse<T> = Array<T> | ValidationError | BadRequestError;
 alias PaginatedResponse<T> = PaginatedReturn<T> | NotFoundError;
 alias CreatedResponse<T> = CreatedReturn<T> | ValidationError;
 alias UpdatedResponse<T> = UpdatedReturn<T> | ValidationError;

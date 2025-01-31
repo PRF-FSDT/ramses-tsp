@@ -2465,6 +2465,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/OrderWorkflowLine'
+        '400':
+          description: The server could not understand the request due to invalid syntax.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
         '422':
           description: Client error
           content:
@@ -2531,6 +2537,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/PlannedOrderLine'
+        '400':
+          description: The server could not understand the request due to invalid syntax.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
         '422':
           description: Client error
           content:
