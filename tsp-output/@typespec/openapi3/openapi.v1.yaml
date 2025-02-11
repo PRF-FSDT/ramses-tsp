@@ -28,7 +28,64 @@ tags:
   - name: Broken Part Reasons
   - name: Broken Parts
   - name: Scan
+  - name: AppSettings
 paths:
+  /app-settings:
+    get:
+      tags:
+        - AppSettings
+      operationId: AppSettings_list
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AppSetting'
+    patch:
+      tags:
+        - AppSettings
+      operationId: AppSettings_update
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        '400':
+          description: The server could not understand the request due to invalid syntax.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '404':
+          description: The server cannot find the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppSettingBody'
   /login:
     post:
       tags:
@@ -3036,6 +3093,33 @@ components:
         inventory:
           type: integer
           format: int32
+    AppSetting:
+      type: object
+      required:
+        - post_panel_consumption_to_erp
+        - use_sorting_locations
+        - default_whse_location_code
+        - default_prod_duration_days
+      properties:
+        post_panel_consumption_to_erp:
+          type: boolean
+        use_sorting_locations:
+          type: boolean
+        default_whse_location_code:
+          type: string
+        default_prod_duration_days:
+          type: number
+    AppSettingBody:
+      type: object
+      properties:
+        post_panel_consumption_to_erp:
+          type: boolean
+        use_sorting_locations:
+          type: boolean
+        default_whse_location_code:
+          type: string
+        default_prod_duration_days:
+          type: number
     BadRequestError:
       type: object
       required:

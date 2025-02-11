@@ -12,6 +12,7 @@ import "./models/broken-parts.tsp";
 import "./models/additional-purchase-parts.tsp";
 import "./models/storage-locations.tsp";
 import "./models/scan.tsp";
+import "./models/app-settings.tsp";
 
 import "./responses/responses.tsp";
 
@@ -292,4 +293,11 @@ interface BrokenParts {
 @tag("Scan")
 interface ScanEndpoint {
   @post scan(@body ScanBody: ScanBody): CreatedResponse<Scan>;
+}
+
+@route("/app-settings")
+@tag("AppSettings")
+interface AppSettings {
+  @get list(): AppSetting[];
+  @patch update(@body AppSettingBody: AppSettingBody): SuccessResponse | NotFoundError;
 }
