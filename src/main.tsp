@@ -298,6 +298,6 @@ interface ScanEndpoint {
 @route("/app-settings")
 @tag("AppSettings")
 interface AppSettings {
-  @get list(): AppSetting[];
+  @get list(): AppSetting;
   @patch update(@body AppSettingBody: AppSettingBody): SuccessResponse | NotFoundError;
 }
