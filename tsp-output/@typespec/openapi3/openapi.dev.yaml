@@ -13,6 +13,7 @@ tags:
   - name: Additional Purchase Lines
   - name: Order Material Items
   - name: Order Tasks
+  - name: Order Task Templates
   - name: Order Manager
   - name: Resources
   - name: Operating Hours
@@ -1660,6 +1661,115 @@ paths:
               properties:
                 qty:
                   type: number
+  /order-manager/order-task-templates:
+    get:
+      tags:
+        - Order Task Templates
+      operationId: OrderTaskTemplates_list
+      parameters:
+        - $ref: '#/components/parameters/PaginatedRequest.page'
+        - $ref: '#/components/parameters/PaginatedRequest.perPage'
+        - $ref: '#/components/parameters/PaginatedRequest.search'
+        - $ref: '#/components/parameters/PaginatedSortableRequest.sort_dir'
+        - $ref: '#/components/parameters/PaginatedSortableRequest.sort_by'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - links
+                  - meta
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Resource'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                  filters:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FilterOption'
+        '404':
+          description: The server cannot find the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+  /order-manager/order-task-templates/:
+    post:
+      tags:
+        - Order Task Templates
+      operationId: OrderTaskTemplates_post
+      parameters: []
+      responses:
+        '201':
+          description: The request has succeeded and a new resource has been created as a result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceBody'
+  /order-manager/order-task-templates/{id}:
+    patch:
+      tags:
+        - Order Task Templates
+      operationId: OrderTaskTemplates_update
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceBodyUpdate'
+    delete:
+      tags:
+        - Order Task Templates
+      operationId: OrderTaskTemplates_delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: 'There is no content to send for this request, but the headers may be useful. '
   /order-manager/order-tasks/:
     post:
       tags:
@@ -3210,16 +3320,6 @@ components:
           type: string
         client_country_code:
           type: string
-    DayOfWeek:
-      type: string
-      enum:
-        - Mon
-        - Tue
-        - Wed
-        - Thu
-        - Fri
-        - Sat
-        - Sun
     Error:
       type: object
       required:
@@ -5185,8 +5285,3 @@ components:
             type: array
             items:
               type: string
-    Versions:
-      type: string
-      enum:
-        - v1
-        - dev

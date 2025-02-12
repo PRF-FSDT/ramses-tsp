@@ -2,6 +2,7 @@ import "@typespec/http";
 import "@typespec/rest";
 import "@typespec/openapi3";
 import "@typespec/versioning";
+import "./models/common.tsp";
 import "./models/models.tsp";
 import "./models/users.tsp";
 import "./models/machine-centers.tsp";
@@ -13,6 +14,7 @@ import "./models/additional-purchase-parts.tsp";
 import "./models/storage-locations.tsp";
 import "./models/scan.tsp";
 import "./models/app-settings.tsp";
+import "./models/order-tasks.tsp";
 
 import "./responses/responses.tsp";
 
@@ -154,6 +156,16 @@ interface OrderTasks {
   @delete delete(@path id: string): DeletedResponse;
   @get @route("/planning-for-week/{week}") getPlanningForWeek(@path week: string): PaginatedResponse<OrderTask>;
   // @post @route("{id}/plan") plan(@path id: string, @body ToPlanTasks: ToPlanTaskBody[]): SuccessResponse | Error;
+}
+
+//Model: OrderTask
+@route("/order-manager/order-task-templates")
+@tag("Order Task Templates")
+interface OrderTaskTemplates {
+  @get list(...PaginatedSortableRequest): PaginatedResponse<Resource>;
+  @post @route("/") post(@body ResourceBody: ResourceBody): CreatedResponse<Resource>;
+  @patch @route("{id}") update(@path id: string, @body ResourceBody: ResourceBody): UpdatedResponse<Resource>;
+  @delete delete(@path id: string): DeletedResponse;
 }
 
 @route("/order-manager")

@@ -3,28 +3,14 @@ import "@typespec/rest";
 import "@typespec/openapi3";
 import "@typespec/versioning";
 
+import "./common.tsp";
+
 using TypeSpec.Versioning;
 using TypeSpec.Http;
 using TypeSpec.Rest;
 
 namespace RamsesService;
 
-enum Versions {
-  v1,
-  dev,
-}
-enum DayOfWeek {
-  Mon,
-  Tue,
-  Wed,
-  Thu,
-  Fri,
-  Sat,
-  Sun,
-}
-
-// Aliases:
-alias OrderTaskType = "preparation" | "finalisation";
 
 //MODELS:
 model Client {
@@ -218,50 +204,6 @@ model OrderMaterialItem {
   erp_posted_prov_date : string | null;
 }
 
-model OrderTaskBody {
-  order_id: uint64;
-  type: OrderTaskType;
-  title: string;
-  should_be_planned: boolean;
-  is_required_for_production: boolean;
-  is_external: boolean;
-  is_finished: boolean;
-  dependant_on: Array<integer>;
-}
-
-model OrderTaskUpdateBody {
-  type?: OrderTaskType;
-  title?: string;
-  should_be_planned?: boolean;
-  is_required_for_production?: boolean;
-  is_external?: boolean;
-  is_finished?: boolean;
-  dependant_on?: Array<integer>;
-  duration_in_min?: numeric | null;
-  planned_resource_id?: numeric | null;
-
-  @encode(DateTimeKnownEncoding.rfc3339)
-  planned_start?: utcDateTime | null;
-}
-
-model OrderTask {
-  @key id: uint64;
-  order_id: integer;
-  type: OrderTaskType;
-  title: string;
-  should_be_planned: boolean;
-  is_required_for_production: boolean;
-  is_external?: boolean;
-  is_finished?: boolean;
-  finished_by?: numeric | null;
-  dependant_on?: Array<numeric> | null;
-  duration_in_min?: numeric | null;
-  planned_resource_id?: numeric | null;
-
-  @encode(DateTimeKnownEncoding.rfc3339)
-  planned_start?: utcDateTime | null;
-}
-
 model SyncedOrder {
   @key id: uint64;
   no: string;
@@ -422,11 +364,7 @@ model StreamedCsvResponse {
   //stream
 }
 
-@error
-model Error {
-  code: int32;
-  message: string;
-}
+
 
 //AUTH
 model LoginResponse {
@@ -497,17 +435,7 @@ model ScanInfoResponse {
   error_message: string | null;
 }
 
-model PaginatedRequest {
-  @query page?: int32;
-  @query perPage?: int32;
-  @query search?: string;
-}
 
-model PaginatedSortableRequest {
-  ...PaginatedRequest;
-  @query sort_dir?: "asc" | "desc";
-  @query sort_by?: string;
-}
 
 model OrderIndexFilterRequest {
   ...PaginatedSortableRequest;
@@ -529,11 +457,6 @@ model OrderMaterialIndexFilterRequest {
   ...PaginatedSortableRequest;
   @query parentId?: int32;
 }*/
-
-model OrderTaskFilterRequest {
-  ...PaginatedSortableRequest;
-  @query type?: OrderTaskType;
-}
 
 model OrderMaterialCsvRequest {
   @query excludeRunningMeterParts?: boolean;
