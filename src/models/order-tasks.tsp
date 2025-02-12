@@ -55,4 +55,24 @@ model OrderTask {
   planned_start?: utcDateTime | null;
 }
 
+model OrderTaskTemplate {
+  @key id: uint64;
+  type: OrderTaskType;
+  title: string;
+  should_be_planned: boolean;
+  is_required_for_production: boolean;
+  is_external?: boolean;
+  dependant_on?: Array<numeric> | null;
+  duration_in_min?: numeric | null;
+}
+
+model OrderTaskTemplateBody {
+  type: OrderTaskType;
+  title: string;
+  should_be_planned: boolean;
+  is_required_for_production: boolean;
+  is_external: boolean;
+  dependant_on: Array<integer>;
+}
+
 

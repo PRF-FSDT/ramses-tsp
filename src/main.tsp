@@ -162,9 +162,9 @@ interface OrderTasks {
 @route("/order-manager/order-task-templates")
 @tag("Order Task Templates")
 interface OrderTaskTemplates {
-  @get list(...PaginatedSortableRequest): PaginatedResponse<Resource>;
-  @post @route("/") post(@body ResourceBody: ResourceBody): CreatedResponse<Resource>;
-  @patch @route("{id}") update(@path id: string, @body ResourceBody: ResourceBody): UpdatedResponse<Resource>;
+  @get list(...PaginatedSortableRequest): PaginatedResponse<OrderTaskTemplate>;
+  @post @route("/") post(@body OrderTaskTemplateBody: OrderTaskTemplateBody): CreatedResponse<OrderTaskTemplate>;
+  @patch @route("{id}") update(@path id: string, @body OrderTaskTemplateBody: OrderTaskTemplateBody): UpdatedResponse<OrderTaskTemplate>;
   @delete delete(@path id: string): DeletedResponse;
 }
 
