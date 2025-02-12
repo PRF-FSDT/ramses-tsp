@@ -4166,6 +4166,8 @@ components:
         duration_in_min:
           type: number
           nullable: true
+        due_offset_days:
+          type: number
         planned_resource_id:
           type: number
           nullable: true

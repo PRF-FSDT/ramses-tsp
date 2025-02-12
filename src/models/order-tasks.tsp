@@ -49,6 +49,7 @@ model OrderTask {
   finished_by?: numeric | null;
   dependant_on?: Array<numeric> | null;
   duration_in_min?: numeric | null;
+  due_offset_days?: numeric;
   planned_resource_id?: numeric | null;
 
   @encode(DateTimeKnownEncoding.rfc3339)
