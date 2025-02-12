@@ -72,7 +72,6 @@ model OrderTaskTemplateBody {
   should_be_planned: boolean;
   is_required_for_production: boolean;
   is_external: boolean;
-  dependant_on: Array<integer>;
+  dependant_on: Array<numeric> | null;
+  duration_in_min?: numeric | null;
 }
-
-

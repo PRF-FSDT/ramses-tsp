@@ -4266,7 +4266,11 @@ components:
         dependant_on:
           type: array
           items:
-            type: integer
+            type: number
+          nullable: true
+        duration_in_min:
+          type: number
+          nullable: true
     OrderTaskTemplateBodyUpdate:
       type: object
       properties:
@@ -4286,7 +4290,11 @@ components:
         dependant_on:
           type: array
           items:
-            type: integer
+            type: number
+          nullable: true
+        duration_in_min:
+          type: number
+          nullable: true
     OrderTaskUpdateBody:
       type: object
       properties:
