@@ -4240,6 +4240,8 @@ components:
         duration_in_min:
           type: number
           nullable: true
+        due_offset_days:
+          type: number
     OrderTaskTemplateBody:
       type: object
       required:
@@ -4271,6 +4273,8 @@ components:
         duration_in_min:
           type: number
           nullable: true
+        due_offset_days:
+          type: number
     OrderTaskTemplateBodyUpdate:
       type: object
       properties:
@@ -4295,6 +4299,8 @@ components:
         duration_in_min:
           type: number
           nullable: true
+        due_offset_days:
+          type: number
     OrderTaskUpdateBody:
       type: object
       properties:

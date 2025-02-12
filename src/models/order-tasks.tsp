@@ -64,6 +64,7 @@ model OrderTaskTemplate {
   is_external?: boolean;
   dependant_on?: Array<numeric> | null;
   duration_in_min?: numeric | null;
+  due_offset_days?: numeric;
 }
 
 model OrderTaskTemplateBody {
@@ -74,4 +75,5 @@ model OrderTaskTemplateBody {
   is_external: boolean;
   dependant_on: Array<numeric> | null;
   duration_in_min?: numeric | null;
+  due_offset_days?: numeric;
 }
