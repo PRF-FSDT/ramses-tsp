@@ -4168,6 +4168,9 @@ components:
           nullable: true
         due_offset_days:
           type: number
+        due_date:
+          type: string
+          nullable: true
         planned_resource_id:
           type: number
           nullable: true
