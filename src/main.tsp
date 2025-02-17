@@ -208,6 +208,7 @@ interface ProductionPlanningOrders {
   @get @route("/orders/unplanned") getUnplanned(...PaginatedRequest): PaginatedResponse<Order>;
   @get @route("/orders/{id}/workflow") workflow(@path id: string): ListResponse<OrderWorkflowLine>;
   @post @route("/orders/{id}/plan") plan(@path id: string, @body orderPlanBody: OrderPlanBody): SuccessResponse;
+  @post @route("/orders/{id}/autoplan") autoplan(@path id: string): SuccessResponse;
   @post @route("/orders/{id}/unplan") unplan(@path id: string): SuccessResponse;
   @post @route("/order-tasks/{id}/unplan") unplanOrderTask(@path id: string): SuccessResponse;
   @post @route("/orders/{id}/order-tasks/plan") planOrderTasks(@path id: string, @body ToPlanTasks: ToPlanTaskBody[]): CreatedResponse<ToPlanTaskBody[]>;
