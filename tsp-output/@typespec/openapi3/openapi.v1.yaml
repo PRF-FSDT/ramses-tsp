@@ -3386,15 +3386,15 @@ components:
       required:
         - timestamp
         - mc
-        - planned_order_line_id
+        - order_no
       properties:
         timestamp:
           type: integer
           format: uint16
         mc:
           type: string
-        planned_order_line_id:
-          type: number
+        order_no:
+          type: string
     GroupedPlannedComponentRoutingLine:
       type: object
       required:

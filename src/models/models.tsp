@@ -486,5 +486,5 @@ model McRegisterOutputRequest {
 model FinishAllBody {
   timestamp: uint16;
   mc: string;
-  planned_order_line_id: numeric;
+  order_no: string;
 }
