@@ -4715,6 +4715,7 @@ components:
         - description_2
         - qty
         - routing_no
+        - scan_code
         - status
         - take_from_position_no
         - finished_at
@@ -4735,6 +4736,8 @@ components:
         qty:
           type: number
         routing_no:
+          type: string
+        scan_code:
           type: string
         status:
           type: string
