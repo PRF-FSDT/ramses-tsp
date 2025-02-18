@@ -254,7 +254,7 @@ model PlannedComponentRoutingLine {
   description_2: string;
   qty: numeric;
   routing_no: string;
-  scan_code: string;
+  scan_code: string | null;
   status: string;
   take_from_position_no: string | null;
   finished_at: string | null;
