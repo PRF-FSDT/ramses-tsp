@@ -3,6 +3,7 @@ model PlannedOrderLine {
   @visibility("read") order_id: int64;
   @visibility("read") order_no: string;
   @visibility("read") routing_code: string;
+  @visibility("read") machine_type_code: string;
   @visibility("read") description: string;
   @visibility("read") client_no: string;
   @visibility("read") client_name: string;

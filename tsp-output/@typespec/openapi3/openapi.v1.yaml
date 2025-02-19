@@ -4755,6 +4755,7 @@ components:
         - order_id
         - order_no
         - routing_code
+        - machine_type_code
         - description
         - client_no
         - client_name
@@ -4777,6 +4778,9 @@ components:
           type: string
           readOnly: true
         routing_code:
+          type: string
+          readOnly: true
+        machine_type_code:
           type: string
           readOnly: true
         description:
