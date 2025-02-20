@@ -256,6 +256,7 @@ model PlannedComponentRoutingLine {
   routing_no: string;
   scan_code: string | null;
   status: string;
+  can_be_started: boolean;
   take_from_position_no: string | null;
   finished_at: string | null;
 }

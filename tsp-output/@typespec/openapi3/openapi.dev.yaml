@@ -4717,6 +4717,7 @@ components:
         - routing_no
         - scan_code
         - status
+        - can_be_started
         - take_from_position_no
         - finished_at
       properties:
@@ -4742,6 +4743,8 @@ components:
           nullable: true
         status:
           type: string
+        can_be_started:
+          type: boolean
         take_from_position_no:
           type: string
           nullable: true
