@@ -42,10 +42,14 @@ model Order {
   @visibility("read")
   is_production_planned: boolean;
 
-  prod_duration_days: integer;
-  finalisation_duration_days: integer;
+  prep_start_date: plainDate;
   prep_duration_days: integer;
+  prod_start_date: plainDate;
+  prod_duration_days: integer;
+  finalisation_start_date: plainDate;
+  finalisation_duration_days: integer;
   finalisation_date: plainDate;
+  creation_date: plainDate;
 
   @visibility("read")
   part_count?: int64;
