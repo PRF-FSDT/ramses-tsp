@@ -3722,21 +3722,25 @@ components:
         prep_start_date:
           type: string
           format: date
+          nullable: true
         prep_duration_days:
           type: integer
         prod_start_date:
           type: string
           format: date
+          nullable: true
         prod_duration_days:
           type: integer
         finalisation_start_date:
           type: string
           format: date
+          nullable: true
         finalisation_duration_days:
           type: integer
         finalisation_date:
           type: string
           format: date
+          nullable: true
         creation_date:
           type: string
           format: date
@@ -3985,21 +3989,25 @@ components:
         prep_start_date:
           type: string
           format: date
+          nullable: true
         prep_duration_days:
           type: integer
         prod_start_date:
           type: string
           format: date
+          nullable: true
         prod_duration_days:
           type: integer
         finalisation_start_date:
           type: string
           format: date
+          nullable: true
         finalisation_duration_days:
           type: integer
         finalisation_date:
           type: string
           format: date
+          nullable: true
         creation_date:
           type: string
           format: date

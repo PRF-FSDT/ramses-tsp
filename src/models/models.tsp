@@ -42,13 +42,13 @@ model Order {
   @visibility("read")
   is_production_planned: boolean;
 
-  prep_start_date: plainDate;
+  prep_start_date: plainDate | null;
   prep_duration_days: integer;
-  prod_start_date: plainDate;
+  prod_start_date: plainDate | null;
   prod_duration_days: integer;
-  finalisation_start_date: plainDate;
+  finalisation_start_date: plainDate | null;
   finalisation_duration_days: integer;
-  finalisation_date: plainDate;
+  finalisation_date: plainDate | null;
   creation_date: plainDate;
 
   @visibility("read")
