@@ -1625,6 +1625,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                file:
+                  $ref: '#/components/schemas/TypeSpec.Http.File'
+                delimiter:
+                  type: string
+              required:
+                - file
   /order-manager/importable-orders:
     get:
       tags:
@@ -5387,6 +5400,18 @@ components:
         planned_start:
           type: string
           format: date-time
+    TypeSpec.Http.File:
+      type: object
+      required:
+        - contents
+      properties:
+        contentType:
+          type: string
+        filename:
+          type: string
+        contents:
+          type: string
+          format: byte
     UpdateOrderBody:
       type: object
       properties:
