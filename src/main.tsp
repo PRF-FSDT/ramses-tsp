@@ -172,7 +172,7 @@ interface OrderTaskTemplates {
 @tag("Order Manager")
 interface OrderManager {
   @route("/sync-erp-data") @post syncErpData(): SuccessResponse | Error;
-  @route("/csv-import/composition") @post importCompositionCsv(@body body: {file: File; delimiter?: string;}): SuccessResponse | Error;
+  @route("/csv-import/composition") @post importCompositionCsv(@multipartBody body: { file: HttpPart<File>; delimiter?: HttpPart<string>;}): SuccessResponse | Error;
 }
 
 //Model: Resource

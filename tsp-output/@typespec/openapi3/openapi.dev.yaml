@@ -1633,11 +1633,15 @@ paths:
               type: object
               properties:
                 file:
-                  $ref: '#/components/schemas/TypeSpec.Http.File'
+                  type: string
+                  format: binary
                 delimiter:
                   type: string
               required:
                 - file
+            encoding:
+              file:
+                contentType: '*/*'
   /order-manager/importable-orders:
     get:
       tags:
@@ -5400,18 +5404,6 @@ components:
         planned_start:
           type: string
           format: date-time
-    TypeSpec.Http.File:
-      type: object
-      required:
-        - contents
-      properties:
-        contentType:
-          type: string
-        filename:
-          type: string
-        contents:
-          type: string
-          format: byte
     UpdateOrderBody:
       type: object
       properties:
