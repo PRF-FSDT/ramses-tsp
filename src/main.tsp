@@ -34,6 +34,7 @@ interface Auth {
   @route("login") @post postLogin(email: string, password: string, device_name: string): LoginResponse | ValidationError;
   @route("logout") @post postLogout(): LogoutResponse;
   @route("me") @get getMe(): MeResponse;
+  @route("me") @post updateMe(name?: string, email?: string, password?: string, password_confirmation?: string): SuccessResponse;
 }
 
 //DEMO
