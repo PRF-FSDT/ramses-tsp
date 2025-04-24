@@ -57,6 +57,15 @@ model Order {
   @visibility("read")
   article_count?: int64;
 
+  @visibility("read")
+  planned_components_count?: int64;
+  
+  @visibility("read")
+  planned_order_positions_count?: int64;
+
+  @visibility("read")
+  finished_planned_order_positions_count?: int64;
+
   created_at: string;
   updated_at: string;
   tasks?: Array<OrderTask> | null;

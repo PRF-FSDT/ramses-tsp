@@ -3849,6 +3849,18 @@ components:
           type: integer
           format: int64
           readOnly: true
+        planned_components_count:
+          type: integer
+          format: int64
+          readOnly: true
+        planned_order_positions_count:
+          type: integer
+          format: int64
+          readOnly: true
+        finished_planned_order_positions_count:
+          type: integer
+          format: int64
+          readOnly: true
         created_at:
           type: string
         updated_at:
@@ -4113,6 +4125,18 @@ components:
           format: int64
           readOnly: true
         article_count:
+          type: integer
+          format: int64
+          readOnly: true
+        planned_components_count:
+          type: integer
+          format: int64
+          readOnly: true
+        planned_order_positions_count:
+          type: integer
+          format: int64
+          readOnly: true
+        finished_planned_order_positions_count:
           type: integer
           format: int64
           readOnly: true
