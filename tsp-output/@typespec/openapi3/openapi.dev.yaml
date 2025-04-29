@@ -4934,6 +4934,7 @@ components:
         - scan_code
         - status
         - can_be_started
+        - is_broken_part
         - take_from_position_no
         - finished_at
       properties:
@@ -4960,6 +4961,8 @@ components:
         status:
           type: string
         can_be_started:
+          type: boolean
+        is_broken_part:
           type: boolean
         take_from_position_no:
           type: string

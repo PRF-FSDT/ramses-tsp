@@ -270,6 +270,7 @@ model PlannedComponentRoutingLine {
   scan_code: string | null;
   status: string;
   can_be_started: boolean;
+  is_broken_part: boolean;
   take_from_position_no: string | null;
   finished_at: string | null;
 }
