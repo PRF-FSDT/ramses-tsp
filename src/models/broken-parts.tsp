@@ -19,3 +19,9 @@ model BrokenPartReason {
 model BrokenPartReasonBody {
   title: BrokenPartReason.title;
 }
+
+model BrokenPartRegisterBody {
+  order_no: string;
+  part_no: string;
+  broken_part_reason_id: numeric;
+}

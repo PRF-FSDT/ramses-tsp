@@ -341,6 +341,48 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
+  /mes/broken-parts/register:
+    post:
+      tags:
+        - Broken Parts
+      operationId: BrokenParts_register
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        '400':
+          description: The server could not understand the request due to invalid syntax.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '404':
+          description: The server cannot find the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BrokenPartRegisterBody'
   /mes/broken-parts/{id}/repair:
     post:
       tags:
@@ -3391,6 +3433,19 @@ components:
       properties:
         title:
           type: string
+    BrokenPartRegisterBody:
+      type: object
+      required:
+        - order_no
+        - part_no
+        - broken_part_reason_id
+      properties:
+        order_no:
+          type: string
+        part_no:
+          type: string
+        broken_part_reason_id:
+          type: number
     BrokenPlannedComponent:
       type: object
       required:
