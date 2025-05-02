@@ -490,6 +490,7 @@ model McPlannedOrdersRequest {
 model McOrderComponentsRequest {
   ...PaginatedRequest;
   @query machine_center_no: string;
+  @query routing_code?: string;
   @query order_no: string;
 }
 

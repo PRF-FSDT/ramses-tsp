@@ -476,6 +476,7 @@ paths:
         - $ref: '#/components/parameters/PaginatedRequest.perPage'
         - $ref: '#/components/parameters/PaginatedRequest.search'
         - $ref: '#/components/parameters/McOrderComponentsRequest.machine_center_no'
+        - $ref: '#/components/parameters/McOrderComponentsRequest.routing_code'
         - $ref: '#/components/parameters/McOrderComponentsRequest.order_no'
       responses:
         '200':
@@ -517,6 +518,7 @@ paths:
         - $ref: '#/components/parameters/PaginatedRequest.perPage'
         - $ref: '#/components/parameters/PaginatedRequest.search'
         - $ref: '#/components/parameters/McOrderComponentsRequest.machine_center_no'
+        - $ref: '#/components/parameters/McOrderComponentsRequest.routing_code'
         - $ref: '#/components/parameters/McOrderComponentsRequest.order_no'
       responses:
         '200':
@@ -3146,6 +3148,12 @@ components:
       name: order_no
       in: query
       required: true
+      schema:
+        type: string
+    McOrderComponentsRequest.routing_code:
+      name: routing_code
+      in: query
+      required: false
       schema:
         type: string
     McPlannedOrdersRequest.machine_center_no:
