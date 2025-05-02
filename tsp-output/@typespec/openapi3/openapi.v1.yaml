@@ -5222,7 +5222,6 @@ components:
         - name
         - icon
         - machine_type_code
-        - preferred_mc_no
         - display_position
       properties:
         code:
