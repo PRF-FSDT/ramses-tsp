@@ -158,7 +158,7 @@ model SyncedOrderCompositionLine {
 }
 
 model OrderComposition {
-  plan_pos: string;
+  plan_pos: string | null;
   children: OrderCompositionLine[];
 }
 
@@ -276,7 +276,7 @@ model PlannedComponentRoutingLine {
 }
 
 model GroupedPlannedComponentRoutingLine {
-  plan_pos: string;
+  plan_pos: string | null;
   component_lines: PlannedComponentRoutingLine[];
 }
 

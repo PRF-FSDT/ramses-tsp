@@ -3555,6 +3555,7 @@ components:
       properties:
         plan_pos:
           type: string
+          nullable: true
         component_lines:
           type: array
           items:
@@ -3955,6 +3956,7 @@ components:
       properties:
         plan_pos:
           type: string
+          nullable: true
         children:
           type: array
           items:
