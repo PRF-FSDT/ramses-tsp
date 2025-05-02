@@ -246,8 +246,8 @@ interface MachineTypes {
 @tag("Routing Codes")
 interface RoutingCodes {
   @get list(...PaginatedRequest): PaginatedResponse<RoutingCode>;
-  @post @route("/") post(@body MachineBody: RoutingCodeBody): CreatedResponse<RoutingCode>;
-  @patch @route("{id}") update(@path id: string, @body MachineBody: RoutingCodeBody): UpdatedResponse<RoutingCode>;
+  @post @route("/") post(@body RoutingCodeBody: RoutingCodeBody): CreatedResponse<RoutingCode>;
+  @patch @route("{id}") update(@path id: string, @body RoutingCodeBody: RoutingCodeBody): UpdatedResponse<RoutingCode>;
   @delete delete(@path id: string): DeletedResponse;
 }
 

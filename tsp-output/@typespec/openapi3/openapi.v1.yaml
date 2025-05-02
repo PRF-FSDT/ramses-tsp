@@ -5187,6 +5187,7 @@ components:
         - name
         - icon
         - machine_type_code
+        - preferred_mc_no
         - display_position
       properties:
         id:
@@ -5206,6 +5207,10 @@ components:
           type: string
           nullable: true
           example: CNC
+        preferred_mc_no:
+          type: string
+          nullable: true
+          example: MC1
         display_position:
           type: integer
           format: int32
@@ -5217,6 +5222,7 @@ components:
         - name
         - icon
         - machine_type_code
+        - preferred_mc_no
         - display_position
       properties:
         code:
@@ -5233,6 +5239,10 @@ components:
           type: string
           nullable: true
           example: CNC
+        preferred_mc_no:
+          type: string
+          nullable: true
+          example: MC1
         display_position:
           type: integer
           format: int32
@@ -5254,6 +5264,10 @@ components:
           type: string
           nullable: true
           example: CNC
+        preferred_mc_no:
+          type: string
+          nullable: true
+          example: MC1
         display_position:
           type: integer
           format: int32
