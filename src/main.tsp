@@ -311,6 +311,12 @@ interface ScanEndpoint {
   @post scan(@body ScanBody: ScanBody): CreatedResponse<Scan>;
 }
 
+@route("/media")
+@tag("Media")
+interface Media {
+  @get @route("/image") getImage(@query orderNo: string, @query barcode: string): string | Error;
+}
+
 @route("/app-settings")
 @tag("AppSettings")
 interface AppSettings {
