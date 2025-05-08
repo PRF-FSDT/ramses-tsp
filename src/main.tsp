@@ -321,6 +321,7 @@ interface Media {
 @tag("Upload")
 interface Upload {
   @post @route("/chunk") postChunk(sessionId: string, fileName: string, chunkNumber: integer, data: string): SuccessResponse | Error;
+  @post @route("/process") processChunkedUpload(sessionId: string, fileName: string, action: string): SuccessResponse | Error;
 }
 
 @route("/app-settings")
