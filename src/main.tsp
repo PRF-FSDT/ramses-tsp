@@ -317,6 +317,12 @@ interface Media {
   @get @route("/image") getImage(@query orderNo: string, @query barcode: string): string | Error;
 }
 
+@route("/upload")
+@tag("Upload")
+interface Upload {
+  @post @route("/chunk") postChunk(sessionId: string, fileName: string, chunkNumber: integer, data: string): SuccessResponse | Error;
+}
+
 @route("/app-settings")
 @tag("AppSettings")
 interface AppSettings {
