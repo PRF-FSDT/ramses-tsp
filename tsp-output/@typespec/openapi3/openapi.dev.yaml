@@ -936,7 +936,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
-  /mes/orders/{id}/articles/{artId}:
+  /mes/orders/{id}/articles/{partNo}:
     get:
       tags:
         - Prod Orders
@@ -947,7 +947,7 @@ paths:
           required: true
           schema:
             type: string
-        - name: artId
+        - name: partNo
           in: path
           required: true
           schema:
@@ -959,7 +959,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PlannedComponentDetail'
-  /mes/orders/{id}/articles/{artId}/routing:
+  /mes/orders/{id}/articles/{partNo}/routing:
     get:
       tags:
         - Prod Orders
@@ -970,7 +970,7 @@ paths:
           required: true
           schema:
             type: string
-        - name: artId
+        - name: partNo
           in: path
           required: true
           schema:

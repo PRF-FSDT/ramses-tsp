@@ -266,10 +266,10 @@ interface MesOrders {
   @get @route("/{id}/planned-order-lines") getOrderPlannedOrderLines(@path id: string, ...PaginatedSortableRequest): PaginatedResponse<PlannedOrderLine>;
   @get @route("/{id}/plan-positions") getOrderPlanPositions(@path id: string, ...PaginatedSortableRequest): PaginatedResponse<PlannedOrderPosition>;
   @get @route("/{id}/plan-positions/{planPosId}") getOrderPlanPosDetail(@path id: string, @path planPosId: string): PlannedOrderPosition;
-  @get @route("/{id}/articles/{artId}") getOrderArticleDetail(@path id: string, @path artId: string): PlannedComponentDetail;
-  @get @route("/{id}/articles/{artId}/routing") getOrderArticleRouting(
+  @get @route("/{id}/articles/{partNo}") getOrderArticleDetail(@path id: string, @path partNo: string): PlannedComponentDetail;
+  @get @route("/{id}/articles/{partNo}/routing") getOrderArticleRouting(
     @path id: string,
-    @path artId: string,
+    @path partNo: string,
     ...PaginatedSortableRequest,
   ): PaginatedResponse<PlannedComponentRoutingLine>;
   @get @route("/{id}/saw-materials") getOrderSawMaterials(@path id: string, ...PaginatedSortableRequest): PaginatedResponse<OrderMaterialItem>;
