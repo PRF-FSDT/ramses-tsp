@@ -5077,6 +5077,7 @@ components:
         - order_no
         - no
         - part_no
+        - plan_pos
         - description
         - description_2
         - qty
@@ -5097,6 +5098,9 @@ components:
           type: string
         part_no:
           type: string
+        plan_pos:
+          type: string
+          nullable: true
         description:
           type: string
         description_2:

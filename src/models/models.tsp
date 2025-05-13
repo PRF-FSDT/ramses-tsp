@@ -263,6 +263,7 @@ model PlannedComponentRoutingLine {
   order_no: string;
   no: string;
   part_no: string;
+  plan_pos: string | null;
   description: string;
   description_2: string;
   qty: numeric;
