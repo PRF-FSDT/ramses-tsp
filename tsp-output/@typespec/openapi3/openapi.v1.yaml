@@ -1102,7 +1102,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
-  /mes/orders/{id}/plan-positions/{planPosId}:
+  /mes/orders/{id}/plan-positions/{planPosNo}:
     get:
       tags:
         - Prod Orders
@@ -1113,7 +1113,7 @@ paths:
           required: true
           schema:
             type: string
-        - name: planPosId
+        - name: planPosNo
           in: path
           required: true
           schema:
