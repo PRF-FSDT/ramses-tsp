@@ -5335,6 +5335,8 @@ components:
         - icon
         - machine_type_code
         - preferred_mc_no
+        - setup_time_sec
+        - run_time_sec
         - display_position
       properties:
         id:
@@ -5358,6 +5360,14 @@ components:
           type: string
           nullable: true
           example: MC1
+        setup_time_sec:
+          type: integer
+          format: int32
+          example: 30
+        run_time_sec:
+          type: integer
+          format: int32
+          example: 90
         display_position:
           type: integer
           format: int32
@@ -5369,6 +5379,8 @@ components:
         - name
         - icon
         - machine_type_code
+        - setup_time_sec
+        - run_time_sec
         - display_position
       properties:
         code:
@@ -5389,6 +5401,14 @@ components:
           type: string
           nullable: true
           example: MC1
+        setup_time_sec:
+          type: integer
+          format: int32
+          example: 30
+        run_time_sec:
+          type: integer
+          format: int32
+          example: 90
         display_position:
           type: integer
           format: int32
@@ -5414,6 +5434,14 @@ components:
           type: string
           nullable: true
           example: MC1
+        setup_time_sec:
+          type: integer
+          format: int32
+          example: 30
+        run_time_sec:
+          type: integer
+          format: int32
+          example: 90
         display_position:
           type: integer
           format: int32

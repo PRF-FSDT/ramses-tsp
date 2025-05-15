@@ -16,6 +16,8 @@ model RoutingCode {
   @example("/icons/drill-vert.png") icon: string | null;
   @example("CNC") machine_type_code: string | null;
   @example("MC1") preferred_mc_no: string | null;
+  @example(30) setup_time_sec: int32;
+  @example(90) run_time_sec: int32;
   display_position: int32 | null;
 }
 
@@ -25,5 +27,7 @@ model RoutingCodeBody {
   icon: RoutingCode.icon;
   machine_type_code: RoutingCode.machine_type_code;
   preferred_mc_no?: RoutingCode.preferred_mc_no;
+  setup_time_sec: RoutingCode.setup_time_sec;
+  run_time_sec: RoutingCode.run_time_sec;
   display_position: RoutingCode.display_position;
 }
