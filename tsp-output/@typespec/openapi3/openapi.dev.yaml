@@ -5203,6 +5203,7 @@ components:
         - planned_mc_no
         - planned_start
         - planned_duration_in_min
+        - elapsed_duration_in_min
         - parts_count
         - finished_parts_count
         - finished_at
@@ -5232,6 +5233,8 @@ components:
         planned_start:
           type: string
         planned_duration_in_min:
+          type: number
+        elapsed_duration_in_min:
           type: number
         parts_count:
           type: number

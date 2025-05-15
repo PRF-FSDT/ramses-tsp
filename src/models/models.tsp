@@ -253,6 +253,7 @@ model PlannedOrderLineWithOrderInfo {
   planned_mc_no: string;
   planned_start: string;
   planned_duration_in_min: numeric;
+  elapsed_duration_in_min: numeric;
   parts_count: numeric;
   finished_parts_count: numeric;
   finished_at: string | null;
