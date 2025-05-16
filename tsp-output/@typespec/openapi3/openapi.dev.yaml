@@ -24,6 +24,7 @@ tags:
   - name: Machine Types
   - name: Routing Codes
   - name: Prod Overview
+  - name: Prod Metrics
   - name: Prod Orders
   - name: Machine Center
   - name: Broken Part Reasons
@@ -889,6 +890,33 @@ paths:
       responses:
         '204':
           description: 'There is no content to send for this request, but the headers may be useful. '
+  /mes/metrics/workload:
+    get:
+      tags:
+        - Prod Metrics
+      operationId: MesProdMetrics_workload
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WorkloadForRoutingCode'
+        '400':
+          description: The server could not understand the request due to invalid syntax.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
   /mes/orders:
     get:
       tags:
@@ -5847,3 +5875,22 @@ components:
             type: array
             items:
               type: string
+    WorkloadForRoutingCode:
+      type: object
+      required:
+        - remainingWorkload
+        - startableWorkload
+        - startableParts
+        - todaysFinishedWorkload
+        - todaysFinishedParts
+      properties:
+        remainingWorkload:
+          type: number
+        startableWorkload:
+          type: number
+        startableParts:
+          type: number
+        todaysFinishedWorkload:
+          type: number
+        todaysFinishedParts:
+          type: number

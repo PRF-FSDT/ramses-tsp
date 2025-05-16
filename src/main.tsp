@@ -15,6 +15,7 @@ import "./models/storage-locations.tsp";
 import "./models/scan.tsp";
 import "./models/app-settings.tsp";
 import "./models/order-tasks.tsp";
+import "./models/metrics.tsp";
 
 import "./responses/responses.tsp";
 
@@ -256,6 +257,12 @@ interface RoutingCodes {
 interface MesProdOverview {
   //DEPRECATED -> moved to PROD ORDERS
   @get list(...OrderIndexFilterRequest): PaginatedResponse<Order>;
+}
+
+@route("/mes/metrics")
+@tag("Prod Metrics")
+interface MesProdMetrics {
+  @get @route("/workload") workload(): ListResponse<WorkloadForRoutingCode>;
 }
 
 @route("/mes/orders")
