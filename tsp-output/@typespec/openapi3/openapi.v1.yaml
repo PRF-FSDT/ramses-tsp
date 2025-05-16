@@ -904,7 +904,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/WorkloadForRoutingCode'
+                  $ref: '#/components/schemas/Workload'
         '400':
           description: The server could not understand the request due to invalid syntax.
           content:
@@ -5875,6 +5875,16 @@ components:
             type: array
             items:
               type: string
+    Workload:
+      type: object
+      required:
+        - routingCode
+        - metrics
+      properties:
+        routingCode:
+          type: string
+        metrics:
+          $ref: '#/components/schemas/WorkloadForRoutingCode'
     WorkloadForRoutingCode:
       type: object
       required:

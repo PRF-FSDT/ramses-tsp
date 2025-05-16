@@ -262,7 +262,7 @@ interface MesProdOverview {
 @route("/mes/metrics")
 @tag("Prod Metrics")
 interface MesProdMetrics {
-  @get @route("/workload") workload(): ListResponse<WorkloadForRoutingCode>;
+  @get @route("/workload") workload(): ListResponse<Workload>;
 }
 
 @route("/mes/orders")

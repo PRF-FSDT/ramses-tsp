@@ -16,3 +16,8 @@ model WorkloadForRoutingCode {
   todaysFinishedWorkload: numeric;
   todaysFinishedParts: numeric;
 }
+
+model Workload {
+  routingCode: string;
+  metrics: WorkloadForRoutingCode;
+}
