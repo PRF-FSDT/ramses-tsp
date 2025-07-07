@@ -14,6 +14,7 @@ tags:
   - name: Order Material Items
   - name: Order Tasks
   - name: Order Task Templates
+  - name: Time Registration Codes
   - name: Order Manager
   - name: Resources
   - name: Operating Hours
@@ -2626,6 +2627,115 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /order-manager/time-registration-codes:
+    get:
+      tags:
+        - Time Registration Codes
+      operationId: TimeRegistrationCodes_list
+      parameters:
+        - $ref: '#/components/parameters/PaginatedRequest.page'
+        - $ref: '#/components/parameters/PaginatedRequest.perPage'
+        - $ref: '#/components/parameters/PaginatedRequest.search'
+        - $ref: '#/components/parameters/PaginatedSortableRequest.sort_dir'
+        - $ref: '#/components/parameters/PaginatedSortableRequest.sort_by'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - links
+                  - meta
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TimeRegistrationCode'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                  filters:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FilterOption'
+        '404':
+          description: The server cannot find the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+  /order-manager/time-registration-codes/:
+    post:
+      tags:
+        - Time Registration Codes
+      operationId: TimeRegistrationCodes_post
+      parameters: []
+      responses:
+        '201':
+          description: The request has succeeded and a new resource has been created as a result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimeRegistrationCode'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TimeRegistrationCodeBody'
+  /order-manager/time-registration-codes/{id}:
+    patch:
+      tags:
+        - Time Registration Codes
+      operationId: TimeRegistrationCodes_update
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimeRegistrationCode'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TimeRegistrationCodeBodyUpdate'
+    delete:
+      tags:
+        - Time Registration Codes
+      operationId: TimeRegistrationCodes_delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: 'There is no content to send for this request, but the headers may be useful. '
   /production-planning/order-tasks/{id}/unplan:
     post:
       tags:
@@ -5738,6 +5848,29 @@ components:
           nullable: true
         is_outsourced:
           type: boolean
+    TimeRegistrationCode:
+      type: object
+      required:
+        - id
+        - title
+      properties:
+        id:
+          type: integer
+          format: int32
+        title:
+          type: string
+    TimeRegistrationCodeBody:
+      type: object
+      required:
+        - title
+      properties:
+        title:
+          type: string
+    TimeRegistrationCodeBodyUpdate:
+      type: object
+      properties:
+        title:
+          type: string
     ToPlanTaskBody:
       type: object
       required:

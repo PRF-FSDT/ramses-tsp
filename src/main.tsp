@@ -16,6 +16,7 @@ import "./models/scan.tsp";
 import "./models/app-settings.tsp";
 import "./models/order-tasks.tsp";
 import "./models/metrics.tsp";
+import "./models/time-registration-codes.tsp";
 
 import "./responses/responses.tsp";
 
@@ -167,6 +168,16 @@ interface OrderTaskTemplates {
   @get list(...PaginatedSortableRequest): PaginatedResponse<OrderTaskTemplate>;
   @post @route("/") post(@body OrderTaskTemplateBody: OrderTaskTemplateBody): CreatedResponse<OrderTaskTemplate>;
   @patch @route("{id}") update(@path id: string, @body OrderTaskTemplateBody: OrderTaskTemplateBody): UpdatedResponse<OrderTaskTemplate>;
+  @delete delete(@path id: string): DeletedResponse;
+}
+
+//Model: TimeRegistrationCode
+@route("/order-manager/time-registration-codes")
+@tag("Time Registration Codes")
+interface TimeRegistrationCodes {
+  @get list(...PaginatedSortableRequest): PaginatedResponse<TimeRegistrationCode>;
+  @post @route("/") post(@body TimeRegistrationCodeBody: TimeRegistrationCodeBody): CreatedResponse<TimeRegistrationCode>;
+  @patch @route("{id}") update(@path id: string, @body TimeRegistrationCodeBody: TimeRegistrationCodeBody): UpdatedResponse<TimeRegistrationCode>;
   @delete delete(@path id: string): DeletedResponse;
 }
 
