@@ -4716,6 +4716,9 @@ components:
         time_registration_code_id:
           type: number
           nullable: true
+        time_registration_code_title:
+          type: string
+          nullable: true
         planned_start:
           type: string
           format: date-time
@@ -4757,6 +4760,9 @@ components:
         time_registration_code_id:
           type: number
           nullable: true
+        time_registration_code_title:
+          type: string
+          nullable: true
     OrderTaskTemplate:
       type: object
       required:
@@ -4795,6 +4801,9 @@ components:
         time_registration_code_id:
           type: number
           nullable: true
+        time_registration_code_title:
+          type: string
+          nullable: true
     OrderTaskTemplateBody:
       type: object
       required:
@@ -4831,6 +4840,9 @@ components:
         time_registration_code_id:
           type: number
           nullable: true
+        time_registration_code_title:
+          type: string
+          nullable: true
     OrderTaskTemplateBodyUpdate:
       type: object
       properties:
@@ -4859,6 +4871,9 @@ components:
           type: number
         time_registration_code_id:
           type: number
+          nullable: true
+        time_registration_code_title:
+          type: string
           nullable: true
     OrderTaskUpdateBody:
       type: object
@@ -4890,6 +4905,9 @@ components:
           nullable: true
         time_registration_code_id:
           type: number
+          nullable: true
+        time_registration_code_title:
+          type: string
           nullable: true
         planned_start:
           type: string

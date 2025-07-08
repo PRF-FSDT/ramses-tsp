@@ -21,6 +21,7 @@ model OrderTaskBody {
   is_finished: boolean;
   dependant_on: Array<integer>;
   time_registration_code_id?: numeric | null;
+  time_registration_code_title?: string | null;
 }
 
 model OrderTaskUpdateBody {
@@ -34,6 +35,7 @@ model OrderTaskUpdateBody {
   duration_in_min?: numeric | null;
   planned_resource_id?: numeric | null;
   time_registration_code_id?: numeric | null;
+  time_registration_code_title?: string | null;
 
   @encode(DateTimeKnownEncoding.rfc3339)
   planned_start?: utcDateTime | null;
@@ -55,6 +57,7 @@ model OrderTask {
   due_date?: string | null;
   planned_resource_id?: numeric | null;
   time_registration_code_id?: numeric | null;
+  time_registration_code_title?: string | null;
 
   @encode(DateTimeKnownEncoding.rfc3339)
   planned_start?: utcDateTime | null;
@@ -71,6 +74,7 @@ model OrderTaskTemplate {
   duration_in_min?: numeric | null;
   due_offset_days?: numeric;
   time_registration_code_id?: numeric | null;
+  time_registration_code_title?: string | null;
 }
 
 model OrderTaskTemplateBody {
@@ -83,4 +87,5 @@ model OrderTaskTemplateBody {
   duration_in_min?: numeric | null;
   due_offset_days?: numeric;
   time_registration_code_id?: numeric | null;
+  time_registration_code_title?: string | null;
 }
