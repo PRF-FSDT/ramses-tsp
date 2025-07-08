@@ -4713,6 +4713,9 @@ components:
         planned_resource_id:
           type: number
           nullable: true
+        time_registration_code_id:
+          type: number
+          nullable: true
         planned_start:
           type: string
           format: date-time
@@ -4751,6 +4754,9 @@ components:
           type: array
           items:
             type: integer
+        time_registration_code_id:
+          type: number
+          nullable: true
     OrderTaskTemplate:
       type: object
       required:
@@ -4786,6 +4792,9 @@ components:
           nullable: true
         due_offset_days:
           type: number
+        time_registration_code_id:
+          type: number
+          nullable: true
     OrderTaskTemplateBody:
       type: object
       required:
@@ -4819,6 +4828,9 @@ components:
           nullable: true
         due_offset_days:
           type: number
+        time_registration_code_id:
+          type: number
+          nullable: true
     OrderTaskTemplateBodyUpdate:
       type: object
       properties:
@@ -4845,6 +4857,9 @@ components:
           nullable: true
         due_offset_days:
           type: number
+        time_registration_code_id:
+          type: number
+          nullable: true
     OrderTaskUpdateBody:
       type: object
       properties:
@@ -4871,6 +4886,9 @@ components:
           type: number
           nullable: true
         planned_resource_id:
+          type: number
+          nullable: true
+        time_registration_code_id:
           type: number
           nullable: true
         planned_start:
