@@ -10,7 +10,7 @@ model Item {
   description: string | null;
   qty_in_stock: numeric;
   uom: string;
-  price: numeric;
+  price: numeric | string;
   length_mm: numeric | null;
   width_mm: numeric | null;
   height_mm: numeric | null;

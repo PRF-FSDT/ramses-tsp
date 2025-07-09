@@ -4018,7 +4018,9 @@ components:
         uom:
           type: string
         price:
-          type: number
+          anyOf:
+            - type: number
+            - type: string
         length_mm:
           type: number
           nullable: true
@@ -4095,7 +4097,9 @@ components:
         uom:
           type: string
         price:
-          type: number
+          anyOf:
+            - type: number
+            - type: string
         length_mm:
           type: number
           nullable: true
@@ -4152,7 +4156,9 @@ components:
         uom:
           type: string
         price:
-          type: number
+          anyOf:
+            - type: number
+            - type: string
         length_mm:
           type: number
           nullable: true
