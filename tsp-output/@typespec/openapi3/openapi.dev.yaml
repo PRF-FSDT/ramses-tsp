@@ -3977,9 +3977,92 @@ components:
         - description
         - qty_in_stock
         - uom
+        - price
         - length_mm
         - width_mm
         - height_mm
+        - oversize_left_mm
+        - oversize_right_mm
+        - oversize_top_mm
+        - oversize_btm_mm
+        - cut_loss
+        - grain
+        - priority
+      properties:
+        id:
+          type: number
+        material_no:
+          type: string
+        erp_no:
+          type: string
+          nullable: true
+        imos_no:
+          type: string
+          nullable: true
+        name:
+          type: string
+        brand:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        category_no:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        qty_in_stock:
+          type: number
+        uom:
+          type: string
+        price:
+          type: number
+        length_mm:
+          type: number
+          nullable: true
+        width_mm:
+          type: number
+          nullable: true
+        height_mm:
+          type: number
+          nullable: true
+        oversize_left_mm:
+          type: number
+        oversize_right_mm:
+          type: number
+        oversize_top_mm:
+          type: number
+        oversize_btm_mm:
+          type: number
+        cut_loss:
+          type: number
+        grain:
+          type: string
+          nullable: true
+        priority:
+          type: number
+    ItemBody:
+      type: object
+      required:
+        - id
+        - material_no
+        - erp_no
+        - imos_no
+        - name
+        - brand
+        - type
+        - category_no
+        - description
+        - uom
+        - length_mm
+        - width_mm
+        - height_mm
+        - oversize_left_mm
+        - oversize_right_mm
+        - oversize_top_mm
+        - oversize_btm_mm
         - cut_loss
         - grain
       properties:
@@ -4011,6 +4094,8 @@ components:
           type: number
         uom:
           type: string
+        price:
+          type: number
         length_mm:
           type: number
           nullable: true
@@ -4020,70 +4105,21 @@ components:
         height_mm:
           type: number
           nullable: true
+        oversize_left_mm:
+          type: number
+        oversize_right_mm:
+          type: number
+        oversize_top_mm:
+          type: number
+        oversize_btm_mm:
+          type: number
         cut_loss:
           type: number
         grain:
           type: string
           nullable: true
-    ItemBody:
-      type: object
-      required:
-        - id
-        - material_no
-        - erp_no
-        - imos_no
-        - name
-        - brand
-        - type
-        - category_no
-        - description
-        - uom
-        - length_mm
-        - width_mm
-        - height_mm
-        - cut_loss
-        - grain
-      properties:
-        id:
+        priority:
           type: number
-        material_no:
-          type: string
-        erp_no:
-          type: string
-          nullable: true
-        imos_no:
-          type: string
-          nullable: true
-        name:
-          type: string
-        brand:
-          type: string
-          nullable: true
-        type:
-          type: string
-          nullable: true
-        category_no:
-          type: string
-          nullable: true
-        description:
-          type: string
-          nullable: true
-        uom:
-          type: string
-        length_mm:
-          type: number
-          nullable: true
-        width_mm:
-          type: number
-          nullable: true
-        height_mm:
-          type: number
-          nullable: true
-        cut_loss:
-          type: number
-        grain:
-          type: string
-          nullable: true
     ItemBodyUpdate:
       type: object
       properties:
@@ -4111,8 +4147,12 @@ components:
         description:
           type: string
           nullable: true
+        qty_in_stock:
+          type: number
         uom:
           type: string
+        price:
+          type: number
         length_mm:
           type: number
           nullable: true
@@ -4122,11 +4162,21 @@ components:
         height_mm:
           type: number
           nullable: true
+        oversize_left_mm:
+          type: number
+        oversize_right_mm:
+          type: number
+        oversize_top_mm:
+          type: number
+        oversize_btm_mm:
+          type: number
         cut_loss:
           type: number
         grain:
           type: string
           nullable: true
+        priority:
+          type: number
     LoginResponse:
       type: object
       required:
