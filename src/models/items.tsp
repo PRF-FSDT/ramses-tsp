@@ -20,7 +20,7 @@ model Item {
   oversize_btm_mm: numeric;
   cut_loss: numeric;
   grain: string | null;
-  priority: numeric;
+  priority: numeric | string;
 }
 
 model ItemBody {

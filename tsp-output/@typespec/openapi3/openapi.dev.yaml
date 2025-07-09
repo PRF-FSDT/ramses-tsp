@@ -4044,7 +4044,9 @@ components:
           type: string
           nullable: true
         priority:
-          type: number
+          anyOf:
+            - type: number
+            - type: string
     ItemBody:
       type: object
       required:
