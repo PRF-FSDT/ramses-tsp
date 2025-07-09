@@ -13,6 +13,7 @@ import "./models/broken-parts.tsp";
 import "./models/additional-purchase-parts.tsp";
 import "./models/storage-locations.tsp";
 import "./models/scan.tsp";
+import "./models/items.tsp";
 import "./models/app-settings.tsp";
 import "./models/order-tasks.tsp";
 import "./models/metrics.tsp";
@@ -186,6 +187,16 @@ interface TimeRegistrationCodes {
 interface OrderManager {
   @route("/sync-erp-data") @post syncErpData(): SuccessResponse | Error;
   @route("/csv-import/composition") @post importCompositionCsv(@header contentType: "multipart/form-data"; @multipartBody body: { file: HttpPart<File>; delimiter?: HttpPart<string>;}): SuccessResponse | Error;
+}
+
+//Model: Item
+@route("/materials-manager/items")
+@tag("Items")
+interface Items {
+  @get list(...PaginatedSortableRequest): PaginatedResponse<Item>;
+  @post @route("/") post(@body ItemBody: ItemBody): CreatedResponse<Item>;
+  @patch @route("{id}") update(@path id: string, @body ItemBody: ItemBody): UpdatedResponse<Item>;
+  @delete delete(@path id: string): DeletedResponse;
 }
 
 //Model: Resource
