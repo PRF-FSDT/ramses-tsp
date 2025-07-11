@@ -159,7 +159,7 @@ interface OrderTasks {
   @patch @route("{id}") update(@path id: string, @body OrderTaskUpdateBody: OrderTaskUpdateBody): UpdatedResponse<OrderTask>;
   @delete delete(@path id: string): DeletedResponse;
   @get @route("/planning-for-week/{week}") getPlanningForWeek(@path week: string): PaginatedResponse<OrderTask>;
-  @get @route("/planned-tasks}") getPlannedTasks(): PaginatedResponse<OrderTask>;
+  @get @route("/planned-tasks}") getPlannedTasks(...PlannedTasksRequest): PaginatedResponse<OrderTask>;
   // @post @route("{id}/plan") plan(@path id: string, @body ToPlanTasks: ToPlanTaskBody[]): SuccessResponse | Error;
 }
 

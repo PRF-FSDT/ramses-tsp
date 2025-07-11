@@ -91,3 +91,9 @@ model OrderTaskTemplateBody {
   time_registration_code_id?: numeric | null;
   time_registration_code_title?: string | null;
 }
+
+model PlannedTasksRequest {
+  ...PaginatedSortableRequest;
+  @query resource_id?: numeric;
+  @query date?: string;
+}

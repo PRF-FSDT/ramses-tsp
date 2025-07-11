@@ -2111,7 +2111,14 @@ paths:
       tags:
         - Order Tasks
       operationId: OrderTasks_getPlannedTasks
-      parameters: []
+      parameters:
+        - $ref: '#/components/parameters/PaginatedRequest.page'
+        - $ref: '#/components/parameters/PaginatedRequest.perPage'
+        - $ref: '#/components/parameters/PaginatedRequest.search'
+        - $ref: '#/components/parameters/PaginatedSortableRequest.sort_dir'
+        - $ref: '#/components/parameters/PaginatedSortableRequest.sort_by'
+        - $ref: '#/components/parameters/PlannedTasksRequest.resource_id'
+        - $ref: '#/components/parameters/PlannedTasksRequest.date'
       responses:
         '200':
           description: The request has succeeded.
@@ -3722,6 +3729,18 @@ components:
         enum:
           - asc
           - desc
+    PlannedTasksRequest.date:
+      name: date
+      in: query
+      required: false
+      schema:
+        type: string
+    PlannedTasksRequest.resource_id:
+      name: resource_id
+      in: query
+      required: false
+      schema:
+        type: number
     ScanInfoRequest:
       name: scancode
       in: query
