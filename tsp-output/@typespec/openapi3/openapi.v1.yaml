@@ -16,6 +16,7 @@ tags:
   - name: Order Task Templates
   - name: Time Registration Codes
   - name: Order Manager
+  - name: Items
   - name: Resources
   - name: Operating Hours
   - name: Users
@@ -138,6 +139,115 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LogoutResponse'
+  /materials-manager/items:
+    get:
+      tags:
+        - Items
+      operationId: Items_list
+      parameters:
+        - $ref: '#/components/parameters/PaginatedRequest.page'
+        - $ref: '#/components/parameters/PaginatedRequest.perPage'
+        - $ref: '#/components/parameters/PaginatedRequest.search'
+        - $ref: '#/components/parameters/PaginatedSortableRequest.sort_dir'
+        - $ref: '#/components/parameters/PaginatedSortableRequest.sort_by'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - links
+                  - meta
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Item'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                  filters:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FilterOption'
+        '404':
+          description: The server cannot find the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+  /materials-manager/items/:
+    post:
+      tags:
+        - Items
+      operationId: Items_post
+      parameters: []
+      responses:
+        '201':
+          description: The request has succeeded and a new resource has been created as a result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemBody'
+  /materials-manager/items/{id}:
+    patch:
+      tags:
+        - Items
+      operationId: Items_update
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemBodyUpdate'
+    delete:
+      tags:
+        - Items
+      operationId: Items_delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: 'There is no content to send for this request, but the headers may be useful. '
   /me:
     get:
       tags:
@@ -3889,6 +3999,228 @@ components:
       properties:
         message:
           type: string
+    Item:
+      type: object
+      required:
+        - id
+        - material_no
+        - erp_no
+        - imos_no
+        - name
+        - brand
+        - type
+        - category_no
+        - description
+        - qty_in_stock
+        - uom
+        - price
+        - length_mm
+        - width_mm
+        - height_mm
+        - oversize_left_mm
+        - oversize_right_mm
+        - oversize_top_mm
+        - oversize_btm_mm
+        - cut_loss
+        - grain
+        - priority
+      properties:
+        id:
+          type: number
+        material_no:
+          type: string
+        erp_no:
+          type: string
+          nullable: true
+        imos_no:
+          type: string
+          nullable: true
+        name:
+          type: string
+        brand:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        category_no:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        qty_in_stock:
+          type: number
+        uom:
+          type: string
+        price:
+          anyOf:
+            - type: number
+            - type: string
+        length_mm:
+          type: number
+          nullable: true
+        width_mm:
+          type: number
+          nullable: true
+        height_mm:
+          type: number
+          nullable: true
+        oversize_left_mm:
+          type: number
+        oversize_right_mm:
+          type: number
+        oversize_top_mm:
+          type: number
+        oversize_btm_mm:
+          type: number
+        cut_loss:
+          type: number
+        grain:
+          type: string
+          nullable: true
+        priority:
+          anyOf:
+            - type: number
+            - type: string
+    ItemBody:
+      type: object
+      required:
+        - id
+        - material_no
+        - erp_no
+        - imos_no
+        - name
+        - brand
+        - type
+        - category_no
+        - description
+        - uom
+        - length_mm
+        - width_mm
+        - height_mm
+        - oversize_left_mm
+        - oversize_right_mm
+        - oversize_top_mm
+        - oversize_btm_mm
+        - cut_loss
+        - grain
+      properties:
+        id:
+          type: number
+        material_no:
+          type: string
+        erp_no:
+          type: string
+          nullable: true
+        imos_no:
+          type: string
+          nullable: true
+        name:
+          type: string
+        brand:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        category_no:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        qty_in_stock:
+          type: number
+        uom:
+          type: string
+        price:
+          anyOf:
+            - type: number
+            - type: string
+        length_mm:
+          type: number
+          nullable: true
+        width_mm:
+          type: number
+          nullable: true
+        height_mm:
+          type: number
+          nullable: true
+        oversize_left_mm:
+          type: number
+        oversize_right_mm:
+          type: number
+        oversize_top_mm:
+          type: number
+        oversize_btm_mm:
+          type: number
+        cut_loss:
+          type: number
+        grain:
+          type: string
+          nullable: true
+        priority:
+          type: number
+    ItemBodyUpdate:
+      type: object
+      properties:
+        id:
+          type: number
+        material_no:
+          type: string
+        erp_no:
+          type: string
+          nullable: true
+        imos_no:
+          type: string
+          nullable: true
+        name:
+          type: string
+        brand:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        category_no:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        qty_in_stock:
+          type: number
+        uom:
+          type: string
+        price:
+          anyOf:
+            - type: number
+            - type: string
+        length_mm:
+          type: number
+          nullable: true
+        width_mm:
+          type: number
+          nullable: true
+        height_mm:
+          type: number
+          nullable: true
+        oversize_left_mm:
+          type: number
+        oversize_right_mm:
+          type: number
+        oversize_top_mm:
+          type: number
+        oversize_btm_mm:
+          type: number
+        cut_loss:
+          type: number
+        grain:
+          type: string
+          nullable: true
+        priority:
+          type: number
     LoginResponse:
       type: object
       required:
