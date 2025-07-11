@@ -1996,6 +1996,42 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/OrderTaskBody'
+  /order-manager/order-tasks/planned-tasks}:
+    get:
+      tags:
+        - Order Tasks
+      operationId: OrderTasks_getPlannedTasks
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - links
+                  - meta
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/OrderTask'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                  filters:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FilterOption'
+        '404':
+          description: The server cannot find the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
   /order-manager/order-tasks/planning-for-week/{week}:
     get:
       tags:
@@ -4705,6 +4741,9 @@ components:
         duration_in_min:
           type: number
           nullable: true
+        elapsed_duration_in_min:
+          type: number
+          nullable: true
         due_offset_days:
           type: number
         due_date:
@@ -4712,6 +4751,9 @@ components:
           nullable: true
         planned_resource_id:
           type: number
+          nullable: true
+        timer_started_at:
+          type: string
           nullable: true
         time_registration_code_id:
           type: number
