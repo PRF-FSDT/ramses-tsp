@@ -2106,7 +2106,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/OrderTaskBody'
-  /order-manager/order-tasks/planned-tasks}:
+  /order-manager/order-tasks/planned-tasks:
     get:
       tags:
         - Order Tasks
