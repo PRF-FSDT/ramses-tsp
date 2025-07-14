@@ -5302,6 +5302,12 @@ components:
         time_registration_code_title:
           type: string
           nullable: true
+        timer_started_at:
+          type: string
+          nullable: true
+        elapsed_duration_in_min:
+          type: number
+          nullable: true
         planned_start:
           type: string
           format: date-time

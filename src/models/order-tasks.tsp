@@ -36,6 +36,8 @@ model OrderTaskUpdateBody {
   planned_resource_id?: numeric | null;
   time_registration_code_id?: numeric | null;
   time_registration_code_title?: string | null;
+  timer_started_at?: string | null;
+  elapsed_duration_in_min?: numeric | null;
 
   @encode(DateTimeKnownEncoding.rfc3339)
   planned_start?: utcDateTime | null;
