@@ -37,7 +37,7 @@ model OrderTaskUpdateBody {
   time_registration_code_id?: numeric | null;
   time_registration_code_title?: string | null;
   timer_started_at?: string | null;
-  elapsed_duration_in_min?: numeric | null;
+  elapsed_duration_in_sec?: numeric | null;
 
   @encode(DateTimeKnownEncoding.rfc3339)
   planned_start?: utcDateTime | null;
@@ -55,7 +55,7 @@ model OrderTask {
   finished_by?: numeric | null;
   dependant_on?: Array<numeric> | null;
   duration_in_min?: numeric | null;
-  elapsed_duration_in_min?: numeric | null;
+  elapsed_duration_in_sec?: numeric | null;
   due_offset_days?: numeric;
   due_date?: string | null;
   planned_resource_id?: numeric | null;

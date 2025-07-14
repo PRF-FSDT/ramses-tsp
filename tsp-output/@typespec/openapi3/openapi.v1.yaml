@@ -5092,7 +5092,7 @@ components:
         duration_in_min:
           type: number
           nullable: true
-        elapsed_duration_in_min:
+        elapsed_duration_in_sec:
           type: number
           nullable: true
         due_offset_days:
@@ -5305,7 +5305,7 @@ components:
         timer_started_at:
           type: string
           nullable: true
-        elapsed_duration_in_min:
+        elapsed_duration_in_sec:
           type: number
           nullable: true
         planned_start:
