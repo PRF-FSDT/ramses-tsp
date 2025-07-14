@@ -394,6 +394,7 @@ model LogoutResponse {
 }
 
 model MeResponse {
+  id: uint64;
   name: string;
   email: string;
   role: "user" | "planner" | "admin" | "superadmin";

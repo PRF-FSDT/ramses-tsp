@@ -4399,10 +4399,14 @@ components:
     MeResponse:
       type: object
       required:
+        - id
         - name
         - email
         - role
       properties:
+        id:
+          type: integer
+          format: uint64
         name:
           type: string
         email:
