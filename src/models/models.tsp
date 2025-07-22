@@ -122,6 +122,7 @@ model OrderCompositionLine {
   ncno: string;
   name: string;
   description?: string | null;
+  material_no?: string | null;
   article_name: string | null;
   subassembly_name: string | null;
   part_name: string | null;

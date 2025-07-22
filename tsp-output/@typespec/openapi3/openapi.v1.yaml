@@ -4698,6 +4698,9 @@ components:
         description:
           type: string
           nullable: true
+        material_no:
+          type: string
+          nullable: true
         article_name:
           type: string
           nullable: true
