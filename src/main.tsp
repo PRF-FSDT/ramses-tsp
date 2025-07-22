@@ -123,6 +123,7 @@ interface OrderAttachments {
 @tag("Composition Lines")
 interface OrderCompositionLines {
   @patch @route("{id}") update(@path id: string, is_outsourced: boolean): UpdatedResponse<OrderCompositionLine>;
+  @patch @route("{orderId}/is-outsourced") patchIsOutsourcedForOrder(@path orderId: string, is_outsourced: boolean): UpdatedResponse<OrderCompositionLine[]>;
 }
 
 //Model: AdditionalPurchaseLine
