@@ -17,6 +17,7 @@ tags:
   - name: Time Registration Codes
   - name: Order Manager
   - name: Items
+  - name: Materials Manager
   - name: Resources
   - name: Operating Hours
   - name: Users
@@ -180,6 +181,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
+  /materials-manager/items-csv:
+    get:
+      tags:
+        - Materials Manager
+      operationId: ItemsExport_itemsCsv
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: string
   /materials-manager/items/:
     post:
       tags:

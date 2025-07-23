@@ -208,6 +208,12 @@ interface Items {
   @delete delete(@path id: string): DeletedResponse;
 }
 
+@route("/materials-manager")
+@tag("Materials Manager")
+interface ItemsExport {
+  @get @route("/items-csv") itemsCsv(): string;
+}
+
 //Model: Resource
 @route("/resources")
 @tag("Resources")
