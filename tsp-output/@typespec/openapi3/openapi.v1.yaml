@@ -1814,6 +1814,41 @@ paths:
       responses:
         '204':
           description: 'There is no content to send for this request, but the headers may be useful. '
+  /order-manager/composition-lines/outsource-multiple:
+    patch:
+      tags:
+        - Composition Lines
+      operationId: OrderCompositionLines_outsourceMultiple
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrderCompositionLine'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                is_outsourced:
+                  type: boolean
+                line_ids:
+                  type: array
+                  items:
+                    type: integer
+                    format: int32
   /order-manager/composition-lines/{id}:
     patch:
       tags:

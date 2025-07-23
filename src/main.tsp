@@ -122,6 +122,7 @@ interface OrderAttachments {
 @route("/order-manager/composition-lines")
 @tag("Composition Lines")
 interface OrderCompositionLines {
+  @patch @route("/outsource-multiple") outsourceMultiple(is_outsourced: boolean, line_ids: int32[]): UpdatedResponse<OrderCompositionLine[]>;
   @patch @route("{id}") update(@path id: string, is_outsourced: boolean): UpdatedResponse<OrderCompositionLine>;
   @patch @route("{orderId}/is-outsourced") patchIsOutsourcedForOrder(@path orderId: string, is_outsourced: boolean): UpdatedResponse<OrderCompositionLine[]>;
 }
@@ -188,7 +189,13 @@ interface TimeRegistrationCodes {
 @tag("Order Manager")
 interface OrderManager {
   @route("/sync-erp-data") @post syncErpData(): SuccessResponse | Error;
-  @route("/csv-import/composition") @post importCompositionCsv(@header contentType: "multipart/form-data"; @multipartBody body: { file: HttpPart<File>; delimiter?: HttpPart<string>;}): SuccessResponse | Error;
+  @route("/csv-import/composition") @post importCompositionCsv(
+    @header contentType: "multipart/form-data",
+    @multipartBody body: {
+      file: HttpPart<File>;
+      delimiter?: HttpPart<string>;
+    },
+  ): SuccessResponse | Error;
 }
 
 //Model: Item
