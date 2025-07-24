@@ -4129,7 +4129,8 @@ components:
         - priority
       properties:
         id:
-          type: number
+          type: integer
+          format: int32
         material_no:
           type: string
         erp_no:
@@ -4189,7 +4190,6 @@ components:
     ItemBody:
       type: object
       required:
-        - id
         - material_no
         - erp_no
         - imos_no
@@ -4209,8 +4209,6 @@ components:
         - cut_loss
         - grain
       properties:
-        id:
-          type: number
         material_no:
           type: string
         erp_no:
@@ -4268,8 +4266,6 @@ components:
     ItemBodyUpdate:
       type: object
       properties:
-        id:
-          type: number
         material_no:
           type: string
         erp_no:

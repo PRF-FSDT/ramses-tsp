@@ -1,5 +1,5 @@
 model Item {
-  id: numeric;
+  @key id: int32;
   material_no: string;
   erp_no: string | null;
   imos_no: string | null;
@@ -24,7 +24,6 @@ model Item {
 }
 
 model ItemBody {
-  id: Item.id;
   material_no: Item.material_no;
   erp_no: Item.erp_no;
   imos_no: Item.imos_no;
