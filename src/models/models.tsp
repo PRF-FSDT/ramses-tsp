@@ -38,16 +38,16 @@ model Order {
   ...Client;
   drawing_no: string;
   location: string;
-  order?: string | null;
-  house_no?: string | null;
-  project?: string | null;
-  delivery_city?: string | null;
-  delivery_country?: string | null;
-  delivery_street_no?: string | null;
-  delivery_street_name?: string | null;
-  delivery_postal_code?: string | null;
-  phone_number?: string | null;
-  contact_person?: string | null;
+  order?: string;
+  house_no?: string;
+  project?: string;
+  delivery_city?: string;
+  delivery_country?: string;
+  delivery_street_no?: string;
+  delivery_street_name?: string;
+  delivery_postal_code?: string;
+  phone_number?: string;
+  contact_person?: string;
 
   @visibility("read")
   is_production_planned: boolean;
@@ -105,16 +105,16 @@ model UpdateOrderBody {
   prod_duration_days?: integer;
   finalisation_duration_days?: integer;
   prep_duration_days?: integer;
-  order?: string | null;
-  house_no?: string | null;
-  project?: string | null;
-  delivery_city?: string | null;
-  delivery_country?: string | null;
-  delivery_street_no?: string | null;
-  delivery_street_name?: string | null;
-  delivery_postal_code?: string | null;
-  phone_number?: string | null;
-  contact_person?: string | null;
+  order?: string;
+  house_no?: string;
+  project?: string;
+  delivery_city?: string;
+  delivery_country?: string;
+  delivery_street_no?: string;
+  delivery_street_name?: string;
+  delivery_postal_code?: string;
+  phone_number?: string;
+  contact_person?: string;
 
   @encode(DateTimeKnownEncoding.rfc3339)
   finalisation_date?: utcDateTime;
