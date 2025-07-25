@@ -122,7 +122,9 @@ interface OrderAttachments {
 @route("/order-manager/composition-lines")
 @tag("Composition Lines")
 interface OrderCompositionLines {
+  @patch @route("/outsource-multiple") outsourceMultiple(is_outsourced: boolean, line_ids: int32[]): UpdatedResponse<OrderCompositionLine[]>;
   @patch @route("{id}") update(@path id: string, is_outsourced: boolean): UpdatedResponse<OrderCompositionLine>;
+  @patch @route("{orderId}/is-outsourced") patchIsOutsourcedForOrder(@path orderId: string, is_outsourced: boolean): UpdatedResponse<OrderCompositionLine[]>;
 }
 
 //Model: AdditionalPurchaseLine
@@ -187,7 +189,13 @@ interface TimeRegistrationCodes {
 @tag("Order Manager")
 interface OrderManager {
   @route("/sync-erp-data") @post syncErpData(): SuccessResponse | Error;
-  @route("/csv-import/composition") @post importCompositionCsv(@header contentType: "multipart/form-data"; @multipartBody body: { file: HttpPart<File>; delimiter?: HttpPart<string>;}): SuccessResponse | Error;
+  @route("/csv-import/composition") @post importCompositionCsv(
+    @header contentType: "multipart/form-data",
+    @multipartBody body: {
+      file: HttpPart<File>;
+      delimiter?: HttpPart<string>;
+    },
+  ): SuccessResponse | Error;
 }
 
 //Model: Item
@@ -198,6 +206,12 @@ interface Items {
   @post @route("/") post(@body ItemBody: ItemBody): CreatedResponse<Item>;
   @patch @route("{id}") update(@path id: string, @body ItemBody: ItemBody): UpdatedResponse<Item>;
   @delete delete(@path id: string): DeletedResponse;
+}
+
+@route("/materials-manager")
+@tag("Materials Manager")
+interface ItemsExport {
+  @get @route("/items-csv") itemsCsv(): string;
 }
 
 //Model: Resource
