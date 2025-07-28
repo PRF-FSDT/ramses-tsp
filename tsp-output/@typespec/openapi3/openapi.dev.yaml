@@ -4628,24 +4628,34 @@ components:
           type: string
         order:
           type: string
+          nullable: true
         house_no:
           type: string
+          nullable: true
         project:
           type: string
+          nullable: true
         delivery_city:
           type: string
+          nullable: true
         delivery_country:
           type: string
+          nullable: true
         delivery_street_no:
           type: string
+          nullable: true
         delivery_street_name:
           type: string
+          nullable: true
         delivery_postal_code:
           type: string
+          nullable: true
         phone_number:
           type: string
+          nullable: true
         contact_person:
           type: string
+          nullable: true
         is_production_planned:
           type: boolean
           readOnly: true
@@ -4931,24 +4941,34 @@ components:
           type: string
         order:
           type: string
+          nullable: true
         house_no:
           type: string
+          nullable: true
         project:
           type: string
+          nullable: true
         delivery_city:
           type: string
+          nullable: true
         delivery_country:
           type: string
+          nullable: true
         delivery_street_no:
           type: string
+          nullable: true
         delivery_street_name:
           type: string
+          nullable: true
         delivery_postal_code:
           type: string
+          nullable: true
         phone_number:
           type: string
+          nullable: true
         contact_person:
           type: string
+          nullable: true
         is_production_planned:
           type: boolean
           readOnly: true
