@@ -498,12 +498,19 @@ model OrderMaterialIndexFilterRequest {
   @query parentId?: int32;
 }*/
 
-model OrderMaterialCsvRequest {
-  @query excludeRunningMeterParts?: boolean;
-  @query excludeSheetMaterials?: boolean;
-  @query excludePurchaseParts?: boolean;
-  @query excludeFittings?: boolean;
-  @query excludeEdging?: boolean;
+// model OrderMaterialCsvRequest {
+//   @query excludeRunningMeterParts?: boolean;
+//   @query excludeSheetMaterials?: boolean;
+//   @query excludePurchaseParts?: boolean;
+//   @query excludeFittings?: boolean;
+//   @query excludeEdging?: boolean;
+// }
+model OrderMaterialCsvBody {
+  excludeRunningMeterParts?: boolean;
+  excludeSheetMaterials?: boolean;
+  excludePurchaseParts?: boolean;
+  excludeFittings?: boolean;
+  excludeEdging?: boolean;
 }
 
 model McPlannedOrdersRequest {

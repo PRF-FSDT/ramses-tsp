@@ -2719,11 +2719,6 @@ paths:
           required: true
           schema:
             type: string
-        - $ref: '#/components/parameters/OrderMaterialCsvRequest.excludeRunningMeterParts'
-        - $ref: '#/components/parameters/OrderMaterialCsvRequest.excludeSheetMaterials'
-        - $ref: '#/components/parameters/OrderMaterialCsvRequest.excludePurchaseParts'
-        - $ref: '#/components/parameters/OrderMaterialCsvRequest.excludeFittings'
-        - $ref: '#/components/parameters/OrderMaterialCsvRequest.excludeEdging'
       responses:
         '200':
           description: The request has succeeded.
@@ -2733,6 +2728,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderMaterialCsvBody'
   /order-manager/orders/{id}/order-tasks:
     get:
       tags:
@@ -3727,36 +3728,6 @@ components:
       required: false
       schema:
         type: string
-    OrderMaterialCsvRequest.excludeEdging:
-      name: excludeEdging
-      in: query
-      required: false
-      schema:
-        type: boolean
-    OrderMaterialCsvRequest.excludeFittings:
-      name: excludeFittings
-      in: query
-      required: false
-      schema:
-        type: boolean
-    OrderMaterialCsvRequest.excludePurchaseParts:
-      name: excludePurchaseParts
-      in: query
-      required: false
-      schema:
-        type: boolean
-    OrderMaterialCsvRequest.excludeRunningMeterParts:
-      name: excludeRunningMeterParts
-      in: query
-      required: false
-      schema:
-        type: boolean
-    OrderMaterialCsvRequest.excludeSheetMaterials:
-      name: excludeSheetMaterials
-      in: query
-      required: false
-      schema:
-        type: boolean
     OrderMaterialIndexFilterRequest.category_no:
       name: category_no
       in: query
@@ -5071,6 +5042,19 @@ components:
         stock_status:
           type: string
           nullable: true
+    OrderMaterialCsvBody:
+      type: object
+      properties:
+        excludeRunningMeterParts:
+          type: boolean
+        excludeSheetMaterials:
+          type: boolean
+        excludePurchaseParts:
+          type: boolean
+        excludeFittings:
+          type: boolean
+        excludeEdging:
+          type: boolean
     OrderMaterialItem:
       type: object
       required:
