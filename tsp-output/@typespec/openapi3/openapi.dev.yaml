@@ -2722,6 +2722,11 @@ paths:
       responses:
         '200':
           description: The request has succeeded.
+          headers:
+            content-disposition:
+              required: true
+              schema:
+                type: string
           content:
             text/csv:
               schema:
