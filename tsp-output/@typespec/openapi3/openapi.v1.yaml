@@ -2551,6 +2551,36 @@ paths:
                   type: integer
                 height_mm:
                   type: integer
+  /order-manager/orders/{id}/additional-purchase-lines-csv:
+    get:
+      tags:
+        - Orders
+      operationId: Orders_getAdditionalPurchaseLineCsv
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          headers:
+            content-disposition:
+              required: true
+              schema:
+                type: string
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /order-manager/orders/{id}/attachments:
     get:
       tags:
