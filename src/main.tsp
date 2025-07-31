@@ -97,7 +97,6 @@ interface Orders {
   //order materials
   @route("{id}/order-materials") @get getOrderMaterials(@path id: string, ...OrderMaterialIndexFilterRequest): PaginatedResponse<OrderMaterialWithItems>;
   @route("{id}/order-materials-csv") @post getOrderMaterialsCsv(@path id: string, @body OrderMaterialCsvBody: OrderMaterialCsvBody): StreamedCsvResponse | Error;
-  @route("/order-materials-categories") @get getOrderMaterialCategories(): Array<numeric>;
 
   //actions
   @route("{id}/push-order-to-erp") @post postOrderToErp(@path id: string): string | Error;
