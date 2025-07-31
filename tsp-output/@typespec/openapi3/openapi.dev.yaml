@@ -2722,6 +2722,11 @@ paths:
       responses:
         '200':
           description: The request has succeeded.
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
         default:
           description: An unexpected error response.
           content:

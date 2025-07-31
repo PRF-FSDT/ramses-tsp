@@ -401,6 +401,8 @@ model OperatingHour {
 
 model StreamedCsvResponse {
   //stream
+  @header("content-type") contentType: "text/csv";
+  @body stream: bytes;
 }
 
 
