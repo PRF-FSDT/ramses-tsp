@@ -509,11 +509,7 @@ model OrderMaterialIndexFilterRequest {
 //   @query excludeEdging?: boolean;
 // }
 model OrderMaterialCsvBody {
-  excludeRunningMeterParts?: boolean;
-  excludeSheetMaterials?: boolean;
-  excludePurchaseParts?: boolean;
-  excludeFittings?: boolean;
-  excludeEdging?: boolean;
+  category_no?: string;
 }
 
 model McPlannedOrdersRequest {

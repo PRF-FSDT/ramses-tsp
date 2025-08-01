@@ -5113,16 +5113,8 @@ components:
     OrderMaterialCsvBody:
       type: object
       properties:
-        excludeRunningMeterParts:
-          type: boolean
-        excludeSheetMaterials:
-          type: boolean
-        excludePurchaseParts:
-          type: boolean
-        excludeFittings:
-          type: boolean
-        excludeEdging:
-          type: boolean
+        category_no:
+          type: string
     OrderMaterialItem:
       type: object
       required:
