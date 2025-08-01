@@ -97,11 +97,17 @@ interface Orders {
   //order materials
   @route("{id}/order-materials") @get getOrderMaterials(@path id: string, ...OrderMaterialIndexFilterRequest): PaginatedResponse<OrderMaterialWithItems>;
   @route("{id}/order-materials-csv") @post getOrderMaterialsCsv(@path id: string, @body OrderMaterialCsvBody: OrderMaterialCsvBody): StreamedCsvResponse | Error;
-  @route("/order-materials-categories") @get getOrderMaterialCategories(): ListResponse<numeric>;
+  // @route("/order-materials-categories") @get getOrderMaterialCategories(): ListResponse<numeric>;
 
   //actions
   @route("{id}/push-order-to-erp") @post postOrderToErp(@path id: string): string | Error;
   @route("{id}/push-materials-to-erp") @post postMaterialsToErp(@path id: string): string | Error;
+}
+
+@route("/order-manager")
+@tag("Order Material Categories")
+interface OrderMaterialCategory {
+  @get @route("/order-material-categories") getOrderMaterialCategories(): ListResponse<numeric>;
 }
 
 //Model: SyncedOrder

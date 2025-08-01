@@ -7,6 +7,7 @@ tags:
   - name: Demo
   - name: Additional Purchase Parts
   - name: Orders
+  - name: Order Material Categories
   - name: Importable Orders
   - name: Attachments
   - name: Composition Lines
@@ -2023,6 +2024,33 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
+  /order-manager/order-material-categories:
+    get:
+      tags:
+        - Order Material Categories
+      operationId: OrderMaterialCategory_getOrderMaterialCategories
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: number
+        '400':
+          description: The server could not understand the request due to invalid syntax.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
   /order-manager/order-material-items/{id}:
     patch:
       tags:
@@ -2389,33 +2417,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/OrderCreateBody'
-  /order-manager/orders/order-materials-categories:
-    get:
-      tags:
-        - Orders
-      operationId: Orders_getOrderMaterialCategories
-      parameters: []
-      responses:
-        '200':
-          description: The request has succeeded.
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: number
-        '400':
-          description: The server could not understand the request due to invalid syntax.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BadRequestError'
-        '422':
-          description: Client error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ValidationError'
   /order-manager/orders/{id}:
     get:
       tags:
