@@ -1932,6 +1932,36 @@ paths:
               properties:
                 is_outsourced:
                   type: boolean
+  /order-manager/composition-lines/{orderId}/outsourced-composition-lines-csv:
+    get:
+      tags:
+        - Composition Lines
+      operationId: OrderCompositionLines_getOutsourcedCompositionLineCsv
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          headers:
+            content-disposition:
+              required: true
+              schema:
+                type: string
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /order-manager/csv-import/composition:
     post:
       tags:
