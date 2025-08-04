@@ -2797,7 +2797,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
   /order-manager/orders/{id}/order-materials-csv:
-    post:
+    get:
       tags:
         - Orders
       operationId: Orders_getOrderMaterialsCsv
