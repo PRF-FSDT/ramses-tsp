@@ -2807,6 +2807,7 @@ paths:
           required: true
           schema:
             type: string
+        - $ref: '#/components/parameters/OrderMaterialCsvRequest'
       responses:
         '200':
           description: The request has succeeded.
@@ -2826,12 +2827,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/OrderMaterialCsvBody'
   /order-manager/orders/{id}/order-tasks:
     get:
       tags:
@@ -3822,6 +3817,12 @@ components:
         type: string
     OrderIndexFilterRequest.status:
       name: status
+      in: query
+      required: false
+      schema:
+        type: string
+    OrderMaterialCsvRequest:
+      name: category_no
       in: query
       required: false
       schema:
@@ -5140,11 +5141,6 @@ components:
         stock_status:
           type: string
           nullable: true
-    OrderMaterialCsvBody:
-      type: object
-      properties:
-        category_no:
-          type: string
     OrderMaterialItem:
       type: object
       required:

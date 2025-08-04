@@ -501,15 +501,8 @@ model OrderMaterialIndexFilterRequest {
   @query parentId?: int32;
 }*/
 
-// model OrderMaterialCsvRequest {
-//   @query excludeRunningMeterParts?: boolean;
-//   @query excludeSheetMaterials?: boolean;
-//   @query excludePurchaseParts?: boolean;
-//   @query excludeFittings?: boolean;
-//   @query excludeEdging?: boolean;
-// }
-model OrderMaterialCsvBody {
-  category_no?: string;
+model OrderMaterialCsvRequest {
+  @query category_no?: string;
 }
 
 model McPlannedOrdersRequest {

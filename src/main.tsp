@@ -96,7 +96,7 @@ interface Orders {
 
   //order materials
   @route("{id}/order-materials") @get getOrderMaterials(@path id: string, ...OrderMaterialIndexFilterRequest): PaginatedResponse<OrderMaterialWithItems>;
-  @route("{id}/order-materials-csv") @get getOrderMaterialsCsv(@path id: string, ...OrderMaterialCsvBody): StreamedCsvResponse | Error;
+  @route("{id}/order-materials-csv") @get getOrderMaterialsCsv(@path id: string, ...OrderMaterialCsvRequest): StreamedCsvResponse | Error;
   // @route("/order-materials-categories") @get getOrderMaterialCategories(): ListResponse<numeric>;
 
   //actions
