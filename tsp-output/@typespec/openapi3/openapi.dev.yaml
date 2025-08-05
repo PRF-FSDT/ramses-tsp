@@ -2639,6 +2639,32 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /order-manager/orders/{id}/attachment-upload:
+    post:
+      tags:
+        - Orders
+      operationId: Orders_uploadOrderAttachment
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+        '404':
+          description: The server cannot find the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderAttachmentUploadBody'
   /order-manager/orders/{id}/attachments:
     get:
       tags:
@@ -4805,6 +4831,14 @@ components:
           type: string
         path:
           type: string
+    OrderAttachmentUploadBody:
+      type: object
+      required:
+        - file
+      properties:
+        file:
+          type: string
+          format: byte
     OrderComposition:
       type: object
       required:

@@ -127,6 +127,10 @@ model OrderAttachment {
   path: string;
 }
 
+model OrderAttachmentUploadBody {
+  file: bytes;
+}
+
 model OrderCompositionLine {
   @key id: uint64;
   order_id: uint64;

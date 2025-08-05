@@ -67,6 +67,7 @@ interface Orders {
   //attachments
   @route("{id}/attachments") @get getAttachments(@path id: string, ...PaginatedRequest): PaginatedResponse<OrderAttachment>;
   @route("{id}/attachments") @post postAttachments(@path id: string): ActionResponse;
+  @route("{id}/attachment-upload") @post uploadOrderAttachment(@path id: string, @body OrderAttachmentUploadBody: OrderAttachmentUploadBody): ActionResponse;
 
   //composition lines
   @route("{id}/composition") @get getCompositionLines(@path id: string, ...PaginatedSortableRequest): PaginatedResponse<OrderComposition>;
@@ -97,7 +98,6 @@ interface Orders {
   //order materials
   @route("{id}/order-materials") @get getOrderMaterials(@path id: string, ...OrderMaterialIndexFilterRequest): PaginatedResponse<OrderMaterialWithItems>;
   @route("{id}/order-materials-csv") @get getOrderMaterialsCsv(@path id: string, ...OrderMaterialCsvRequest): StreamedCsvResponse | Error;
-  // @route("/order-materials-categories") @get getOrderMaterialCategories(): ListResponse<numeric>;
 
   //actions
   @route("{id}/push-order-to-erp") @post postOrderToErp(@path id: string): string | Error;
