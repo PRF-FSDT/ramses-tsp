@@ -2662,9 +2662,20 @@ paths:
       requestBody:
         required: true
         content:
-          application/json:
+          multipart/form-data:
             schema:
-              $ref: '#/components/schemas/OrderAttachmentUploadBody'
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                delimiter:
+                  type: string
+              required:
+                - file
+            encoding:
+              file:
+                contentType: '*/*'
   /order-manager/orders/{id}/attachments:
     get:
       tags:

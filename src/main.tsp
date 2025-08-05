@@ -67,7 +67,12 @@ interface Orders {
   //attachments
   @route("{id}/attachments") @get getAttachments(@path id: string, ...PaginatedRequest): PaginatedResponse<OrderAttachment>;
   @route("{id}/attachments") @post postAttachments(@path id: string): ActionResponse;
-  @route("{id}/attachment-upload") @post uploadOrderAttachment(@path id: string, @body OrderAttachmentUploadBody: OrderAttachmentUploadBody): ActionResponse;
+  @route("{id}/attachment-upload") @post uploadOrderAttachment(@path id: string, 
+    @header contentType: "multipart/form-data",
+    @multipartBody body: {
+      file: HttpPart<File>;
+      delimiter?: HttpPart<string>;
+    },): ActionResponse;
 
   //composition lines
   @route("{id}/composition") @get getCompositionLines(@path id: string, ...PaginatedSortableRequest): PaginatedResponse<OrderComposition>;
