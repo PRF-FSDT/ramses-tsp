@@ -1945,8 +1945,7 @@ paths:
             type: string
         - $ref: '#/components/parameters/OrderCompositionCsvRequest.part_type_no'
         - $ref: '#/components/parameters/OrderCompositionCsvRequest.material_no'
-        - $ref: '#/components/parameters/OrderCompositionCsvRequest.outsourcing'
-        - $ref: '#/components/parameters/OrderCompositionCsvRequest.to_produce'
+        - $ref: '#/components/parameters/OrderCompositionCsvRequest.is_outsourced'
       responses:
         '200':
           description: The request has succeeded.
@@ -3824,26 +3823,20 @@ components:
       required: true
       schema:
         type: string
+    OrderCompositionCsvRequest.is_outsourced:
+      name: is_outsourced
+      in: query
+      required: false
+      schema:
+        type: string
     OrderCompositionCsvRequest.material_no:
       name: material_no
       in: query
       required: false
       schema:
         type: string
-    OrderCompositionCsvRequest.outsourcing:
-      name: outsourcing
-      in: query
-      required: false
-      schema:
-        type: string
     OrderCompositionCsvRequest.part_type_no:
       name: part_type_no
-      in: query
-      required: false
-      schema:
-        type: string
-    OrderCompositionCsvRequest.to_produce:
-      name: to_produce
       in: query
       required: false
       schema:
