@@ -1943,6 +1943,10 @@ paths:
           required: true
           schema:
             type: string
+        - $ref: '#/components/parameters/OrderCompositionCsvRequest.part_type_no'
+        - $ref: '#/components/parameters/OrderCompositionCsvRequest.material_no'
+        - $ref: '#/components/parameters/OrderCompositionCsvRequest.outsourcing'
+        - $ref: '#/components/parameters/OrderCompositionCsvRequest.to_produce'
       responses:
         '200':
           description: The request has succeeded.
@@ -3818,6 +3822,30 @@ components:
       name: part_code
       in: query
       required: true
+      schema:
+        type: string
+    OrderCompositionCsvRequest.material_no:
+      name: material_no
+      in: query
+      required: false
+      schema:
+        type: string
+    OrderCompositionCsvRequest.outsourcing:
+      name: outsourcing
+      in: query
+      required: false
+      schema:
+        type: string
+    OrderCompositionCsvRequest.part_type_no:
+      name: part_type_no
+      in: query
+      required: false
+      schema:
+        type: string
+    OrderCompositionCsvRequest.to_produce:
+      name: to_produce
+      in: query
+      required: false
       schema:
         type: string
     OrderIndexFilterRequest.client_name:

@@ -138,7 +138,7 @@ interface OrderCompositionLines {
   @patch @route("/outsource-multiple") outsourceMultiple(is_outsourced: boolean, line_ids: int32[]): UpdatedResponse<OrderCompositionLine[]>;
   @patch @route("{id}") update(@path id: string, is_outsourced: boolean): UpdatedResponse<OrderCompositionLine>;
   @patch @route("{orderId}/is-outsourced") patchIsOutsourcedForOrder(@path orderId: string, is_outsourced: boolean): UpdatedResponse<OrderCompositionLine[]>;
-  @route("{orderId}/outsourced-composition-lines-csv") @get getOutsourcedCompositionLineCsv(@path orderId: string): StreamedCsvResponse | Error;
+  @route("{orderId}/outsourced-composition-lines-csv") @get getOutsourcedCompositionLineCsv(@path orderId: string, ...OrderCompositionCsvRequest): StreamedCsvResponse | Error;
 }
 
 //Model: AdditionalPurchaseLine

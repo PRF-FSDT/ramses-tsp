@@ -505,6 +505,13 @@ model OrderMaterialIndexFilterRequest {
   @query parentId?: int32;
 }*/
 
+model OrderCompositionCsvRequest {
+  @query part_type_no?: string;
+  @query material_no?: string;
+  @query outsourcing?: string;
+  @query to_produce?: string;
+}
+
 model OrderMaterialCsvRequest {
   @query category_no?: string;
 }
