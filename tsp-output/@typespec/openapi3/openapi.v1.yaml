@@ -152,6 +152,7 @@ paths:
         - $ref: '#/components/parameters/PaginatedRequest.search'
         - $ref: '#/components/parameters/PaginatedSortableRequest.sort_dir'
         - $ref: '#/components/parameters/PaginatedSortableRequest.sort_by'
+        - $ref: '#/components/parameters/ItemIndexFilterRequest.type'
       responses:
         '200':
           description: The request has succeeded.
@@ -3787,6 +3788,12 @@ paths:
           description: 'There is no content to send for this request, but the headers may be useful. '
 components:
   parameters:
+    ItemIndexFilterRequest.type:
+      name: type
+      in: query
+      required: false
+      schema:
+        type: string
     McOrderComponentsRequest.machine_center_no:
       name: machine_center_no
       in: query

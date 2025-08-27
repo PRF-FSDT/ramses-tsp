@@ -216,7 +216,7 @@ interface OrderManager {
 @route("/materials-manager/items")
 @tag("Items")
 interface Items {
-  @get list(...PaginatedSortableRequest): PaginatedResponse<Item>;
+  @get list(...ItemIndexFilterRequest): PaginatedResponse<Item>;
   @post @route("/") post(@body ItemBody: ItemBody): CreatedResponse<Item>;
   @patch @route("{id}") update(@path id: string, @body ItemBody: ItemBody): UpdatedResponse<Item>;
   @delete delete(@path id: string): DeletedResponse;

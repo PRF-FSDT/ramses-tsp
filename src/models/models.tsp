@@ -11,7 +11,6 @@ using TypeSpec.Rest;
 
 namespace RamsesService;
 
-
 //MODELS:
 model Client {
   client_no: string;
@@ -69,7 +68,7 @@ model Order {
 
   @visibility("read")
   planned_components_count?: int64;
-  
+
   @visibility("read")
   planned_order_positions_count?: int64;
 
@@ -238,8 +237,8 @@ model OrderMaterialItem {
   stock_status: string | null;
   whse_location_code: string | null;
   provision_date: string | null;
-  erp_posted_prov_qty : numeric;
-  erp_posted_prov_date : string | null;
+  erp_posted_prov_qty: numeric;
+  erp_posted_prov_date: string | null;
 }
 
 model SyncedOrder {
@@ -406,11 +405,10 @@ model OperatingHour {
 model StreamedCsvResponse {
   //stream
   @header("content-type") contentType: "text/csv";
+
   @header("content-disposition") contentDisposition: string;
   @body stream: bytes;
 }
-
-
 
 //AUTH
 model LoginResponse {
@@ -482,8 +480,6 @@ model ScanInfoResponse {
   error_message: string | null;
 }
 
-
-
 model OrderIndexFilterRequest {
   ...PaginatedSortableRequest;
   @query status?: string;
@@ -492,6 +488,11 @@ model OrderIndexFilterRequest {
   @query finalisation_date_from?: string;
   @query finalisation_date_until?: string;
   @query include?: "tasks";
+}
+
+model ItemIndexFilterRequest {
+  ...PaginatedSortableRequest;
+  @query type?: string;
 }
 
 model OrderMaterialIndexFilterRequest {
