@@ -410,7 +410,11 @@ model StreamedCsvResponse {
   @body stream: bytes;
 }
 
-
+model StreamedZipResponse {
+  @header("content-type") contentType: "application/zip";
+  @header("content-disposition") contentDisposition: string;
+  @body stream: bytes;
+}
 
 //AUTH
 model LoginResponse {
@@ -513,6 +517,11 @@ model OrderCompositionCsvRequest {
 
 model OrderMaterialCsvRequest {
   @query category_no?: string;
+}
+
+model OrderCsvRequest {
+  @query category_no?: string;
+  @query is_outsourced?: string;
 }
 
 model McPlannedOrdersRequest {

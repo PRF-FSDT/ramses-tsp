@@ -64,6 +64,8 @@ interface Orders {
   @post @route("/") post(@body OrderCreateBody: OrderCreateBody): CreatedResponse<Order>;
   @delete delete(@path id: string): DeletedResponse;
 
+  @route("{id}/export-order-csvs") @get getOrderCsvs(@path id: string, ...OrderCsvRequest): StreamedZipResponse | Error;
+
   //attachments
   @route("{id}/attachments") @get getAttachments(@path id: string, ...PaginatedRequest): PaginatedResponse<OrderAttachment>;
   @route("{id}/attachments") @post postAttachments(@path id: string): ActionResponse;

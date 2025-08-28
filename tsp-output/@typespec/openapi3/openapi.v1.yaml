@@ -2788,6 +2788,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
+  /order-manager/orders/{id}/export-order-csvs:
+    get:
+      tags:
+        - Orders
+      operationId: Orders_getOrderCsvs
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/OrderCsvRequest.category_no'
+        - $ref: '#/components/parameters/OrderCsvRequest.is_outsourced'
+      responses:
+        '200':
+          description: The request has succeeded.
+          headers:
+            content-disposition:
+              required: true
+              schema:
+                type: string
+          content:
+            application/zip:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /order-manager/orders/{id}/order-materials:
     get:
       tags:
@@ -3837,6 +3869,18 @@ components:
         type: string
     OrderCompositionCsvRequest.part_type_no:
       name: part_type_no
+      in: query
+      required: false
+      schema:
+        type: string
+    OrderCsvRequest.category_no:
+      name: category_no
+      in: query
+      required: false
+      schema:
+        type: string
+    OrderCsvRequest.is_outsourced:
+      name: is_outsourced
       in: query
       required: false
       schema:
