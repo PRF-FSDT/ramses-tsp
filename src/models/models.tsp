@@ -493,6 +493,7 @@ model OrderIndexFilterRequest {
 model ItemIndexFilterRequest {
   ...PaginatedSortableRequest;
   @query type?: string;
+  @query category_no?: string;
 }
 
 model OrderMaterialIndexFilterRequest {
