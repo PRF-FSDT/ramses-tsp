@@ -4909,6 +4909,7 @@ components:
       required:
         - id
         - order_no
+        - name
         - type
         - path
       properties:
@@ -4917,9 +4918,13 @@ components:
           format: uint64
         order_no:
           type: string
+        name:
+          type: string
         type:
           type: string
         path:
+          type: string
+        url:
           type: string
     OrderAttachmentUploadBody:
       type: object
