@@ -124,6 +124,7 @@ model OrderAttachment {
   order_no: string;
   type: string;
   path: string;
+  url?: string;
 }
 
 model OrderAttachmentUploadBody {

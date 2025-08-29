@@ -4921,6 +4921,8 @@ components:
           type: string
         path:
           type: string
+        url:
+          type: string
     OrderAttachmentUploadBody:
       type: object
       required:
