@@ -5453,6 +5453,12 @@ components:
         time_registration_code_title:
           type: string
           nullable: true
+        order_name:
+          type: string
+          nullable: true
+        client_name:
+          type: string
+          nullable: true
         planned_start:
           type: string
           format: date-time
@@ -5495,6 +5501,12 @@ components:
           type: number
           nullable: true
         time_registration_code_title:
+          type: string
+          nullable: true
+        order_name:
+          type: string
+          nullable: true
+        client_name:
           type: string
           nullable: true
     OrderTaskTemplate:

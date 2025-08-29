@@ -22,6 +22,8 @@ model OrderTaskBody {
   dependant_on: Array<integer>;
   time_registration_code_id?: numeric | null;
   time_registration_code_title?: string | null;
+  order_name?: string | null;
+  client_name?: string | null;
 }
 
 model OrderTaskUpdateBody {
@@ -62,6 +64,8 @@ model OrderTask {
   timer_started_at?: string | null;
   time_registration_code_id?: numeric | null;
   time_registration_code_title?: string | null;
+  order_name?: string | null;
+  client_name?: string | null;
 
   @encode(DateTimeKnownEncoding.rfc3339)
   planned_start?: utcDateTime | null;
