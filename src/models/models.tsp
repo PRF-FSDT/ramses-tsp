@@ -122,6 +122,7 @@ model UpdateOrderBody {
 model OrderAttachment {
   @key id: uint64;
   order_no: string;
+  name: string;
   type: string;
   path: string;
   url?: string;

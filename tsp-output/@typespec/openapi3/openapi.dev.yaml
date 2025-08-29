@@ -4909,6 +4909,7 @@ components:
       required:
         - id
         - order_no
+        - name
         - type
         - path
       properties:
@@ -4916,6 +4917,8 @@ components:
           type: integer
           format: uint64
         order_no:
+          type: string
+        name:
           type: string
         type:
           type: string
