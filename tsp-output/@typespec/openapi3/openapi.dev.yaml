@@ -1934,6 +1934,40 @@ paths:
               properties:
                 is_outsourced:
                   type: boolean
+  /order-manager/composition-lines/{orderId}/order-composition-lines-csv:
+    get:
+      tags:
+        - Composition Lines
+      operationId: OrderCompositionLines_getOrderCompositionLineCsv
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/OrderCompositionCsvRequest.filter'
+        - $ref: '#/components/parameters/OrderCompositionCsvRequest.part_type_no'
+        - $ref: '#/components/parameters/OrderCompositionCsvRequest.material_no'
+        - $ref: '#/components/parameters/OrderCompositionCsvRequest.is_outsourced'
+      responses:
+        '200':
+          description: The request has succeeded.
+          headers:
+            content-disposition:
+              required: true
+              schema:
+                type: string
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /order-manager/composition-lines/{orderId}/outsourced-composition-lines-csv:
     get:
       tags:
@@ -1945,6 +1979,7 @@ paths:
           required: true
           schema:
             type: string
+        - $ref: '#/components/parameters/OrderCompositionCsvRequest.filter'
         - $ref: '#/components/parameters/OrderCompositionCsvRequest.part_type_no'
         - $ref: '#/components/parameters/OrderCompositionCsvRequest.material_no'
         - $ref: '#/components/parameters/OrderCompositionCsvRequest.is_outsourced'
@@ -3867,6 +3902,12 @@ components:
       name: part_code
       in: query
       required: true
+      schema:
+        type: string
+    OrderCompositionCsvRequest.filter:
+      name: filter
+      in: query
+      required: false
       schema:
         type: string
     OrderCompositionCsvRequest.is_outsourced:

@@ -516,6 +516,7 @@ model OrderMaterialIndexFilterRequest {
 }*/
 
 model OrderCompositionCsvRequest {
+  @query filter?: string;
   @query part_type_no?: string;
   @query material_no?: string;
   @query is_outsourced?: string;
