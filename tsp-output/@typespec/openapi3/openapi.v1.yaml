@@ -5505,6 +5505,8 @@ components:
         client_name:
           type: string
           nullable: true
+        order:
+          $ref: '#/components/schemas/Order'
         planned_start:
           type: string
           format: date-time

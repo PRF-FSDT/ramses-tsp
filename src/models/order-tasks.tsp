@@ -1,7 +1,11 @@
 import "@typespec/http";
+
+import "./models.tsp";
 import "./common.tsp";
 
 using TypeSpec.Http;
+
+namespace RamsesService;
 
 // Aliases:
 alias OrderTaskType = "preparation" | "finalisation";
@@ -66,6 +70,7 @@ model OrderTask {
   time_registration_code_title?: string | null;
   order_name?: string | null;
   client_name?: string | null;
+  order?: Order;
 
   @encode(DateTimeKnownEncoding.rfc3339)
   planned_start?: utcDateTime | null;
