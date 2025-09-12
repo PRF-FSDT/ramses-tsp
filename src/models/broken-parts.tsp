@@ -1,4 +1,4 @@
-/** (Broken) Planned Component **/
+/** (Broken) Planned Component * */
 model BrokenPlannedComponent {
   @key id: int64;
   order_no: string;
@@ -9,8 +9,7 @@ model BrokenPlannedComponent {
   broken_part_reason_id: numeric;
 }
 
-
-/** BrokenPartReason **/
+/** BrokenPartReason * */
 model BrokenPartReason {
   @key id: int32;
   title: string;

@@ -3211,6 +3211,45 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ValidationError'
+  /production-planning/orders/planned:
+    get:
+      tags:
+        - Production Planning
+      operationId: ProductionPlanningOrders_getPlanned
+      parameters:
+        - $ref: '#/components/parameters/PaginatedRequest.page'
+        - $ref: '#/components/parameters/PaginatedRequest.perPage'
+        - $ref: '#/components/parameters/PaginatedRequest.search'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - links
+                  - meta
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PlannedOrder'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                  filters:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FilterOption'
+        '404':
+          description: The server cannot find the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
   /production-planning/orders/unplanned:
     get:
       tags:
@@ -6098,6 +6137,22 @@ components:
         finished_at:
           type: string
           nullable: true
+    PlannedOrder:
+      type: object
+      required:
+        - tasks
+        - planned_order_lines
+      properties:
+        tasks:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderTask'
+        planned_order_lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlannedOrderLineWithOrderInfo'
+      allOf:
+        - $ref: '#/components/schemas/Order'
     PlannedOrderLine:
       type: object
       required:

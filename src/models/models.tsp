@@ -553,3 +553,8 @@ model FinishAllBody {
   mc: string;
   order_no: string;
 }
+
+model PlannedOrder extends Order {
+  tasks: OrderTask[];
+  planned_order_lines: PlannedOrderLineWithOrderInfo[];
+}

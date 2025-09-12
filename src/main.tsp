@@ -69,12 +69,14 @@ interface Orders {
   //attachments
   @route("{id}/attachments") @get getAttachments(@path id: string, ...PaginatedRequest): PaginatedResponse<OrderAttachment>;
   @route("{id}/attachments") @post postAttachments(@path id: string): ActionResponse;
-  @route("{id}/attachment-upload") @post uploadOrderAttachment(@path id: string, 
+  @route("{id}/attachment-upload") @post uploadOrderAttachment(
+    @path id: string,
     @header contentType: "multipart/form-data",
     @multipartBody body: {
       file: HttpPart<File>;
       delimiter?: HttpPart<string>;
-    },): ActionResponse;
+    },
+  ): ActionResponse;
 
   //composition lines
   @route("{id}/composition") @get getCompositionLines(@path id: string, ...PaginatedSortableRequest): PaginatedResponse<OrderComposition>;
@@ -140,8 +142,14 @@ interface OrderCompositionLines {
   @patch @route("/outsource-multiple") outsourceMultiple(is_outsourced: boolean, line_ids: int32[]): UpdatedResponse<OrderCompositionLine[]>;
   @patch @route("{id}") update(@path id: string, is_outsourced: boolean): UpdatedResponse<OrderCompositionLine>;
   @patch @route("{orderId}/is-outsourced") patchIsOutsourcedForOrder(@path orderId: string, is_outsourced: boolean): UpdatedResponse<OrderCompositionLine[]>;
-  @route("{orderId}/order-composition-lines-csv") @get getOrderCompositionLineCsv(@path orderId: string, ...OrderCompositionCsvRequest): StreamedCsvResponse | Error;
-  @route("{orderId}/outsourced-composition-lines-csv") @get getOutsourcedCompositionLineCsv(@path orderId: string, ...OrderCompositionCsvRequest): StreamedCsvResponse | Error;
+  @route("{orderId}/order-composition-lines-csv") @get getOrderCompositionLineCsv(
+    @path orderId: string,
+    ...OrderCompositionCsvRequest,
+  ): StreamedCsvResponse | Error;
+  @route("{orderId}/outsourced-composition-lines-csv") @get getOutsourcedCompositionLineCsv(
+    @path orderId: string,
+    ...OrderCompositionCsvRequest,
+  ): StreamedCsvResponse | Error;
 }
 
 //Model: AdditionalPurchaseLine
@@ -263,6 +271,7 @@ interface Users {
 @tag("Production Planning")
 interface ProductionPlanningOrders {
   @get @route("/orders/unplanned") getUnplanned(...PaginatedRequest): PaginatedResponse<Order>;
+  @get @route("/orders/planned") getPlanned(...PaginatedRequest): PaginatedResponse<PlannedOrder>;
   @get @route("/orders/{id}/workflow") workflow(@path id: string): ListResponse<OrderWorkflowLine>;
   @post @route("/orders/{id}/plan") plan(@path id: string, @body orderPlanBody: OrderPlanBody): SuccessResponse;
   @post @route("/orders/{id}/autoplan") autoplan(@path id: string): SuccessResponse;
