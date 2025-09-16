@@ -554,7 +554,13 @@ model FinishAllBody {
   order_no: string;
 }
 
+model PlannedOrderTask extends OrderTask {
+  planned_resource_id: numeric;
+  duration_in_min: numeric;
+  is_finished: boolean;
+  finished_at: string | null;
+}
 model PlannedOrder extends Order {
-  tasks: OrderTask[];
+  tasks: PlannedOrderTask[];
   planned_order_lines: PlannedOrderLineWithOrderInfo[];
 }
