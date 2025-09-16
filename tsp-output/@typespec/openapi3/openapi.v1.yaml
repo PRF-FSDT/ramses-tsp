@@ -6331,6 +6331,7 @@ components:
         - duration_in_min
         - is_finished
         - finished_at
+        - planned_start
       properties:
         planned_resource_id:
           type: number
@@ -6341,6 +6342,9 @@ components:
         finished_at:
           type: string
           nullable: true
+        planned_start:
+          type: string
+          format: date-time
       allOf:
         - $ref: '#/components/schemas/OrderTask'
     Resource:

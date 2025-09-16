@@ -559,6 +559,7 @@ model PlannedOrderTask extends OrderTask {
   duration_in_min: numeric;
   is_finished: boolean;
   finished_at: string | null;
+  planned_start: utcDateTime;
 }
 model PlannedOrder extends Order {
   tasks: PlannedOrderTask[];
