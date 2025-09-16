@@ -5117,6 +5117,9 @@ components:
         cut_width_mm:
           type: number
           nullable: true
+        edge_banding_data:
+          type: string
+          nullable: true
         scan_code:
           type: string
           nullable: true

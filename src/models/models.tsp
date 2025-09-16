@@ -157,6 +157,7 @@ model OrderCompositionLine {
   height_mm?: numeric | null;
   cut_length_mm?: numeric | null;
   cut_width_mm?: numeric | null;
+  edge_banding_data?: string | null;
   scan_code: string | null;
   is_outsourced: boolean;
 }
