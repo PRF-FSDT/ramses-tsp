@@ -20,6 +20,8 @@ model PlannedOrderLine {
   planned_start: utcDateTime;
 
   planned_duration_in_min: int64;
+  @visibility("read") prod_start_date: string;
+  @visibility("read") prod_end_date: string;
 }
 
 alias PlannedOrderLineBody = UpdateableProperties<PlannedOrderLine>;

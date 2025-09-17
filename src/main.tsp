@@ -102,7 +102,9 @@ interface Orders {
     width_mm?: integer,
     height_mm?: integer,
   ): CreatedResponse<AdditionalPurchaseLine>;
-  @route("{id}/additional-purchase-lines-csv") @get getAdditionalPurchaseLineCsv(@path id: string): StreamedCsvResponse | Error;
+  @route("{id}/additional-purchase-lines-csv")
+  @get
+  getAdditionalPurchaseLineCsv(@path id: string): StreamedCsvResponse | Error;
 
   //order materials
   @route("{id}/order-materials") @get getOrderMaterials(@path id: string, ...OrderMaterialIndexFilterRequest): PaginatedResponse<OrderMaterialWithItems>;
@@ -142,14 +144,12 @@ interface OrderCompositionLines {
   @patch @route("/outsource-multiple") outsourceMultiple(is_outsourced: boolean, line_ids: int32[]): UpdatedResponse<OrderCompositionLine[]>;
   @patch @route("{id}") update(@path id: string, is_outsourced: boolean): UpdatedResponse<OrderCompositionLine>;
   @patch @route("{orderId}/is-outsourced") patchIsOutsourcedForOrder(@path orderId: string, is_outsourced: boolean): UpdatedResponse<OrderCompositionLine[]>;
-  @route("{orderId}/order-composition-lines-csv") @get getOrderCompositionLineCsv(
-    @path orderId: string,
-    ...OrderCompositionCsvRequest,
-  ): StreamedCsvResponse | Error;
-  @route("{orderId}/outsourced-composition-lines-csv") @get getOutsourcedCompositionLineCsv(
-    @path orderId: string,
-    ...OrderCompositionCsvRequest,
-  ): StreamedCsvResponse | Error;
+  @route("{orderId}/order-composition-lines-csv")
+  @get
+  getOrderCompositionLineCsv(@path orderId: string, ...OrderCompositionCsvRequest): StreamedCsvResponse | Error;
+  @route("{orderId}/outsourced-composition-lines-csv")
+  @get
+  getOutsourcedCompositionLineCsv(@path orderId: string, ...OrderCompositionCsvRequest): StreamedCsvResponse | Error;
 }
 
 //Model: AdditionalPurchaseLine

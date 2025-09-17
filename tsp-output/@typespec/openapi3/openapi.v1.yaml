@@ -5489,6 +5489,10 @@ components:
         - title
         - should_be_planned
         - is_required_for_production
+        - prep_start_date
+        - prep_end_date
+        - finalisation_start_date
+        - finalisation_end_date
       properties:
         id:
           type: integer
@@ -5553,6 +5557,22 @@ components:
           type: string
           format: date-time
           nullable: true
+        prep_start_date:
+          type: string
+          nullable: true
+          readOnly: true
+        prep_end_date:
+          type: string
+          nullable: true
+          readOnly: true
+        finalisation_start_date:
+          type: string
+          nullable: true
+          readOnly: true
+        finalisation_end_date:
+          type: string
+          nullable: true
+          readOnly: true
     OrderTaskBody:
       type: object
       required:
@@ -6173,6 +6193,8 @@ components:
         - planned_mc_no
         - planned_start
         - planned_duration_in_min
+        - prod_start_date
+        - prod_end_date
       properties:
         id:
           type: integer
@@ -6221,6 +6243,12 @@ components:
         planned_duration_in_min:
           type: integer
           format: int64
+        prod_start_date:
+          type: string
+          readOnly: true
+        prod_end_date:
+          type: string
+          readOnly: true
     PlannedOrderLineWithOrderInfo:
       type: object
       required:

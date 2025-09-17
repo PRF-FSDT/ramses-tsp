@@ -74,6 +74,11 @@ model OrderTask {
 
   @encode(DateTimeKnownEncoding.rfc3339)
   planned_start?: utcDateTime | null;
+
+  @visibility("read") prep_start_date: string | null;
+  @visibility("read") prep_end_date: string | null;
+  @visibility("read") finalisation_start_date: string | null;
+  @visibility("read") finalisation_end_date: string | null;
 }
 
 model OrderTaskTemplate {
