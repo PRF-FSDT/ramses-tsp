@@ -185,6 +185,7 @@ interface OrderTasks {
   @post @route("/") post(@body OrderTaskBody: OrderTaskBody): CreatedResponse<OrderTask>;
   @patch @route("{id}") update(@path id: string, @body OrderTaskUpdateBody: OrderTaskUpdateBody): UpdatedResponse<OrderTask>;
   @delete delete(@path id: string): DeletedResponse;
+  @get @route("/planning") getPlanning(@query start: string, @query end: string): ListResponse<OrderTask>;
   @get @route("/planning-for-week/{week}") getPlanningForWeek(@path week: string): PaginatedResponse<OrderTask>;
   @get @route("/planned-tasks") getPlannedTasks(...PlannedTasksRequest): PaginatedResponse<OrderTask>;
   // @post @route("{id}/plan") plan(@path id: string, @body ToPlanTasks: ToPlanTaskBody[]): SuccessResponse | Error;
