@@ -278,7 +278,16 @@ interface ProductionPlanningOrders {
   @post @route("/orders/{id}/unplan") unplan(@path id: string): SuccessResponse;
   @post @route("/order-tasks/{id}/unplan") unplanOrderTask(@path id: string): SuccessResponse;
   @post @route("/orders/{id}/order-tasks/plan") planOrderTasks(@path id: string, @body ToPlanTasks: ToPlanTaskBody[]): CreatedResponse<ToPlanTaskBody[]>;
-  @get @route("/planned-orders-for-week/{week}") plannedOrderLines(@path week: string): ListResponse<PlannedOrderLine>;
+  @get @route("/planned-orders-for-week/{week}") plannedOrderLines(@path week: string): ListResponse<{
+    ...PlannedOrderLine;
+    order: {
+      id: int32;
+      no: string;
+      prod_start_date: utcDateTime;
+      finalisation_start_date: utcDateTime;
+      name: string;
+    };
+  }>;
   @patch @route("/planned-order-line/{id}") updatePlannedOrderLine(@path id: string, @body body: PlannedOrderLineBody): UpdatedResponse<PlannedOrderLine>;
 }
 
