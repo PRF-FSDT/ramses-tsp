@@ -281,7 +281,7 @@ interface ProductionPlanningOrders {
   @post @route("/orders/{id}/order-tasks/plan") planOrderTasks(@path id: string, @body ToPlanTasks: ToPlanTaskBody[]): CreatedResponse<ToPlanTaskBody[]>;
   @get @route("/planned-orders-for-week/{week}") plannedOrderLines(@path week: string): ListResponse<{
     ...PlannedOrderLine;
-    order: {
+    order?: {
       id: int32;
       no: string;
       prod_start_date: utcDateTime;
