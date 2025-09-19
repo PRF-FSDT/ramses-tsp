@@ -3654,8 +3654,6 @@ paths:
                     - planned_mc_no
                     - planned_start
                     - planned_duration_in_min
-                    - prod_start_date
-                    - prod_end_date
                     - order
         '400':
           description: The server could not understand the request due to invalid syntax.
@@ -5620,10 +5618,6 @@ components:
         - title
         - should_be_planned
         - is_required_for_production
-        - prep_start_date
-        - prep_end_date
-        - finalisation_start_date
-        - finalisation_end_date
       properties:
         id:
           type: integer
@@ -6324,8 +6318,6 @@ components:
         - planned_mc_no
         - planned_start
         - planned_duration_in_min
-        - prod_start_date
-        - prod_end_date
       properties:
         id:
           type: integer
