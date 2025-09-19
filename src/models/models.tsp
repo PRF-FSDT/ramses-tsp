@@ -214,7 +214,7 @@ model OrderMaterial {
   material_name: string;
   net_qty: float32;
   gross_qty: float32;
-  cut_loss: float32;
+  cut_loss: float32 | null;
   uom: string;
   category_no: string | null;
   stock_status: string | null;

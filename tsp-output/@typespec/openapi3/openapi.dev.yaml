@@ -5398,6 +5398,7 @@ components:
         cut_loss:
           type: number
           format: float
+          nullable: true
         uom:
           type: string
         category_no:
@@ -5497,6 +5498,7 @@ components:
         cut_loss:
           type: number
           format: float
+          nullable: true
         uom:
           type: string
         category_no:
