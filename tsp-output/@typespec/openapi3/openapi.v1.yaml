@@ -3654,7 +3654,6 @@ paths:
                     - planned_mc_no
                     - planned_start
                     - planned_duration_in_min
-                    - order
         '400':
           description: The server could not understand the request due to invalid syntax.
           content:
