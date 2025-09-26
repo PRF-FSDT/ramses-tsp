@@ -3552,10 +3552,8 @@ paths:
                       type: string
                     prod_start_date:
                       type: string
-                      format: date-time
                     finalisation_start_date:
                       type: string
-                      format: date-time
                     name:
                       type: string
               description: The template for adding updateable properties.
@@ -6308,10 +6306,8 @@ components:
               type: string
             prod_start_date:
               type: string
-              format: date-time
             finalisation_start_date:
               type: string
-              format: date-time
             name:
               type: string
           required:

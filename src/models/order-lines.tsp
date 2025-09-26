@@ -25,8 +25,8 @@ model PlannedOrderLine {
   order?: {
     id: int32;
     no: string;
-    prod_start_date: utcDateTime;
-    finalisation_start_date: utcDateTime;
+    prod_start_date: string;
+    finalisation_start_date: string;
     name: string;
   };
 }
