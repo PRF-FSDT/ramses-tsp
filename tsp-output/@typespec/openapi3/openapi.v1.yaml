@@ -2095,7 +2095,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
-  /order-manager/importable-orders/{id}:
+  /order-manager/imported-orders/{id}:
     delete:
       tags:
         - Imported Orders
