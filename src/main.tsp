@@ -129,6 +129,12 @@ interface ImportableOrders {
   //@route("{/") @get analyze(@path id: string): string | Error;
 }
 
+@route("/order-manager/importable-orders")
+@tag("Imported Orders")
+interface ImportedOrders {
+  @delete delete(@path id: string): DeletedResponse;
+}
+
 //Model: OrderAttachment
 @route("/order-manager/attachments")
 @tag("Attachments")
