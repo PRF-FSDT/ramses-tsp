@@ -9,6 +9,7 @@ tags:
   - name: Orders
   - name: Order Material Categories
   - name: Importable Orders
+  - name: Imported Orders
   - name: Attachments
   - name: Composition Lines
   - name: Additional Purchase Lines
@@ -2094,6 +2095,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
+  /order-manager/importable-orders/{id}:
+    delete:
+      tags:
+        - Imported Orders
+      operationId: ImportedOrders_delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: 'There is no content to send for this request, but the headers may be useful. '
   /order-manager/order-material-categories:
     get:
       tags:
