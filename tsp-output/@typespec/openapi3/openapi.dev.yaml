@@ -24,6 +24,7 @@ tags:
   - name: Operating Hours
   - name: Users
   - name: Production Planning
+  - name: Storage Locations
   - name: Machine Centers
   - name: Machine Types
   - name: Routing Codes
@@ -3698,6 +3699,8 @@ paths:
           description: 'There is no content to send for this request, but the headers may be useful. '
   /storage-locations:
     get:
+      tags:
+        - Storage Locations
       operationId: StorageLocations_list
       parameters:
         - name: mc
@@ -3742,6 +3745,8 @@ paths:
                 $ref: '#/components/schemas/NotFoundError'
   /storage-locations/:
     post:
+      tags:
+        - Storage Locations
       operationId: StorageLocations_post
       parameters: []
       responses:
@@ -3765,6 +3770,8 @@ paths:
               $ref: '#/components/schemas/StorageLocationBody'
   /storage-locations/{id}:
     patch:
+      tags:
+        - Storage Locations
       operationId: StorageLocations_update
       parameters:
         - name: id
@@ -3792,6 +3799,8 @@ paths:
             schema:
               $ref: '#/components/schemas/StorageLocationBodyUpdate'
     delete:
+      tags:
+        - Storage Locations
       operationId: StorageLocations_delete
       parameters:
         - name: id
@@ -6809,12 +6818,7 @@ components:
       type: object
       required:
         - no
-        - reserved_for
-        - status
         - scan_code
-        - last_supplied_by
-        - qty_required
-        - qty_received
       properties:
         no:
           type: string
