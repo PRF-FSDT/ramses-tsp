@@ -3743,6 +3743,105 @@ paths:
       responses:
         '204':
           description: 'There is no content to send for this request, but the headers may be useful. '
+  /storage-locations:
+    get:
+      operationId: StorageLocationsRoutes_list
+      parameters:
+        - $ref: '#/components/parameters/PaginatedRequest.page'
+        - $ref: '#/components/parameters/PaginatedRequest.perPage'
+        - $ref: '#/components/parameters/PaginatedRequest.search'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - links
+                  - meta
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/StorageLocation'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                  filters:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FilterOption'
+        '404':
+          description: The server cannot find the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+  /storage-locations/:
+    post:
+      operationId: StorageLocationsRoutes_post
+      parameters: []
+      responses:
+        '201':
+          description: The request has succeeded and a new resource has been created as a result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StorageLocation'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StorageLocationBody'
+  /storage-locations/{id}:
+    patch:
+      operationId: StorageLocationsRoutes_update
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StorageLocation'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StorageLocationBodyUpdate'
+    delete:
+      operationId: StorageLocationsRoutes_delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: 'There is no content to send for this request, but the headers may be useful. '
   /upload/chunk:
     post:
       tags:
@@ -6729,6 +6828,54 @@ components:
         id:
           type: integer
           format: int64
+        no:
+          type: string
+        reserved_for:
+          type: string
+          nullable: true
+        status:
+          type: string
+        scan_code:
+          type: string
+          nullable: true
+        last_supplied_by:
+          type: string
+          nullable: true
+        qty_required:
+          type: number
+        qty_received:
+          type: number
+    StorageLocationBody:
+      type: object
+      required:
+        - no
+        - reserved_for
+        - status
+        - scan_code
+        - last_supplied_by
+        - qty_required
+        - qty_received
+      properties:
+        no:
+          type: string
+        reserved_for:
+          type: string
+          nullable: true
+        status:
+          type: string
+        scan_code:
+          type: string
+          nullable: true
+        last_supplied_by:
+          type: string
+          nullable: true
+        qty_required:
+          type: number
+        qty_received:
+          type: number
+    StorageLocationBodyUpdate:
+      type: object
+      properties:
         no:
           type: string
         reserved_for:

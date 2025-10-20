@@ -295,6 +295,14 @@ interface StorageLocations {
   @get list(@query mc?: string, ...PaginatedSortableRequest): PaginatedResponse<StorageLocation>;
 }
 
+@route("/storage-locations")
+interface StorageLocationsRoutes {
+  @get list(...PaginatedRequest): PaginatedResponse<StorageLocation>;
+  @post @route("/") post(@body StorageLocationBody: StorageLocationBody): CreatedResponse<StorageLocation>;
+  @patch @route("{id}") update(@path id: string, @body StorageLocationBody: StorageLocationBody): UpdatedResponse<StorageLocation>;
+  @delete delete(@path id: string): DeletedResponse;
+}
+
 @route("/mes/machine-centers")
 @tag("Machine Centers")
 interface MachineCenters {
