@@ -289,15 +289,9 @@ interface ProductionPlanningOrders {
   @patch @route("/planned-order-line/{id}") updatePlannedOrderLine(@path id: string, @body body: PlannedOrderLineBody): UpdatedResponse<PlannedOrderLine>;
 }
 
-@route("/mes/storage-locations")
-@tag("Storage Locations")
+@route("/storage-locations")
 interface StorageLocations {
   @get list(@query mc?: string, ...PaginatedSortableRequest): PaginatedResponse<StorageLocation>;
-}
-
-@route("/storage-locations")
-interface StorageLocationsRoutes {
-  @get list(...PaginatedRequest): PaginatedResponse<StorageLocation>;
   @post @route("/") post(@body StorageLocationBody: StorageLocationBody): CreatedResponse<StorageLocation>;
   @patch @route("{id}") update(@path id: string, @body StorageLocationBody: StorageLocationBody): UpdatedResponse<StorageLocation>;
   @delete delete(@path id: string): DeletedResponse;
