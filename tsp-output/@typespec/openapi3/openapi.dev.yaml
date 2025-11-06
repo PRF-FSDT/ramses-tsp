@@ -26,6 +26,7 @@ tags:
   - name: Production Planning
   - name: Storage Locations
   - name: Machine Centers
+  - name: Planned Machine Center Shifts
   - name: Machine Types
   - name: Routing Codes
   - name: Prod Overview
@@ -1374,6 +1375,203 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
+  /mes/planned-machine-center-shifts:
+    get:
+      tags:
+        - Planned Machine Center Shifts
+      operationId: PlannedMachineCenterShifts_list
+      parameters:
+        - name: machine_center_id
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: start
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: end
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: per_page
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - type: object
+                    required:
+                      - data
+                      - links
+                      - meta
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/PlannedMachineCenterShift'
+                      links:
+                        $ref: '#/components/schemas/PaginationLinks'
+                      meta:
+                        $ref: '#/components/schemas/PaginationMeta'
+                      filters:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/FilterOption'
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/PlannedMachineCenterShift'
+        '400':
+          description: The server could not understand the request due to invalid syntax.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '404':
+          description: The server cannot find the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+  /mes/planned-machine-center-shifts/:
+    post:
+      tags:
+        - Planned Machine Center Shifts
+      operationId: PlannedMachineCenterShifts_post
+      parameters: []
+      responses:
+        '201':
+          description: The request has succeeded and a new resource has been created as a result.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        '400':
+          description: The server could not understand the request due to invalid syntax.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start:
+                  type: integer
+                  format: int64
+                end:
+                  type: integer
+                  format: int64
+              required:
+                - start
+  /mes/planned-machine-center-shifts/{id}:
+    get:
+      tags:
+        - Planned Machine Center Shifts
+      operationId: PlannedMachineCenterShifts_read
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlannedMachineCenterShift'
+        '404':
+          description: The server cannot find the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+    patch:
+      tags:
+        - Planned Machine Center Shifts
+      operationId: PlannedMachineCenterShifts_update
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlannedMachineCenterShift'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                is_disabled:
+                  type: boolean
+                is_locked:
+                  type: boolean
+                shift_name:
+                  type: string
+    delete:
+      tags:
+        - Planned Machine Center Shifts
+      operationId: PlannedMachineCenterShifts_delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: 'There is no content to send for this request, but the headers may be useful. '
   /mes/prod-overview:
     get:
       tags:
@@ -6292,6 +6490,55 @@ components:
         finished_at:
           type: string
           nullable: true
+    PlannedMachineCenterShift:
+      type: object
+      required:
+        - id
+        - machine_center_id
+        - machine_center_shift_id
+        - shift_name
+        - shift_date
+        - shift_start
+        - shift_end
+        - shift_duration
+        - day
+        - is_disabled
+        - is_locked
+        - created_at
+        - updated_at
+      properties:
+        id:
+          type: integer
+          format: int64
+        machine_center_id:
+          type: integer
+          format: int64
+        machine_center_shift_id:
+          type: integer
+          format: int64
+        shift_name:
+          type: string
+        shift_date:
+          type: string
+          format: date
+        shift_start:
+          type: string
+          format: date-time
+        shift_end:
+          type: string
+          format: date-time
+        shift_duration:
+          type: integer
+        day:
+          type: string
+        is_disabled:
+          type: boolean
+        is_locked:
+          type: boolean
+        created_at:
+          type: string
+        updated_at:
+          type: string
     PlannedOrder:
       type: object
       required:
