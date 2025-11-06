@@ -19,6 +19,7 @@ import "./models/order-tasks.tsp";
 import "./models/metrics.tsp";
 import "./models/time-registration-codes.tsp";
 import "./models/planned-machine-center-shift.tsp";
+import "./models/simulation.tsp";
 
 import "./responses/responses.tsp";
 
@@ -288,6 +289,8 @@ interface ProductionPlanningOrders {
   @post @route("/orders/{id}/order-tasks/plan") planOrderTasks(@path id: string, @body ToPlanTasks: ToPlanTaskBody[]): CreatedResponse<ToPlanTaskBody[]>;
   @get @route("/planned-orders-for-week/{week}") plannedOrderLines(@path week: string): ListResponse<PlannedOrderLine>;
   @patch @route("/planned-order-line/{id}") updatePlannedOrderLine(@path id: string, @body body: PlannedOrderLineBody): UpdatedResponse<PlannedOrderLine>;
+  @post @route("/run-simulation") runSimulation(): CreatedResponse<SimulationRunResult> | Error;
+  @post @route("/apply-simulation") applySimulation(@body body: ApplySimulationBody): SuccessResponse | Error;
 }
 
 @route("/storage-locations")
