@@ -1455,7 +1455,7 @@ paths:
     post:
       tags:
         - Planned Machine Center Shifts
-      operationId: PlannedMachineCenterShifts_post
+      operationId: PlannedMachineCenterShifts_generateShifts
       parameters: []
       responses:
         '201':
