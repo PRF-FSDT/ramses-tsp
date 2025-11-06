@@ -27,6 +27,9 @@ importers:
       '@typespec/prettier-plugin-typespec':
         specifier: ^0.58.0
         version: 0.58.0
+      prettier:
+        specifier: ^3.6.2
+        version: 3.6.2
 
 packages:
 
@@ -331,6 +334,11 @@ packages:
 
   prettier@3.3.3:
     resolution: {integrity: sha512-i2tDNA0O5IrMO757lfrdQZCc2jPNDVntV0m/+4whiDfWaTKfMNgR7Qz0NAeGz/nRqF4m5/6CLzbP4/liHt12Ew==}
+    engines: {node: '>=14'}
+    hasBin: true
+
+  prettier@3.6.2:
+    resolution: {integrity: sha512-I7AIg5boAr5R0FFtJ6rCfD+LFsWHp81dolrFD8S79U9tb8Az2nGrJncnMSnys+bpQJfRUzqs9hnA81OAA3hCuQ==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -735,6 +743,8 @@ snapshots:
   picomatch@2.3.1: {}
 
   prettier@3.3.3: {}
+
+  prettier@3.6.2: {}
 
   prompts@2.4.2:
     dependencies:

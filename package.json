@@ -23,6 +23,7 @@
     "@typespec/versioning": "^0.56.0"
   },
   "devDependencies": {
-    "@typespec/prettier-plugin-typespec": "^0.58.0"
+    "@typespec/prettier-plugin-typespec": "^0.58.0",
+    "prettier": "^3.6.2"
   }
 }

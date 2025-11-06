@@ -5,5 +5,5 @@ printWidth: 160
 singleQuote: true
 trailingComma: all
 plugins:
-- "./node_modules/@typespec/prettier-plugin-typespec/dist/index.js"
+  - "@typespec/prettier-plugin-typespec" 
 overrides: [{"files": "*.tsp", "options": {"parser": "typespec"}}]
