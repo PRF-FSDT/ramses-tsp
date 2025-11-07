@@ -29,3 +29,11 @@ model PlannedMachineCenterShift {
   created_at: string;
   updated_at: string;
 }
+
+alias ShiftsByMachineCenter = Record<PlannedMachineCenterShift[]>;
+
+// date -> ShiftsByMachineCenter
+alias PlannedShiftsByDate = Record<ShiftsByMachineCenter>;
+model PlannedMachineCenterShiftResponse {
+  @body body: PlannedShiftsByDate;
+}

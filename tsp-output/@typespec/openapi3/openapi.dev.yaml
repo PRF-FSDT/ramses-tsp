@@ -1412,29 +1412,12 @@ paths:
             application/json:
               schema:
                 type: object
-                required:
-                  - data
-                  - links
-                  - meta
-                properties:
-                  data:
+                additionalProperties:
+                  type: object
+                  additionalProperties:
                     type: array
                     items:
                       $ref: '#/components/schemas/PlannedMachineCenterShift'
-                  links:
-                    $ref: '#/components/schemas/PaginationLinks'
-                  meta:
-                    $ref: '#/components/schemas/PaginationMeta'
-                  filters:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/FilterOption'
-        '404':
-          description: The server cannot find the requested resource.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotFoundError'
   /mes/planned-machine-center-shifts/:
     post:
       tags:

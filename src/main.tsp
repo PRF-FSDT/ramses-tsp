@@ -314,7 +314,7 @@ interface MachineCenters {
 @route("/mes/planned-machine-center-shifts")
 @tag("Planned Machine Center Shifts")
 interface PlannedMachineCenterShifts {
-  @get list(@query machine_center_id?: int64, @query start?: int64, @query end?: int64, @query per_page?: int32): PaginatedResponse<PlannedMachineCenterShift>;
+  @get list(@query machine_center_id?: int64, @query start?: int64, @query end?: int64, @query per_page?: int32): PlannedMachineCenterShiftResponse;
 
   @post @route("/") generateShifts(
     @body body: {
