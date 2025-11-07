@@ -6602,6 +6602,12 @@ components:
           type: string
         updated_at:
           type: string
+        machine_center:
+          $ref: '#/components/schemas/MachineCenter'
+        planned_order_lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlannedOrderLine'
     PlannedOrder:
       type: object
       required:

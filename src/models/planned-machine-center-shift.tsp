@@ -30,6 +30,8 @@ model PlannedMachineCenterShift {
   remaining_seconds: int64;
   created_at: string;
   updated_at: string;
+  machine_center?: MachineCenter;
+  planned_order_lines?: PlannedOrderLine[];
 }
 
 alias ShiftsByMachineCenter = Record<PlannedMachineCenterShift[]>;
