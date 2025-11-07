@@ -26,6 +26,8 @@ model PlannedMachineCenterShift {
   day: string;
   is_disabled: boolean;
   is_locked: boolean;
+  planned_seconds: int64;
+  remaining_seconds: int64;
   created_at: string;
   updated_at: string;
 }

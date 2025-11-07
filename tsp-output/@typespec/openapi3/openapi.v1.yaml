@@ -6559,6 +6559,8 @@ components:
         - day
         - is_disabled
         - is_locked
+        - planned_seconds
+        - remaining_seconds
         - created_at
         - updated_at
       properties:
@@ -6590,6 +6592,12 @@ components:
           type: boolean
         is_locked:
           type: boolean
+        planned_seconds:
+          type: integer
+          format: int64
+        remaining_seconds:
+          type: integer
+          format: int64
         created_at:
           type: string
         updated_at:
