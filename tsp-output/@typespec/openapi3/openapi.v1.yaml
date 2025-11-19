@@ -26,6 +26,7 @@ tags:
   - name: Production Planning
   - name: Storage Locations
   - name: Machine Centers
+  - name: Machine Center Shifts
   - name: Planned Machine Center Shifts
   - name: Machine Types
   - name: Routing Codes
@@ -586,6 +587,113 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ValidationError'
+  /mes/machine-center-shifts:
+    get:
+      tags:
+        - Machine Center Shifts
+      operationId: MachineCenterShifts_list
+      parameters:
+        - $ref: '#/components/parameters/PaginatedRequest.page'
+        - $ref: '#/components/parameters/PaginatedRequest.perPage'
+        - $ref: '#/components/parameters/PaginatedRequest.search'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - links
+                  - meta
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/MachineCenterShift'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                  filters:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FilterOption'
+        '404':
+          description: The server cannot find the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+  /mes/machine-center-shifts/:
+    post:
+      tags:
+        - Machine Center Shifts
+      operationId: MachineCenterShifts_post
+      parameters: []
+      responses:
+        '201':
+          description: The request has succeeded and a new resource has been created as a result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MachineCenterShift'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MachineCenterShiftBody'
+  /mes/machine-center-shifts/{id}:
+    patch:
+      tags:
+        - Machine Center Shifts
+      operationId: MachineCenterShifts_update
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MachineCenterShift'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MachineCenterShiftBody'
+    delete:
+      tags:
+        - Machine Center Shifts
+      operationId: MachineCenterShifts_delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: 'There is no content to send for this request, but the headers may be useful. '
   /mes/machine-center/finish-all:
     post:
       tags:
@@ -5043,6 +5151,45 @@ components:
           format: int64
           nullable: true
           example: 1
+    MachineCenterShift:
+      type: object
+      required:
+        - id
+        - machine_center_id
+        - day
+        - start_time
+        - end_time
+        - created_at
+        - updated_at
+      properties:
+        id:
+          type: integer
+          format: int64
+        machine_center_id:
+          type: integer
+          format: int64
+        day:
+          type: string
+        start_time:
+          type: string
+        end_time:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+    MachineCenterShiftBody:
+      type: object
+      properties:
+        machine_center_id:
+          type: integer
+          format: int64
+        day:
+          type: string
+        start_time:
+          type: string
+        end_time:
+          type: string
     MachineCenterWithScanners:
       type: object
       required:

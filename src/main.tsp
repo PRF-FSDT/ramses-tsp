@@ -19,6 +19,7 @@ import "./models/order-tasks.tsp";
 import "./models/metrics.tsp";
 import "./models/time-registration-codes.tsp";
 import "./models/planned-machine-center-shift.tsp";
+import "./models/machine-center-shift.tsp";
 import "./models/simulation.tsp";
 
 import "./responses/responses.tsp";
@@ -308,6 +309,15 @@ interface MachineCenters {
   @get list(...PaginatedSortableRequest): PaginatedResponse<MachineCenterWithScanners>;
   @post @route("/") post(@body MachineBody: MachineCenterBody): CreatedResponse<MachineCenter>;
   @patch @route("{id}") update(@path id: string, @body MachineBody: MachineCenterPatchBody): UpdatedResponse<MachineCenter>;
+  @delete delete(@path id: string): DeletedResponse;
+}
+
+@route("/mes/machine-center-shifts")
+@tag("Machine Center Shifts")
+interface MachineCenterShifts {
+  @get list(...PaginatedRequest): PaginatedResponse<MachineCenterShift>;
+  @post @route("/") post(@body MachineCenterShiftBody: MachineCenterShiftBody): CreatedResponse<MachineCenterShift>;
+  @patch @route("{id}") update(@path id: string, @body MachineCenterShiftBody: MachineCenterShiftBody): UpdatedResponse<MachineCenterShift>;
   @delete delete(@path id: string): DeletedResponse;
 }
 
