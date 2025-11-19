@@ -12,6 +12,8 @@ namespace RamsesService;
 model MachineCenterShift {
   @key id: int64;
   machine_center_id: int64;
+  machine_center_name: string | null;
+  machine_center_no: string | null;
   day: string;
   start_time: string;
   end_time: string;

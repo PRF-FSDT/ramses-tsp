@@ -5156,6 +5156,8 @@ components:
       required:
         - id
         - machine_center_id
+        - machine_center_name
+        - machine_center_no
         - day
         - start_time
         - end_time
@@ -5168,6 +5170,12 @@ components:
         machine_center_id:
           type: integer
           format: int64
+        machine_center_name:
+          type: string
+          nullable: true
+        machine_center_no:
+          type: string
+          nullable: true
         day:
           type: string
         start_time:
