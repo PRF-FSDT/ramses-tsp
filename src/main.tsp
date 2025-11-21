@@ -344,7 +344,7 @@ interface PlannedMachineCenterShifts {
     message: string;
   }> | BadRequestError;
 
-  @get @route("/{id}") read(@path id: int64): ReadResponse<PlannedMachineCenterShift>;
+  @get @route("/{id}") read(@path id: int64, @query simulation_run_id?: string | null): ReadResponse<PlannedMachineCenterShift>;
 
   @patch @route("/{id}") update(
     @path id: int64,
