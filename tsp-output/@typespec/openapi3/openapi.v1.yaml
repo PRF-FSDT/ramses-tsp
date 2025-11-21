@@ -1495,6 +1495,11 @@ paths:
           schema:
             type: integer
             format: int64
+        - name: simulation_run_id
+          in: query
+          required: false
+          schema:
+            type: string
         - name: start
           in: query
           required: false
