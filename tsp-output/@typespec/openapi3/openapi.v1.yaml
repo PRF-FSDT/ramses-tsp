@@ -1583,18 +1583,18 @@ paths:
         - Planned Machine Center Shifts
       operationId: PlannedMachineCenterShifts_read
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int64
         - name: simulation_run_id
           in: query
           required: false
           schema:
             type: string
             nullable: true
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
       responses:
         '200':
           description: The request has succeeded.
