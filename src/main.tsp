@@ -327,7 +327,7 @@ interface MachineCenterShifts {
 interface PlannedMachineCenterShifts {
   @get list(
     @query machine_center_id?: int64,
-    @query simulation_run_id?: string,
+    @query simulation_run_id?: string | null,
     @query start?: int64,
     @query end?: int64,
     @query per_page?: int32,
