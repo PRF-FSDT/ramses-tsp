@@ -292,6 +292,7 @@ interface ProductionPlanningOrders {
   @patch @route("/planned-order-line/{id}") updatePlannedOrderLine(@path id: string, @body body: PlannedOrderLineBody): UpdatedResponse<PlannedOrderLine>;
   @post @route("/run-simulation") runSimulation(): CreatedResponse<SimulationRunResult> | Error;
   @post @route("/apply-simulation") applySimulation(@body body: ApplySimulationBody): SuccessResponse | Error;
+  @post @route("/decline-simulation") declineSimulation(@body body: ApplySimulationBody): SuccessResponse | Error;
 }
 
 @route("/storage-locations")
