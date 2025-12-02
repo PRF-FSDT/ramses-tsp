@@ -21,6 +21,7 @@ import "./models/time-registration-codes.tsp";
 import "./models/planned-machine-center-shift.tsp";
 import "./models/machine-center-shift.tsp";
 import "./models/simulation.tsp";
+import "./models/site.tsp";
 
 import "./responses/responses.tsp";
 
@@ -47,6 +48,14 @@ interface Auth {
 @tag("Demo")
 interface Demo {
   @route("/reset-demo") @post resetDemo(): SuccessResponse;
+}
+@tag("Sites")
+@route("/sites")
+interface Sites {
+  @get list(...PaginatedRequest): PaginatedResponse<Site>;
+  @post @route("/") post(@body SiteBody: SiteBody): CreatedResponse<Site>;
+  @patch @route("{id}") update(@path id: string, @body SiteBody: SiteBody): UpdatedResponse<Site>;
+  @delete delete(@path id: string): DeletedResponse;
 }
 
 //ORDER MANAGER
