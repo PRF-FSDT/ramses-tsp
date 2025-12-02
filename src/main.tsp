@@ -53,7 +53,8 @@ interface Demo {
 @route("/sites")
 interface Sites {
   @get list(...PaginatedRequest): PaginatedResponse<Site>;
-  @post @route("/") post(@body SiteBody: SiteBody): CreatedResponse<Site>;
+  @get @route("{id}") read(@path id: string): ReadResponse<Site>;
+  @post @route("") post(@body SiteBody: SiteBody): CreatedResponse<Site>;
   @patch @route("{id}") update(@path id: string, @body SiteBody: SiteBody): UpdatedResponse<Site>;
   @delete delete(@path id: string): DeletedResponse;
 }
