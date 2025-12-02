@@ -428,11 +428,14 @@ model LogoutResponse {
   message: string;
 }
 
+alias Permission = "sites.view_all" | "app_settings.manager";
+
 model MeResponse {
   id: uint64;
   name: string;
   email: string;
   role: "user" | "planner" | "admin" | "superadmin";
+  permissions: Permission[];
 }
 
 model OrderImportResponse {

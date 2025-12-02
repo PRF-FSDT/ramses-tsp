@@ -5461,6 +5461,7 @@ components:
         - name
         - email
         - role
+        - permissions
       properties:
         id:
           type: integer
@@ -5476,6 +5477,13 @@ components:
             - planner
             - admin
             - superadmin
+        permissions:
+          type: array
+          items:
+            type: string
+            enum:
+              - sites.view_all
+              - app_settings.manager
     NotFoundError:
       type: object
       required:
