@@ -282,6 +282,7 @@ interface OperatingHours {
 @tag("Users")
 interface Users {
   @get list(...PaginatedRequest): PaginatedResponse<User>;
+  @get @route("{id}") read(@path id: string): ReadResponse<User>;
   @post @route("") post(@body UserBody: UserCreateBody): CreatedResponse<User>;
   @patch @route("{id}") update(@path id: string, @body UserBody: UserUpdateBody): UpdatedResponse<User>;
   @delete delete(@path id: string): DeletedResponse;
