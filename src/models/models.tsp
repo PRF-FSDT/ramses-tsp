@@ -4,6 +4,7 @@ import "@typespec/openapi3";
 import "@typespec/versioning";
 
 import "./common.tsp";
+import "./enum.tsp";
 
 using TypeSpec.Versioning;
 using TypeSpec.Http;
@@ -428,13 +429,12 @@ model LogoutResponse {
   message: string;
 }
 
-alias Permission = "sites.view_all" | "app_settings.manager";
-
 model MeResponse {
   id: uint64;
   name: string;
   email: string;
-  role: "user" | "planner" | "admin" | "superadmin";
+  role: Role;
+  site: string;
   permissions: Permission[];
 }
 

@@ -5461,6 +5461,7 @@ components:
         - name
         - email
         - role
+        - site
         - permissions
       properties:
         id:
@@ -5477,6 +5478,8 @@ components:
             - planner
             - admin
             - superadmin
+        site:
+          type: string
         permissions:
           type: array
           items:
