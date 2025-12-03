@@ -15,12 +15,17 @@ model User {
   name: string;
   email: string;
   role: Role;
+  site_id: int64;
+  site_name: string;
+  created_at: utcDateTime;
+  updated_at: utcDateTime;
 }
 
 model UserCreateBody {
   name: string;
   email: string;
   password: string;
+  site_id: int64 | null;
   role?: Role;
 }
 
@@ -28,4 +33,5 @@ model UserUpdateBody {
   name: string;
   email: string;
   role?: Role;
+  site_id?: int64 | null;
 }

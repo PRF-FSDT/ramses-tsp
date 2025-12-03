@@ -7954,6 +7954,10 @@ components:
         - name
         - email
         - role
+        - site_id
+        - site_name
+        - created_at
+        - updated_at
       properties:
         id:
           type: integer
@@ -7969,12 +7973,24 @@ components:
             - planner
             - admin
             - superadmin
+        site_id:
+          type: integer
+          format: int64
+        site_name:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
     UserCreateBody:
       type: object
       required:
         - name
         - email
         - password
+        - site_id
       properties:
         name:
           type: string
@@ -7982,6 +7998,10 @@ components:
           type: string
         password:
           type: string
+        site_id:
+          type: integer
+          format: int64
+          nullable: true
         role:
           type: string
           enum:
@@ -8003,6 +8023,10 @@ components:
             - planner
             - admin
             - superadmin
+        site_id:
+          type: integer
+          format: int64
+          nullable: true
     ValidationError:
       type: object
       required:
