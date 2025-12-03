@@ -5486,7 +5486,7 @@ components:
             type: string
             enum:
               - sites.view_all
-              - app_settings.manager
+              - app_settings.manage
     NotFoundError:
       type: object
       required:
