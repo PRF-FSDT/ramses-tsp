@@ -26,7 +26,7 @@ model UserCreateBody {
   email: string;
   password: string;
   site_id: int64 | null;
-  role?: Role;
+  role: Role | null;
 }
 
 model UserUpdateBody {

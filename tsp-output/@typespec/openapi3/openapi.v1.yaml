@@ -7991,6 +7991,7 @@ components:
         - email
         - password
         - site_id
+        - role
       properties:
         name:
           type: string
@@ -8009,6 +8010,7 @@ components:
             - planner
             - admin
             - superadmin
+          nullable: true
     UserUpdateBody:
       type: object
       properties:
