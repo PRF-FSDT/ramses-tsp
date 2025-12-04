@@ -5369,7 +5369,8 @@ components:
           type: string
           example: CNC
         site_id:
-          type: string
+          type: integer
+          format: int32
           nullable: true
     MachineCenterPatchBody:
       type: object
@@ -5387,7 +5388,8 @@ components:
           type: string
           example: CNC
         site_id:
-          type: string
+          type: integer
+          format: int32
           nullable: true
         active_broken_part_reason_id:
           type: integer

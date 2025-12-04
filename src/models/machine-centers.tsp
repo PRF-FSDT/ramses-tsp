@@ -32,7 +32,7 @@ model MachineCenterBody {
   name: MachineCenter.name;
   scan_code: MachineCenter.scan_code;
   machine_type_code: MachineCenter.machine_type_code;
-  site_id: string | null;
+  site_id: int32 | null;
 }
 
 model MachineCenterPatchBody {
@@ -40,6 +40,6 @@ model MachineCenterPatchBody {
   name?: MachineCenter.name;
   scan_code?: MachineCenter.scan_code;
   machine_type_code?: MachineCenter.machine_type_code;
-  site_id?: string | null;
+  site_id?: int32 | null;
   active_broken_part_reason_id?: MachineCenter.active_broken_part_reason_id;
 }
