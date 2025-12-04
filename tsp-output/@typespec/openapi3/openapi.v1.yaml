@@ -5342,7 +5342,8 @@ components:
           nullable: true
           example: 1
         site_id:
-          type: string
+          type: integer
+          format: int32
           nullable: true
         site_name:
           type: string
@@ -5477,7 +5478,8 @@ components:
           nullable: true
           example: 1
         site_id:
-          type: string
+          type: integer
+          format: int32
           nullable: true
         site_name:
           type: string
