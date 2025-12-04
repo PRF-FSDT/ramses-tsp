@@ -18,6 +18,7 @@ model MachineCenter {
   @example("CNC_1") scan_code: string;
   @example("CNC") machine_type_code: string;
   @example(1) active_broken_part_reason_id: int64 | null;
+  site: string | null;
 }
 
 model MachineCenterWithScanners {
@@ -30,6 +31,7 @@ model MachineCenterBody {
   name: MachineCenter.name;
   scan_code: MachineCenter.scan_code;
   machine_type_code: MachineCenter.machine_type_code;
+  site_id: string | null;
 }
 
 model MachineCenterPatchBody {
@@ -37,5 +39,6 @@ model MachineCenterPatchBody {
   name?: MachineCenter.name;
   scan_code?: MachineCenter.scan_code;
   machine_type_code?: MachineCenter.machine_type_code;
+  site_id?: string | null;
   active_broken_part_reason_id?: MachineCenter.active_broken_part_reason_id;
 }

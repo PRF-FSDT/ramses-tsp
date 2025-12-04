@@ -5318,6 +5318,7 @@ components:
         - scan_code
         - machine_type_code
         - active_broken_part_reason_id
+        - site
       properties:
         id:
           type: integer
@@ -5339,6 +5340,9 @@ components:
           format: int64
           nullable: true
           example: 1
+        site:
+          type: string
+          nullable: true
     MachineCenterBody:
       type: object
       required:
@@ -5346,6 +5350,7 @@ components:
         - name
         - scan_code
         - machine_type_code
+        - site_id
       properties:
         no:
           type: string
@@ -5359,6 +5364,9 @@ components:
         machine_type_code:
           type: string
           example: CNC
+        site_id:
+          type: string
+          nullable: true
     MachineCenterPatchBody:
       type: object
       properties:
@@ -5374,6 +5382,9 @@ components:
         machine_type_code:
           type: string
           example: CNC
+        site_id:
+          type: string
+          nullable: true
         active_broken_part_reason_id:
           type: integer
           format: int64
@@ -5435,6 +5446,7 @@ components:
         - scan_code
         - machine_type_code
         - active_broken_part_reason_id
+        - site
         - scanners
       properties:
         id:
@@ -5457,6 +5469,9 @@ components:
           format: int64
           nullable: true
           example: 1
+        site:
+          type: string
+          nullable: true
         scanners:
           type: array
           items:
