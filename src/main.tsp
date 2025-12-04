@@ -319,7 +319,8 @@ interface StorageLocations {
 @tag("Machine Centers")
 interface MachineCenters {
   @get list(...PaginatedSortableRequest): PaginatedResponse<MachineCenterWithScanners>;
-  @post @route("/") post(@body MachineBody: MachineCenterBody): CreatedResponse<MachineCenter>;
+  @get @route("{id}") read(@path id: string): ReadResponse<MachineCenterWithScanners>;
+  @post @route("") post(@body MachineBody: MachineCenterBody): CreatedResponse<MachineCenter>;
   @patch @route("{id}") update(@path id: string, @body MachineBody: MachineCenterPatchBody): UpdatedResponse<MachineCenter>;
   @delete delete(@path id: string): DeletedResponse;
 }
