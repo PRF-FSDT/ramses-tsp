@@ -5318,7 +5318,8 @@ components:
         - scan_code
         - machine_type_code
         - active_broken_part_reason_id
-        - site
+        - site_id
+        - site_name
       properties:
         id:
           type: integer
@@ -5340,7 +5341,10 @@ components:
           format: int64
           nullable: true
           example: 1
-        site:
+        site_id:
+          type: string
+          nullable: true
+        site_name:
           type: string
           nullable: true
     MachineCenterBody:
@@ -5446,7 +5450,8 @@ components:
         - scan_code
         - machine_type_code
         - active_broken_part_reason_id
-        - site
+        - site_id
+        - site_name
         - scanners
       properties:
         id:
@@ -5469,7 +5474,10 @@ components:
           format: int64
           nullable: true
           example: 1
-        site:
+        site_id:
+          type: string
+          nullable: true
+        site_name:
           type: string
           nullable: true
         scanners:
