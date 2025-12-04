@@ -26,12 +26,12 @@ model UserCreateBody {
   email: string;
   password: string;
   site_id: int64 | null;
-  role: Role | null;
+  role: AssignableRole | null;
 }
 
 model UserUpdateBody {
   name: string;
   email: string;
-  role?: Role;
+  role?: AssignableRole;
   site_id?: int64 | null;
 }

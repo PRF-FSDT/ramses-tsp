@@ -8009,7 +8009,6 @@ components:
             - user
             - planner
             - admin
-            - superadmin
           nullable: true
     UserUpdateBody:
       type: object
@@ -8024,7 +8023,6 @@ components:
             - user
             - planner
             - admin
-            - superadmin
         site_id:
           type: integer
           format: int64
