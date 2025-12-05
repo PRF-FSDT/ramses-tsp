@@ -7715,6 +7715,8 @@ components:
         - last_supplied_by
         - qty_required
         - qty_received
+        - site_id
+        - site_name
       properties:
         id:
           type: integer
@@ -7736,6 +7738,13 @@ components:
           type: number
         qty_received:
           type: number
+        site_id:
+          type: integer
+          format: int64
+          nullable: true
+        site_name:
+          type: string
+          nullable: true
     StorageLocationBody:
       type: object
       required:
@@ -7759,6 +7768,13 @@ components:
           type: number
         qty_received:
           type: number
+        site_id:
+          type: integer
+          format: int64
+          nullable: true
+        site_name:
+          type: string
+          nullable: true
     StorageLocationBodyUpdate:
       type: object
       properties:
@@ -7779,6 +7795,13 @@ components:
           type: number
         qty_received:
           type: number
+        site_id:
+          type: integer
+          format: int64
+          nullable: true
+        site_name:
+          type: string
+          nullable: true
     SyncedOrder:
       type: object
       required:

@@ -7,6 +7,8 @@ model StorageLocation {
   last_supplied_by: string | null;
   qty_required: numeric;
   qty_received: numeric;
+  site_id: int64 | null;
+  site_name: string | null;
 }
 
 model StorageLocationBody {
@@ -17,4 +19,6 @@ model StorageLocationBody {
   last_supplied_by?: string | null;
   qty_required?: numeric;
   qty_received?: numeric;
+  site_id?: int64 | null;
+  site_name?: string | null;
 }
