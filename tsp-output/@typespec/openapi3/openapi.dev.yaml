@@ -1768,7 +1768,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
-  /mes/routing-codes/:
     post:
       tags:
         - Routing Codes
@@ -1794,6 +1793,29 @@ paths:
             schema:
               $ref: '#/components/schemas/RoutingCodeBody'
   /mes/routing-codes/{id}:
+    get:
+      tags:
+        - Routing Codes
+      operationId: RoutingCodes_read
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoutingCode'
+        '404':
+          description: The server cannot find the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
     patch:
       tags:
         - Routing Codes
