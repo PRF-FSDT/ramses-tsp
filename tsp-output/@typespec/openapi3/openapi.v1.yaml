@@ -8047,8 +8047,10 @@ components:
         site_id:
           type: integer
           format: int64
+          nullable: true
         site_name:
           type: string
+          nullable: true
         created_at:
           type: string
           format: date-time

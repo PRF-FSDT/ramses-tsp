@@ -15,8 +15,8 @@ model User {
   name: string;
   email: string;
   role: Role;
-  site_id: int64;
-  site_name: string;
+  site_id: int64 | null;
+  site_name: string | null;
   created_at: utcDateTime;
   updated_at: utcDateTime;
 }
