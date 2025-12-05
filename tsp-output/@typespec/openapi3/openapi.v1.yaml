@@ -4289,7 +4289,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
-  /storage-locations/:
     post:
       tags:
         - Storage Locations
@@ -4315,6 +4314,29 @@ paths:
             schema:
               $ref: '#/components/schemas/StorageLocationBody'
   /storage-locations/{id}:
+    get:
+      tags:
+        - Storage Locations
+      operationId: StorageLocations_read
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StorageLocation'
+        '404':
+          description: The server cannot find the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
     patch:
       tags:
         - Storage Locations
