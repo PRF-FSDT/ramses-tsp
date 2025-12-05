@@ -5577,6 +5577,7 @@ components:
         - email
         - role
         - site
+        - site_id
         - permissions
       properties:
         id:
@@ -5595,6 +5596,10 @@ components:
             - superadmin
         site:
           type: string
+        site_id:
+          type: integer
+          format: int64
+          nullable: true
         permissions:
           type: array
           items:
