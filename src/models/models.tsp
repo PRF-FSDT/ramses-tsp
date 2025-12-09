@@ -435,6 +435,7 @@ model MeResponse {
   email: string;
   role: Role;
   site: string;
+  site_id: int64 | null;
   permissions: Permission[];
 }
 

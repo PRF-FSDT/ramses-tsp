@@ -310,7 +310,8 @@ interface ProductionPlanningOrders {
 @tag("Storage Locations")
 interface StorageLocations {
   @get list(@query mc?: string, ...PaginatedSortableRequest): PaginatedResponse<StorageLocation>;
-  @post @route("/") post(@body StorageLocationBody: StorageLocationBody): CreatedResponse<StorageLocation>;
+  @get @route("{id}") read(@path id: string): ReadResponse<StorageLocation>;
+  @post @route("") post(@body StorageLocationBody: StorageLocationBody): CreatedResponse<StorageLocation>;
   @patch @route("{id}") update(@path id: string, @body StorageLocationBody: StorageLocationBody): UpdatedResponse<StorageLocation>;
   @delete delete(@path id: string): DeletedResponse;
 }
@@ -383,7 +384,8 @@ interface MachineTypes {
 @tag("Routing Codes")
 interface RoutingCodes {
   @get list(...PaginatedRequest): PaginatedResponse<RoutingCode>;
-  @post @route("/") post(@body RoutingCodeBody: RoutingCodeBody): CreatedResponse<RoutingCode>;
+  @get @route("{id}") read(@path id: string): ReadResponse<RoutingCode>;
+  @post @route("") post(@body RoutingCodeBody: RoutingCodeBody): CreatedResponse<RoutingCode>;
   @patch @route("{id}") update(@path id: string, @body RoutingCodeBody: RoutingCodeBody): UpdatedResponse<RoutingCode>;
   @delete delete(@path id: string): DeletedResponse;
 }

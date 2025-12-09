@@ -1768,7 +1768,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
-  /mes/routing-codes/:
     post:
       tags:
         - Routing Codes
@@ -1794,6 +1793,29 @@ paths:
             schema:
               $ref: '#/components/schemas/RoutingCodeBody'
   /mes/routing-codes/{id}:
+    get:
+      tags:
+        - Routing Codes
+      operationId: RoutingCodes_read
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoutingCode'
+        '404':
+          description: The server cannot find the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
     patch:
       tags:
         - Routing Codes
@@ -4289,7 +4311,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
-  /storage-locations/:
     post:
       tags:
         - Storage Locations
@@ -4315,6 +4336,29 @@ paths:
             schema:
               $ref: '#/components/schemas/StorageLocationBody'
   /storage-locations/{id}:
+    get:
+      tags:
+        - Storage Locations
+      operationId: StorageLocations_read
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StorageLocation'
+        '404':
+          description: The server cannot find the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
     patch:
       tags:
         - Storage Locations
@@ -5533,6 +5577,7 @@ components:
         - email
         - role
         - site
+        - site_id
         - permissions
       properties:
         id:
@@ -5551,6 +5596,10 @@ components:
             - superadmin
         site:
           type: string
+        site_id:
+          type: integer
+          format: int64
+          nullable: true
         permissions:
           type: array
           items:
@@ -7372,6 +7421,8 @@ components:
         - setup_time_sec
         - run_time_sec
         - display_position
+        - site_id
+        - site_name
       properties:
         id:
           type: integer
@@ -7405,6 +7456,13 @@ components:
         display_position:
           type: integer
           format: int32
+          nullable: true
+        site_id:
+          type: integer
+          format: int64
+          nullable: true
+        site_name:
+          type: string
           nullable: true
     RoutingCodeBody:
       type: object
@@ -7447,6 +7505,10 @@ components:
           type: integer
           format: int32
           nullable: true
+        site_id:
+          type: integer
+          format: int64
+          nullable: true
     RoutingCodeBodyUpdate:
       type: object
       properties:
@@ -7479,6 +7541,10 @@ components:
         display_position:
           type: integer
           format: int32
+          nullable: true
+        site_id:
+          type: integer
+          format: int64
           nullable: true
     Scan:
       type: object
@@ -7693,6 +7759,8 @@ components:
         - last_supplied_by
         - qty_required
         - qty_received
+        - site_id
+        - site_name
       properties:
         id:
           type: integer
@@ -7714,6 +7782,13 @@ components:
           type: number
         qty_received:
           type: number
+        site_id:
+          type: integer
+          format: int64
+          nullable: true
+        site_name:
+          type: string
+          nullable: true
     StorageLocationBody:
       type: object
       required:
@@ -7737,6 +7812,13 @@ components:
           type: number
         qty_received:
           type: number
+        site_id:
+          type: integer
+          format: int64
+          nullable: true
+        site_name:
+          type: string
+          nullable: true
     StorageLocationBodyUpdate:
       type: object
       properties:
@@ -7757,6 +7839,13 @@ components:
           type: number
         qty_received:
           type: number
+        site_id:
+          type: integer
+          format: int64
+          nullable: true
+        site_name:
+          type: string
+          nullable: true
     SyncedOrder:
       type: object
       required:
@@ -8025,8 +8114,10 @@ components:
         site_id:
           type: integer
           format: int64
+          nullable: true
         site_name:
           type: string
+          nullable: true
         created_at:
           type: string
           format: date-time
