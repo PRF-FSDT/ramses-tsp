@@ -58,7 +58,7 @@ model OrderTask {
   should_be_planned: boolean;
   is_required_for_production: boolean;
   is_external?: boolean;
-  is_finished?: boolean;
+  is_finished: boolean;
   finished_by?: numeric | null;
   dependant_on?: Array<numeric> | null;
   duration_in_min?: numeric | null;

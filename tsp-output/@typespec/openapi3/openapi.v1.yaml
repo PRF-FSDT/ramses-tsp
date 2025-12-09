@@ -6334,6 +6334,7 @@ components:
         - title
         - should_be_planned
         - is_required_for_production
+        - is_finished
       properties:
         id:
           type: integer
