@@ -6612,6 +6612,9 @@ components:
         elapsed_duration_in_sec:
           type: number
           nullable: true
+        finished_by:
+          type: number
+          nullable: true
         planned_start:
           type: string
           format: date-time
