@@ -2775,12 +2775,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
-        default:
-          description: An unexpected error response.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
   /order-manager/order-tasks/{id}/timer/start:
     post:
       tags:
@@ -2805,12 +2799,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ValidationError'
-        default:
-          description: An unexpected error response.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
   /order-manager/order-tasks/{id}/timer/stop:
     post:
       tags:
@@ -2835,12 +2823,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ValidationError'
-        default:
-          description: An unexpected error response.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
   /order-manager/orders:
     get:
       tags:
