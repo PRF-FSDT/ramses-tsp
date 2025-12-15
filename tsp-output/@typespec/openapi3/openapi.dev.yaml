@@ -2751,6 +2751,66 @@ paths:
       responses:
         '204':
           description: 'There is no content to send for this request, but the headers may be useful. '
+  /order-manager/order-tasks/{id}/timer/start:
+    post:
+      tags:
+        - Order Tasks
+      operationId: OrderTasks_startTimer
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: The request has succeeded and a new resource has been created as a result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimeRegistration'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /order-manager/order-tasks/{id}/timer/stop:
+    post:
+      tags:
+        - Order Tasks
+      operationId: OrderTasks_stopTimer
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: The request has succeeded and a new resource has been created as a result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimeRegistration'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /order-manager/orders:
     get:
       tags:
@@ -7979,6 +8039,82 @@ components:
           nullable: true
         is_outsourced:
           type: boolean
+    TimeRegistration:
+      type: object
+      required:
+        - id
+        - order_id
+        - user_id
+        - kind
+        - source
+        - is_active
+        - started_at
+        - stopped_at
+        - duration_seconds
+        - active_segment
+        - workable
+        - created_at
+        - updated_at
+      properties:
+        id:
+          type: number
+        order_id:
+          type: number
+        user_id:
+          type: number
+        kind:
+          type: string
+          enum:
+            - production
+            - preparation
+            - finalisation
+        source:
+          type: string
+          enum:
+            - manual
+            - timer
+        is_active:
+          type: boolean
+        started_at:
+          type: string
+          format: date-time
+        stopped_at:
+          type: string
+          format: date-time
+          nullable: true
+        duration_seconds:
+          type: number
+        active_segment:
+          type: object
+          properties:
+            id:
+              type: number
+            started_at:
+              type: string
+              format: date-time
+            elapsed_seconds:
+              type: number
+          required:
+            - id
+            - started_at
+            - elapsed_seconds
+          nullable: true
+        workable:
+          type: object
+          properties:
+            type:
+              type: string
+            id:
+              type: number
+          required:
+            - type
+            - id
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
     TimeRegistrationCode:
       type: object
       required:

@@ -22,6 +22,7 @@ import "./models/planned-machine-center-shift.tsp";
 import "./models/machine-center-shift.tsp";
 import "./models/simulation.tsp";
 import "./models/site.tsp";
+import "./models/time-registration.tsp";
 
 import "./responses/responses.tsp";
 
@@ -204,6 +205,8 @@ interface OrderTasks {
   @post @route("/") post(@body OrderTaskBody: OrderTaskBody): CreatedResponse<OrderTask>;
   @patch @route("{id}") update(@path id: string, @body OrderTaskUpdateBody: OrderTaskUpdateBody): UpdatedResponse<OrderTask>;
   @delete delete(@path id: string): DeletedResponse;
+  @post @route("/{id}/timer/start") startTimer(@path id: string): CreatedResponse<TimeRegistration> | Error;
+  @post @route("/{id}/timer/stop") stopTimer(@path id: string): CreatedResponse<TimeRegistration> | Error;
   @get @route("/planning") getPlanning(@query start: string, @query end: string): ListResponse<OrderTask>;
   @get @route("/planning-for-week/{week}") getPlanningForWeek(@path week: string): PaginatedResponse<OrderTask>;
   @get @route("/planned-tasks") getPlannedTasks(...PlannedTasksRequest): PaginatedResponse<OrderTask>;
