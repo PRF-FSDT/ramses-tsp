@@ -205,6 +205,7 @@ interface OrderTasks {
   @post @route("/") post(@body OrderTaskBody: OrderTaskBody): CreatedResponse<OrderTask>;
   @patch @route("{id}") update(@path id: string, @body OrderTaskUpdateBody: OrderTaskUpdateBody): UpdatedResponse<OrderTask>;
   @delete delete(@path id: string): DeletedResponse;
+  @post @route("/{id}/finish") finishTask(@path id: string): ReadResponse<OrderTask> | Error;
   @post @route("/{id}/timer/start") startTimer(@path id: string): CreatedResponse<TimeRegistration> | Error;
   @post @route("/{id}/timer/stop") stopTimer(@path id: string): CreatedResponse<TimeRegistration> | Error;
   @get @route("/planning") getPlanning(@query start: string, @query end: string): ListResponse<OrderTask>;
