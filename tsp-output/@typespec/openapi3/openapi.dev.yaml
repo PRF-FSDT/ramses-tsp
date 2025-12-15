@@ -8061,7 +8061,7 @@ components:
         - source
         - is_active
         - started_at
-        - stopped_at
+        - ended_at
         - duration_seconds
         - active_segment
         - workable
@@ -8090,7 +8090,7 @@ components:
         started_at:
           type: string
           format: date-time
-        stopped_at:
+        ended_at:
           type: string
           format: date-time
           nullable: true

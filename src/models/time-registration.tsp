@@ -6,7 +6,7 @@ model TimeRegistration {
   source: "manual" | "timer";
   is_active: boolean;
   started_at: utcDateTime;
-  stopped_at: utcDateTime | null;
+  ended_at: utcDateTime | null;
   duration_seconds: numeric;
   active_segment: {
     id: numeric;
