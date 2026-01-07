@@ -436,7 +436,7 @@ interface MesMachineCenter {
   @post @route("{plannedOrderLineId}/start") startProductionTimer(
     @path plannedOrderLineId: int64,
     @body start: {
-      mc_id: numeric;
+      machine_center_no: string;
       timestamp: unixTimestamp32;
     },
   ): CreatedResponse<TimeRegistration> | NotFoundError;

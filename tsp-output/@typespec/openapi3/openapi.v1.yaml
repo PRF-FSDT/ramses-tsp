@@ -994,13 +994,13 @@ paths:
             schema:
               type: object
               properties:
-                mc_id:
-                  type: number
+                machine_center_no:
+                  type: string
                 timestamp:
                   type: integer
                   format: int32
               required:
-                - mc_id
+                - machine_center_no
                 - timestamp
   /mes/machine-center/{plannedOrderLineId}/stop:
     post:
@@ -8192,7 +8192,7 @@ components:
         - kind
         - source
         - is_active
-        - machine_center_id
+        - machine_center_no
         - started_at
         - ended_at
         - duration_seconds
@@ -8220,8 +8220,9 @@ components:
             - timer
         is_active:
           type: boolean
-        machine_center_id:
-          type: number
+        machine_center_no:
+          type: string
+          nullable: true
         started_at:
           type: string
           format: date-time
