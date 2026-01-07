@@ -5704,6 +5704,7 @@ components:
         - site_id
         - site_name
         - scanners
+        - timer
       properties:
         id:
           type: integer
@@ -5736,6 +5737,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Scanner'
+        timer:
+          type: object
+          allOf:
+            - $ref: '#/components/schemas/TimeRegistration'
+          nullable: true
     MachineType:
       type: object
       required:
