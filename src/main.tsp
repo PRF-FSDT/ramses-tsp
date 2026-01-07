@@ -433,8 +433,18 @@ interface MesMachineCenter {
   @get @route("/grouped-order-components") getGroupedOrderComponents(...McOrderComponentsRequest): PaginatedResponse<GroupedPlannedComponentRoutingLine>;
   @get @route("/scan-info") getScanInfo(...ScanInfoRequest): ScanInfoResponse | NotFoundError;
 
-  @post @route("{plannedOrderLineId}/start") startProductionTimer(@path plannedOrderLineId: int64): CreatedResponse<TimeRegistration> | NotFoundError;
-  @post @route("{plannedOrderLineId}/stop") stopProductionTimer(@path plannedOrderLineId: int64): CreatedResponse<TimeRegistration> | NotFoundError;
+  @post @route("{plannedOrderLineId}/start") startProductionTimer(
+    @path plannedOrderLineId: int64,
+    @body start: {
+      timestamp: unixTimestamp32;
+    },
+  ): CreatedResponse<TimeRegistration> | NotFoundError;
+  @post @route("{plannedOrderLineId}/stop") stopProductionTimer(
+    @path plannedOrderLineId: int64,
+    @body stop: {
+      timestamp: unixTimestamp32;
+    },
+  ): CreatedResponse<TimeRegistration> | NotFoundError;
   @post @route("{plannedOrderLineId}/pause") pauseProductionTimer(@path plannedOrderLineId: int64): CreatedResponse<TimeRegistration> | NotFoundError;
 
   @post @route("/register-output") registerOutput(...McRegisterOutputRequest): SuccessResponse;
