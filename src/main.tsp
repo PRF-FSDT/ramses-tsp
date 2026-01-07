@@ -436,6 +436,7 @@ interface MesMachineCenter {
   @post @route("{plannedOrderLineId}/start") startProductionTimer(
     @path plannedOrderLineId: int64,
     @body start: {
+      mc_id: numeric;
       timestamp: unixTimestamp32;
     },
   ): CreatedResponse<TimeRegistration> | NotFoundError;
@@ -445,7 +446,12 @@ interface MesMachineCenter {
       timestamp: unixTimestamp32;
     },
   ): CreatedResponse<TimeRegistration> | NotFoundError;
-  @post @route("{plannedOrderLineId}/pause") pauseProductionTimer(@path plannedOrderLineId: int64): CreatedResponse<TimeRegistration> | NotFoundError;
+  @post @route("{plannedOrderLineId}/pause") pauseProductionTimer(
+    @path plannedOrderLineId: int64,
+    @body pause: {
+      timestamp: unixTimestamp32;
+    },
+  ): CreatedResponse<TimeRegistration> | NotFoundError;
 
   @post @route("/register-output") registerOutput(...McRegisterOutputRequest): SuccessResponse;
   @post @route("/finish-all") finishAll(@body finishAllBody: FinishAllBody): SuccessResponse | NotFoundError;

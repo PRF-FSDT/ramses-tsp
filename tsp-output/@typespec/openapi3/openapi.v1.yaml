@@ -944,6 +944,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ValidationError'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                timestamp:
+                  type: integer
+                  format: int32
+              required:
+                - timestamp
   /mes/machine-center/{plannedOrderLineId}/start:
     post:
       tags:
@@ -982,10 +994,13 @@ paths:
             schema:
               type: object
               properties:
+                mc_id:
+                  type: number
                 timestamp:
                   type: integer
                   format: int32
               required:
+                - mc_id
                 - timestamp
   /mes/machine-center/{plannedOrderLineId}/stop:
     post:
