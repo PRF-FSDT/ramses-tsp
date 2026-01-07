@@ -8192,6 +8192,7 @@ components:
         - kind
         - source
         - is_active
+        - machine_center_id
         - started_at
         - ended_at
         - duration_seconds
@@ -8219,6 +8220,8 @@ components:
             - timer
         is_active:
           type: boolean
+        machine_center_id:
+          type: number
         started_at:
           type: string
           format: date-time

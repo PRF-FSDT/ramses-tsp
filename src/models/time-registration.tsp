@@ -5,6 +5,7 @@ model TimeRegistration {
   kind: "production" | "preparation" | "finalisation";
   source: "manual" | "timer";
   is_active: boolean;
+  machine_center_id: numeric;
   started_at: utcDateTime;
   ended_at: utcDateTime | null;
   duration_seconds: numeric;
