@@ -2922,13 +2922,30 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OrderTask'
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        '400':
+          description: The server could not understand the request due to invalid syntax.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
         '404':
           description: The server cannot find the requested resource.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
   /order-manager/order-tasks/{id}/timer/start:
     post:
       tags:
