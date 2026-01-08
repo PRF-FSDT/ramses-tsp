@@ -445,13 +445,13 @@ interface MesMachineCenter {
     @body stop: {
       timestamp: unixTimestamp32;
     },
-  ): CreatedResponse<TimeRegistration> | NotFoundError;
+  ): SuccessResponse | NotFoundError;
   @post @route("{plannedOrderLineId}/pause") pauseProductionTimer(
     @path plannedOrderLineId: int64,
     @body pause: {
       timestamp: unixTimestamp32;
     },
-  ): CreatedResponse<TimeRegistration> | NotFoundError;
+  ): SuccessResponse | NotFoundError;
 
   @post @route("/register-output") registerOutput(...McRegisterOutputRequest): SuccessResponse;
   @post @route("/finish-all") finishAll(@body finishAllBody: FinishAllBody): SuccessResponse | NotFoundError;
