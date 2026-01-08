@@ -205,9 +205,9 @@ interface OrderTasks {
   @post @route("/") post(@body OrderTaskBody: OrderTaskBody): CreatedResponse<OrderTask>;
   @patch @route("{id}") update(@path id: string, @body OrderTaskUpdateBody: OrderTaskUpdateBody): UpdatedResponse<OrderTask>;
   @delete delete(@path id: string): DeletedResponse;
-  @post @route("/{id}/finish") finishTask(@path id: string): SuccessResponse | NotFoundError;
+  @post @route("/{id}/finish") finishTask(@path id: string): RecordResponse<OrderTask> | NotFoundError;
   @post @route("/{id}/timer/start") startTimer(@path id: string): CreatedResponse<TimeRegistration> | NotFoundError;
-  @post @route("/{id}/timer/stop") stopTimer(@path id: string): SuccessResponse | NotFoundError;
+  @post @route("/{id}/timer/stop") stopTimer(@path id: string): RecordResponse<OrderTask> | NotFoundError;
   @get @route("/planning") getPlanning(@query start: string, @query end: string): ListResponse<OrderTask>;
   @get @route("/planning-for-week/{week}") getPlanningForWeek(@path week: string): PaginatedResponse<OrderTask>;
   @get @route("/planned-tasks") getPlannedTasks(...PlannedTasksRequest): PaginatedResponse<OrderTask>;
@@ -445,13 +445,13 @@ interface MesMachineCenter {
     @body stop: {
       timestamp: unixTimestamp32;
     },
-  ): SuccessResponse | NotFoundError;
+  ): RecordResponse<TimeRegistration> | NotFoundError;
   @post @route("{plannedOrderLineId}/pause") pauseProductionTimer(
     @path plannedOrderLineId: int64,
     @body pause: {
       timestamp: unixTimestamp32;
     },
-  ): SuccessResponse | NotFoundError;
+  ): RecordResponse<TimeRegistration> | NotFoundError;
 
   @post @route("/register-output") registerOutput(...McRegisterOutputRequest): SuccessResponse;
   @post @route("/finish-all") finishAll(@body finishAllBody: FinishAllBody): SuccessResponse | NotFoundError;
