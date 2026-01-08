@@ -2898,7 +2898,7 @@ paths:
               schema:
                 type: object
                 additionalProperties:
-                  $ref: '#/components/schemas/OrderTask'
+                  $ref: '#/components/schemas/TimeRegistration'
         '404':
           description: The server cannot find the requested resource.
           content:
@@ -2956,7 +2956,7 @@ paths:
               schema:
                 type: object
                 additionalProperties:
-                  $ref: '#/components/schemas/OrderTask'
+                  $ref: '#/components/schemas/TimeRegistration'
         '404':
           description: The server cannot find the requested resource.
           content:
