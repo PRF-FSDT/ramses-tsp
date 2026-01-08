@@ -207,7 +207,7 @@ interface OrderTasks {
   @delete delete(@path id: string): DeletedResponse;
   @post @route("/{id}/finish") finishTask(@path id: string): RecordResponse<OrderTask> | NotFoundError;
   @post @route("/{id}/timer/start") startTimer(@path id: string): CreatedResponse<TimeRegistration> | NotFoundError;
-  @post @route("/{id}/timer/stop") stopTimer(@path id: string): RecordResponse<TimeRegistration> | NotFoundError;
+  @post @route("/{id}/timer/stop") stopTimer(@path id: string): UpdatedResponse<TimeRegistration> | NotFoundError;
   @get @route("/planning") getPlanning(@query start: string, @query end: string): ListResponse<OrderTask>;
   @get @route("/planning-for-week/{week}") getPlanningForWeek(@path week: string): PaginatedResponse<OrderTask>;
   @get @route("/planned-tasks") getPlannedTasks(...PlannedTasksRequest): PaginatedResponse<OrderTask>;
