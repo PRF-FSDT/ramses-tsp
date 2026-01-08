@@ -931,17 +931,19 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties:
-                  $ref: '#/components/schemas/TimeRegistration'
+                $ref: '#/components/schemas/TimeRegistration'
         '404':
           description: The server cannot find the requested resource.
           content:
             application/json:
               schema:
-                anyOf:
-                  - $ref: '#/components/schemas/NotFoundError'
-                  - $ref: '#/components/schemas/NotFoundError'
+                $ref: '#/components/schemas/NotFoundError'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
       requestBody:
         required: true
         content:
@@ -1018,17 +1020,19 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties:
-                  $ref: '#/components/schemas/TimeRegistration'
+                $ref: '#/components/schemas/TimeRegistration'
         '404':
           description: The server cannot find the requested resource.
           content:
             application/json:
               schema:
-                anyOf:
-                  - $ref: '#/components/schemas/NotFoundError'
-                  - $ref: '#/components/schemas/NotFoundError'
+                $ref: '#/components/schemas/NotFoundError'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
       requestBody:
         required: true
         content:
