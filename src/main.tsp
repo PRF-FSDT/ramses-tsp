@@ -434,20 +434,20 @@ interface MesMachineCenter {
   @get @route("/scan-info") getScanInfo(...ScanInfoRequest): ScanInfoResponse | NotFoundError;
 
   @post @route("/{plannedOrderLineId}/start") startProductionTimer(
-    @path plannedOrderLineId: int64,
+    @path plannedOrderLineId: string,
     @body start: {
       machine_center_no: string;
       timestamp: unixTimestamp32;
     },
   ): CreatedResponse<TimeRegistration> | NotFoundError;
   @post @route("/{plannedOrderLineId}/stop") stopProductionTimer(
-    @path plannedOrderLineId: int64,
+    @path plannedOrderLineId: string,
     @body stop: {
       timestamp: unixTimestamp32;
     },
   ): UpdatedResponse<TimeRegistration> | NotFoundError;
   @post @route("/{plannedOrderLineId}/pause") pauseProductionTimer(
-    @path plannedOrderLineId: int64,
+    @path plannedOrderLineId: string,
     @body pause: {
       timestamp: unixTimestamp32;
     },

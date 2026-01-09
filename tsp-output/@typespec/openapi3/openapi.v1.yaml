@@ -923,8 +923,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         '200':
           description: The request has succeeded.
@@ -966,8 +965,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         '201':
           description: The request has succeeded and a new resource has been created as a result.
@@ -1012,8 +1010,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         '200':
           description: The request has succeeded.
