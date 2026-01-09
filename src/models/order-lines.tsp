@@ -1,5 +1,5 @@
 model PlannedOrderLine {
-  @visibility("read") @key id: int64;
+  @visibility("read") @key id: string;
   @visibility("read") order_id: int64;
   @visibility("read") order_no: string;
   @visibility("read") routing_code: string;

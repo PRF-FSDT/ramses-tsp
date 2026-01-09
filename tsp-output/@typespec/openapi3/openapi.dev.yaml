@@ -7343,8 +7343,7 @@ components:
         - planned_duration_in_min
       properties:
         id:
-          type: integer
-          format: int64
+          type: string
           readOnly: true
         order_id:
           type: integer
