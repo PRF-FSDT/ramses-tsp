@@ -8271,7 +8271,9 @@ components:
             type:
               type: string
             id:
-              type: number
+              anyOf:
+                - type: number
+                - type: string
           required:
             - type
             - id

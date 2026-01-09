@@ -16,7 +16,7 @@ model TimeRegistration {
   } | null;
   workable: {
     type: string;
-    id: numeric;
+    id: numeric | string;
   };
   created_at: utcDateTime;
   updated_at: utcDateTime;
