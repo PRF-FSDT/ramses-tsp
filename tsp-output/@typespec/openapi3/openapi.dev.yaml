@@ -4134,8 +4134,6 @@ paths:
             schema:
               type: object
               properties:
-                order_name:
-                  type: string
                 planned_mc_no:
                   type: string
                 planned_start:
@@ -7379,6 +7377,7 @@ components:
           readOnly: true
         order_name:
           type: string
+          readOnly: true
         finished_at:
           type: string
           format: date-time
