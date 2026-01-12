@@ -9,6 +9,7 @@ model PlannedOrderLine {
   @visibility("read") client_name: string;
   @visibility("read") parts_count: int64;
   @visibility("read") finished_parts_count: int64;
+  order_name: string;
 
   @encode(DateTimeKnownEncoding.rfc3339)
   @visibility("read")
