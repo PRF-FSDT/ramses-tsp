@@ -8230,6 +8230,7 @@ components:
           type: number
         user_id:
           type: number
+          nullable: true
         kind:
           type: string
           enum:
