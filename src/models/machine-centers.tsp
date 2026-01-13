@@ -25,7 +25,7 @@ model MachineCenter {
 model MachineCenterWithScanners {
   ...MachineCenter;
   scanners: Scanner[];
-  timer: TimeRegistration | null;
+  timers: TimeRegistration[];
 }
 
 model MachineCenterBody {
