@@ -1,3 +1,5 @@
+alias PlannedOrderLineStatus = "to_start" | "in_progress" | "finished" | "paused";
+
 model PlannedOrderLine {
   @visibility("read") @key id: numeric | string;
   @visibility("read") order_id: int64;
@@ -10,6 +12,7 @@ model PlannedOrderLine {
   @visibility("read") parts_count: int64;
   @visibility("read") finished_parts_count: int64;
   @visibility("read") order_name: string;
+  @visibility("read") status: PlannedOrderLineStatus;
 
   @encode(DateTimeKnownEncoding.rfc3339)
   @visibility("read")

@@ -7334,6 +7334,7 @@ components:
         - parts_count
         - finished_parts_count
         - order_name
+        - status
         - finished_at
         - planned_mc_no
         - planned_start
@@ -7376,6 +7377,14 @@ components:
           readOnly: true
         order_name:
           type: string
+          readOnly: true
+        status:
+          type: string
+          enum:
+            - to_start
+            - in_progress
+            - finished
+            - paused
           readOnly: true
         finished_at:
           type: string
