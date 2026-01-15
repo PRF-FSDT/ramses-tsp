@@ -1,4 +1,4 @@
-alias PlannedOrderLineStatus = "to_start" | "in_progress" | "finished" | "paused";
+alias PlannedOrderLineStatus = "to_start" | "in-progress" | "finished" | "paused";
 
 model PlannedOrderLine {
   @visibility("read") @key id: numeric | string;

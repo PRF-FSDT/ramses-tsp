@@ -7382,7 +7382,7 @@ components:
           type: string
           enum:
             - to_start
-            - in_progress
+            - in-progress
             - finished
             - paused
           readOnly: true
