@@ -39,5 +39,5 @@ alias ShiftsByResource = Record<PlannedResourceShift[]>;
 // date -> ShiftsByResource
 alias PlannedResourceShiftsByDate = Record<ShiftsByResource>;
 model PlannedResourceShiftResponse {
-  @body body: PlannedShiftsByDate;
+  @body body: PlannedResourceShiftsByDate;
 }

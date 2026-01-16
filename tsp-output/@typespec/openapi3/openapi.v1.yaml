@@ -3778,7 +3778,7 @@ paths:
                   additionalProperties:
                     type: array
                     items:
-                      $ref: '#/components/schemas/PlannedMachineCenterShift'
+                      $ref: '#/components/schemas/PlannedResourceShift'
   /planned-resource-shifts/:
     post:
       tags:
