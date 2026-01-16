@@ -23,6 +23,8 @@ import "./models/machine-center-shift.tsp";
 import "./models/simulation.tsp";
 import "./models/site.tsp";
 import "./models/time-registration.tsp";
+import "./models/resource-shift.tsp";
+import "./models/planned-resource-shift.tsp";
 
 import "./responses/responses.tsp";
 
@@ -271,6 +273,46 @@ interface Resources {
   @post @route("/") post(@body ResourceBody: ResourceBody): CreatedResponse<Resource>;
   @patch @route("{id}") update(@path id: string, @body ResourceBody: ResourceBody): UpdatedResponse<Resource>;
   @delete delete(@path id: string): DeletedResponse;
+}
+@route("/resource-shifts")
+@tag("Resource Shifts")
+interface ResourceShifts {
+  @get list(...PaginatedRequest): PaginatedResponse<ResourceShift>;
+  @post @route("/") post(@body ResourceShiftBody: ResourceShiftBody): CreatedResponse<ResourceShift>;
+  @patch @route("{id}") update(@path id: string, @body ResourceShiftBody: ResourceShiftBody): UpdatedResponse<ResourceShift>;
+  @delete delete(@path id: string): DeletedResponse;
+}
+
+@route("/planned-resource-shifts")
+@tag("Planned Resource Shifts")
+interface PlannedResourceShifts {
+  @get list(
+    @query resource_id?: numeric,
+    @query simulation_run_id?: string | null,
+    @query start?: int64,
+    @query end?: int64,
+    @query per_page?: int32,
+  ): PlannedResourceShiftResponse;
+  @post @route("/") generateShifts(
+    @body body: {
+      // start & end are unix timestamps (seconds since epoch)
+      start: int64;
+
+      end?: int64;
+    },
+  ): CreatedResponse<{
+    message: string;
+  }> | BadRequestError;
+  @get @route("/{id}") read(@query simulation_run_id?: string | null, @path id: numeric): ReadResponse<PlannedResourceShift>;
+  @patch @route("/{id}") update(
+    @path id: numeric,
+    @body body: {
+      is_disabled?: boolean;
+      is_locked?: boolean;
+      shift_name?: string;
+    },
+  ): UpdatedResponse<PlannedResourceShift>;
+  @delete @route("/{id}") delete(@path id: numeric): DeletedResponse;
 }
 
 @route("/operating-hours")

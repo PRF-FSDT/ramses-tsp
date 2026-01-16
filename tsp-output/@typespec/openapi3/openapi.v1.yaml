@@ -22,6 +22,8 @@ tags:
   - name: Items
   - name: Materials Manager
   - name: Resources
+  - name: Resource Shifts
+  - name: Planned Resource Shifts
   - name: Operating Hours
   - name: Users
   - name: Production Planning
@@ -3729,6 +3731,178 @@ paths:
       responses:
         '204':
           description: 'There is no content to send for this request, but the headers may be useful. '
+  /planned-resource-shifts:
+    get:
+      tags:
+        - Planned Resource Shifts
+      operationId: PlannedResourceShifts_list
+      parameters:
+        - name: resource_id
+          in: query
+          required: false
+          schema:
+            type: number
+        - name: simulation_run_id
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+        - name: start
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: end
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: per_page
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: object
+                  additionalProperties:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PlannedMachineCenterShift'
+  /planned-resource-shifts/:
+    post:
+      tags:
+        - Planned Resource Shifts
+      operationId: PlannedResourceShifts_generateShifts
+      parameters: []
+      responses:
+        '201':
+          description: The request has succeeded and a new resource has been created as a result.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        '400':
+          description: The server could not understand the request due to invalid syntax.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start:
+                  type: integer
+                  format: int64
+                end:
+                  type: integer
+                  format: int64
+              required:
+                - start
+  /planned-resource-shifts/{id}:
+    get:
+      tags:
+        - Planned Resource Shifts
+      operationId: PlannedResourceShifts_read
+      parameters:
+        - name: simulation_run_id
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlannedResourceShift'
+        '404':
+          description: The server cannot find the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+    patch:
+      tags:
+        - Planned Resource Shifts
+      operationId: PlannedResourceShifts_update
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlannedResourceShift'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                is_disabled:
+                  type: boolean
+                is_locked:
+                  type: boolean
+                shift_name:
+                  type: string
+    delete:
+      tags:
+        - Planned Resource Shifts
+      operationId: PlannedResourceShifts_delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        '204':
+          description: 'There is no content to send for this request, but the headers may be useful. '
   /production-planning/apply-simulation:
     post:
       tags:
@@ -4244,6 +4418,113 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ValidationError'
+  /resource-shifts:
+    get:
+      tags:
+        - Resource Shifts
+      operationId: ResourceShifts_list
+      parameters:
+        - $ref: '#/components/parameters/PaginatedRequest.page'
+        - $ref: '#/components/parameters/PaginatedRequest.perPage'
+        - $ref: '#/components/parameters/PaginatedRequest.search'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - links
+                  - meta
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ResourceShift'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                  filters:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FilterOption'
+        '404':
+          description: The server cannot find the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+  /resource-shifts/:
+    post:
+      tags:
+        - Resource Shifts
+      operationId: ResourceShifts_post
+      parameters: []
+      responses:
+        '201':
+          description: The request has succeeded and a new resource has been created as a result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceShift'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceShiftBody'
+  /resource-shifts/{id}:
+    patch:
+      tags:
+        - Resource Shifts
+      operationId: ResourceShifts_update
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceShift'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceShiftBody'
+    delete:
+      tags:
+        - Resource Shifts
+      operationId: ResourceShifts_delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: 'There is no content to send for this request, but the headers may be useful. '
   /resources:
     get:
       tags:
@@ -7554,6 +7835,66 @@ components:
           format: date-time
       allOf:
         - $ref: '#/components/schemas/OrderTask'
+    PlannedResourceShift:
+      type: object
+      required:
+        - id
+        - resource_id
+        - resource_shift_id
+        - shift_name
+        - shift_date
+        - shift_start
+        - shift_end
+        - shift_duration
+        - day
+        - is_disabled
+        - is_locked
+        - planned_seconds
+        - remaining_seconds
+        - created_at
+        - updated_at
+      properties:
+        id:
+          type: number
+        resource_id:
+          type: number
+        resource_shift_id:
+          type: number
+        shift_name:
+          type: string
+        shift_date:
+          type: string
+          format: date
+        shift_start:
+          type: string
+          format: date-time
+        shift_end:
+          type: string
+          format: date-time
+        shift_duration:
+          type: integer
+        day:
+          type: string
+        is_disabled:
+          type: boolean
+        is_locked:
+          type: boolean
+        planned_seconds:
+          type: integer
+          format: int64
+        remaining_seconds:
+          type: integer
+          format: int64
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        resource_shift:
+          $ref: '#/components/schemas/ResourceShift'
+        planned_order_lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlannedOrderLine'
     PlannedStep:
       type: object
       required:
@@ -7648,6 +7989,46 @@ components:
         user_id:
           type: integer
         name:
+          type: string
+    ResourceShift:
+      type: object
+      required:
+        - id
+        - resource_id
+        - resource_name
+        - day
+        - start_time
+        - end_time
+        - created_at
+        - updated_at
+      properties:
+        id:
+          type: number
+        resource_id:
+          type: number
+        resource_name:
+          type: string
+          nullable: true
+        day:
+          type: string
+        start_time:
+          type: string
+        end_time:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+    ResourceShiftBody:
+      type: object
+      properties:
+        resource_id:
+          type: number
+        day:
+          type: string
+        start_time:
+          type: string
+        end_time:
           type: string
     RoutingCode:
       type: object
