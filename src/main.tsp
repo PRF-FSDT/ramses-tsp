@@ -278,7 +278,8 @@ interface Resources {
 @tag("Resource Shifts")
 interface ResourceShifts {
   @get list(...PaginatedRequest): PaginatedResponse<ResourceShift>;
-  @post @route("/") post(@body ResourceShiftBody: ResourceShiftBody): CreatedResponse<ResourceShift>;
+  @get @route("{id}") read(@path id: string): ReadResponse<ResourceShift>;
+  @post @route("") post(@body ResourceShiftBody: ResourceShiftBody): CreatedResponse<ResourceShift>;
   @patch @route("{id}") update(@path id: string, @body ResourceShiftBody: ResourceShiftBody): UpdatedResponse<ResourceShift>;
   @delete delete(@path id: string): DeletedResponse;
 }

@@ -4457,7 +4457,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
-  /resource-shifts/:
     post:
       tags:
         - Resource Shifts
@@ -4483,6 +4482,29 @@ paths:
             schema:
               $ref: '#/components/schemas/ResourceShiftBody'
   /resource-shifts/{id}:
+    get:
+      tags:
+        - Resource Shifts
+      operationId: ResourceShifts_read
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceShift'
+        '404':
+          description: The server cannot find the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
     patch:
       tags:
         - Resource Shifts
