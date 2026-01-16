@@ -2,4 +2,10 @@ linter:
   extends:
   - "@typespec/http/all"
 emit:
-- "@typespec/openapi3"
+  - "@typespec/openapi3"
+
+options:
+  "@typespec/openapi3":
+    openapi-versions:
+      - "3.0.0"
+      - "3.1.0"

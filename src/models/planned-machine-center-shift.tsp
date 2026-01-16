@@ -33,11 +33,11 @@ model PlannedMachineCenterShift {
   machine_center?: MachineCenter;
   planned_order_lines?: PlannedOrderLine[];
 }
-
-alias ShiftsByMachineCenter = Record<PlannedMachineCenterShift[]>;
-
-// date -> ShiftsByMachineCenter
-alias PlannedShiftsByDate = Record<ShiftsByMachineCenter>;
+model PlannedShiftsGroup {
+  shift_date: plainDate;
+  machine_center_id: int64;
+  shifts: PlannedMachineCenterShift[];
+}
 model PlannedMachineCenterShiftResponse {
-  @body body: PlannedShiftsByDate;
+  @body body: PlannedShiftsGroup[];
 }

@@ -33,10 +33,22 @@ using TypeSpec.Http;
 using TypeSpec.Rest;
 
 @versioned(Versions)
-@service({
-  title: "RAMSES",
-})
+@service(#{ title: "RAMSES" })
 namespace RamsesService;
+
+model StringPart is HttpPart<string> {
+  body: string;
+}
+
+model FilePart is HttpPart<File> {
+  body: File;
+}
+
+model CsvFile extends File {
+  contentType: "text/csv";
+  // Optional: mark as textual (depends on your needs)
+  // contents: string;
+}
 
 //AUTH
 @tag("Auth")
@@ -240,10 +252,12 @@ interface TimeRegistrationCodes {
 @tag("Order Manager")
 interface OrderManager {
   @route("/sync-erp-data") @post syncErpData(): SuccessResponse | Error;
-  @route("/csv-import/composition") @post importCompositionCsv(
+  @route("/csv-import/composition")
+  @post
+  importCompositionCsv(
     @header contentType: "multipart/form-data",
     @multipartBody body: {
-      file: HttpPart<File>;
+      file: HttpPart<CsvFile>;
       delimiter?: HttpPart<string>;
     },
   ): SuccessResponse | Error;

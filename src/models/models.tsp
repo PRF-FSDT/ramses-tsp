@@ -49,7 +49,7 @@ model Order {
   phone_number?: string | null;
   contact_person?: string | null;
 
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   is_production_planned: boolean;
 
   prep_start_date: plainDate | null;
@@ -61,19 +61,19 @@ model Order {
   finalisation_date: plainDate | null;
   creation_date: plainDate;
 
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   part_count?: int64;
 
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   article_count?: int64;
 
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   planned_components_count?: int64;
 
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   planned_order_positions_count?: int64;
 
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   finished_planned_order_positions_count?: int64;
 
   created_at: string;
@@ -411,7 +411,7 @@ model StreamedCsvResponse {
   @header("content-type") contentType: "text/csv";
 
   @header("content-disposition") contentDisposition: string;
-  @body stream: bytes;
+  @body body: string;
 }
 
 model StreamedZipResponse {

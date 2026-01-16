@@ -34,10 +34,11 @@ model PlannedResourceShift {
   planned_order_lines?: PlannedOrderLine[];
 }
 
-alias ShiftsByResource = Record<PlannedResourceShift[]>;
-
-// date -> ShiftsByResource
-alias PlannedResourceShiftsByDate = Record<ShiftsByResource>;
+model PlannedResourceShiftsGroup {
+  shift_date: plainDate;
+  resource_id: int64;
+  shifts: PlannedResourceShift[];
+}
 model PlannedResourceShiftResponse {
-  @body body: PlannedResourceShiftsByDate;
+  @body body: PlannedResourceShiftsGroup[];
 }
