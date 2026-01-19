@@ -20,6 +20,7 @@ model MachineCenter {
   @example(1) active_broken_part_reason_id: int64 | null;
   site_id: int32 | null;
   site_name: string | null;
+  time_registration_codes: TimeRegistrationCode[];
 }
 
 model MachineCenterWithScanners {
@@ -34,6 +35,7 @@ model MachineCenterBody {
   scan_code: MachineCenter.scan_code;
   machine_type_code: MachineCenter.machine_type_code;
   site_id: int32 | null;
+  time_registration_codes: numeric[];
 }
 
 model MachineCenterPatchBody {
@@ -43,4 +45,5 @@ model MachineCenterPatchBody {
   machine_type_code?: MachineCenter.machine_type_code;
   site_id?: int32 | null;
   active_broken_part_reason_id?: MachineCenter.active_broken_part_reason_id;
+  time_registration_codes?: numeric[];
 }

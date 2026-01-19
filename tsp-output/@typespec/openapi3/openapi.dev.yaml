@@ -5884,6 +5884,7 @@ components:
         - active_broken_part_reason_id
         - site_id
         - site_name
+        - time_registration_codes
       properties:
         id:
           type: integer
@@ -5912,6 +5913,10 @@ components:
         site_name:
           type: string
           nullable: true
+        time_registration_codes:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimeRegistrationCode'
     MachineCenterBody:
       type: object
       required:
@@ -5920,6 +5925,7 @@ components:
         - scan_code
         - machine_type_code
         - site_id
+        - time_registration_codes
       properties:
         no:
           type: string
@@ -5937,6 +5943,10 @@ components:
           type: integer
           format: int32
           nullable: true
+        time_registration_codes:
+          type: array
+          items:
+            type: number
     MachineCenterPatchBody:
       type: object
       properties:
@@ -5961,6 +5971,10 @@ components:
           format: int64
           nullable: true
           example: 1
+        time_registration_codes:
+          type: array
+          items:
+            type: number
     MachineCenterShift:
       type: object
       required:
@@ -6019,6 +6033,7 @@ components:
         - active_broken_part_reason_id
         - site_id
         - site_name
+        - time_registration_codes
         - scanners
         - timers
       properties:
@@ -6049,6 +6064,10 @@ components:
         site_name:
           type: string
           nullable: true
+        time_registration_codes:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimeRegistrationCode'
         scanners:
           type: array
           items:
