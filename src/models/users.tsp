@@ -28,6 +28,7 @@ model UserCreateBody {
   email: string;
   password: string;
   site_id: int64 | null;
+  resource_id: numeric | null;
   role: AssignableRole | null;
 }
 

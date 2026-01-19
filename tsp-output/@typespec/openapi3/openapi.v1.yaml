@@ -8882,6 +8882,7 @@ components:
         - email
         - password
         - site_id
+        - resource_id
         - role
       properties:
         name:
@@ -8893,6 +8894,9 @@ components:
         site_id:
           type: integer
           format: int64
+          nullable: true
+        resource_id:
+          type: number
           nullable: true
         role:
           type: string
