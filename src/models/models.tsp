@@ -373,12 +373,15 @@ model PlannedOrderPosition {
 }
 
 model ResourceBody {
-  user_id: integer;
-  name: string;
+  user_id?: integer;
+  name?: string;
+  site_id?: numeric | null;
 }
 
 model Resource {
   @key id: uint64;
+  site_name: string | null;
+  user_name: string | null;
   ...ResourceBody;
 }
 
