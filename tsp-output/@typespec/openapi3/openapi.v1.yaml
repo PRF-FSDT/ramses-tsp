@@ -7988,7 +7988,9 @@ components:
         - site_name
         - user_name
         - user_id
+        - site_id
         - name
+        - time_registration_codes
       properties:
         id:
           type: integer
@@ -8001,11 +8003,16 @@ components:
           nullable: true
         user_id:
           type: integer
-        name:
-          type: string
+          nullable: true
         site_id:
           type: number
           nullable: true
+        name:
+          type: string
+        time_registration_codes:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimeRegistrationCode'
     ResourceBody:
       type: object
       required:
@@ -8019,6 +8026,10 @@ components:
         site_id:
           type: number
           nullable: true
+        time_registration_codes:
+          type: array
+          items:
+            type: number
     ResourceBodyUpdate:
       type: object
       properties:
@@ -8029,6 +8040,10 @@ components:
         site_id:
           type: number
           nullable: true
+        time_registration_codes:
+          type: array
+          items:
+            type: number
     ResourceShift:
       type: object
       required:

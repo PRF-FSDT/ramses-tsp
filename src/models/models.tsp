@@ -376,13 +376,17 @@ model ResourceBody {
   user_id: integer;
   name: string;
   site_id?: numeric | null;
+  time_registration_codes?: numeric[];
 }
 
 model Resource {
   @key id: uint64;
   site_name: string | null;
   user_name: string | null;
-  ...ResourceBody;
+  user_id: integer | null;
+  site_id: numeric | null;
+  name: string;
+  time_registration_codes: TimeRegistrationCode[];
 }
 
 model OperatingHourBody {
