@@ -39,6 +39,7 @@ tags:
   - name: Machine Center
   - name: Broken Part Reasons
   - name: Broken Parts
+  - name: Planned Component Actions
   - name: Scan
   - name: Media
   - name: Upload
@@ -1637,6 +1638,157 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
+  /mes/planned-component-actions:
+    get:
+      tags:
+        - Planned Component Actions
+      operationId: PlannedComponentActions_list
+      parameters:
+        - $ref: '#/components/parameters/PaginatedRequest.page'
+        - $ref: '#/components/parameters/PaginatedRequest.perPage'
+        - $ref: '#/components/parameters/PaginatedRequest.search'
+        - $ref: '#/components/parameters/PaginatedSortableRequest.sort_dir'
+        - $ref: '#/components/parameters/PaginatedSortableRequest.sort_by'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - links
+                  - meta
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PlannedComponentAction'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                  filters:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FilterOption'
+        '404':
+          description: The server cannot find the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                order_no:
+                  type: string
+                part_no:
+                  type: string
+              required:
+                - order_no
+                - part_no
+  /mes/planned-component-actions/:
+    post:
+      tags:
+        - Planned Component Actions
+      operationId: PlannedComponentActions_store
+      parameters: []
+      responses:
+        '201':
+          description: The request has succeeded and a new resource has been created as a result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlannedComponentAction'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlannedComponentActionStoreBody'
+  /mes/planned-component-actions/{id}:
+    patch:
+      tags:
+        - Planned Component Actions
+      operationId: PlannedComponentActions_update
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlannedComponentAction'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlannedComponentActionPatchBody'
+  /mes/planned-component-actions/{id}/finish:
+    post:
+      tags:
+        - Planned Component Actions
+      operationId: PlannedComponentActions_finish
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        '400':
+          description: The server could not understand the request due to invalid syntax.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '404':
+          description: The server cannot find the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        '422':
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
   /mes/planned-machine-center-shifts:
     get:
       tags:
@@ -7324,6 +7476,56 @@ components:
         finished_at:
           type: string
           nullable: true
+    PlannedComponentAction:
+      type: object
+      required:
+        - id
+        - order_no
+        - part_no
+        - description
+        - machine_center_no
+        - requested_by
+        - finished_at
+      properties:
+        id:
+          type: integer
+          format: int64
+        order_no:
+          type: string
+        part_no:
+          type: string
+        description:
+          type: string
+        machine_center_no:
+          type: string
+        requested_by:
+          type: number
+        finished_at:
+          type: string
+          nullable: true
+    PlannedComponentActionPatchBody:
+      type: object
+      properties:
+        description:
+          type: string
+        machine_center_no:
+          type: string
+    PlannedComponentActionStoreBody:
+      type: object
+      required:
+        - order_no
+        - part_no
+        - description
+        - machine_center_no
+      properties:
+        order_no:
+          type: string
+        part_no:
+          type: string
+        description:
+          type: string
+        machine_center_no:
+          type: string
     PlannedComponentDetail:
       type: object
       required:

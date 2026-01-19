@@ -25,6 +25,7 @@ import "./models/site.tsp";
 import "./models/time-registration.tsp";
 import "./models/resource-shift.tsp";
 import "./models/planned-resource-shift.tsp";
+import "./models/planned-component-actions.tsp";
 
 import "./responses/responses.tsp";
 
@@ -515,6 +516,15 @@ interface BrokenParts {
   @get list(...PaginatedSortableRequest): PaginatedResponse<BrokenPlannedComponent>;
   @post @route("/register") register(@body BrokenPartRegisterBody: BrokenPartRegisterBody): SuccessResponse | NotFoundError;
   @post @route("{id}/repair") repair(@path id: string): SuccessResponse | NotFoundError;
+}
+
+@route("/mes/planned-component-actions")
+@tag("Planned Component Actions")
+interface PlannedComponentActions {
+  @get list(...PaginatedSortableRequest, order_no: string, part_no: string): PaginatedResponse<PlannedComponentAction>;
+  @post @route("/") store(@body PlannedComponentActionStoreBody: PlannedComponentActionStoreBody): CreatedResponse<PlannedComponentAction>;
+  @patch @route("{id}") update(@path id: string, @body PlannedComponentActionPatchBody: PlannedComponentActionPatchBody): UpdatedResponse<PlannedComponentAction>;
+  @post @route("/{id}/finish") finish(@path id: string): SuccessResponse | NotFoundError;
 }
 
 @route("/mes/scan")
