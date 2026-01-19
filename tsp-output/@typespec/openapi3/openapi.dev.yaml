@@ -4642,7 +4642,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ResourceBody'
+              $ref: '#/components/schemas/ResourceBodyUpdate'
     delete:
       tags:
         - Resources
@@ -7987,6 +7987,8 @@ components:
         - id
         - site_name
         - user_name
+        - user_id
+        - name
       properties:
         id:
           type: integer
@@ -8005,6 +8007,19 @@ components:
           type: number
           nullable: true
     ResourceBody:
+      type: object
+      required:
+        - user_id
+        - name
+      properties:
+        user_id:
+          type: integer
+        name:
+          type: string
+        site_id:
+          type: number
+          nullable: true
+    ResourceBodyUpdate:
       type: object
       properties:
         user_id:
