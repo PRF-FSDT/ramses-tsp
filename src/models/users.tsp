@@ -17,6 +17,8 @@ model User {
   role: Role;
   site_id: int64 | null;
   site_name: string | null;
+  resource_name: string | null;
+  resource_id: numeric | null;
   created_at: utcDateTime;
   updated_at: utcDateTime;
 }

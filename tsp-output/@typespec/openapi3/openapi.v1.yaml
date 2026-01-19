@@ -8837,6 +8837,8 @@ components:
         - role
         - site_id
         - site_name
+        - resource_name
+        - resource_id
         - created_at
         - updated_at
       properties:
@@ -8860,6 +8862,12 @@ components:
           nullable: true
         site_name:
           type: string
+          nullable: true
+        resource_name:
+          type: string
+          nullable: true
+        resource_id:
+          type: number
           nullable: true
         created_at:
           type: string
