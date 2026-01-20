@@ -7715,7 +7715,7 @@ components:
           nullable: true
           readOnly: true
         resource_id:
-          type: string
+          type: number
           nullable: true
           readOnly: true
         finished_at:
