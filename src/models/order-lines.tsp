@@ -13,6 +13,8 @@ model PlannedOrderLine {
   @visibility("read") finished_parts_count: int64;
   @visibility("read") order_name: string;
   @visibility("read") status: PlannedOrderLineStatus;
+  @visibility("read") planned_resource_shift_id: numeric | null;
+  @visibility("read") resource_id: string | null;
 
   @encode(DateTimeKnownEncoding.rfc3339)
   @visibility("read")

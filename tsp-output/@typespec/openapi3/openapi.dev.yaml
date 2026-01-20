@@ -7657,6 +7657,8 @@ components:
         - finished_parts_count
         - order_name
         - status
+        - planned_resource_shift_id
+        - resource_id
         - finished_at
         - planned_mc_no
         - planned_start
@@ -7707,6 +7709,14 @@ components:
             - in-progress
             - finished
             - paused
+          readOnly: true
+        planned_resource_shift_id:
+          type: number
+          nullable: true
+          readOnly: true
+        resource_id:
+          type: string
+          nullable: true
           readOnly: true
         finished_at:
           type: string
