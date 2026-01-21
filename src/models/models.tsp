@@ -120,6 +120,9 @@ model UpdateOrderBody {
   finalisation_date?: utcDateTime;
 
   @encode(DateTimeKnownEncoding.rfc3339)
+  finalisation_start_date?: utcDateTime;
+
+  @encode(DateTimeKnownEncoding.rfc3339)
   prod_start_date?: utcDateTime;
 }
 

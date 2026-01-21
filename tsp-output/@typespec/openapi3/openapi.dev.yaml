@@ -8872,6 +8872,9 @@ components:
         finalisation_date:
           type: string
           format: date-time
+        finalisation_start_date:
+          type: string
+          format: date-time
         prod_start_date:
           type: string
           format: date-time
