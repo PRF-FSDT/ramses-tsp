@@ -118,6 +118,9 @@ model UpdateOrderBody {
 
   @encode(DateTimeKnownEncoding.rfc3339)
   finalisation_date?: utcDateTime;
+
+  @encode(DateTimeKnownEncoding.rfc3339)
+  prod_start_date?: utcDateTime;
 }
 
 model OrderAttachment {
