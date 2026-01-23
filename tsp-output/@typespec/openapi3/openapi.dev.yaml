@@ -4135,6 +4135,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ValidationError'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                direction:
+                  type: string
+                  enum:
+                    - forward
+                    - backward
   /production-planning/orders/{id}/order-tasks/plan:
     post:
       tags:
