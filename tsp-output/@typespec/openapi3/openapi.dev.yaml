@@ -4354,6 +4354,11 @@ paths:
           required: true
           schema:
             type: string
+        - name: simulation_run_id
+          in: query
+          required: false
+          schema:
+            type: string
       responses:
         '200':
           description: The request has succeeded.

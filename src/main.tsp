@@ -351,7 +351,7 @@ interface ProductionPlanningOrders {
   @post @route("/orders/{id}/unplan") unplan(@path id: string): SuccessResponse;
   @post @route("/order-tasks/{id}/unplan") unplanOrderTask(@path id: string): SuccessResponse;
   @post @route("/orders/{id}/order-tasks/plan") planOrderTasks(@path id: string, @body ToPlanTasks: ToPlanTaskBody[]): CreatedResponse<ToPlanTaskBody[]>;
-  @get @route("/planned-orders-for-week/{week}") plannedOrderLines(@path week: string): ListResponse<PlannedOrderLine>;
+  @get @route("/planned-orders-for-week/{week}") plannedOrderLines(@path week: string, @query simulation_run_id?: string): ListResponse<PlannedOrderLine>;
   @patch @route("/planned-order-line/{id}") updatePlannedOrderLine(@path id: string, @body body: PlannedOrderLineBody): UpdatedResponse<PlannedOrderLine>;
   @post @route("/run-simulation") runSimulation(): CreatedResponse<SimulationRunResult> | Error;
   @post @route("/apply-simulation") applySimulation(@body body: ApplySimulationBody): SuccessResponse | Error;
