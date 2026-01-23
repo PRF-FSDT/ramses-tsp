@@ -6270,6 +6270,14 @@ components:
           type: string
         status:
           type: string
+          enum:
+            - new
+            - quote
+            - order
+            - released
+            - planned
+            - in-progress
+            - finished
         owner:
           type: string
         responsible:
@@ -6599,6 +6607,14 @@ components:
           type: string
         status:
           type: string
+          enum:
+            - new
+            - quote
+            - order
+            - released
+            - planned
+            - in-progress
+            - finished
         owner:
           type: string
         responsible:
@@ -8834,6 +8850,14 @@ components:
           type: string
         status:
           type: string
+          enum:
+            - new
+            - quote
+            - order
+            - released
+            - planned
+            - in-progress
+            - finished
         owner:
           type: string
         responsible:

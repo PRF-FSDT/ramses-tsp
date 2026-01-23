@@ -24,6 +24,8 @@ model Client {
   client_country_code: string;
 }
 
+alias OrderStatus = "new" | "quote" | "order" | "released" | "planned" | "in-progress" | "finished";
+
 model Order {
   @key id: int64;
   no?: string | null;
@@ -31,7 +33,7 @@ model Order {
   name: string;
   description: string;
   notes: string;
-  status: string;
+  status: OrderStatus;
   owner: string;
   responsible: string;
   employee: string;
@@ -88,7 +90,7 @@ model UpdateOrderBody {
   no?: string | null;
   description?: string;
   notes?: string;
-  status?: string;
+  status?: OrderStatus;
   owner?: string;
   responsible?: string;
   employee?: string;
