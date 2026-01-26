@@ -1326,6 +1326,7 @@ paths:
         - $ref: '#/components/parameters/OrderIndexFilterRequest.finalisation_date_from'
         - $ref: '#/components/parameters/OrderIndexFilterRequest.finalisation_date_until'
         - $ref: '#/components/parameters/OrderIndexFilterRequest.include'
+        - $ref: '#/components/parameters/OrderIndexFilterRequest.site'
       responses:
         '200':
           description: The request has succeeded.
@@ -1830,6 +1831,7 @@ paths:
         - $ref: '#/components/parameters/OrderIndexFilterRequest.finalisation_date_from'
         - $ref: '#/components/parameters/OrderIndexFilterRequest.finalisation_date_until'
         - $ref: '#/components/parameters/OrderIndexFilterRequest.include'
+        - $ref: '#/components/parameters/OrderIndexFilterRequest.site'
       responses:
         '200':
           description: The request has succeeded.
@@ -2987,6 +2989,7 @@ paths:
         - $ref: '#/components/parameters/OrderIndexFilterRequest.finalisation_date_from'
         - $ref: '#/components/parameters/OrderIndexFilterRequest.finalisation_date_until'
         - $ref: '#/components/parameters/OrderIndexFilterRequest.include'
+        - $ref: '#/components/parameters/OrderIndexFilterRequest.site'
       responses:
         '200':
           description: The request has succeeded.
@@ -5290,6 +5293,12 @@ components:
           - tasks
     OrderIndexFilterRequest.owner:
       name: owner
+      in: query
+      required: false
+      schema:
+        type: string
+    OrderIndexFilterRequest.site:
+      name: site
       in: query
       required: false
       schema:

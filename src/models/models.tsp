@@ -516,6 +516,7 @@ model OrderIndexFilterRequest {
   @query finalisation_date_from?: string;
   @query finalisation_date_until?: string;
   @query include?: "tasks";
+  @query site?: string;
 }
 
 model ItemIndexFilterRequest {
