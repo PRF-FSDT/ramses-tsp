@@ -8158,8 +8158,6 @@ components:
         - setup_time_sec
         - run_time_sec
         - display_position
-        - site_id
-        - site_name
       properties:
         id:
           type: integer
@@ -8193,13 +8191,6 @@ components:
         display_position:
           type: integer
           format: int32
-          nullable: true
-        site_id:
-          type: integer
-          format: int64
-          nullable: true
-        site_name:
-          type: string
           nullable: true
     RoutingCodeBody:
       type: object
@@ -8242,10 +8233,6 @@ components:
           type: integer
           format: int32
           nullable: true
-        site_id:
-          type: integer
-          format: int64
-          nullable: true
     RoutingCodeBodyUpdate:
       type: object
       properties:
@@ -8278,10 +8265,6 @@ components:
         display_position:
           type: integer
           format: int32
-          nullable: true
-        site_id:
-          type: integer
-          format: int64
           nullable: true
     Scan:
       type: object

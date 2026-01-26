@@ -19,8 +19,6 @@ model RoutingCode {
   @example(30) setup_time_sec: int32;
   @example(90) run_time_sec: int32;
   display_position: int32 | null;
-  site_id: int64 | null;
-  site_name: string | null;
 }
 
 model RoutingCodeBody {
@@ -32,5 +30,4 @@ model RoutingCodeBody {
   setup_time_sec: RoutingCode.setup_time_sec;
   run_time_sec: RoutingCode.run_time_sec;
   display_position: RoutingCode.display_position;
-  site_id?: RoutingCode.site_id;
 }
