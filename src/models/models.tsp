@@ -467,6 +467,7 @@ model OrderCreateBody {
   finalisation_duration_days?: integer;
   prod_duration_days?: integer;
   prep_duration_days?: integer;
+  site_id: numeric;
 }
 
 model OrderWorkflowLine {

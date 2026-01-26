@@ -6551,6 +6551,7 @@ components:
       required:
         - name
         - finalisation_date
+        - site_id
       properties:
         synced_order_no:
           type: string
@@ -6566,6 +6567,8 @@ components:
           type: integer
         prep_duration_days:
           type: integer
+        site_id:
+          type: number
     OrderImportResponse:
       type: object
       required:
