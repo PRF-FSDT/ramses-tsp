@@ -31,6 +31,7 @@ model PaginatedSortableRequest {
   ...PaginatedRequest;
   @query sort_dir?: "asc" | "desc";
   @query sort_by?: string;
+  @query site?: string;
 }
 
 @error
