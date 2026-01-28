@@ -18,6 +18,7 @@ model MachineCenter {
   @example("CNC_1") scan_code: string;
   @example("CNC") machine_type_code: string;
   @example(1) active_broken_part_reason_id: int64 | null;
+  @example(true) auto_complete_prev_step: boolean;
   site_id: int32 | null;
   site_name: string | null;
   time_registration_codes: TimeRegistrationCode[];
@@ -34,6 +35,7 @@ model MachineCenterBody {
   name: MachineCenter.name;
   scan_code: MachineCenter.scan_code;
   machine_type_code: MachineCenter.machine_type_code;
+  auto_complete_prev_step?: MachineCenter.auto_complete_prev_step;
   site_id: int32 | null;
   time_registration_codes: numeric[];
 }
@@ -43,6 +45,7 @@ model MachineCenterPatchBody {
   name?: MachineCenter.name;
   scan_code?: MachineCenter.scan_code;
   machine_type_code?: MachineCenter.machine_type_code;
+  auto_complete_prev_step?: MachineCenter.auto_complete_prev_step;
   site_id?: int32 | null;
   active_broken_part_reason_id?: MachineCenter.active_broken_part_reason_id;
   time_registration_codes?: numeric[];
