@@ -552,6 +552,7 @@ model OrderCsvRequest {
 model McPlannedOrdersRequest {
   ...PaginatedRequest;
   @query machine_center_no: string;
+  @query show_all?: boolean;
 }
 
 model McOrderComponentsRequest {

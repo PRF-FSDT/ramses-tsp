@@ -836,6 +836,7 @@ paths:
         - $ref: '#/components/parameters/PaginatedRequest.perPage'
         - $ref: '#/components/parameters/PaginatedRequest.search'
         - $ref: '#/components/parameters/McPlannedOrdersRequest.machine_center_no'
+        - $ref: '#/components/parameters/McPlannedOrdersRequest.show_all'
       responses:
         '200':
           description: The request has succeeded.
@@ -5240,6 +5241,12 @@ components:
       required: true
       schema:
         type: string
+    McPlannedOrdersRequest.show_all:
+      name: show_all
+      in: query
+      required: false
+      schema:
+        type: boolean
     McRegisterOutputRequest.machine_center_no:
       name: machine_center_no
       in: query
