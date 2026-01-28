@@ -448,6 +448,7 @@ model MeResponse {
   role: Role;
   site: string;
   site_id: int64 | null;
+  resource_id: numeric | null;
   permissions: Permission[];
 }
 

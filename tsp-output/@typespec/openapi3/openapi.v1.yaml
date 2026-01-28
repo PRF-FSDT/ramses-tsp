@@ -6178,6 +6178,7 @@ components:
         - role
         - site
         - site_id
+        - resource_id
         - permissions
       properties:
         id:
@@ -6199,6 +6200,9 @@ components:
         site_id:
           type: integer
           format: int64
+          nullable: true
+        resource_id:
+          type: number
           nullable: true
         permissions:
           type: array
