@@ -75,7 +75,7 @@ interface AdditionalPurchaseParts {
 @tag("Orders")
 interface Orders {
   @get list(...OrderIndexFilterRequest): PaginatedResponse<Order>;
-  @get @route("{id}") read(@path id: string): ReadResponse<Order>;
+  @get @route("{id}") read(@path id: string, @query site?: string): ReadResponse<Order>;
   @patch @route("{id}") update(@path id: string, ...UpdateOrderBody): UpdatedResponse<Order>;
   @post @route("/") post(@body OrderCreateBody: OrderCreateBody): CreatedResponse<Order>;
   @delete delete(@path id: string): DeletedResponse;
