@@ -8083,8 +8083,6 @@ components:
       required:
         - id
         - site_name
-        - user_name
-        - user_id
         - site_id
         - name
         - time_registration_codes
@@ -8094,12 +8092,6 @@ components:
           format: uint64
         site_name:
           type: string
-          nullable: true
-        user_name:
-          type: string
-          nullable: true
-        user_id:
-          type: integer
           nullable: true
         site_id:
           type: number
@@ -8113,11 +8105,8 @@ components:
     ResourceBody:
       type: object
       required:
-        - user_id
         - name
       properties:
-        user_id:
-          type: integer
         name:
           type: string
         site_id:
@@ -8130,8 +8119,6 @@ components:
     ResourceBodyUpdate:
       type: object
       properties:
-        user_id:
-          type: integer
         name:
           type: string
         site_id:
@@ -9021,6 +9008,9 @@ components:
           type: string
         email:
           type: string
+        resource_id:
+          type: number
+          nullable: true
         role:
           type: string
           enum:

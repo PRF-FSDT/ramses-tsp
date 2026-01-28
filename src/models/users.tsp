@@ -35,6 +35,7 @@ model UserCreateBody {
 model UserUpdateBody {
   name: string;
   email: string;
+  resource_id?: numeric | null;
   role?: AssignableRole;
   site_id?: int64 | null;
 }
