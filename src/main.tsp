@@ -270,6 +270,7 @@ interface ItemsExport {
 @tag("Resources")
 interface Resources {
   @get list(...PaginatedSortableRequest): PaginatedResponse<Resource>;
+  @get @route("{id}") read(@path id: string): ReadResponse<Resource>;
   @post @route("/") post(@body ResourceBody: ResourceBody): CreatedResponse<Resource>;
   @patch @route("{id}") update(@path id: string, @body ResourceBody: ResourceBody): UpdatedResponse<Resource>;
   @delete delete(@path id: string): DeletedResponse;

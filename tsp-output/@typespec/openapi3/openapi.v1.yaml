@@ -4680,6 +4680,29 @@ paths:
             schema:
               $ref: '#/components/schemas/ResourceBody'
   /resources/{id}:
+    get:
+      tags:
+        - Resources
+      operationId: Resources_read
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource'
+        '404':
+          description: The server cannot find the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
     patch:
       tags:
         - Resources
