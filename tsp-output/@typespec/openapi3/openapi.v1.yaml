@@ -4325,6 +4325,9 @@ paths:
               properties:
                 planned_mc_no:
                   type: string
+                planned_resource_id:
+                  type: number
+                  nullable: true
                 planned_start:
                   type: string
                   format: date-time
@@ -7706,6 +7709,7 @@ components:
         - resource_id
         - finished_at
         - planned_mc_no
+        - planned_resource_id
         - planned_start
         - planned_duration_in_min
       properties:
@@ -7770,6 +7774,9 @@ components:
           readOnly: true
         planned_mc_no:
           type: string
+        planned_resource_id:
+          type: number
+          nullable: true
         planned_start:
           type: string
           format: date-time

@@ -22,6 +22,8 @@ model PlannedOrderLine {
 
   planned_mc_no: string;
 
+  planned_resource_id: numeric | null;
+
   @encode(DateTimeKnownEncoding.rfc3339)
   planned_start: utcDateTime;
 
