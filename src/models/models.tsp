@@ -381,7 +381,6 @@ model PlannedOrderPosition {
 }
 
 model ResourceBody {
-  user_id: integer;
   name: string;
   site_id?: numeric | null;
   time_registration_codes?: numeric[];
@@ -390,8 +389,6 @@ model ResourceBody {
 model Resource {
   @key id: uint64;
   site_name: string | null;
-  user_name: string | null;
-  user_id: integer | null;
   site_id: numeric | null;
   name: string;
   time_registration_codes: TimeRegistrationCode[];
@@ -451,6 +448,7 @@ model MeResponse {
   role: Role;
   site: string;
   site_id: int64 | null;
+  resource_id: numeric | null;
   permissions: Permission[];
 }
 
@@ -517,7 +515,6 @@ model OrderIndexFilterRequest {
   @query finalisation_date_from?: string;
   @query finalisation_date_until?: string;
   @query include?: "tasks";
-  @query site?: string;
 }
 
 model ItemIndexFilterRequest {
@@ -556,6 +553,7 @@ model OrderCsvRequest {
 model McPlannedOrdersRequest {
   ...PaginatedRequest;
   @query machine_center_no: string;
+  @query show_all?: boolean;
 }
 
 model McOrderComponentsRequest {

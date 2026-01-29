@@ -75,7 +75,7 @@ interface AdditionalPurchaseParts {
 @tag("Orders")
 interface Orders {
   @get list(...OrderIndexFilterRequest): PaginatedResponse<Order>;
-  @get @route("{id}") read(@path id: string): ReadResponse<Order>;
+  @get @route("{id}") read(@path id: string, @query site?: string): ReadResponse<Order>;
   @patch @route("{id}") update(@path id: string, ...UpdateOrderBody): UpdatedResponse<Order>;
   @post @route("/") post(@body OrderCreateBody: OrderCreateBody): CreatedResponse<Order>;
   @delete delete(@path id: string): DeletedResponse;
@@ -270,7 +270,8 @@ interface ItemsExport {
 @tag("Resources")
 interface Resources {
   @get list(...PaginatedSortableRequest): PaginatedResponse<Resource>;
-  @post @route("/") post(@body ResourceBody: ResourceBody): CreatedResponse<Resource>;
+  @get @route("{id}") read(@path id: string): ReadResponse<Resource>;
+  @post @route("") post(@body ResourceBody: ResourceBody): CreatedResponse<Resource>;
   @patch @route("{id}") update(@path id: string, @body ResourceBody: ResourceBody): UpdatedResponse<Resource>;
   @delete delete(@path id: string): DeletedResponse;
 }
@@ -509,6 +510,7 @@ interface MesMachineCenter {
 @tag("Broken Part Reasons")
 interface BrokenPartReasons {
   @get list(...PaginatedSortableRequest): PaginatedResponse<BrokenPartReason>;
+  @get @route("{id}") read(@path id: string): ReadResponse<BrokenPartReason>;
   @post @route("/") post(@body BrokenPartReasonBody: BrokenPartReasonBody): CreatedResponse<BrokenPartReason>;
   @patch @route("{id}") update(@path id: string, @body BrokenPartReasonBody: BrokenPartReasonBody): UpdatedResponse<BrokenPartReason>;
   @delete delete(@path id: string): DeletedResponse;
