@@ -509,6 +509,7 @@ interface MesMachineCenter {
 @tag("Broken Part Reasons")
 interface BrokenPartReasons {
   @get list(...PaginatedSortableRequest): PaginatedResponse<BrokenPartReason>;
+  @get @route("{id}") read(@path id: string): ReadResponse<BrokenPartReason>;
   @post @route("/") post(@body BrokenPartReasonBody: BrokenPartReasonBody): CreatedResponse<BrokenPartReason>;
   @patch @route("{id}") update(@path id: string, @body BrokenPartReasonBody: BrokenPartReasonBody): UpdatedResponse<BrokenPartReason>;
   @delete delete(@path id: string): DeletedResponse;

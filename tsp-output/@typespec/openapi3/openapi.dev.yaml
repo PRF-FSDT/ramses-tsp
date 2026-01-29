@@ -426,6 +426,29 @@ paths:
             schema:
               $ref: '#/components/schemas/BrokenPartReasonBody'
   /mes/broken-part-reasons/{id}:
+    get:
+      tags:
+        - Broken Part Reasons
+      operationId: BrokenPartReasons_read
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BrokenPartReason'
+        '404':
+          description: The server cannot find the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
     patch:
       tags:
         - Broken Part Reasons
@@ -5938,6 +5961,7 @@ components:
         - scan_code
         - machine_type_code
         - active_broken_part_reason_id
+        - auto_complete_prev_step
         - site_id
         - site_name
         - time_registration_codes
@@ -5962,6 +5986,9 @@ components:
           format: int64
           nullable: true
           example: 1
+        auto_complete_prev_step:
+          type: boolean
+          example: true
         site_id:
           type: integer
           format: int32
@@ -5995,6 +6022,9 @@ components:
         machine_type_code:
           type: string
           example: CNC
+        auto_complete_prev_step:
+          type: boolean
+          example: true
         site_id:
           type: integer
           format: int32
@@ -6018,6 +6048,9 @@ components:
         machine_type_code:
           type: string
           example: CNC
+        auto_complete_prev_step:
+          type: boolean
+          example: true
         site_id:
           type: integer
           format: int32
@@ -6087,6 +6120,7 @@ components:
         - scan_code
         - machine_type_code
         - active_broken_part_reason_id
+        - auto_complete_prev_step
         - site_id
         - site_name
         - time_registration_codes
@@ -6113,6 +6147,9 @@ components:
           format: int64
           nullable: true
           example: 1
+        auto_complete_prev_step:
+          type: boolean
+          example: true
         site_id:
           type: integer
           format: int32
