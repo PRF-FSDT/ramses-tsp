@@ -4654,7 +4654,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
-  /resources/:
     post:
       tags:
         - Resources
