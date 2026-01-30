@@ -5986,6 +5986,7 @@ components:
         - scan_code
         - machine_type_code
         - active_broken_part_reason_id
+        - use_start_stop
         - auto_complete_prev_step
         - site_id
         - site_name
@@ -6011,6 +6012,9 @@ components:
           format: int64
           nullable: true
           example: 1
+        use_start_stop:
+          type: boolean
+          example: true
         auto_complete_prev_step:
           type: boolean
           example: true
@@ -6047,6 +6051,9 @@ components:
         machine_type_code:
           type: string
           example: CNC
+        use_start_stop:
+          type: boolean
+          example: true
         auto_complete_prev_step:
           type: boolean
           example: true
@@ -6073,6 +6080,9 @@ components:
         machine_type_code:
           type: string
           example: CNC
+        use_start_stop:
+          type: boolean
+          example: true
         auto_complete_prev_step:
           type: boolean
           example: true
@@ -6145,6 +6155,7 @@ components:
         - scan_code
         - machine_type_code
         - active_broken_part_reason_id
+        - use_start_stop
         - auto_complete_prev_step
         - site_id
         - site_name
@@ -6172,6 +6183,9 @@ components:
           format: int64
           nullable: true
           example: 1
+        use_start_stop:
+          type: boolean
+          example: true
         auto_complete_prev_step:
           type: boolean
           example: true
