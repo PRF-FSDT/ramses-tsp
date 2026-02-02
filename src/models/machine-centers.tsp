@@ -22,6 +22,7 @@ model MachineCenter {
   @example(true) auto_complete_prev_step: boolean;
   site_id: int32 | null;
   site_name: string | null;
+  auto_stop_timeout: int64;
   time_registration_codes: TimeRegistrationCode[];
 }
 
@@ -39,6 +40,7 @@ model MachineCenterBody {
   use_start_stop?: MachineCenter.use_start_stop;
   auto_complete_prev_step?: MachineCenter.auto_complete_prev_step;
   site_id: int32 | null;
+  auto_stop_timeout: MachineCenter.auto_stop_timeout;
   time_registration_codes: numeric[];
 }
 
@@ -51,5 +53,6 @@ model MachineCenterPatchBody {
   auto_complete_prev_step?: MachineCenter.auto_complete_prev_step;
   site_id?: int32 | null;
   active_broken_part_reason_id?: MachineCenter.active_broken_part_reason_id;
+  auto_stop_timeout?: MachineCenter.auto_stop_timeout;
   time_registration_codes?: numeric[];
 }

@@ -5990,6 +5990,7 @@ components:
         - auto_complete_prev_step
         - site_id
         - site_name
+        - auto_stop_timeout
         - time_registration_codes
       properties:
         id:
@@ -6025,6 +6026,9 @@ components:
         site_name:
           type: string
           nullable: true
+        auto_stop_timeout:
+          type: integer
+          format: int64
         time_registration_codes:
           type: array
           items:
@@ -6037,6 +6041,7 @@ components:
         - scan_code
         - machine_type_code
         - site_id
+        - auto_stop_timeout
         - time_registration_codes
       properties:
         no:
@@ -6061,6 +6066,9 @@ components:
           type: integer
           format: int32
           nullable: true
+        auto_stop_timeout:
+          type: integer
+          format: int64
         time_registration_codes:
           type: array
           items:
@@ -6095,6 +6103,9 @@ components:
           format: int64
           nullable: true
           example: 1
+        auto_stop_timeout:
+          type: integer
+          format: int64
         time_registration_codes:
           type: array
           items:
@@ -6159,6 +6170,7 @@ components:
         - auto_complete_prev_step
         - site_id
         - site_name
+        - auto_stop_timeout
         - time_registration_codes
         - scanners
         - timers
@@ -6196,6 +6208,9 @@ components:
         site_name:
           type: string
           nullable: true
+        auto_stop_timeout:
+          type: integer
+          format: int64
         time_registration_codes:
           type: array
           items:
