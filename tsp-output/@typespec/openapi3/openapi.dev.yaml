@@ -6029,6 +6029,7 @@ components:
         auto_stop_timeout:
           type: integer
           format: int64
+          nullable: true
         time_registration_codes:
           type: array
           items:
@@ -6069,6 +6070,7 @@ components:
         auto_stop_timeout:
           type: integer
           format: int64
+          nullable: true
         time_registration_codes:
           type: array
           items:
@@ -6106,6 +6108,7 @@ components:
         auto_stop_timeout:
           type: integer
           format: int64
+          nullable: true
         time_registration_codes:
           type: array
           items:
@@ -6211,6 +6214,7 @@ components:
         auto_stop_timeout:
           type: integer
           format: int64
+          nullable: true
         time_registration_codes:
           type: array
           items:

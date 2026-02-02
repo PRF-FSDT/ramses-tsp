@@ -22,7 +22,7 @@ model MachineCenter {
   @example(true) auto_complete_prev_step: boolean;
   site_id: int32 | null;
   site_name: string | null;
-  auto_stop_timeout: int64;
+  auto_stop_timeout: int64 | null;
   time_registration_codes: TimeRegistrationCode[];
 }
 
