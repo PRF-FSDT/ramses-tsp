@@ -5553,6 +5553,7 @@ components:
         - use_sorting_locations
         - default_whse_location_code
         - default_prod_duration_days
+        - default_finalisation_duration_days
       properties:
         post_panel_consumption_to_erp:
           type: boolean
@@ -5561,6 +5562,8 @@ components:
         default_whse_location_code:
           type: string
         default_prod_duration_days:
+          type: number
+        default_finalisation_duration_days:
           type: number
     AppSettingBody:
       type: object
@@ -5572,6 +5575,8 @@ components:
         default_whse_location_code:
           type: string
         default_prod_duration_days:
+          type: number
+        default_finalisation_duration_days:
           type: number
     ApplySimulationBody:
       type: object

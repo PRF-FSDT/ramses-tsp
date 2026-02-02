@@ -3,6 +3,7 @@ model AppSetting {
   use_sorting_locations: boolean;
   default_whse_location_code: string;
   default_prod_duration_days: numeric;
+  default_finalisation_duration_days: numeric;
 }
 
 model AppSettingBody {
@@ -10,4 +11,5 @@ model AppSettingBody {
   use_sorting_locations?: boolean;
   default_whse_location_code?: string;
   default_prod_duration_days?: numeric;
+  default_finalisation_duration_days?: numeric;
 }
