@@ -22,6 +22,7 @@ model PlannedOrderLine {
 
   planned_mc_no: string;
 
+  @visibility("update")
   planned_resource_id: numeric | null;
 
   @encode(DateTimeKnownEncoding.rfc3339)
