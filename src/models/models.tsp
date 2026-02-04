@@ -465,6 +465,7 @@ model OrderCreateBody {
   finalisation_duration_days?: integer;
   prod_duration_days?: integer;
   prep_duration_days?: integer;
+  auto_plan?: boolean;
   site_id: numeric;
 }
 
