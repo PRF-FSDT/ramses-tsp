@@ -7850,6 +7850,7 @@ components:
         - planned_mc_no
         - planned_start
         - planned_duration_in_min
+        - group_code
       properties:
         id:
           anyOf:
@@ -7925,6 +7926,9 @@ components:
           type: string
           readOnly: true
         finalisation_date:
+          type: string
+          readOnly: true
+        group_code:
           type: string
           readOnly: true
         order:

@@ -32,6 +32,7 @@ model PlannedOrderLine {
   @visibility("read") prod_start_date?: string;
   @visibility("read") prod_end_date?: string;
   @visibility("read") finalisation_date?: string;
+  @visibility("read") group_code: string;
   order?: {
     id: int32;
     no: string;
