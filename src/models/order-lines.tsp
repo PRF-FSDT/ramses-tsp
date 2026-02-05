@@ -31,6 +31,7 @@ model PlannedOrderLine {
   planned_duration_in_min: int64;
   @visibility("read") prod_start_date?: string;
   @visibility("read") prod_end_date?: string;
+  @visibility("read") finalisation_date?: string;
   order?: {
     id: int32;
     no: string;

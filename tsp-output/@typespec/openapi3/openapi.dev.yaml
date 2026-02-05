@@ -7924,6 +7924,9 @@ components:
         prod_end_date:
           type: string
           readOnly: true
+        finalisation_date:
+          type: string
+          readOnly: true
         order:
           type: object
           properties:
