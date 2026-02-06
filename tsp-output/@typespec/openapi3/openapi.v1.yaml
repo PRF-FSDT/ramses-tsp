@@ -3640,12 +3640,35 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /order-manager/planned-order-lines_for_resource:
+  /order-manager/planned-order-lines_for_resource/{resourceId}/{date}:
     get:
       tags:
         - Planned Order Lines
       operationId: PlannedOrderLines_getPlannedOrderLinesForResource
-      parameters: []
+      parameters:
+        - name: resourceId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: date
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: currentPage
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: perPage
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
       responses:
         '200':
           description: The request has succeeded.
@@ -3676,12 +3699,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PlannedOrderLinesForResourceQuery'
   /order-manager/sync-erp-data:
     post:
       tags:
@@ -8048,23 +8065,6 @@ components:
         finished_at:
           type: string
           nullable: true
-    PlannedOrderLinesForResourceQuery:
-      type: object
-      required:
-        - resource_id
-        - date
-      properties:
-        resource_id:
-          type: integer
-          format: int32
-        date:
-          type: string
-        currentPage:
-          type: integer
-          format: int32
-        perPage:
-          type: integer
-          format: int32
     PlannedOrderPosition:
       type: object
       required:

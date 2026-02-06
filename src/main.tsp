@@ -240,7 +240,14 @@ interface TimeRegistrationCodes {
 @route("/order-manager/planned-order-lines_for_resource")
 @tag("Planned Order Lines")
 interface PlannedOrderLines {
-  @get getPlannedOrderLinesForResource(...PlannedOrderLinesForResourceQuery): PaginatedResponse<PlannedOrderLine>;
+  @get
+  @route("/{resourceId}/{date}")
+  getPlannedOrderLinesForResource(
+    @path resourceId: int32,
+    @path date: string, // Y-m-d
+    @query currentPage?: int32,
+    @query perPage?: int32
+  ): PaginatedResponse<PlannedOrderLine>;
 }
 
 @route("/order-manager")
