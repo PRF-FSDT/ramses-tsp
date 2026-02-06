@@ -18,6 +18,7 @@ tags:
   - name: Order Tasks
   - name: Order Task Templates
   - name: Time Registration Codes
+  - name: Planned Order Lines
   - name: Order Manager
   - name: Items
   - name: Materials Manager
@@ -3639,6 +3640,48 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /order-manager/planned-order-lines_for_resource:
+    get:
+      tags:
+        - Planned Order Lines
+      operationId: PlannedOrderLines_getPlannedOrderLinesForResource
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - links
+                  - meta
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PlannedOrderLine'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                  filters:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FilterOption'
+        '404':
+          description: The server cannot find the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlannedOrderLinesForResourceQuery'
   /order-manager/sync-erp-data:
     post:
       tags:
@@ -8005,6 +8048,23 @@ components:
         finished_at:
           type: string
           nullable: true
+    PlannedOrderLinesForResourceQuery:
+      type: object
+      required:
+        - resource_id
+        - date
+      properties:
+        resource_id:
+          type: integer
+          format: int32
+        date:
+          type: string
+        currentPage:
+          type: integer
+          format: int32
+        perPage:
+          type: integer
+          format: int32
     PlannedOrderPosition:
       type: object
       required:

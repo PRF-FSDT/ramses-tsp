@@ -236,6 +236,13 @@ interface TimeRegistrationCodes {
   @delete delete(@path id: string): DeletedResponse;
 }
 
+// Model: PlannedOrderLine
+@route("/order-manager/planned-order-lines_for_resource")
+@tag("Planned Order Lines")
+interface PlannedOrderLines {
+  @get getPlannedOrderLinesForResource(...PlannedOrderLinesForResourceQuery): PaginatedResponse<PlannedOrderLine>;
+}
+
 @route("/order-manager")
 @tag("Order Manager")
 interface OrderManager {

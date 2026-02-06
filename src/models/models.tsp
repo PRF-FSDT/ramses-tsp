@@ -586,3 +586,10 @@ model PlannedOrder extends Order {
   tasks: PlannedOrderTask[];
   planned_order_lines: PlannedOrderLineWithOrderInfo[];
 }
+
+model PlannedOrderLinesForResourceQuery {
+  resource_id: int32;
+  date: string; // Y-m-d
+  currentPage?: int32;
+  perPage?: int32;
+}
