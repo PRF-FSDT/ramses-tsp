@@ -8848,7 +8848,7 @@ components:
       required:
         - id
         - order_id
-        - user_id
+        - resource_id
         - kind
         - source
         - is_active
@@ -8865,7 +8865,7 @@ components:
           type: number
         order_id:
           type: number
-        user_id:
+        resource_id:
           type: number
           nullable: true
         kind:

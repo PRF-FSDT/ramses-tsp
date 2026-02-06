@@ -1,7 +1,7 @@
 model TimeRegistration {
   id: numeric;
   order_id: numeric;
-  user_id: numeric | null;
+  resource_id: numeric | null;
   kind: "production" | "preparation" | "finalisation";
   source: "manual" | "timer";
   is_active: boolean;
